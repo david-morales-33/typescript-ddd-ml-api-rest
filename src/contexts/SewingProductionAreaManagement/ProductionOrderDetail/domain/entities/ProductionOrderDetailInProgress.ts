@@ -19,8 +19,11 @@ import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain
 export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
 
     private _className: string = 'ProductionOrderDetail.inProgress'; 
-    readonly productionOrderDetailId: ProductionOrderDetailId;
+
     private _processEndDate: ProductionOrderDetailFinishDate | null;
+    private _recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter;
+    readonly productionOrderDetailId: ProductionOrderDetailId;
+    private _recordsOrderCheckedCounter: ProductionOrderDetailRecordsOrederCheckedCounter;
 
     constructor(
         readonly productionOrderId: ProductionOrderId,
@@ -30,13 +33,18 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
         readonly plannedAmount: ProductionOrderDetailPlannedAmount,
         private _executedAmount: ProductionOrderDetailExecutedAmount,
         readonly processStartDate: ProductionOrderDetailProcessStartDate,
-        private _recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter,
-        private _recordsOrderCheckedCounter: ProductionOrderDetailRecordsOrederCheckedCounter,
         readonly countingRecordsOrderListId: CountingRecordsOrderId[],
         readonly countingRecordsOrderCheckedListId: CountingRecordsOrderId[]
     ) {
         this.productionOrderDetailId = new ProductionOrderDetailId(colorId, garmentSize, productionOrderId);
         this._processEndDate = null;
+
+        if(countingRecordsOrderListId.length===0)
+            throw new Error(`<Counting Records Order Id List> was not provided in Production Order Detail <${this.productionOrderDetailId.getProductionOrderDetalId()}>`);
+
+        this._recordsOrderCounter = this.setInitialCountingRecordsOrderCounter(countingRecordsOrderListId);
+        this._recordsOrderCheckedCounter= this.setInitialCountingRecordsOrderCheckedCounter(countingRecordsOrderCheckedListId);
+
     }
 
     public get className(): string {
@@ -67,8 +75,6 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
         plannedAmount: ProductionOrderDetailPlannedAmount,
         executedAmount: ProductionOrderDetailExecutedAmount,
         processStartDate: ProductionOrderDetailProcessStartDate,
-        recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter,
-        recordsOrderCheckedCounter: ProductionOrderDetailRecordsOrederCheckedCounter,
         countingRecordsOrderListId: CountingRecordsOrderId[],
         countingRecordsOrderCheckedListId: CountingRecordsOrderId[]
 
@@ -81,8 +87,6 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
             plannedAmount,
             executedAmount,
             processStartDate,
-            recordsOrderCounter,
-            recordsOrderCheckedCounter,
             countingRecordsOrderListId,
             countingRecordsOrderCheckedListId
         );
@@ -144,6 +148,16 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
             this.plannedAmount.value < (countingRecordsOrderAmount.value + this.executedAmount.value);
     }
 
+    private setInitialCountingRecordsOrderCounter(countingRecordsOrderList : CountingRecordsOrderId[]):ProductionOrderDetailRecordsOrederCounter{
+        const counterRecords = countingRecordsOrderList.length;
+        return new ProductionOrderDetailRecordsOrederCounter(counterRecords)
+    }
+
+    private setInitialCountingRecordsOrderCheckedCounter(countingRecordsOrderList : CountingRecordsOrderId[]):ProductionOrderDetailRecordsOrederCheckedCounter{
+        const counterRecords = countingRecordsOrderList.length;
+        return new ProductionOrderDetailRecordsOrederCheckedCounter(counterRecords);
+    }
+
     static fromPrimitives(data: {
         productionOrderDetailId: string;
         productionOrderId: string;
@@ -166,8 +180,6 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
             new ProductionOrderDetailPlannedAmount(data.plannedAmount),
             new ProductionOrderDetailExecutedAmount(data.executedAmount),
             new ProductionOrderDetailProcessStartDate(data.processStartDate),
-            new ProductionOrderDetailRecordsOrederCounter(data.recordsOrderCounter),
-            new ProductionOrderDetailRecordsOrederCheckedCounter(data.recordsOrderCheckedCounter),
             data.countingRecordsOrderListId.map(entry => new CountingRecordsOrderId(entry)),
             data.countingRecordsOrderCheckedListId.map(entry => new CountingRecordsOrderId(entry))
         )

@@ -134,20 +134,24 @@ export class ProductionOrderInProgress implements ProductionOrder {
     private setInitialCountingRecordsOrderCounter(productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[]): ProductionOrderRecordsCounter {
         const counterList = productionOrderDetailList.map(element => element.countingRecordsOrderListId.length);
         let counterAmount = 0;
+
         counterList.forEach(element => {
             counterAmount = counterAmount + element;
         });
+
         return new ProductionOrderRecordsCounter(counterAmount);
     }
 
     private setInitialCountingRecordsOrderCheckedCounter(productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[]): ProductionOrderRecordsCheckedCounter {
         let counterAmount = 0;
+
         productionOrderDetailList.forEach(element => {
             if (element.toPrimitives().className === 'ProductionOrderDetail.inProgressDTO') {
                 const DetailinProgressDTO = element as ProductionOrderDetailInProgress;
                 counterAmount = counterAmount + DetailinProgressDTO.countingRecordsOrderCheckedListId.length;
             }
         });
+
         return new ProductionOrderRecordsCheckedCounter(counterAmount);
     }
 
