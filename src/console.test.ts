@@ -39,17 +39,6 @@ import { UserId } from "./contexts/SewingProductionAreaManagement/Shared/domain/
 //     []
 // )
 
-// const productionOrderDetailNotStarted1 = new ProductionOrderDetailNotStarted(
-//     new ProductionOrderId('MOB3547'),
-//     new ColorId('1302'),
-//     new GarmentSize('34'),
-//     new BarcodeEan('7704666565677'),
-//     new ProductionOrderDetailPlannedAmount(100),
-//     new ProductionOrderDetailExecutedAmount(0),
-//     null,
-//     new ProductionOrderDetailRecordsOrederCounter(0),
-//     []
-// )
 
 // const productionOrderDetailNotStarted2 = new ProductionOrderDetailNotStarted(
 //     new ProductionOrderId('MOB3547'),
@@ -120,25 +109,20 @@ import { UserId } from "./contexts/SewingProductionAreaManagement/Shared/domain/
 //     []
 // )
 
-// const countingRecordsOrder4 = new CountingRecordsOrderFirstQualityNotChecked(
-//     new CountingRecordsOrderId(37),
-//     new ProductionOrderId('MOB3547'),
-//     new ColorId('1302'),
-//     new GarmentSize('36'),
-//     new CountingRecordsOrderInitialTime('10:21:31'),
-//     new CountingRecordsOrderFinalTime('11:21:31'),
-//     new CountingRecordsOrderAmount(400),
-//     new ProductionModuleId(6),
-//     new CountingRecordsOrderProductionScheduleId(1),
-//     new CountingRecordsOrderEventIdOnProductionModule('08'),
-//     new CreationDate(new Date('2024-07-01')),
-//     new UserId('11446441925'),
-//     []
-// )
 
 // productionOrderNotStarted.addProductionOrderDetail(productionOrderDetailNotStarted1);
 // productionOrderNotStarted.addProductionOrderDetail(productionOrderDetailNotStarted2);
 // productionOrderNotStarted.addProductionOrderDetail(productionOrderDetailNotStarted3);
+
+const productionOrderDetailNotStarted1 = new ProductionOrderDetailNotStarted(
+    new ProductionOrderId('MOB3547'),
+    new ColorId('1302'),
+    new GarmentSize('32'),
+    new BarcodeEan('7704666565677'),
+    new ProductionOrderDetailPlannedAmount(100),
+    new ProductionOrderDetailExecutedAmount(0),
+    new ProductionOrderDetailRecordsOrederCounter(0)
+);
 
 const productionOrderDetailInProgress1 = new ProductionOrderDetailInProgress(
     new ProductionOrderId('MOB3547'),
@@ -148,7 +132,6 @@ const productionOrderDetailInProgress1 = new ProductionOrderDetailInProgress(
     new ProductionOrderDetailPlannedAmount(100),
     new ProductionOrderDetailExecutedAmount(20),
     new ProductionOrderDetailProcessStartDate(new Date()),
-    null,
     new ProductionOrderDetailRecordsOrederCounter(0),
     new ProductionOrderDetailRecordsOrederCheckedCounter(0),
     [
@@ -164,6 +147,7 @@ const productionOrderDetailInProgress1 = new ProductionOrderDetailInProgress(
         new CountingRecordsOrderId(105)
     ]
 );
+
 const productionOrderDetailInProgress2 = new ProductionOrderDetailInProgress(
     new ProductionOrderId('MOB3547'),
     new ColorId('1302'),
@@ -172,7 +156,6 @@ const productionOrderDetailInProgress2 = new ProductionOrderDetailInProgress(
     new ProductionOrderDetailPlannedAmount(100),
     new ProductionOrderDetailExecutedAmount(20),
     new ProductionOrderDetailProcessStartDate(new Date()),
-    null,
     new ProductionOrderDetailRecordsOrederCounter(0),
     new ProductionOrderDetailRecordsOrederCheckedCounter(0),
     [
@@ -187,7 +170,6 @@ const productionOrderDetailInProgress2 = new ProductionOrderDetailInProgress(
         new CountingRecordsOrderId(2),
         new CountingRecordsOrderId(3),
         new CountingRecordsOrderId(5),
-
     ]
 );
 
@@ -197,12 +179,28 @@ const productionOrderInProgress = new ProductionOrderInProgress(
     new ProductionOrderPlannedAmount(400),
     new ProductionOrderExecutedAmount(0),
     new ProductionOrderProcessStartDate(new Date()),
-    null,
     new UserId('11446441925'),
     [
         productionOrderDetailInProgress1,
         productionOrderDetailInProgress2,
+        productionOrderDetailNotStarted1
     ],
+)
+
+const countingRecordsOrder4 = new CountingRecordsOrderFirstQualityNotChecked(
+    new CountingRecordsOrderId(37),
+    new ProductionOrderId('MOB3547'),
+    new ColorId('1302'),
+    new GarmentSize('32'),
+    new CountingRecordsOrderInitialTime('10:21:31'),
+    new CountingRecordsOrderFinalTime('11:21:31'),
+    new CountingRecordsOrderAmount(400),
+    new ProductionModuleId(6),
+    new CountingRecordsOrderProductionScheduleId(1),
+    new CountingRecordsOrderEventIdOnProductionModule('08'),
+    new CreationDate(new Date('2024-07-01')),
+    new UserId('11446441925'),
+    []
 )
 
 // productionOrderInProgress.addCountingRecordsOrder(countingRecordsOrder1);
@@ -210,6 +208,7 @@ const productionOrderInProgress = new ProductionOrderInProgress(
 // productionOrderInProgress.addCountingRecordsOrder(countingRecordsOrder3);
 // productionOrderInProgress.addCountingRecordsOrder(countingRecordsOrder4);
 
+// console.log(productionOrderInProgress.toPrimitives())
 // productionOrderInProgress.addCountingRecordsOrder(countingRecordsOrder4)
 
 // productionOrderDetailNotStarted3.addCountingRecordOrder(countingRecordsOrder1);
@@ -217,7 +216,4 @@ const productionOrderInProgress = new ProductionOrderInProgress(
 // productionOrderDetailNotStarted3.addCountingRecordOrder(countingRecordsOrder3);
 
 
-
 console.log(productionOrderInProgress.toPrimitives())
-
-// const productionOrder1 = productionOrder.

@@ -17,6 +17,8 @@ import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRe
 export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
 
     readonly productionOrderDetailId: ProductionOrderDetailId;
+    readonly countingRecordsOrderListId: CountingRecordsOrderId[];
+    private _processStartDate: ProductionOrderDetailProcessStartDate | null;
 
     constructor(
         readonly productionOrderId: ProductionOrderId,
@@ -25,11 +27,11 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
         readonly ean: BarcodeEan,
         readonly plannedAmount: ProductionOrderDetailPlannedAmount,
         private _executedAmount: ProductionOrderDetailExecutedAmount,
-        private _processStartDate: ProductionOrderDetailProcessStartDate | null,
         private _recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter,
-        readonly countingRecordsOrderListId: CountingRecordsOrderId[],
     ) {
         this.productionOrderDetailId = new ProductionOrderDetailId(colorId, garmentSize, productionOrderId)
+        this.countingRecordsOrderListId = [];
+        this._processStartDate = null;
     }
 
     public get executedAmount(): ProductionOrderDetailExecutedAmount {
@@ -50,7 +52,6 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
         garmentSize: GarmentSize,
         ean: BarcodeEan,
         plannedAmount: ProductionOrderDetailPlannedAmount,
-        processStartDate: ProductionOrderDetailProcessStartDate,
 
     ): ProductionOrderDetailNotStarted {
         return new ProductionOrderDetailNotStarted(
@@ -60,9 +61,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
             ean,
             plannedAmount,
             ProductionOrderDetailExecutedAmount.initialize(),
-            processStartDate,
-            ProductionOrderDetailRecordsOrederCounter.initialize(),
-            []
+            ProductionOrderDetailRecordsOrederCounter.initialize()
         );
     }
 
@@ -115,9 +114,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
             new BarcodeEan(data.ean),
             new ProductionOrderDetailPlannedAmount(data.plannedAmount),
             new ProductionOrderDetailExecutedAmount(0),
-            null,
             new ProductionOrderDetailRecordsOrederCounter(0),
-            [],
         )
     }
 

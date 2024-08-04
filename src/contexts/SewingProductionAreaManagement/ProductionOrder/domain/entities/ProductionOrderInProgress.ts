@@ -22,6 +22,7 @@ export class ProductionOrderInProgress implements ProductionOrder {
 
     private _recordsOrderCounter: ProductionOrderRecordsCounter;
     private _recordsOrderCheckedCounter: ProductionOrderRecordsCheckedCounter;
+    private _processEndDate: ProductionOrderProcessEndDate | null;
 
     constructor(
         readonly productionOrderid: ProductionOrderId,
@@ -29,7 +30,6 @@ export class ProductionOrderInProgress implements ProductionOrder {
         readonly plannedAmount: ProductionOrderPlannedAmount,
         private _executedAmount: ProductionOrderExecutedAmount,
         readonly processStartDate: ProductionOrderProcessStartDate,
-        private _processEndDate: ProductionOrderProcessEndDate | null,
         readonly openByUser: UserId,
         readonly productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[],
     ) {
@@ -38,6 +38,7 @@ export class ProductionOrderInProgress implements ProductionOrder {
 
         this._recordsOrderCounter = this.setInitialCountingRecordsOrderCounter(productionOrderDetailList);
         this._recordsOrderCheckedCounter = this.setInitialCountingRecordsOrderCheckedCounter(productionOrderDetailList);
+        this._processEndDate = null;
     }
 
     public get executedAmount(): ProductionOrderExecutedAmount {
@@ -62,7 +63,6 @@ export class ProductionOrderInProgress implements ProductionOrder {
         plannedAmount: ProductionOrderPlannedAmount,
         executedAmount: ProductionOrderExecutedAmount,
         processStartDate: ProductionOrderProcessStartDate,
-        processEndDate: ProductionOrderProcessEndDate | null,
         openByUser: UserId,
         productionOrderDetailList: ProductionOrderDetailInProgress[] | ProductionOrderDetailNotStarted[]
     ): ProductionOrderInProgress {
@@ -73,7 +73,6 @@ export class ProductionOrderInProgress implements ProductionOrder {
             plannedAmount,
             executedAmount,
             processStartDate,
-            processEndDate,
             openByUser,
             productionOrderDetailList,
         );
@@ -174,7 +173,6 @@ export class ProductionOrderInProgress implements ProductionOrder {
             new ProductionOrderPlannedAmount(data.plannedAmount),
             new ProductionOrderExecutedAmount(data.executedAmount),
             new ProductionOrderProcessStartDate(data.processStartDate),
-            data.processEndDate ? new ProductionOrderProcessEndDate(data.processEndDate) : null,
             new UserId(data.openByUser),
             data.productionOrderDetailList.map(entry => {
                 if (entry.className === 'ProductionOrderDetail.inProgressDTO')

@@ -20,6 +20,7 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
 
     private _className: string = 'ProductionOrderDetail.inProgress'; 
     readonly productionOrderDetailId: ProductionOrderDetailId;
+    private _processEndDate: ProductionOrderDetailFinishDate | null;
 
     constructor(
         readonly productionOrderId: ProductionOrderId,
@@ -29,14 +30,15 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
         readonly plannedAmount: ProductionOrderDetailPlannedAmount,
         private _executedAmount: ProductionOrderDetailExecutedAmount,
         readonly processStartDate: ProductionOrderDetailProcessStartDate,
-        private _processEndDate: ProductionOrderDetailFinishDate | null,
         private _recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter,
         private _recordsOrderCheckedCounter: ProductionOrderDetailRecordsOrederCheckedCounter,
         readonly countingRecordsOrderListId: CountingRecordsOrderId[],
         readonly countingRecordsOrderCheckedListId: CountingRecordsOrderId[]
     ) {
-        this.productionOrderDetailId = new ProductionOrderDetailId(colorId, garmentSize, productionOrderId)
+        this.productionOrderDetailId = new ProductionOrderDetailId(colorId, garmentSize, productionOrderId);
+        this._processEndDate = null;
     }
+
     public get className(): string {
         return this._className;
     }
@@ -65,7 +67,6 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
         plannedAmount: ProductionOrderDetailPlannedAmount,
         executedAmount: ProductionOrderDetailExecutedAmount,
         processStartDate: ProductionOrderDetailProcessStartDate,
-        processEndDate: ProductionOrderDetailFinishDate | null,
         recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter,
         recordsOrderCheckedCounter: ProductionOrderDetailRecordsOrederCheckedCounter,
         countingRecordsOrderListId: CountingRecordsOrderId[],
@@ -80,7 +81,6 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
             plannedAmount,
             executedAmount,
             processStartDate,
-            processEndDate,
             recordsOrderCounter,
             recordsOrderCheckedCounter,
             countingRecordsOrderListId,
@@ -153,7 +153,6 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
         plannedAmount: number;
         executedAmount: number;
         processStartDate: Date;
-        processEndDate: Date | null;
         recordsOrderCounter: number;
         recordsOrderCheckedCounter: number;
         countingRecordsOrderListId: number[];
@@ -167,7 +166,6 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
             new ProductionOrderDetailPlannedAmount(data.plannedAmount),
             new ProductionOrderDetailExecutedAmount(data.executedAmount),
             new ProductionOrderDetailProcessStartDate(data.processStartDate),
-            data.processEndDate ? new ProductionOrderDetailFinishDate(data.processEndDate) : null,
             new ProductionOrderDetailRecordsOrederCounter(data.recordsOrderCounter),
             new ProductionOrderDetailRecordsOrederCheckedCounter(data.recordsOrderCheckedCounter),
             data.countingRecordsOrderListId.map(entry => new CountingRecordsOrderId(entry)),
