@@ -23,22 +23,29 @@ export class ProductionOrderInProgress implements ProductionOrder {
     private _recordsOrderCounter: ProductionOrderRecordsCounter;
     private _recordsOrderCheckedCounter: ProductionOrderRecordsCheckedCounter;
     private _processEndDate: ProductionOrderProcessEndDate | null;
+    private _plannedAmount: ProductionOrderPlannedAmount;
+    private _executedAmount: ProductionOrderExecutedAmount;
 
     constructor(
         readonly productionOrderid: ProductionOrderId,
         readonly reference: ProductionOrderReference,
-        readonly plannedAmount: ProductionOrderPlannedAmount,
-        private _executedAmount: ProductionOrderExecutedAmount,
         readonly processStartDate: ProductionOrderProcessStartDate,
         readonly openByUser: UserId,
         readonly productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[],
     ) {
+
         if (productionOrderDetailList.length === 0)
             throw new Error(`<Production Order Detail List> were not provided in Production Order ${productionOrderid.value}`);
 
-        this._recordsOrderCounter = this.setInitialCountingRecordsOrderCounter(productionOrderDetailList);
-        this._recordsOrderCheckedCounter = this.setInitialCountingRecordsOrderCheckedCounter(productionOrderDetailList);
         this._processEndDate = null;
+        this._recordsOrderCheckedCounter = this.setInitialCountingRecordsOrderCheckedCounter(productionOrderDetailList);
+        this._recordsOrderCounter = this.setInitialCountingRecordsOrderCounter(productionOrderDetailList);
+        this._executedAmount = this.setInitialExecutedAmount(productionOrderDetailList);
+        this._plannedAmount = this.setInitialPlannedAmount(productionOrderDetailList);
+    }
+
+    public get plannedAmount(): ProductionOrderPlannedAmount {
+        return this._plannedAmount;
     }
 
     public get executedAmount(): ProductionOrderExecutedAmount {
@@ -60,8 +67,6 @@ export class ProductionOrderInProgress implements ProductionOrder {
     static create(
         productionOrderid: ProductionOrderId,
         reference: ProductionOrderReference,
-        plannedAmount: ProductionOrderPlannedAmount,
-        executedAmount: ProductionOrderExecutedAmount,
         processStartDate: ProductionOrderProcessStartDate,
         openByUser: UserId,
         productionOrderDetailList: ProductionOrderDetailInProgress[] | ProductionOrderDetailNotStarted[]
@@ -70,8 +75,6 @@ export class ProductionOrderInProgress implements ProductionOrder {
         return new ProductionOrderInProgress(
             productionOrderid,
             reference,
-            plannedAmount,
-            executedAmount,
             processStartDate,
             openByUser,
             productionOrderDetailList,
@@ -155,6 +158,22 @@ export class ProductionOrderInProgress implements ProductionOrder {
         return new ProductionOrderRecordsCheckedCounter(counterAmount);
     }
 
+    private setInitialPlannedAmount(productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[]): ProductionOrderPlannedAmount {
+        let plannedAmount = 0;
+        productionOrderDetailList.forEach(element=>{
+            plannedAmount = plannedAmount + element.plannedAmount.value;
+        });
+        return new ProductionOrderPlannedAmount(plannedAmount);
+    }
+
+    private setInitialExecutedAmount(productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[]): ProductionOrderExecutedAmount{
+        let executedAmount = 0;
+        productionOrderDetailList.forEach(element => {
+            executedAmount = executedAmount + element.executedAmount.value;
+        });
+        return new ProductionOrderExecutedAmount(executedAmount); 
+    }
+
     toPrimitives(): ProductionOrderInProgressDTO {
         return new ProductionOrderInProgressDTO(
             this.productionOrderid.value,
@@ -174,8 +193,6 @@ export class ProductionOrderInProgress implements ProductionOrder {
         return new ProductionOrderInProgress(
             new ProductionOrderId(data.productionOrderid),
             new ProductionOrderReference(data.reference),
-            new ProductionOrderPlannedAmount(data.plannedAmount),
-            new ProductionOrderExecutedAmount(data.executedAmount),
             new ProductionOrderProcessStartDate(data.processStartDate),
             new UserId(data.openByUser),
             data.productionOrderDetailList.map(entry => {

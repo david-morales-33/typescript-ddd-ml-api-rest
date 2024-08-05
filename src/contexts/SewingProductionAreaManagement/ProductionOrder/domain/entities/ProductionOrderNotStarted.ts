@@ -15,16 +15,29 @@ import { CountingRecordsOrderAmount } from "../../../CountingRecordsOrder/domain
 
 export class ProductionOrderNotStarted implements ProductionOrder {
 
+    private _executedAmount: ProductionOrderExecutedAmount;
+    private _plannedAmount: ProductionOrderPlannedAmount;
+    private _processStartDate: ProductionOrderProcessStartDate | null;
+    private _recordsOrderCounter: ProductionOrderRecordsCounter;
+
     constructor(
         readonly productionOrderid: ProductionOrderId,
         readonly reference: ProductionOrderReference,
-        readonly plannedAmount: ProductionOrderPlannedAmount,
-        private _executedAmount: ProductionOrderExecutedAmount,
-        private _processStartDate: ProductionOrderProcessStartDate | null,
-        private _recordsOrderCounter: ProductionOrderRecordsCounter,
         readonly openByUser: UserId,
         readonly productionOrderDetailList: ProductionOrderDetailNotStarted[]
-    ) { }
+    ) {
+        if (productionOrderDetailList.length === 0)
+            throw new Error(`<Production Order Detail List> were not provided in Production Order ${productionOrderid.value}`);
+
+        this._processStartDate = null;
+        this._recordsOrderCounter = this.setInitialCountingRecordsOrderCounter(productionOrderDetailList);
+        this._executedAmount = this.setInitialExecutedAmount(productionOrderDetailList);
+        this._plannedAmount = this.setInitialPlannedAmount(productionOrderDetailList);
+    }
+
+    public get plannedAmount(): ProductionOrderPlannedAmount {
+        return this._plannedAmount;
+    }
 
     public get executedAmount(): ProductionOrderExecutedAmount {
         return this._executedAmount;
@@ -41,10 +54,6 @@ export class ProductionOrderNotStarted implements ProductionOrder {
     static create(
         productionOrderid: ProductionOrderId,
         reference: ProductionOrderReference,
-        plannedAmount: ProductionOrderPlannedAmount,
-        executedAmount: ProductionOrderExecutedAmount,
-        processStartDate: ProductionOrderProcessStartDate | null,
-        recordsOrderCounter: ProductionOrderRecordsCounter,
         openByUser: UserId,
         productionOrderDetailList: ProductionOrderDetailNotStarted[]
     ): ProductionOrderNotStarted {
@@ -52,10 +61,6 @@ export class ProductionOrderNotStarted implements ProductionOrder {
         return new ProductionOrderNotStarted(
             productionOrderid,
             reference,
-            plannedAmount,
-            executedAmount,
-            processStartDate,
-            recordsOrderCounter,
             openByUser,
             productionOrderDetailList
         );
@@ -105,15 +110,37 @@ export class ProductionOrderNotStarted implements ProductionOrder {
         return findedProductionOrderDetail !== undefined;
     }
 
-    static fromPrimitives(data: ProductionOrderINotStartedDTO) {
+    private setInitialCountingRecordsOrderCounter(productionOrderDetailList: ProductionOrderDetailNotStarted[]): ProductionOrderRecordsCounter {
+        const counterList = productionOrderDetailList.map(element => element.countingRecordsOrderListId.length);
+        let counterAmount = 0;
 
+        counterList.forEach(element => {
+            counterAmount = counterAmount + element;
+        });
+
+        return new ProductionOrderRecordsCounter(counterAmount);
+    }
+
+    private setInitialPlannedAmount(productionOrderDetailList: ProductionOrderDetailNotStarted[]): ProductionOrderPlannedAmount {
+        let plannedAmount = 0;
+        productionOrderDetailList.forEach(element => {
+            plannedAmount = plannedAmount + element.plannedAmount.value;
+        });
+        return new ProductionOrderPlannedAmount(plannedAmount);
+    }
+
+    private setInitialExecutedAmount(productionOrderDetailList: ProductionOrderDetailNotStarted[]): ProductionOrderExecutedAmount {
+        let executedAmount = 0;
+        productionOrderDetailList.forEach(element => {
+            executedAmount = executedAmount + element.executedAmount.value;
+        });
+        return new ProductionOrderExecutedAmount(executedAmount);
+    }
+
+    static fromPrimitives(data: ProductionOrderINotStartedDTO) {
         return new ProductionOrderNotStarted(
             new ProductionOrderId(data.productionOrderid),
             new ProductionOrderReference(data.reference),
-            new ProductionOrderPlannedAmount(data.plannedAmount),
-            new ProductionOrderExecutedAmount(data.executedAmount),
-            data.processStartDate ? new ProductionOrderProcessStartDate(data.processStartDate) : null,
-            new ProductionOrderRecordsCounter(data.recordsOrderCounter),
             new UserId(data.openByUser),
             data.productionOrderDetailList.map(entry => ProductionOrderDetailNotStarted.fromPrimitives(entry))
         )

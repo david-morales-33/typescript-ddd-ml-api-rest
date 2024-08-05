@@ -17,8 +17,12 @@ import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRe
 export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
 
     readonly productionOrderDetailId: ProductionOrderDetailId;
-    readonly countingRecordsOrderListId: CountingRecordsOrderId[];
+
+    private _className: string = 'ProductionOrderDetail.notStarted';
     private _processStartDate: ProductionOrderDetailProcessStartDate | null;
+    private _recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter;
+    private _executedAmount: ProductionOrderDetailExecutedAmount;
+    private _countingRecordsOrderListId: CountingRecordsOrderId[];
 
     constructor(
         readonly productionOrderId: ProductionOrderId,
@@ -26,12 +30,20 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
         readonly garmentSize: GarmentSize,
         readonly ean: BarcodeEan,
         readonly plannedAmount: ProductionOrderDetailPlannedAmount,
-        private _executedAmount: ProductionOrderDetailExecutedAmount,
-        private _recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter,
     ) {
         this.productionOrderDetailId = new ProductionOrderDetailId(colorId, garmentSize, productionOrderId)
-        this.countingRecordsOrderListId = [];
+        this._countingRecordsOrderListId = [];
         this._processStartDate = null;
+        this._recordsOrderCounter = ProductionOrderDetailRecordsOrederCounter.initialize();
+        this._executedAmount = ProductionOrderDetailExecutedAmount.initialize();
+    }
+
+    public get className(): string {
+        return this._className;
+    }
+
+    public get countingRecordsOrderListId(): CountingRecordsOrderId[] {
+        return this._countingRecordsOrderListId;
     }
 
     public get executedAmount(): ProductionOrderDetailExecutedAmount {
@@ -52,30 +64,24 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
         garmentSize: GarmentSize,
         ean: BarcodeEan,
         plannedAmount: ProductionOrderDetailPlannedAmount,
-
     ): ProductionOrderDetailNotStarted {
         return new ProductionOrderDetailNotStarted(
             productionOrderId,
             colorId,
             garmentSize,
             ean,
-            plannedAmount,
-            ProductionOrderDetailExecutedAmount.initialize(),
-            ProductionOrderDetailRecordsOrederCounter.initialize()
+            plannedAmount
         );
     }
 
     addCountingRecordOrder(countingRecordsOrder: CountingRecordsOrderFirstQualityNotChecked | CountingRecordsOrderSecondQualityNotChecked): void {
-        if (this.hasAddedCountingRecordOrder(countingRecordsOrder.id)) 
+        if (this.hasAddedCountingRecordOrder(countingRecordsOrder.id))
             throw new Error('The Counting Records Order has already been added');
 
         this.countingRecordsOrderListId.push(countingRecordsOrder.id);
         this.incrementCounterRecords();
         this.incrementExecutedAmount(countingRecordsOrder.recordsAmount);
-
-        if (!this.hasOpenedOrder())
-            this.openOrder();
-        
+        this.openOrder();
     }
 
     incrementCounterRecords(): void {
@@ -96,10 +102,6 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
         return findedCountingRecordsOrder !== undefined;
     }
 
-    private hasOpenedOrder(): boolean {
-        return this._processStartDate !== null
-    }
-
     static fromPrimitives(data: {
         productionOrderId: string;
         colorId: string;
@@ -113,8 +115,6 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
             new GarmentSize(data.garmentSize),
             new BarcodeEan(data.ean),
             new ProductionOrderDetailPlannedAmount(data.plannedAmount),
-            new ProductionOrderDetailExecutedAmount(0),
-            new ProductionOrderDetailRecordsOrederCounter(0),
         )
     }
 

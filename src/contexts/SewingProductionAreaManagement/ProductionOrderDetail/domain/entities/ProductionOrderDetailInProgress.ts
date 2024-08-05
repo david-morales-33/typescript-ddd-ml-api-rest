@@ -18,11 +18,11 @@ import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain
 
 export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
 
+    readonly productionOrderDetailId: ProductionOrderDetailId;
+    
     private _className: string = 'ProductionOrderDetail.inProgress'; 
-
     private _processEndDate: ProductionOrderDetailFinishDate | null;
     private _recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter;
-    readonly productionOrderDetailId: ProductionOrderDetailId;
     private _recordsOrderCheckedCounter: ProductionOrderDetailRecordsOrederCheckedCounter;
 
     constructor(
