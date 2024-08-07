@@ -88,6 +88,7 @@ export class ProductionOrderInProgress implements ProductionOrder {
             countingRecordsOrder.garmentSize,
             countingRecordsOrder.productionOrderId
         );
+        
         const productionOrderDetail = this.productionOrderDetailList.find(element => element.productionOrderDetailId.getProductionOrderDetalId() === productionOrderDetailId.getProductionOrderDetalId());
 
         if (productionOrderDetail === undefined)

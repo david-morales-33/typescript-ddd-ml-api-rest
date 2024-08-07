@@ -105,7 +105,7 @@ export class ProductionOrderNotStarted implements ProductionOrder {
         this._processStartDate = new ProductionOrderProcessStartDate(new Date);
     }
 
-    private hasAddedProductionOrderDetail(productionOrderDetail: ProductionOrderDetailNotStarted): boolean {
+    hasAddedProductionOrderDetail(productionOrderDetail: ProductionOrderDetailNotStarted): boolean {
         const findedProductionOrderDetail = this.productionOrderDetailList.find(element => element.toPrimitives().productionOrderDetailId === productionOrderDetail.toPrimitives().productionOrderDetailId);
         return findedProductionOrderDetail !== undefined;
     }
