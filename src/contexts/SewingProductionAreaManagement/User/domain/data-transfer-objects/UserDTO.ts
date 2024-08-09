@@ -1,3 +1,4 @@
+import { UserPermissionDTO } from "../../../UserPermission/domain/data-transfer-objects/UserPermissionDTO";
 
 export class UserDTO {
     private _className: string = 'User.DTO';
@@ -7,6 +8,7 @@ export class UserDTO {
         readonly name: string,
         readonly profileId: number,
         readonly profileName: string,
+        readonly permissions: UserPermissionDTO[],
         readonly description: string,
     ) { }
 

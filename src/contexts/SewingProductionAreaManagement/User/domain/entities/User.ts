@@ -5,6 +5,11 @@ import { UserDescription } from '../value-objects/UserDescription';
 import { UserName } from '../value-objects/UserName';
 import { UserProfileId } from '../value-objects/UserProfileId';
 import { UserProfileName } from '../value-objects/UserProfileName';
+import { UserPermission } from '../../../UserPermission/domain/entities/UserPermission';
+import { UserPermissionDTO } from '../../../UserPermission/domain/data-transfer-objects/UserPermissionDTO';
+import { UserPermissionId } from '../../../UserPermission/domain/value-objects/UserPermissionId';
+import { UserPermissionLabel } from '../../../UserPermission/domain/value-objects/UserPermissionLabel';
+import { UserPermissionState } from '../../../UserPermission/domain/value-objects/UserPermissionState';
 
 export class User implements UserRoot {
     constructor(
@@ -12,6 +17,7 @@ export class User implements UserRoot {
         readonly name: UserName,
         readonly profileId: UserProfileId,
         readonly profileName: UserProfileName,
+        readonly permissions: UserPermission[],
         readonly description: UserDescription,
     ) { }
 
@@ -20,6 +26,7 @@ export class User implements UserRoot {
         name: UserName,
         profileId: UserProfileId,
         profileName: UserProfileName,
+        permissions: UserPermission[],
         description: UserDescription,
     ): User {
         return new User(
@@ -27,6 +34,7 @@ export class User implements UserRoot {
             name,
             profileId,
             profileName,
+            permissions,
             description
         )
     }
@@ -37,6 +45,13 @@ export class User implements UserRoot {
             new UserName(data.name),
             new UserProfileId(data.profileId),
             new UserProfileName(data.profileName),
+            data.permissions.map(entry => {
+                return new UserPermission(
+                    new UserPermissionId(entry.id),
+                    new UserPermissionLabel(entry.label),
+                    new UserPermissionState(entry.state)
+                )
+            }),
             new UserDescription(data.description),
         )
     }
@@ -47,6 +62,7 @@ export class User implements UserRoot {
             this.name.value,
             this.profileId.value,
             this.profileName.value,
+            this.permissions.map(entry => { return entry.toPrimitives() }),
             this.description.value
         )
     }
