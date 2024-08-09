@@ -1,4 +1,4 @@
-import { UserId } from '../../../Shared/domain/value-object/UserId';
+import { UserId } from '../value-objects/UserId';
 import { UserDTO } from '../data-transfer-objects/UserDTO';
 import { UserRoot } from '../interfaces/User';
 import { UserDescription } from '../value-objects/UserDescription';

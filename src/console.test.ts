@@ -29,7 +29,7 @@ import { BarcodeEan } from "./contexts/SewingProductionAreaManagement/Shared/dom
 import { ColorId } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/ColorId";
 import { CreationDate } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/CreationDate";
 import { GarmentSize } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/GarmentSize";
-import { UserId } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/UserId";
+import { UserId } from "./contexts/SewingProductionAreaManagement/User/domain/value-objects/UserId";
 
 // const productionOrderNotStarted = new ProductionOrderNotStarted(
 //     new ProductionOrderId('MOB3547'),

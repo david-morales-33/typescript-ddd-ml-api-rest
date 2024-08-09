@@ -7,7 +7,7 @@ import { CountingRecordsOrderFinalTime } from "../value-objects/CountingRecordsO
 import { CountingRecordsOrderProductionScheduleId } from "../value-objects/CountingRecordsOrderProductionScheduleId";
 import { CountingRecordsOrderInitialTime } from "../value-objects/CountingRecordsOrderInitialTime";
 import { ProductionModuleId } from "../../../ProductionModule/domain/value-objects/ProductionModuleId";
-import { UserId } from "../../../Shared/domain/value-object/UserId";
+import { UserId } from "../../../User/domain/value-objects/UserId";
 import { CountingRecordsOrderId } from "../value-objects/CountingRecordsOrderId";
 import { CountingRecordsOrderAmount } from "../value-objects/CountingRecordsOrderAmount";
 import { CreationDate } from "../../../Shared/domain/value-object/CreationDate";

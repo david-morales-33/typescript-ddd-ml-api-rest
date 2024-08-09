@@ -1,4 +1,4 @@
-import { UserId } from "../../../Shared/domain/value-object/UserId";
+import { UserId } from "../../../User/domain/value-objects/UserId";
 
 
 export class ProductionModuleSupervisorId extends UserId {

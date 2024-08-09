@@ -1,4 +1,4 @@
-import { UserId } from "../../../Shared/domain/value-object/UserId";
+import { UserId } from "../../../User/domain/value-objects/UserId";
 import { ProductionOrder } from "../interfaces/ProductionOrder";
 import { ProductionOrderRecordsCounter } from "../value-objects/ProductionOrderRecordsCounter";
 import { ProductionOrderRecordsCheckedCounter } from "../value-objects/ProductionOrderRecordsCheckedCounter";
