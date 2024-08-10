@@ -15,12 +15,15 @@ import { ProductionOrderDetailInProgressDTO } from '../data-transfer-objects/Pro
 import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked';
 import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked';
 import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount';
+import { CountingRecordsOrderListEmptyException } from '../exceptions/CountingRecordsOrderListEmptyException';
+import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
+import { CountingRecordsOrderHasAlreadyBeenCheckedException } from '../exceptions/CountingRecordsOrderHasAlreadyBeenCheckedException';
 
 export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
 
     readonly productionOrderDetailId: ProductionOrderDetailId;
-    
-    private _className: string = 'ProductionOrderDetail.inProgress'; 
+
+    private _className: string = 'ProductionOrderDetail.inProgress';
     private _processEndDate: ProductionOrderDetailFinishDate | null;
     private _recordsOrderCounter: ProductionOrderDetailRecordsOrederCounter;
     private _recordsOrderCheckedCounter: ProductionOrderDetailRecordsOrederCheckedCounter;
@@ -39,11 +42,11 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
         this.productionOrderDetailId = new ProductionOrderDetailId(colorId, garmentSize, productionOrderId);
         this._processEndDate = null;
 
-        if(countingRecordsOrderListId.length===0)
-            throw new Error(`<Counting Records Order Id List> was not provided in Production Order Detail <${this.productionOrderDetailId.getProductionOrderDetalId()}>`);
+        if (countingRecordsOrderListId.length === 0)
+            throw new CountingRecordsOrderListEmptyException(this.productionOrderDetailId);
 
         this._recordsOrderCounter = this.setInitialCountingRecordsOrderCounter(countingRecordsOrderListId);
-        this._recordsOrderCheckedCounter= this.setInitialCountingRecordsOrderCheckedCounter(countingRecordsOrderCheckedListId);
+        this._recordsOrderCheckedCounter = this.setInitialCountingRecordsOrderCheckedCounter(countingRecordsOrderCheckedListId);
 
     }
 
@@ -94,7 +97,7 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
 
     addCountingRecordOrder(countingRecordsOrder: CountingRecordsOrderFirstQualityNotChecked | CountingRecordsOrderSecondQualityNotChecked): void {
         if (this.hasAddedCountingRecordOrder(countingRecordsOrder.id))
-            throw new Error('Counting Records Order has already been added');
+            throw new CountingRecordsOrderHasAlreadyBeenAddedException(this.productionOrderDetailId);
 
         this.countingRecordsOrderListId.push(countingRecordsOrder.id);
         this.incrementCounterRecords();
@@ -120,7 +123,7 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
     checkCoutingRecordOrder(countingRecordsOrder: CountingRecordsOrderId): void {
 
         if (this.hasCheckedCountingRecordOrder(countingRecordsOrder))
-            throw new Error('Counting Records Order has already been checked');
+            throw new CountingRecordsOrderHasAlreadyBeenCheckedException();
 
         this.countingRecordsOrderCheckedListId.push(countingRecordsOrder);
         this.incrementCounterRecordsChecked();
@@ -148,12 +151,12 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
             this.plannedAmount.value < (countingRecordsOrderAmount.value + this.executedAmount.value);
     }
 
-    private setInitialCountingRecordsOrderCounter(countingRecordsOrderList : CountingRecordsOrderId[]):ProductionOrderDetailRecordsOrederCounter{
+    private setInitialCountingRecordsOrderCounter(countingRecordsOrderList: CountingRecordsOrderId[]): ProductionOrderDetailRecordsOrederCounter {
         const counterRecords = countingRecordsOrderList.length;
         return new ProductionOrderDetailRecordsOrederCounter(counterRecords)
     }
 
-    private setInitialCountingRecordsOrderCheckedCounter(countingRecordsOrderList : CountingRecordsOrderId[]):ProductionOrderDetailRecordsOrederCheckedCounter{
+    private setInitialCountingRecordsOrderCheckedCounter(countingRecordsOrderList: CountingRecordsOrderId[]): ProductionOrderDetailRecordsOrederCheckedCounter {
         const counterRecords = countingRecordsOrderList.length;
         return new ProductionOrderDetailRecordsOrederCheckedCounter(counterRecords);
     }

@@ -94,7 +94,7 @@ export class ProductionOrderInProgress implements ProductionOrder {
         const productionOrderDetail = this.productionOrderDetailList.find(element => element.productionOrderDetailId.getProductionOrderDetalId() === productionOrderDetailId.getProductionOrderDetalId());
 
         if (productionOrderDetail === undefined)
-            throw new ProductionOrderDetailNotFoundException(this.productionOrderid);
+            throw new ProductionOrderDetailNotFoundException(productionOrderDetailId);
 
         productionOrderDetail.addCountingRecordOrder(countingRecordsOrder);
         this.incrementExecutedAmount(countingRecordsOrder.recordsAmount);
@@ -115,7 +115,7 @@ export class ProductionOrderInProgress implements ProductionOrder {
         const productionOrderDetail = this.productionOrderDetailList.find(element => element.productionOrderDetailId.getProductionOrderDetalId() === productionOrderDetailId.getProductionOrderDetalId());
 
         if (productionOrderDetail === undefined)
-            throw new ProductionOrderDetailNotFoundException(this.productionOrderid);
+            throw new ProductionOrderDetailNotFoundException(productionOrderDetailId);
 
         const productionOrderDetailInProgrees = productionOrderDetail as ProductionOrderDetailInProgress;
         productionOrderDetailInProgrees.checkCoutingRecordOrder(countingRecordsOrder.id);

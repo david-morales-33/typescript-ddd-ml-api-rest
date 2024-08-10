@@ -12,6 +12,9 @@ import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRec
 import { CountingRecordsOrderSecondQualityNotChecked } from "../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked";
 import { ProductionOrderDetailId } from "../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailId";
 import { CountingRecordsOrderAmount } from "../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount";
+import { ProductionOrderDetailListEmptyException } from "../exceptions/ProductionOrderDetailListEmptyException";
+import { ProductionOrderDetailNotFoundException } from "../exceptions/ProductionOrderDetailNotFoundException";
+import { ProductionOrderDetailHasAlreadyBeenAddException } from "../exceptions/ProductionOrderDetailHasAlreadyBeenAddException";
 
 export class ProductionOrderNotStarted implements ProductionOrder {
 
@@ -27,7 +30,7 @@ export class ProductionOrderNotStarted implements ProductionOrder {
         readonly productionOrderDetailList: ProductionOrderDetailNotStarted[]
     ) {
         if (productionOrderDetailList.length === 0)
-            throw new Error(`<Production Order Detail List> were not provided in Production Order ${productionOrderid.value}`);
+            throw new ProductionOrderDetailListEmptyException(productionOrderid)
 
         this._processStartDate = null;
         this._recordsOrderCounter = this.setInitialCountingRecordsOrderCounter(productionOrderDetailList);
@@ -77,7 +80,7 @@ export class ProductionOrderNotStarted implements ProductionOrder {
         const productionOrderDetail = this.productionOrderDetailList.find(element => element.productionOrderDetailId.getProductionOrderDetalId() === productionOrderDetailId.getProductionOrderDetalId());
 
         if (productionOrderDetail === undefined)
-            throw new Error('Production Order Detail not found');
+            throw new ProductionOrderDetailNotFoundException(productionOrderDetailId);
 
         productionOrderDetail.addCountingRecordOrder(countingRecordsOrder)
         this.incrementExecutedAmount(countingRecordsOrder.recordsAmount);
@@ -96,7 +99,7 @@ export class ProductionOrderNotStarted implements ProductionOrder {
 
     addProductionOrderDetail(productionOrderDetail: ProductionOrderDetailNotStarted): void {
         if (this.hasAddedProductionOrderDetail(productionOrderDetail))
-            throw new Error('The Production Order Detail has already been added')
+            throw new ProductionOrderDetailHasAlreadyBeenAddException(productionOrderDetail.productionOrderDetailId)
 
         this.productionOrderDetailList.push(productionOrderDetail);
     }

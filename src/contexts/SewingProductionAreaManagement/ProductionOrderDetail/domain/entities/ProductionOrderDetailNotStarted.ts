@@ -13,6 +13,7 @@ import { CountingRecordsOrderId } from '../../../CountingRecordsOrder/domain/val
 import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount';
 import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked';
 import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked';
+import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
 
 export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
 
@@ -76,7 +77,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
 
     addCountingRecordOrder(countingRecordsOrder: CountingRecordsOrderFirstQualityNotChecked | CountingRecordsOrderSecondQualityNotChecked): void {
         if (this.hasAddedCountingRecordOrder(countingRecordsOrder.id))
-            throw new Error('The Counting Records Order has already been added');
+            throw new CountingRecordsOrderHasAlreadyBeenAddedException(this.productionOrderDetailId)
 
         this.countingRecordsOrderListId.push(countingRecordsOrder.id);
         this.incrementCounterRecords();
