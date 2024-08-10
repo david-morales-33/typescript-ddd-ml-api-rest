@@ -1,27 +1,28 @@
 import { UserId } from "../../../User/domain/value-objects/UserId";
 import { UserPermission } from "../../domain/entities/UserPermission";
-import { UserPermissionService } from "../../domain/interfaces/UserPermissionService";
+import { UnauthorizedUserAccessException } from "../../domain/exceptions/UnauthorizedUserAccessException";
+import { UserDoesNotHavePermissionException } from "../../domain/exceptions/UserDoesNotHavePermissionException";
+import { UserPermissionNotValidException } from "../../domain/exceptions/UserPermissionNotValidException";
 import { UserPermissionRepository } from "../../domain/repositories/UserPermissionRepository";
 
-
-export class UserPermissionValidator implements UserPermissionService {
+export class UserPermissionValidator {
 
     constructor(private userPermissionRepository: UserPermissionRepository) { }
 
-    async validateUserPermissions(data: { userId: UserId, useCasePermission: UserPermission }): Promise<void> {
+    async run(data: { userId: UserId, useCasePermission: UserPermission }): Promise<void> {
 
         const userPermissions = await this.userPermissionRepository.searchAll(data.userId);
 
         if (userPermissions.length === 0)
-            throw new Error(`The user <${data.userId.value}> does not have permissions`);
+            throw new UserDoesNotHavePermissionException(data.userId);
 
         const userPermissionFinded = userPermissions.find(value => value.id.value === data.useCasePermission.id.value);
 
         if (userPermissionFinded === undefined)
-            throw new Error(`Unauthorized user <${data.userId.value}>`);
+            throw new UnauthorizedUserAccessException(data.userId);
 
         if (data.useCasePermission.isUserPermissionValid(userPermissionFinded))
-            throw new Error(`User permission not valid`);
+            throw new UserPermissionNotValidException();
 
     }
 }
