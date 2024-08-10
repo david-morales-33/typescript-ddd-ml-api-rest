@@ -26,7 +26,7 @@ import { ProductionOrderDetailProcessStartDate } from "./contexts/SewingProducti
 import { ProductionOrderDetailRecordsOrederCheckedCounter } from "./contexts/SewingProductionAreaManagement/ProductionOrderDetail/domain/value-objects/ProductionOrderDetailRecordsOrederCheckedCounter";
 import { ProductionOrderDetailRecordsOrederCounter } from "./contexts/SewingProductionAreaManagement/ProductionOrderDetail/domain/value-objects/ProductionOrderDetailRecordsOrederCounter";
 import { BarcodeEan } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/BarcodeEan";
-import { ColorId } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/ColorId";
+import { ColorId } from "./contexts/SewingProductionAreaManagement/Color/domain/value-objects/ColorId";
 import { CreationDate } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/CreationDate";
 import { GarmentSize } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/GarmentSize";
 import { UserId } from "./contexts/SewingProductionAreaManagement/User/domain/value-objects/UserId";

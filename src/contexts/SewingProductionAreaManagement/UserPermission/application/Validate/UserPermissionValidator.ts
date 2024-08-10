@@ -1,7 +1,7 @@
 import { UserId } from "../../../User/domain/value-objects/UserId";
 import { UserPermission } from "../../domain/entities/UserPermission";
-import { UnauthorizedUserAccessException } from "../../domain/exceptions/UnauthorizedUserAccessException";
-import { UserDoesNotHavePermissionException } from "../../domain/exceptions/UserDoesNotHavePermissionException";
+import { UnauthorizedUserAccessException } from "../exceptions/UnauthorizedUserAccessException";
+import { UserDoesNotHavePermissionException } from "../exceptions/UserDoesNotHavePermissionException";
 import { UserPermissionNotValidException } from "../../domain/exceptions/UserPermissionNotValidException";
 import { UserPermissionRepository } from "../../domain/repositories/UserPermissionRepository";
 
@@ -21,8 +21,6 @@ export class UserPermissionValidator {
         if (userPermissionFinded === undefined)
             throw new UnauthorizedUserAccessException(data.userId);
 
-        if (data.useCasePermission.isUserPermissionValid(userPermissionFinded))
-            throw new UserPermissionNotValidException();
-
+        data.useCasePermission.isUserPermissionValid(userPermissionFinded)
     }
 }

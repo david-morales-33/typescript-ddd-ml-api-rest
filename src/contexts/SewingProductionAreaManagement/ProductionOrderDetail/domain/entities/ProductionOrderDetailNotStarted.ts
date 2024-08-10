@@ -1,5 +1,5 @@
 import { ProductionOrderDetail } from '../interfaces/ProductionOrderDetail';
-import { ColorId } from '../../../Shared/domain/value-object/ColorId';
+import { ColorId } from '../../../Color/domain/value-objects/ColorId';
 import { GarmentSize } from '../../../Shared/domain/value-object/GarmentSize';
 import { ProductionOrderId } from '../../../ProductionOrder/domain/value-objects/ProductionOrderId';
 import { ProductionOrderDetailRecordsOrederCounter } from '../value-objects/ProductionOrderDetailRecordsOrederCounter';
@@ -13,7 +13,7 @@ import { CountingRecordsOrderId } from '../../../CountingRecordsOrder/domain/val
 import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount';
 import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked';
 import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked';
-import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
+import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
 
 export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
 

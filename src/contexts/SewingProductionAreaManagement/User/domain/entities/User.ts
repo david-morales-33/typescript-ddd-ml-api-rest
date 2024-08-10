@@ -10,6 +10,7 @@ import { UserPermissionDTO } from '../../../UserPermission/domain/data-transfer-
 import { UserPermissionId } from '../../../UserPermission/domain/value-objects/UserPermissionId';
 import { UserPermissionLabel } from '../../../UserPermission/domain/value-objects/UserPermissionLabel';
 import { UserPermissionState } from '../../../UserPermission/domain/value-objects/UserPermissionState';
+import { UserPermissionListNotProvided } from '../exceptions/UserPermissionListNotProvided';
 
 export class User implements UserRoot {
     constructor(
@@ -19,7 +20,10 @@ export class User implements UserRoot {
         readonly profileName: UserProfileName,
         readonly permissions: UserPermission[],
         readonly description: UserDescription,
-    ) { }
+    ) {
+        if (permissions.length === 0)
+            throw new UserPermissionListNotProvided();
+    }
 
     static create(
         id: UserId,

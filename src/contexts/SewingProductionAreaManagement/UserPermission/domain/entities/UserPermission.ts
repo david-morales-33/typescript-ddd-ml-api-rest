@@ -1,3 +1,4 @@
+import { UserPermissionNotValidException } from "../exceptions/UserPermissionNotValidException";
 import { UserPermissionDTO } from "../data-transfer-objects/UserPermissionDTO";
 import { UserPermissionRoot } from "../interfaces/UserPermissionRoot";
 import { UserPermissionId } from "../value-objects/UserPermissionId";
@@ -32,12 +33,15 @@ export class UserPermission implements UserPermissionRoot {
         )
     }
 
-    isUserPermissionValid(userPermission: UserPermission): boolean {
-        return (
+    isUserPermissionValid(userPermission: UserPermission): void {
+        if (
+            this.state &&
             this.id.equals(userPermission.id) &&
-                this.label.equals(userPermission.label) &&
-                this.state ? this.state.equals(userPermission.state) : true
+            this.label.equals(userPermission.label) &&
+            this.state.equals(userPermission.state)
         )
+            throw new UserPermissionNotValidException();
+
     }
 
     static fromPrimitives(data: UserPermissionDTO): UserPermission {

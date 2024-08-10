@@ -1,4 +1,4 @@
-import { ColorId } from "../../../Shared/domain/value-object/ColorId";
+import { ColorId } from "../../../Color/domain/value-objects/ColorId";
 
 export class ProductionModuleColorId extends ColorId {
     constructor(value: string) {

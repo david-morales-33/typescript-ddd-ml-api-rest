@@ -1,4 +1,4 @@
-import { ColorId } from '../../../Shared/domain/value-object/ColorId';
+import { ColorId } from '../../../Color/domain/value-objects/ColorId';
 import { GarmentSize } from '../../../Shared/domain/value-object/GarmentSize';
 import { ProductionOrderId } from '../../../ProductionOrder/domain/value-objects/ProductionOrderId';
 import { ProductionOrderDetail } from '../interfaces/ProductionOrderDetail'
@@ -15,9 +15,9 @@ import { ProductionOrderDetailInProgressDTO } from '../data-transfer-objects/Pro
 import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked';
 import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked';
 import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount';
-import { CountingRecordsOrderListEmptyException } from '../exceptions/CountingRecordsOrderListEmptyException';
-import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
-import { CountingRecordsOrderHasAlreadyBeenCheckedException } from '../exceptions/CountingRecordsOrderHasAlreadyBeenCheckedException';
+import { CountingRecordsOrderListEmptyException } from '../../exceptions/CountingRecordsOrderListEmptyException';
+import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
+import { CountingRecordsOrderHasAlreadyBeenCheckedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenCheckedException';
 
 export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
 

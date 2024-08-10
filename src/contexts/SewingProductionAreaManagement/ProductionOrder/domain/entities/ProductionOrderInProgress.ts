@@ -17,8 +17,8 @@ import { ProductionOrderDetailNotStarted } from "../../../ProductionOrderDetail/
 import { ProductionOrderInProgressDTO } from "../data-transfer-objects/ProductionOrderInProgressDTO";
 import { ProductionOrderDetailInProgressDTO } from "../../../ProductionOrderDetail/domain/data-transfer-objects/ProductionOrderDetailInProgressDTO";
 import { ProductionOrderDetailNotStartedDTO } from "../../../ProductionOrderDetail/domain/data-transfer-objects/ProductionOrderDetailNotStartedDTO";
-import { ProductionOrderDetailListEmptyException } from "../exceptions/ProductionOrderDetailListEmptyException";
-import { ProductionOrderDetailNotFoundException } from "../exceptions/ProductionOrderDetailNotFoundException";
+import { ProductionOrderDetailListEmptyException } from "../../exceptions/ProductionOrderDetailListEmptyException";
+import { ProductionOrderDetailNotFoundException } from "../../exceptions/ProductionOrderDetailNotFoundException";
 
 export class ProductionOrderInProgress implements ProductionOrder {
 
