@@ -17,6 +17,8 @@ import { ProductionOrderDetailNotStarted } from "../../../ProductionOrderDetail/
 import { ProductionOrderInProgressDTO } from "../data-transfer-objects/ProductionOrderInProgressDTO";
 import { ProductionOrderDetailInProgressDTO } from "../../../ProductionOrderDetail/domain/data-transfer-objects/ProductionOrderDetailInProgressDTO";
 import { ProductionOrderDetailNotStartedDTO } from "../../../ProductionOrderDetail/domain/data-transfer-objects/ProductionOrderDetailNotStartedDTO";
+import { ProductionOrderDetailListEmptyException } from "../exceptions/ProductionOrderDetailListEmptyException";
+import { ProductionOrderDetailNotFoundException } from "../exceptions/ProductionOrderDetailNotFoundException";
 
 export class ProductionOrderInProgress implements ProductionOrder {
 
@@ -35,7 +37,7 @@ export class ProductionOrderInProgress implements ProductionOrder {
     ) {
 
         if (productionOrderDetailList.length === 0)
-            throw new Error(`<Production Order Detail List> were not provided in Production Order ${productionOrderid.value}`);
+            throw new ProductionOrderDetailListEmptyException(this.productionOrderid)
 
         this._processEndDate = null;
         this._recordsOrderCheckedCounter = this.setInitialCountingRecordsOrderCheckedCounter(productionOrderDetailList);
@@ -92,7 +94,7 @@ export class ProductionOrderInProgress implements ProductionOrder {
         const productionOrderDetail = this.productionOrderDetailList.find(element => element.productionOrderDetailId.getProductionOrderDetalId() === productionOrderDetailId.getProductionOrderDetalId());
 
         if (productionOrderDetail === undefined)
-            throw new Error('Production Order Detail not found');
+            throw new ProductionOrderDetailNotFoundException(this.productionOrderid);
 
         productionOrderDetail.addCountingRecordOrder(countingRecordsOrder);
         this.incrementExecutedAmount(countingRecordsOrder.recordsAmount);
@@ -113,7 +115,7 @@ export class ProductionOrderInProgress implements ProductionOrder {
         const productionOrderDetail = this.productionOrderDetailList.find(element => element.productionOrderDetailId.getProductionOrderDetalId() === productionOrderDetailId.getProductionOrderDetalId());
 
         if (productionOrderDetail === undefined)
-            throw new Error('Production Order Detail not found');
+            throw new ProductionOrderDetailNotFoundException(this.productionOrderid);
 
         const productionOrderDetailInProgrees = productionOrderDetail as ProductionOrderDetailInProgress;
         productionOrderDetailInProgrees.checkCoutingRecordOrder(countingRecordsOrder.id);
