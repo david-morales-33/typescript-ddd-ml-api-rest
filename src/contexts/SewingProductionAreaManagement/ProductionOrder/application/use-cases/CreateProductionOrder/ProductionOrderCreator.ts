@@ -25,16 +25,16 @@ export class ProductionOrderCreator {
         private createProductionOrderValidator: CreateProductionOrderValidator
     ) { }
 
-    async run(params: { productionOrderid: ProductionOrderId, openByUser: UserId }): Promise<void> {
+    async execute(params: { productionOrderId: ProductionOrderId, userId: UserId }): Promise<void> {
 
-        const { productionOrderid, openByUser } = params;
+        const { productionOrderId, userId } = params;
 
-        await this.createProductionOrderValidator.execute(openByUser);
+        await this.createProductionOrderValidator.execute(userId);
 
-        const productionOrderDetailListFromService = await this.productionOrderExternalService.find(productionOrderid);
+        const productionOrderDetailListFromService = await this.productionOrderExternalService.find(productionOrderId);
 
         if (productionOrderDetailListFromService === null || productionOrderDetailListFromService === undefined)
-            throw new ProductionOrderNotFound(params.productionOrderid);
+            throw new ProductionOrderNotFound(params.productionOrderId);
 
         const [{ reference, op }] = productionOrderDetailListFromService;
 
@@ -53,7 +53,7 @@ export class ProductionOrderCreator {
         const productionOrderNotStated = ProductionOrderNotStarted.create(
             new ProductionOrderId(op),
             new ProductionOrderReference(reference),
-            openByUser,
+            userId,
             productionOrderDetailList
         );
 
