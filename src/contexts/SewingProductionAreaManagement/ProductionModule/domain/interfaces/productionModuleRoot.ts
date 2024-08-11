@@ -1,7 +1,7 @@
 import { AggregateRoot } from "../../../../Shared/domain/value-object/AggregateRoot";
 import { ProductionModuleSewingWorkerId } from "../value-objects/ProductionModuleSewingWorkerId";
 
-export interface ProductionModuleI extends AggregateRoot {
+export interface ProductionModuleRoot extends AggregateRoot {
     startOperation(): void;
     stopOperation(): void;
     incrementSewingWorkerCounter(): void;

@@ -1,4 +1,4 @@
-import {ProductionOrder } from '../interfaces/ProductionOrder'
+import {ProductionOrder } from '../interfaces/ProductionOrderRoot'
 
 export class ProductionOrderCompleted implements ProductionOrder{
 

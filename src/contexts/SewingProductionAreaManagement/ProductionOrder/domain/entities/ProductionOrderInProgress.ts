@@ -1,5 +1,5 @@
 import { UserId } from "../../../User/domain/value-objects/UserId";
-import { ProductionOrder } from "../interfaces/ProductionOrder";
+import { ProductionOrderRoot } from "../interfaces/ProductionOrderRoot";
 import { ProductionOrderRecordsCounter } from "../value-objects/ProductionOrderRecordsCounter";
 import { ProductionOrderRecordsCheckedCounter } from "../value-objects/ProductionOrderRecordsCheckedCounter";
 import { ProductionOrderExecutedAmount } from "../value-objects/ProductionOrderExecutedAmount";
@@ -20,7 +20,7 @@ import { ProductionOrderDetailNotStartedDTO } from "../../../ProductionOrderDeta
 import { ProductionOrderDetailListEmptyException } from "../../exceptions/ProductionOrderDetailListEmptyException";
 import { ProductionOrderDetailNotFoundException } from "../../exceptions/ProductionOrderDetailNotFoundException";
 
-export class ProductionOrderInProgress implements ProductionOrder {
+export class ProductionOrderInProgress implements ProductionOrderRoot {
 
     private _recordsOrderCounter: ProductionOrderRecordsCounter;
     private _recordsOrderCheckedCounter: ProductionOrderRecordsCheckedCounter;

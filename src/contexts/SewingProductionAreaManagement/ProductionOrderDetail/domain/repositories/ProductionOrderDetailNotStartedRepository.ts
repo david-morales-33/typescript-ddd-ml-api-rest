@@ -1,8 +1,8 @@
+import { ProductionOrderId } from "../../../ProductionOrder/domain/value-objects/ProductionOrderId";
 import { ProductionOrderDetailNotStarted } from "../entities/ProductionOrderDetailNotStarted";
 
 export interface ProductionOrderDetailNotStartedRepository {
-    save(productionOrderDetailNotStarted: ProductionOrderDetailNotStarted): Promise<void>
-    searchByProductionOrder(): Promise<ProductionOrderDetailNotStarted[]>;
+    find(productionOrderId: ProductionOrderId): Promise<ProductionOrderDetailNotStarted[] | null | undefined>;
     searchAll(): Promise<ProductionOrderDetailNotStarted[]>;
-    matching(): Promise<ProductionOrderDetailNotStarted[]>;
+    matching(criteria: any): Promise<ProductionOrderDetailNotStarted[]>;
 }

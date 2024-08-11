@@ -1,4 +1,3 @@
-import { ColorId } from "../../../Color/domain/value-objects/ColorId";
 import { GarmentSize } from "../../../Shared/domain/value-object/GarmentSize";
 import { ProductionOrderId } from "../../../ProductionOrder/domain/value-objects/ProductionOrderId";
 import { CountingRecordsOrderFirstQuality } from "../Interfaces/CountingRecordOrderFirstQuality";
@@ -14,6 +13,7 @@ import { CreationDate } from "../../../Shared/domain/value-object/CreationDate";
 import { CountingRecordsOrderEvent } from "../../../CountingRecordsOrderEvent/domain/entities/CountingRecordsOrderEvent";
 import { CountingRecordsOrderFirstQualityNotCheckedDTO } from "../data-transfer-object/CountingRecordsOrderFirstQualityNotCheckedDTO";
 import { CountingRecordsOrderEventDTO } from "../../../CountingRecordsOrderEvent/domain/data-transfer-object/CountingRecordsOrderEventDTO";
+import { ColorId } from "../../../Shared/domain/value-object/ColorId";
 
 export class CountingRecordsOrderFirstQualityNotChecked implements CountingRecordsOrderFirstQuality {
 

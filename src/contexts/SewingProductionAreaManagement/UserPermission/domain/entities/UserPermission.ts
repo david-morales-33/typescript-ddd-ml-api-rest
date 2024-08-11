@@ -24,7 +24,7 @@ export class UserPermission implements UserPermissionRoot {
     static create(
         id: UserPermissionId,
         label: UserPermissionLabel,
-        state: UserPermissionState
+        state?: UserPermissionState
     ): UserPermission {
         return new UserPermission(
             id,

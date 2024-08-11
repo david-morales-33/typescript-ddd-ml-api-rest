@@ -1,5 +1,4 @@
 import { CountingRecordsOrderSecondQuality } from "../Interfaces/CountingRecordOrderSecondQuality";
-import { ColorId } from "../../../Color/domain/value-objects/ColorId";
 import { GarmentSize } from "../../../Shared/domain/value-object/GarmentSize";
 import { ProductionOrderId } from "../../../ProductionOrder/domain/value-objects/ProductionOrderId";
 import { CountingRecordsOrderProductionScheduleId } from "../value-objects/CountingRecordsOrderProductionScheduleId";
@@ -9,6 +8,7 @@ import { CountingRecordsOrderId } from "../value-objects/CountingRecordsOrderId"
 import { CountingRecordsOrderAmount } from "../value-objects/CountingRecordsOrderAmount";
 import { CreationDate } from "../../../Shared/domain/value-object/CreationDate";
 import { CountingRecordsOrderSecondQualityCheckedDTO } from "../data-transfer-object/CountingRecordsOrderSecondQualityCheckedDTO";
+import { ColorId } from "../../../Shared/domain/value-object/ColorId";
 
 export class CountingRecordsOrderSecondQualityChecked implements CountingRecordsOrderSecondQuality {
 

@@ -1,4 +1,4 @@
-import { ProductionModuleI } from "../interfaces/productionModule";
+import { ProductionModuleRoot } from "../interfaces/productionModuleRoot";
 import { ProductionModuleId } from "../value-objects/ProductionModuleId";
 import { ProductionModuleSewingWorkerId } from "../value-objects/ProductionModuleSewingWorkerId";
 import { ProductionModuleSewingWorkerCounter } from "../value-objects/ProductionModuleSewingWorkerAmount";
@@ -10,7 +10,7 @@ import { ProductionModuleReferences } from "../value-objects/ProductionModuleRef
 import { ProductionModuleDTO } from "../data-transfer-object/ProductionModuleDTO";
 import { ProductionModuleProductionOrderId } from "../value-objects/ProductionModuleProductionOrderId";
 
-export class ProductionModule implements ProductionModuleI {
+export class ProductionModule implements ProductionModuleRoot {
 
     constructor(
         readonly id: ProductionModuleId,

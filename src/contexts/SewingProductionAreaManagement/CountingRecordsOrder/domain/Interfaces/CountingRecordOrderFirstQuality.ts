@@ -1,3 +1,3 @@
-import { CountingRecordsOrder } from "./CountingRecordOrder";
+import { CountingRecordsOrderRoot } from "./CountingRecordOrderRoot";
 
-export interface CountingRecordsOrderFirstQuality extends CountingRecordsOrder{}
+export abstract class CountingRecordsOrderFirstQuality extends CountingRecordsOrderRoot { }

@@ -1,5 +1,4 @@
-import { ProductionOrderDetail } from '../interfaces/ProductionOrderDetail';
-import { ColorId } from '../../../Color/domain/value-objects/ColorId';
+import { ProductionOrderDetailRoot } from '../interfaces/ProductionOrderDetailRoot';
 import { GarmentSize } from '../../../Shared/domain/value-object/GarmentSize';
 import { ProductionOrderId } from '../../../ProductionOrder/domain/value-objects/ProductionOrderId';
 import { ProductionOrderDetailRecordsOrederCounter } from '../value-objects/ProductionOrderDetailRecordsOrederCounter';
@@ -14,8 +13,9 @@ import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain
 import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked';
 import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked';
 import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
+import { ColorId } from '../../../Shared/domain/value-object/ColorId';
 
-export class ProductionOrderDetailNotStarted implements ProductionOrderDetail {
+export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoot {
 
     readonly productionOrderDetailId: ProductionOrderDetailId;
 

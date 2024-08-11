@@ -1,4 +1,4 @@
-import { ProductionOrder } from "../interfaces/ProductionOrder";
+import { ProductionOrderRoot } from "../interfaces/ProductionOrderRoot";
 import { ProductionOrderRecordsCounter } from "../value-objects/ProductionOrderRecordsCounter";
 import { ProductionOrderExecutedAmount } from "../value-objects/ProductionOrderExecutedAmount";
 import { ProductionOrderId } from "../value-objects/ProductionOrderId";
@@ -16,7 +16,7 @@ import { ProductionOrderDetailListEmptyException } from "../../exceptions/Produc
 import { ProductionOrderDetailNotFoundException } from "../../exceptions/ProductionOrderDetailNotFoundException";
 import { ProductionOrderDetailHasAlreadyBeenAddException } from "../../exceptions/ProductionOrderDetailHasAlreadyBeenAddException";
 
-export class ProductionOrderNotStarted implements ProductionOrder {
+export class ProductionOrderNotStarted implements ProductionOrderRoot {
 
     private _executedAmount: ProductionOrderExecutedAmount;
     private _plannedAmount: ProductionOrderPlannedAmount;

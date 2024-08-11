@@ -1,7 +1,6 @@
-import { ColorId } from '../../../Color/domain/value-objects/ColorId';
 import { GarmentSize } from '../../../Shared/domain/value-object/GarmentSize';
 import { ProductionOrderId } from '../../../ProductionOrder/domain/value-objects/ProductionOrderId';
-import { ProductionOrderDetail } from '../interfaces/ProductionOrderDetail'
+import { ProductionOrderDetailRoot } from '../interfaces/ProductionOrderDetailRoot'
 import { ProductionOrderDetailRecordsOrederCounter } from '../value-objects/ProductionOrderDetailRecordsOrederCounter';
 import { ProductionOrderDetailExecutedAmount } from '../value-objects/ProductionOrderDetailExecutedAmount';
 import { ProductionOrderDetailFinishDate } from '../value-objects/ProductionOrderDetailFinishDate';
@@ -18,8 +17,9 @@ import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain
 import { CountingRecordsOrderListEmptyException } from '../../exceptions/CountingRecordsOrderListEmptyException';
 import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
 import { CountingRecordsOrderHasAlreadyBeenCheckedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenCheckedException';
+import { ColorId } from '../../../Shared/domain/value-object/ColorId';
 
-export class ProductionOrderDetailInProgress implements ProductionOrderDetail {
+export class ProductionOrderDetailInProgress implements ProductionOrderDetailRoot {
 
     readonly productionOrderDetailId: ProductionOrderDetailId;
 
