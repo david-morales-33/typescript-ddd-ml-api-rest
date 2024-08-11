@@ -14,7 +14,6 @@ import { EanNotFound } from "../../exception/EanNotFound";
 import { ProductionOrderNotFound } from "../../exception/ProductionOrderNotFound";
 import { ProductionOrderEanExternalService } from "../../services/ProductionOrderEanExternalService";
 import { ProductionOrderExternalService } from "../../services/ProductionOrderExternalService";
-import { CreateProductionOrderValidator } from "./CreateProductionOrderValidator";
 
 export class ProductionOrderCreator {
 
@@ -22,14 +21,11 @@ export class ProductionOrderCreator {
         private productionOrderRepository: ProductionOrderNotStartedRepository,
         private productionOrderExternalService: ProductionOrderExternalService,
         private productionOrderEanExternalService: ProductionOrderEanExternalService,
-        private createProductionOrderValidator: CreateProductionOrderValidator
     ) { }
 
     async execute(params: { productionOrderId: ProductionOrderId, userId: UserId }): Promise<void> {
 
         const { productionOrderId, userId } = params;
-
-        await this.createProductionOrderValidator.execute(userId);
 
         const productionOrderDetailListFromService = await this.productionOrderExternalService.find(productionOrderId);
 

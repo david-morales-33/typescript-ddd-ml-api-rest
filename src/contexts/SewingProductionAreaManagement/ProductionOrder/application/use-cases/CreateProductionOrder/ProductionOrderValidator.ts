@@ -5,8 +5,7 @@ import { UserPermissionRepository } from "../../../../UserPermission/domain/repo
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
 
-
-export class CreateProductionOrderValidator {
+export class ProductionOrderValidator {
     
     constructor(
         private userPermissionsRepository: UserPermissionRepository,
