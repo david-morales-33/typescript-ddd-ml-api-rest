@@ -1,8 +1,8 @@
+import { ProductionOrderId } from "../../../ProductionOrder/domain/value-objects/ProductionOrderId";
 import { ProductionOrderDetailInProgress } from "../entities/ProductionOrderDetailInProgress";
-import { ProductionOrderDetailNotStarted } from "../entities/ProductionOrderDetailNotStarted";
 
 export interface ProductionOrderDetailInProgressRepository {
-    searchByProductionOrder(): Promise<(ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[]>;
+    find(productionOrderId: ProductionOrderId): Promise<ProductionOrderDetailInProgress[] | null | undefined>;
     searchAll(): Promise<ProductionOrderDetailInProgress[]>;
-    matching(): Promise<ProductionOrderDetailInProgress[]>;
+    matching(criteria: any): Promise<ProductionOrderDetailInProgress[]>;
 }

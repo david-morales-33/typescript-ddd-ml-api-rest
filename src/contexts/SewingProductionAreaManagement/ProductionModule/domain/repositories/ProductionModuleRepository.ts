@@ -1,7 +1,9 @@
+import { ProductionModuleRoot } from "../interfaces/productionModuleRoot";
+import { ProductionModuleId } from "../value-objects/ProductionModuleId";
 
 export interface ProductionModuleRepository {
     save(): Promise<void>;
-    find(): Promise<any>;
-    searchAll(): Promise<any[]>;
-    matching(): Promise<any[]>;
+    find(productionModuleId: ProductionModuleId): Promise<ProductionModuleRoot | null | undefined>;
+    searchAll(): Promise<ProductionModuleRoot[]>;
+    matching(critery: any): Promise<ProductionModuleRoot[]>;
 }

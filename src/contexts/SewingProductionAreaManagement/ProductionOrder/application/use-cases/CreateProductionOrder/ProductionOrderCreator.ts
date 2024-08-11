@@ -36,10 +36,12 @@ export class ProductionOrderCreator {
         if (productionOrderDetailListFromService === null || productionOrderDetailListFromService === undefined)
             throw new ProductionOrderNotFound(params.productionOrderId);
 
-        const [{ reference, op }] = productionOrderDetailListFromService;
+        const [{ reference }] = productionOrderDetailListFromService;
+
+        const productionOrderReference = new ProductionOrderReference(reference);
 
         const eanListFromService = await this.productionOrderEanExternalService.matching({
-            reference: new ProductionOrderReference(reference)
+            reference: productionOrderReference
         });
 
         if (eanListFromService === null || eanListFromService === undefined)
@@ -51,8 +53,8 @@ export class ProductionOrderCreator {
         });
 
         const productionOrderNotStated = ProductionOrderNotStarted.create(
-            new ProductionOrderId(op),
-            new ProductionOrderReference(reference),
+            productionOrderId,
+            productionOrderReference,
             userId,
             productionOrderDetailList
         );
