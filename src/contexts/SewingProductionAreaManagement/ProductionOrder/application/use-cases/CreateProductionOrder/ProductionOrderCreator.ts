@@ -5,7 +5,7 @@ import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
 import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionOrderNotStarted } from "../../../domain/entities/ProductionOrderNotStarted";
-import { ProductionOrderNotStartedRepository } from "../../../domain/repositories/ProductionOrderNotStartedRepository";
+import { ProductionOrderRepository } from "../../../domain/repositories/ProductionOrderRepository";
 import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { ProductionOrderReference } from "../../../domain/value-objects/ProductionOrderReference";
 import { ProductionOrderEanExternalServiceDTO } from "../../data-transfer-objects/ProductionOrderEanExternalServiceDTO";
@@ -18,7 +18,7 @@ import { ProductionOrderExternalService } from "../../services/ProductionOrderEx
 export class ProductionOrderCreator {
 
     constructor(
-        private productionOrderRepository: ProductionOrderNotStartedRepository,
+        private productionOrderRepository: ProductionOrderRepository,
         private productionOrderExternalService: ProductionOrderExternalService,
         private productionOrderEanExternalService: ProductionOrderEanExternalService,
     ) { }

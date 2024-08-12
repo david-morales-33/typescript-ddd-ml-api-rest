@@ -13,16 +13,7 @@ import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize"
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { CountingRecordsOrderEventIdOnProductionModule } from "../../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderEventIdOnProductionModule";
 
-//validaciones
-//1: ===> validar existencia de usuario
-//2: ===> Validar permisos de usuario
-//3: ===> Validad modulo solicitado 
-//4: ===> Validar categoria
-//5: ===> Validar evento
-//6: ===> Validar talla 
-//7: ===> Validar op 
-
-export class RegisterCountingRecordsOrderValidator {
+export class CountingRecordsOrderValidator {
     constructor(
         private userPermissionsRepository: UserPermissionRepository,
         private productionModuleRepository: ProductionModuleRepository,
