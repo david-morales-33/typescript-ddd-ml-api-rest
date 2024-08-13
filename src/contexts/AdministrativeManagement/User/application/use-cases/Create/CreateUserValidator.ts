@@ -4,8 +4,6 @@ import { UserPermissionRepository } from "../../../../UserPermission/domain/repo
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
 import { UserId } from "../../../domain/value-objects/UserId";
-import { UserExternalService } from "../../services/UserExternalService";
-
 
 export class CreateUserValidator {
     constructor(
