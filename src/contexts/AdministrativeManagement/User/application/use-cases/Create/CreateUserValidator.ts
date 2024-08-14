@@ -14,7 +14,10 @@ export class CreateUserValidator {
         private commonUserRepository: CommonUserRepository
     ) { }
 
-    async execute(userId: UserId) {
+    async execute(params : {createBy: UserId, userId: UserId}) {
+
+        const { createBy, userId } = params;
+
         const eventPermission = UserPermission.create(
             new UserPermissionId(4),
             new UserPermissionLabel('Crear Cuenta')
@@ -26,7 +29,7 @@ export class CreateUserValidator {
 
         const userPermissionValidator = new UserPermissionValidator(this.userPermissionsRepository);
         await userPermissionValidator.execute({
-            userId: userId,
+            userId: createBy,
             useCasePermission: eventPermission
         });
     }
