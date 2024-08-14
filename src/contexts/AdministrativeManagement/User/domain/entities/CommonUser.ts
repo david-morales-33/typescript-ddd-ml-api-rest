@@ -5,50 +5,18 @@ import { UserDescription } from '../value-objects/UserDescription';
 import { UserName } from '../value-objects/UserName';
 import { UserProfileId } from '../value-objects/UserProfileId';
 import { UserProfileName } from '../value-objects/UserProfileName';
-import { CommonModificationEvent } from '../../../ModificationEvent/domain/entities/CommonModificationEvent';
-import { UserPassword } from '../value-objects/UserPassword';
-
+import { CommonModificationEvent } from '../../../Event/domain/entities/CommonModificationEvent';
 
 export class CommonUser implements UserRoot {
 
-    readonly id: UserId;
-    readonly modificationEventList: CommonModificationEvent[];
-    private _name: UserName;
-    private _profileId: UserProfileId;
-    private _profileName: UserProfileName;
-    private _description: UserDescription;
-
     constructor(
-        id: UserId,
-        name: UserName,
-        profileId: UserProfileId,
-        profileName: UserProfileName,
-        description: UserDescription,
-        modificationEventList: CommonModificationEvent[]
-    ) {
-        this.id = id;
-        this._name = name;
-        this._description = description;
-        this._profileId = profileId;
-        this._profileName = profileName;
-        this.modificationEventList = modificationEventList;
-    }
-
-    public get name(): UserName {
-        return this._name;
-    }
-
-    public get profileId(): UserProfileId {
-        return this._profileId;
-    }
-
-    public get description(): UserDescription {
-        return this._description;
-    }
-
-    public get profileName(): UserProfileName {
-        return this._profileName;
-    }
+        readonly id: UserId,
+        readonly name: UserName,
+        readonly profileId: UserProfileId,
+        readonly profileName: UserProfileName,
+        readonly description: UserDescription,
+        readonly modificationEventList: CommonModificationEvent[]
+    ) { }
 
     static create(
         id: UserId,
@@ -66,22 +34,6 @@ export class CommonUser implements UserRoot {
             description,
             modificationEventList
         )
-    }
-
-    private updateUserName(value: UserName): void {
-
-    }
-
-    private updateUserPassword(Value:UserPassword ): void {
-
-    }
-
-    private updateUserProfile(): void {
-
-    }
-
-    private updateUserDescription(): void {
-
     }
 
     static fromPrimitives(data: CommonUserDTO): CommonUser {
