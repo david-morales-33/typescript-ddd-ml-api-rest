@@ -1,7 +1,7 @@
 import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
 
 
-export class UserProfileId extends ValueObject<number>{
+export class UserIdType extends ValueObject<number> {
     constructor(value: number){
         super(value);
         this.ensurePositiveValue(value)
