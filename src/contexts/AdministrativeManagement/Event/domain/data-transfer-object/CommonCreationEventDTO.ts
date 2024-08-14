@@ -1,5 +1,6 @@
 
 export class CommonCreationEventDTO {
+    
     private _className: string = 'CreationEvent.commonDTO';
 
     constructor(

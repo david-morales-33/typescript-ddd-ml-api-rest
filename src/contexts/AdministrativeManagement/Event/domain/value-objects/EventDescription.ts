@@ -1,7 +1,7 @@
 import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
 
 
-export class ModificationEventDescription extends ValueObject<string> {
+export class EventDescription extends ValueObject<string> {
     constructor(value: string) {
         super(value);
         this.ensureLengthLess50Characteres(value)

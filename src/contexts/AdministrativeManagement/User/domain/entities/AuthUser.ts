@@ -1,8 +1,7 @@
-import { CommonCreationEvent } from "../../../CreationEvent/domain/entities/CommonCreationEvent";
-import { CreationEventCreateBy } from "../../../CreationEvent/domain/value-objects/CreationEventCreateBy";
-import { CreationEventCreateDate } from "../../../CreationEvent/domain/value-objects/CreationEventCreateDate";
-import { CreationEventDescription } from "../../../CreationEvent/domain/value-objects/CreationEventDescription";
-import { CreationEventId } from "../../../CreationEvent/domain/value-objects/CreationEventId";
+import {CommonCreationEventDTO } from '../../../Event/domain/data-transfer-object/CommonCreationEventDTO'
+import {CommonModificationEventDTO} from '../../../Event/domain/data-transfer-object/CommonModificationEventDTO'
+import {CommonCreationEvent} from '../../../Event/domain/entities/CommonCreationEvent'
+import {CommonModificationEvent} from '../../../Event/domain/entities/CommonModificationEvent'
 import { AuthUserDTO } from "../data-transfer-objects/AuthUserDTO";
 import { UserRoot } from "../interfaces/UserRoot";
 import { UserDescription } from "../value-objects/UserDescription";
@@ -21,7 +20,7 @@ export class AuthUser implements UserRoot {
         readonly profileId: UserProfileId,
         readonly description: UserDescription,
         readonly password: UserPassword,
-        readonly creationEvent: CommonCreationEvent
+        readonly creationEvent: (CommonCreationEvent | CommonModificationEvent)[]
     ) { }
 
     static create(
@@ -31,7 +30,7 @@ export class AuthUser implements UserRoot {
         profileId: UserProfileId,
         description: UserDescription,
         password: UserPassword,
-        creationEvent: CommonCreationEvent
+        creationEvent: (CommonCreationEvent | CommonModificationEvent)[]
 
     ): AuthUser {
         return new AuthUser(
@@ -53,12 +52,11 @@ export class AuthUser implements UserRoot {
             new UserProfileId(data.profileId),
             new UserDescription(data.description),
             new UserPassword(data.password),
-            new CommonCreationEvent(
-                new CreationEventId(data.creationEvent.id),
-                new CreationEventCreateBy(data.creationEvent.createBy),
-                new CreationEventCreateDate(data.creationEvent.createDate),
-                new CreationEventDescription(data.creationEvent.description)
-            )
+            data.eventList.map(entry => {
+                if (entry.className === 'CreationEvent.commonDTO')
+                    return CommonCreationEvent.fromPrimitives(entry as CommonCreationEventDTO)
+                return CommonModificationEvent.fromPrimitives(entry as CommonModificationEventDTO)
+            })
         )
     }
 
@@ -70,7 +68,9 @@ export class AuthUser implements UserRoot {
             this.profileId.value,
             this.description.value,
             this.password.value,
-            this.creationEvent.toPrimitive()
+            this.creationEvent.map(entry => {
+                return entry.toPrimitives()
+            })
         )
     }
 }

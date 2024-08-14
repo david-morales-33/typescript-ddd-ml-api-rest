@@ -1,7 +1,7 @@
-import { CommonCreationEvent } from "../../../../CreationEvent/domain/entities/CommonCreationEvent";
-import { CreationEventCreateDate } from "../../../../CreationEvent/domain/value-objects/CreationEventCreateDate";
-import { CreationEventDescription } from "../../../../CreationEvent/domain/value-objects/CreationEventDescription";
-import { CreationEventId } from "../../../../CreationEvent/domain/value-objects/CreationEventId";
+import { CommonCreationEvent } from '../../../../Event/domain/entities/CommonCreationEvent';
+import { EventCreateDate } from "../../../../Event/domain/value-objects/EventCreateDate";
+import { EventDescription } from "../../../../Event/domain/value-objects/EventDescription";
+import { EventId } from "../../../../Event/domain/value-objects/EventId";
 import { AuthUser } from "../../../domain/entities/AuthUser";
 import { AuthUserRepository } from "../../../domain/repositories/AuthUserRepository";
 import { UserDescription } from "../../../domain/value-objects/UserDescription";
@@ -12,7 +12,6 @@ import { UserPassword } from "../../../domain/value-objects/UserPassword";
 import { UserProfileId } from "../../../domain/value-objects/UserProfileId";
 import { UserNotFoundException } from "../../exceptions/UserNotFoundException";
 import { UserExternalService } from "../../services/UserExternalService";
-
 
 export class UserCreator {
     constructor(
@@ -36,9 +35,9 @@ export class UserCreator {
         if (userFinded === null || userFinded === undefined)
             throw new UserNotFoundException(userId);
 
-        const eventId = new CreationEventId(1);
-        const creationDate = new CreationEventCreateDate(new Date());
-        const eventDescription = new CreationEventDescription('Integración de usuario');
+        const eventId = new EventId(1);
+        const creationDate = new EventCreateDate(new Date());
+        const eventDescription = new EventDescription('Integración de usuario');
 
         const creationEvent = CommonCreationEvent.create(
             eventId,
@@ -57,7 +56,7 @@ export class UserCreator {
             userProfileId,
             userDescription,
             userPassword,
-            creationEvent
+            [creationEvent]
         )
 
         await this.userRepository.save(newUser);
