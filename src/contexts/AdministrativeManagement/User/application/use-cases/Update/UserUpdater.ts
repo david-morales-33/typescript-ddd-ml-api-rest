@@ -1,10 +1,10 @@
-import { CommonModificationEvent } from "../../../../Event/domain/entities/CommonModificationEvent";
-import { EventCreateDate } from "../../../../Event/domain/value-objects/EventCreateDate";
-import { EventDescription } from "../../../../Event/domain/value-objects/EventDescription";
-import { EventId } from "../../../../Event/domain/value-objects/EventId";
-import { EventModifiedField } from "../../../../Event/domain/value-objects/EventModifiedField";
-import { EventNewValue } from "../../../../Event/domain/value-objects/EventNewValue";
-import { EventPreviusValue } from "../../../../Event/domain/value-objects/EventPreviusValue";
+import { CommonModificationEvent } from "../../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
+import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
+import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
+import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
+import { EventModifiedField } from "../../../../AdministrativeEvent/domain/value-objects/EventModifiedField";
+import { EventNewValue } from "../../../../AdministrativeEvent/domain/value-objects/EventNewValue";
+import { EventPreviusValue } from "../../../../AdministrativeEvent/domain/value-objects/EventPreviusValue";
 import { AuthUserRepository } from "../../../domain/repositories/AuthUserRepository";
 import { UserDescription } from "../../../domain/value-objects/UserDescription";
 import { UserId } from "../../../domain/value-objects/UserId";

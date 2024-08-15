@@ -1,4 +1,4 @@
-import { EventRoot } from "../interfaces/EventRoot";
+import { EventRoot } from "../interfaces/AdministrativeEventRoot";
 import { EventCreateBy } from "../value-objects/EventCreateBy";
 import { EventCreateDate } from "../value-objects/EventCreateDate";
 import { EventDescription } from "../value-objects/EventDescription";

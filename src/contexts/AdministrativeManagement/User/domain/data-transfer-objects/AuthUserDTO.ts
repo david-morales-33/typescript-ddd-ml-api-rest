@@ -1,8 +1,5 @@
-import { CommonCreationEventDTO } from "../../../CreationEvent/domain/data-transfer-objects/CommonCreationEventDTO";
-import { CommonCreationEvent } from "../../../CreationEvent/domain/entities/CommonCreationEvent";
-import { EventRoot } from "../../../Event/domain/interfaces/EventRoot";
-import { CommonModificationEventDTO } from "../../../ModificationEvent/domain/data-transfer-objects/CommonModificationEventDTO";
-import { CommonModificationEvent } from "../../../ModificationEvent/domain/entities/CommonModificationEvent";
+import { CommonCreationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonCreationEventDTO";
+import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
 
 export class AuthUserDTO {
 

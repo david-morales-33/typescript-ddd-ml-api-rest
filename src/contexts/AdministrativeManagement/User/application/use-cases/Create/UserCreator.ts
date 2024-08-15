@@ -1,7 +1,7 @@
-import { CommonCreationEvent } from '../../../../Event/domain/entities/CommonCreationEvent';
-import { EventCreateDate } from "../../../../Event/domain/value-objects/EventCreateDate";
-import { EventDescription } from "../../../../Event/domain/value-objects/EventDescription";
-import { EventId } from "../../../../Event/domain/value-objects/EventId";
+import { CommonCreationEvent } from '../../../../AdministrativeEvent/domain/entities/CommonCreationEvent';
+import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
+import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
+import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
 import { AuthUser } from "../../../domain/entities/AuthUser";
 import { AuthUserRepository } from "../../../domain/repositories/AuthUserRepository";
 import { UserDescription } from "../../../domain/value-objects/UserDescription";

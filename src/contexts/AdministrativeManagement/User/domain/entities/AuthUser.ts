@@ -1,8 +1,8 @@
-import { CommonCreationEventDTO } from '../../../Event/domain/data-transfer-object/CommonCreationEventDTO'
-import { CommonModificationEventDTO } from '../../../Event/domain/data-transfer-object/CommonModificationEventDTO'
-import { CommonCreationEvent } from '../../../Event/domain/entities/CommonCreationEvent'
-import { CommonModificationEvent } from '../../../Event/domain/entities/CommonModificationEvent'
-import { EventId } from '../../../Event/domain/value-objects/EventId';
+import { CommonCreationEventDTO } from '../../../AdministrativeEvent/domain/data-transfer-object/CommonCreationEventDTO'
+import { CommonModificationEventDTO } from '../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO'
+import { CommonCreationEvent } from '../../../AdministrativeEvent/domain/entities/CommonCreationEvent'
+import { CommonModificationEvent } from '../../../AdministrativeEvent/domain/entities/CommonModificationEvent'
+import { EventId } from '../../../AdministrativeEvent/domain/value-objects/EventId';
 import { AuthUserDTO } from "../data-transfer-objects/AuthUserDTO";
 import { UserRoot } from "../interfaces/UserRoot";
 import { UserDescription } from "../value-objects/UserDescription";

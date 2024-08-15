@@ -5,7 +5,7 @@ import { UserDescription } from '../value-objects/UserDescription';
 import { UserName } from '../value-objects/UserName';
 import { UserProfileId } from '../value-objects/UserProfileId';
 import { UserProfileName } from '../value-objects/UserProfileName';
-import { CommonModificationEvent } from '../../../Event/domain/entities/CommonModificationEvent';
+import { CommonModificationEvent } from '../../../AdministrativeEvent/domain/entities/CommonModificationEvent';
 
 export class CommonUser implements UserRoot {
 
