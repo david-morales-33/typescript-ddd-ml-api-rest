@@ -11,7 +11,7 @@ import { ProductionOrderReference } from "../../../domain/value-objects/Producti
 import { ProductionOrderEanExternalServiceDTO } from "../../data-transfer-objects/ProductionOrderEanExternalServiceDTO";
 import { ProductionOrderExternalServiceDTO } from "../../data-transfer-objects/ProductionOrderExternalServiceDTO";
 import { EanNotFound } from "../../exception/EanNotFound";
-import { ProductionOrderNotFound } from "../../exception/ProductionOrderNotFound";
+import { ProductionOrderNotFound } from "../../exception/ProductionOrderNotFoundOnService";
 import { ProductionOrderEanExternalService } from "../../services/ProductionOrderEanExternalService";
 import { ProductionOrderExternalService } from "../../services/ProductionOrderExternalService";
 
