@@ -17,7 +17,7 @@ export class CreateProductionModuleAnomalyValidator {
 
         const productionModuleAnomaly = await this.productionModuleAnomaly.find(productionModuleAnomalyId)
         if (productionModuleAnomaly !== null)
-            throw new Error(`The Production Module Anomaly <${productionModuleAnomalyId}> already exists`);
+            throw new Error(`The Production Module Anomaly <${productionModuleAnomalyId.value}> already exists`);
 
         const eventPermission = UserPermission.create(
             new UserPermissionId(0),

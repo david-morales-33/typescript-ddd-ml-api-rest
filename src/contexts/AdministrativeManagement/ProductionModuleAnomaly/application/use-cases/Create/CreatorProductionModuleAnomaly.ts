@@ -18,7 +18,6 @@ export class CreatorProductionModuleAnomaly {
     }) {
         const { createBy, productionModuleAnomalyId, productionModuleAnomalyName } = params;
 
-
         const eventId = new EventId(0);
         const creationDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Integración de nueva anormalidad');
@@ -29,7 +28,6 @@ export class CreatorProductionModuleAnomaly {
             creationDate,
             eventDescription
         );
-
         const productionModuleAnomaly = ProductionModuleAnomaly.create(
             productionModuleAnomalyId,
             productionModuleAnomalyName,
