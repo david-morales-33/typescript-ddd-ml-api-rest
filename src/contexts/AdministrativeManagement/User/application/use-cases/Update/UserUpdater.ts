@@ -14,18 +14,18 @@ import { UserPassword } from "../../../domain/value-objects/UserPassword";
 import { UserProfileId } from "../../../domain/value-objects/UserProfileId";
 import { UserNotFoundException } from "../../exceptions/UserNotFoundException";
 
-export class updaterUser {
+export class UserUpdater {
     constructor(
         private userRepository: AuthUserRepository
     ) { }
 
     async execute(params: {
         userId: UserId,
-        newName?: UserName,
-        newIdType?: UserIdType,
-        newProfileId?: UserProfileId,
-        newDescription?: UserDescription,
-        newPassword?: UserPassword,
+        newName: UserName | null,
+        newIdType: UserIdType | null,
+        newProfileId: UserProfileId | null,
+        newDescription: UserDescription | null,
+        newPassword: UserPassword | null,
         updateBy: UserId
     }) {
         const { userId, newName, newProfileId, newDescription, newIdType, newPassword, updateBy } = params;
