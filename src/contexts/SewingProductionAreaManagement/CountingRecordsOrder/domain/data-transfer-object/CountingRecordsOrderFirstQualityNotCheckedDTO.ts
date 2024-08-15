@@ -1,7 +1,8 @@
+import { Command } from "../../../../Shared/domain/Command";
 import { CountingRecordsOrderEventDTO } from "../../../CountingRecordsOrderEvent/domain/data-transfer-object/CountingRecordsOrderEventDTO";
 
 
-export class CountingRecordsOrderFirstQualityNotCheckedDTO {
+export class CountingRecordsOrderFirstQualityNotCheckedDTO extends Command {
 
     private _className: string = 'CountingRecordsOrder.firstQualityNotCheckedDTO';
 
@@ -19,7 +20,7 @@ export class CountingRecordsOrderFirstQualityNotCheckedDTO {
         readonly creationDate: Date,
         readonly createByUser: string,
         readonly eventOnCountingRecordsOrderList: CountingRecordsOrderEventDTO[]
-    ) { }
+    ) { super() }
 
     public get className(): string {
         return this._className;

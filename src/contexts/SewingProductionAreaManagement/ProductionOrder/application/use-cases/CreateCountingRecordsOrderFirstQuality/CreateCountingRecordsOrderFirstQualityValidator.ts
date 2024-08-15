@@ -6,31 +6,23 @@ import { UserPermissionLabel } from "../../../../UserPermission/domain/value-obj
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionModuleRepository } from "../../../../ProductionModule/domain/repositories/ProductionModuleRepository";
 import { ProductionModuleEventRepository } from "../../../../ProductionModuleEvent/domain/repositories/ProductionModuleEventRepository";
-import { ProductionOrderDetailCommonRepository } from "../../../../ProductionOrderDetail/domain/repositories/ProductionOrderDetailCommonRepository";
-import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
-import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
-import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { CountingRecordsOrderEventIdOnProductionModule } from "../../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderEventIdOnProductionModule";
 
-export class CountingRecordsOrderValidator {
+export class CreateCountingRecordsOrderFirstQualityValidator {
     constructor(
         private userPermissionsRepository: UserPermissionRepository,
         private productionModuleRepository: ProductionModuleRepository,
         private productionModuleEventRepository: ProductionModuleEventRepository,
-        private productionOrderDetailRepository: ProductionOrderDetailCommonRepository
     ) { }
 
     async execute(params: {
         userId: UserId,
-        colorId: ColorId,
-        productionOrderId: ProductionOrderId,
-        garmentSize: GarmentSize,
         productionModuleId: ProductionModuleId,
-        productionModuleEventId: CountingRecordsOrderEventIdOnProductionModule
+        productionModuleEventId?: CountingRecordsOrderEventIdOnProductionModule | null
     }) {
 
-        const { userId, productionModuleId, productionModuleEventId, colorId, productionOrderId, garmentSize } = params;
+        const { userId, productionModuleId, productionModuleEventId } = params;
 
         const eventPermission = UserPermission.create(
             new UserPermissionId(16),
@@ -49,15 +41,12 @@ export class CountingRecordsOrderValidator {
         if (productionModuleFounded === null || productionModuleFounded === undefined)
             throw new Error('El modulo solicitado no existe');
 
-        const productionModuleEventFound = await this.productionModuleEventRepository.find(productionModuleEventId);
 
-        if (productionModuleEventFound === null || productionModuleEventFound === undefined)
-            throw new Error('El evento que se intenta ingresar no existe');
+        if (productionModuleEventId) {
+            const productionModuleEventFound = await this.productionModuleEventRepository.find(productionModuleEventId);
 
-        const productionOrderDetailFounded = await this.productionOrderDetailRepository.find({ colorId, productionOrderId, garmentSize });
-
-        if (productionOrderDetailFounded === null || productionOrderDetailFounded === undefined)
-            throw new Error('El datalle de lo OP en la que está intentado ingresar el registro no existe')
-
+            if (productionModuleEventFound === null || productionModuleEventFound === undefined)
+                throw new Error('El evento que se intenta ingresar no existe');
+        }
     }
 }

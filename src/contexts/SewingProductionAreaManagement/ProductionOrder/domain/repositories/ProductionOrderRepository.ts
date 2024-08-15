@@ -1,5 +1,3 @@
-import { ProductionOrderInProgress } from "../entities/ProductionOrderInProgress";
-import { ProductionOrderNotStarted } from "../entities/ProductionOrderNotStarted";
 import { ProductionOrderRoot } from "../interfaces/ProductionOrderRoot";
 import { ProductionOrderId } from "../value-objects/ProductionOrderId";
 
