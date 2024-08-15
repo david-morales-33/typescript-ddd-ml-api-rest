@@ -3,5 +3,5 @@ import { ProductionModuleAnomalyId } from "../value-objects/ProductionModuleAnom
 
 export interface ProductionModuleAnomalyRepository {
     save(productionModuleAnomaly: ProductionModuleAnomaly): Promise<void>;
-    find(productionModuleAnomalyId: ProductionModuleAnomalyId): Promise<ProductionModuleAnomaly>
+    find(productionModuleAnomalyId: ProductionModuleAnomalyId): Promise<ProductionModuleAnomaly | null>
 }
