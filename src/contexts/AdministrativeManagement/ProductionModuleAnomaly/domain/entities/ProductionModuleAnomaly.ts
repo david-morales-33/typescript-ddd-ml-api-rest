@@ -1,3 +1,7 @@
+import { CommonCreationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonCreationEventDTO";
+import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
+import { CommonCreationEvent } from "../../../AdministrativeEvent/domain/entities/CommonCreationEvent";
+import { CommonModificationEvent } from "../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
 import { ProductionModuleAnomalyDTO } from "../data-transfer-objects/ProductionModuleAnomalyDTO";
 import { ProductionModuleAnomalyRoot } from "../interfaces/ProductionModuleAnomalyRoot";
 import { ProductionModuleAnomalyId } from "../value-objects/ProductionModuleAnomalyId";
@@ -8,18 +12,21 @@ export class ProductionModuleAnomaly implements ProductionModuleAnomalyRoot {
     constructor(
         readonly id: ProductionModuleAnomalyId,
         readonly name: ProductionModuleAnomalyName,
-        readonly state: ProductionModuleAnomalyState
-    ) { }
+        readonly eventList: (CommonCreationEvent | CommonModificationEvent)[],
+        readonly state?: ProductionModuleAnomalyState,
+    ) { this.state = new ProductionModuleAnomalyState(true) }
 
     static create(
         id: ProductionModuleAnomalyId,
         name: ProductionModuleAnomalyName,
-        state: ProductionModuleAnomalyState
+        eventList: (CommonCreationEvent | CommonModificationEvent)[],
+        state?: ProductionModuleAnomalyState,
     ): ProductionModuleAnomaly {
         return new ProductionModuleAnomaly(
             id,
             name,
-            state
+            eventList,
+            state ?? new ProductionModuleAnomalyState(true),
         )
     }
 
@@ -27,7 +34,13 @@ export class ProductionModuleAnomaly implements ProductionModuleAnomalyRoot {
         return new ProductionModuleAnomaly(
             new ProductionModuleAnomalyId(data.id),
             new ProductionModuleAnomalyName(data.name),
-            new ProductionModuleAnomalyState(data.state)
+            data.eventList.map(entry => {
+                if (entry.className === 'CreationEvent.commonDTO')
+                    return CommonCreationEvent.fromPrimitives(entry as CommonCreationEventDTO)
+                return CommonModificationEvent.fromPrimitives(entry as CommonModificationEventDTO)
+            }),
+            data.state ? new ProductionModuleAnomalyState(data.state) : new ProductionModuleAnomalyState(true)
+
         )
     }
 
@@ -35,7 +48,10 @@ export class ProductionModuleAnomaly implements ProductionModuleAnomalyRoot {
         return new ProductionModuleAnomalyDTO(
             this.id.value,
             this.name.value,
-            this.state.value
+            this.state ? this.state.value : true,
+            this.eventList.map(entry => {
+                return entry.toPrimitives()
+            })
         )
     }
 }

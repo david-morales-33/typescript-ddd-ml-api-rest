@@ -35,7 +35,7 @@ export class UserCreator {
         if (userFinded === null || userFinded === undefined)
             throw new UserNotFoundException(userId);
 
-        const eventId = new EventId(1);
+        const eventId = new EventId(0);
         const creationDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Integración de usuario');
 

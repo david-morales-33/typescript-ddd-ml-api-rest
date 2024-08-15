@@ -1,3 +1,5 @@
+import { CommonCreationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonCreationEventDTO";
+import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
 
 export class ProductionModuleAnomalyDTO {
 
@@ -6,7 +8,8 @@ export class ProductionModuleAnomalyDTO {
     constructor(
         readonly id: string,
         readonly name: string,
-        readonly state: boolean
+        readonly state: boolean,
+        readonly eventList: (CommonCreationEventDTO | CommonModificationEventDTO)[]
     ) { }
 
     public get className(): string {
