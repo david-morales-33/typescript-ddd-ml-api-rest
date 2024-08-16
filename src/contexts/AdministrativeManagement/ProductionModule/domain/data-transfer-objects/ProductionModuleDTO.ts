@@ -7,14 +7,13 @@ export class ProductionModuleDTO {
 
     constructor(
         readonly id: number,
-        readonly currentReference: string,
-        readonly currentProductionOrder: string,
-        readonly currentGarmentSize: string,
-        readonly currentColorId: string,
-        readonly currentSupervisorId: string,
-        readonly currentState: boolean,
+        readonly label: string,
+        readonly machineAmount: number,
+        readonly currentOperationState: boolean,
+        readonly currentSupervisorId: string | null,
         readonly currentSewingWorkerCounter: number,
         readonly currentSewingWorkerIdList: string[],
+        readonly state: boolean,
         readonly creationDate: Date,
         readonly createBy: string,
         readonly administrativeEventList: (CommonCreationEventDTO | CommonModificationEventDTO)[]

@@ -2,11 +2,7 @@ import { ProductionModuleId } from "../value-objects/ProductionModuleId";
 import { ProductionModuleSewingWorkerId } from "../value-objects/ProductionModuleSewingWorkerId";
 import { ProductionModuleSewingWorkerCounter } from "../value-objects/ProductionModuleSewingWorkerAmount";
 import { ProductionModuleState } from "../value-objects/ProductionModuleState";
-import { ProductionModuleGarmentSize } from "../value-objects/ProductionModuleGarmentSize";
-import { ProductionModuleColorId } from "../value-objects/ProductionModuleColorId";
 import { ProductionModuleSupervisorId } from "../value-objects/ProductionModuleSupervisorId";
-import { ProductionModuleReferences } from "../value-objects/ProductionModuleReferences";
-import { ProductionModuleProductionOrderId } from "../value-objects/ProductionModuleProductionOrderId";
 import { CommonCreationEvent } from "../../../AdministrativeEvent/domain/entities/CommonCreationEvent";
 import { CommonModificationEvent } from "../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
 import { ProductionModuleCreationDate } from "../value-objects/ProductionModuleCreationDate";
@@ -15,30 +11,36 @@ import { ProductionModuleDTO } from "../data-transfer-objects/ProductionModuleDT
 import { CommonCreationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonCreationEventDTO";
 import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
 import { EventId } from "../../../AdministrativeEvent/domain/value-objects/EventId";
-import { ProductionModuleRoot } from "../interfaces/productionModuleRoot";
+import { ProductionModuleRoot } from "../interfaces/ProductionModuleRoot";
+import { ProductionModuleLabel } from "../value-objects/ProductionModuleLabel";
+import { ProductionModuleMachineAmount } from "../value-objects/ProductionModuleMachineAmount";
 
 export class ProductionModule implements ProductionModuleRoot {
 
+    private _currentSewingWorkerCounter: ProductionModuleSewingWorkerCounter;
+    private _currentOperationState: ProductionModuleState;
+    private _state: ProductionModuleState;
+
     constructor(
         readonly id: ProductionModuleId,
-        readonly currentReference: ProductionModuleReferences,
-        readonly currentProductionOrderId: ProductionModuleProductionOrderId,
-        readonly currentGarmentSize: ProductionModuleGarmentSize,
-        readonly currentColorId: ProductionModuleColorId,
-        private _currentSupervisorId: ProductionModuleSupervisorId,
-        private _currentState: ProductionModuleState,
-        private _currentSewingWorkerCounter: ProductionModuleSewingWorkerCounter,
+        readonly label: ProductionModuleLabel,
+        private _machineAmount: ProductionModuleMachineAmount,
+        private _currentSupervisorId: ProductionModuleSupervisorId | null,
         private _currentSewingWorkerIdList: ProductionModuleSewingWorkerId[],
         readonly creationDate: ProductionModuleCreationDate,
         readonly createBy: ProductionModuleCreateBy,
         readonly administrativeEventList: (CommonCreationEvent | CommonModificationEvent)[]
-    ) { }
-
-    public get currentState(): ProductionModuleState {
-        return this._currentState;
+    ) {
+        this._currentSewingWorkerCounter = new ProductionModuleSewingWorkerCounter(_currentSewingWorkerIdList.length);
+        this._state = new ProductionModuleState(true);
+        this._currentOperationState = new ProductionModuleState(true);
     }
 
-    public get currentSupervisorId(): ProductionModuleSupervisorId {
+    public get currentOperationState(): ProductionModuleState {
+        return this._currentOperationState;
+    }
+
+    public get currentSupervisorId(): ProductionModuleSupervisorId | null {
         return this._currentSupervisorId;
     }
 
@@ -50,33 +52,82 @@ export class ProductionModule implements ProductionModuleRoot {
         return this._currentSewingWorkerIdList;
     }
 
+    public get machineAmount(): ProductionModuleMachineAmount {
+        return this._machineAmount;
+    }
+
+    public get state(): ProductionModuleState {
+        return this._state;
+    }
+
+    static create(
+        id: ProductionModuleId,
+        label: ProductionModuleLabel,
+        machineAmount: ProductionModuleMachineAmount,
+        currentSupervisorId: ProductionModuleSupervisorId | null,
+        creationDate: ProductionModuleCreationDate,
+        createBy: ProductionModuleCreateBy,
+        administrativeEventList: (CommonCreationEvent | CommonModificationEvent)[]
+    ): ProductionModule {
+        return new ProductionModule(
+            id,
+            label,
+            machineAmount,
+            currentSupervisorId,
+            [],
+            creationDate,
+            createBy,
+            administrativeEventList
+        )
+    }
+
     startOperation(): void {
-        this._currentState = this.currentState.setInTrue();
+        this._currentOperationState = this.currentOperationState.setInTrue();
     }
 
     stopOperation(): void {
-        this._currentState = this.currentState.setInFalse();
+        this._currentOperationState = this.currentOperationState.setInFalse();
     }
 
     updateCurrentSupervisor(params: { value: ProductionModuleSupervisorId, event: CommonModificationEvent }) {
         const { value, event } = params;
         if (!this.hasAddedEvent(event.id)) {
             this.addNewEvent(event);
-            this._currentSupervisorId = this.currentSupervisorId.setValue(value.value)
+            this._currentSupervisorId = new ProductionModuleSupervisorId(value.value)
         }
     }
 
-    updateCurrentState(params: { value: ProductionModuleState, event: CommonModificationEvent }) {
+    updateMachineAmount(params: { value: ProductionModuleMachineAmount, event: CommonModificationEvent }) {
         const { value, event } = params;
         if (!this.hasAddedEvent(event.id)) {
-            if (this._currentState.value === value.value)
+            this.addNewEvent(event);
+            this._machineAmount = this.machineAmount.setValue(value.value)
+        }
+    }
+
+    updateState(params: { value: ProductionModuleState, event: CommonModificationEvent }) {
+        const { value, event } = params;
+        if (!this.hasAddedEvent(event.id)) {
+            this.addNewEvent(event);
+            if (this.state.value === value.value)
+                throw new Error(`The Production Module State has already been set to <${value.value}>`)
+            if (value.value)
+                this._state = this.state.setInTrue();
+            else
+                this._state = this.state.setInFalse();
+        }
+    }
+
+    updateCurrentOperationState(params: { value: ProductionModuleState, event: CommonModificationEvent }) {
+        const { value, event } = params;
+        if (!this.hasAddedEvent(event.id)) {
+            if (this._currentOperationState.value === value.value)
                 throw new Error(`The Production Module State has already been set to <${value.value}>`)
 
             if (value.value)
                 this.startOperation();
             else
                 this.stopOperation();
-
             this.addNewEvent(event);
         }
     }
@@ -107,13 +158,9 @@ export class ProductionModule implements ProductionModuleRoot {
     static fromPrimitives(data: ProductionModuleDTO): ProductionModule {
         return new ProductionModule(
             new ProductionModuleId(data.id),
-            new ProductionModuleReferences(data.currentReference),
-            new ProductionModuleProductionOrderId(data.currentProductionOrder),
-            new ProductionModuleGarmentSize(data.currentGarmentSize),
-            new ProductionModuleColorId(data.currentColorId),
-            new ProductionModuleSupervisorId(data.currentSupervisorId),
-            new ProductionModuleState(data.currentState),
-            new ProductionModuleSewingWorkerCounter(data.currentSewingWorkerCounter),
+            new ProductionModuleLabel(data.label),
+            new ProductionModuleMachineAmount(data.machineAmount),
+            data.currentSupervisorId ? new ProductionModuleSupervisorId(data.currentSupervisorId) : null,
             data.currentSewingWorkerIdList.map(entry => new ProductionModuleSewingWorkerId(entry)),
             new ProductionModuleCreationDate(data.creationDate),
             new ProductionModuleCreateBy(data.createBy),
@@ -128,14 +175,13 @@ export class ProductionModule implements ProductionModuleRoot {
     toPrimitives(): ProductionModuleDTO {
         return new ProductionModuleDTO(
             this.id.value,
-            this.currentReference.value,
-            this.currentProductionOrderId.value,
-            this.currentGarmentSize.value,
-            this.currentColorId.value,
-            this.currentSupervisorId.value,
-            this.currentState.value,
+            this.label.value,
+            this.machineAmount.value,
+            this.currentOperationState.value,
+            this.currentSupervisorId ? this.currentSupervisorId.value : null,
             this.currentSewingWorkerCounter.value,
             this.currentSewingWorkerIdList.map(entry => entry.value),
+            this.state.value,
             this.creationDate.value,
             this.createBy.value,
             this.administrativeEventList.map(entry => { return entry.toPrimitives() })
