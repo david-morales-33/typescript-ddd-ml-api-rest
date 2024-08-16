@@ -1,4 +1,3 @@
-import { ProductionModuleRoot } from "../interfaces/productionModuleRoot";
 import { ProductionModuleId } from "../value-objects/ProductionModuleId";
 import { ProductionModuleSewingWorkerId } from "../value-objects/ProductionModuleSewingWorkerId";
 import { ProductionModuleSewingWorkerCounter } from "../value-objects/ProductionModuleSewingWorkerAmount";
@@ -16,6 +15,7 @@ import { ProductionModuleDTO } from "../data-transfer-objects/ProductionModuleDT
 import { CommonCreationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonCreationEventDTO";
 import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
 import { EventId } from "../../../AdministrativeEvent/domain/value-objects/EventId";
+import { ProductionModuleRoot } from "../interfaces/productionModuleRoot";
 
 export class ProductionModule implements ProductionModuleRoot {
 

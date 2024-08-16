@@ -1,0 +1,37 @@
+import { UserId } from "../../../../User/domain/value-objects/UserId";
+import { UserPermissionValidator } from "../../../../UserPermission/application/Validate/UserPermissionValidator";
+import { UserPermission } from "../../../../UserPermission/domain/entities/UserPermission";
+import { UserPermissionRepository } from "../../../../UserPermission/domain/repositories/UserPermissionRepository";
+import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
+import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
+import { ProductionModuleRepository } from "../../../domain/repositories/ProductionModuleRepository";
+import { ProductionModuleId } from "../../../domain/value-objects/ProductionModuleId";
+import { ProductionModuleNotFoundException } from "../../exceptions/ProductionModuleNotFoundException";
+
+
+export class CreateProductionModuleValidator {
+    constructor(
+        private productionModuleRepository: ProductionModuleRepository,
+        private userPermissionsRepository: UserPermissionRepository
+    ){}
+
+    async execute(params : {createBy: UserId, productionModuleId: ProductionModuleId}){
+        const { createBy, productionModuleId} = params;
+
+        const eventPermission = UserPermission.create(
+            new UserPermissionId(7),
+            new UserPermissionLabel('Agregar Módulo')
+        );
+
+        const userPermissionValidator = new UserPermissionValidator(this.userPermissionsRepository);
+        await userPermissionValidator.execute({
+            userId: createBy,
+            useCasePermission: eventPermission
+        });
+
+        const productionModule = await this.productionModuleRepository.find(productionModuleId);
+
+        if(productionModule=== null || productionModule===undefined)
+            throw new ProductionModuleNotFoundException(productionModuleId);
+    }
+}
