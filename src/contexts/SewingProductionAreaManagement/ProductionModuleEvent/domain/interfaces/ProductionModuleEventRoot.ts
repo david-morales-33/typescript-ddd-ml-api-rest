@@ -1,5 +1,3 @@
-
-
 export abstract class ProductionModuleEventRoot {
-    abstract toPrimitive(): any;
+    abstract toPrimitives(): any
 }

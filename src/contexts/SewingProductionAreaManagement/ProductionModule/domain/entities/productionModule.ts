@@ -9,6 +9,8 @@ import { ProductionModuleSupervisorId } from "../value-objects/ProductionModuleS
 import { ProductionModuleReferences } from "../value-objects/ProductionModuleReferences";
 import { ProductionModuleDTO } from "../data-transfer-object/ProductionModuleDTO";
 import { ProductionModuleProductionOrderId } from "../value-objects/ProductionModuleProductionOrderId";
+import { SewingWorkerHasAlreadyAdded } from "../exceptions/SewingWorkerHasAlreadyAdded";
+import { SewingWorkerNotExists } from "../exceptions/SewingWorkerNotExists";
 
 export class ProductionModule implements ProductionModuleRoot {
 
@@ -19,7 +21,7 @@ export class ProductionModule implements ProductionModuleRoot {
         private _currentGarmentSize: ProductionModuleGarmentSize,
         private _currentColorId: ProductionModuleColorId,
         private _currentSupervisorId: ProductionModuleSupervisorId,
-        private _currentState: ProductionModuleState,
+        private _currentOperationState: ProductionModuleState,
         private _currentSewingWorkerCounter: ProductionModuleSewingWorkerCounter,
         private _currentSewingWorkerIdList: ProductionModuleSewingWorkerId[]
     ) { }
@@ -40,8 +42,8 @@ export class ProductionModule implements ProductionModuleRoot {
         return this._currentColorId;
     }
 
-    public get currentState(): ProductionModuleState {
-        return this._currentState;
+    public get currentOperationState(): ProductionModuleState {
+        return this._currentOperationState;
     }
 
     public get currentSupervisorId(): ProductionModuleSupervisorId {
@@ -57,11 +59,11 @@ export class ProductionModule implements ProductionModuleRoot {
     }
 
     startOperation(): void {
-        this._currentState = this.currentState.setInTrue();
+        this._currentOperationState = this.currentOperationState.setInTrue();
     }
 
     stopOperation(): void {
-        this._currentState = this.currentState.setInFalse();
+        this._currentOperationState = this.currentOperationState.setInFalse();
     }
 
     incrementSewingWorkerCounter() {
@@ -74,14 +76,14 @@ export class ProductionModule implements ProductionModuleRoot {
 
     addSewingWorker(sewingWorkerId: ProductionModuleSewingWorkerId) {
         if (this.hasAddedSewingWorkerInProductionModule(sewingWorkerId))
-            throw new Error(`The Sewing Worker <${sewingWorkerId}> has already added`);
+            throw new SewingWorkerHasAlreadyAdded(sewingWorkerId);
         this.currentSewingWorkerIdList.push(sewingWorkerId)
         this.incrementSewingWorkerCounter();
     }
 
     removeSewingWorker(sewingWorkerId: ProductionModuleSewingWorkerId): void {
         if (!this.hasAddedSewingWorkerInProductionModule(sewingWorkerId))
-            throw new Error(`The Sewing Worker <${sewingWorkerId}> was not added`);
+            throw new SewingWorkerNotExists(sewingWorkerId);
         const listWithoutSewingWorker = this.currentSewingWorkerIdList.filter(workerId => workerId.value !== sewingWorkerId.value);
         this._currentSewingWorkerIdList = listWithoutSewingWorker;
     }
@@ -142,7 +144,7 @@ export class ProductionModule implements ProductionModuleRoot {
             this.currentGarmentSize.value,
             this.currentColorId.value,
             this.currentSupervisorId.value,
-            this.currentState.value,
+            this.currentOperationState.value,
             this.currentSewingWorkerCounter.value,
             this.currentSewingWorkerIdList.map(entry => entry.value)
         )
