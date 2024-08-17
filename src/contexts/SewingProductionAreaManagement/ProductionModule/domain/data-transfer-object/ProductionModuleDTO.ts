@@ -1,3 +1,4 @@
+import { ProductionModuleEventDTO } from "../../../ProductionModuleEvent/domain/data-transfer-objects/ProductionModuleEventDTO";
 
 export class ProductionModuleDTO {
 
@@ -12,7 +13,8 @@ export class ProductionModuleDTO {
         readonly currentSupervisorId: string,
         readonly currentState: boolean,
         readonly currentSewingWorkerCounter: number,
-        readonly currentSewingWorkerIdList: string[]
+        readonly currentSewingWorkerIdList: string[],
+        readonly eventList: ProductionModuleEventDTO[]
     ) { }
 
     public get className(): string {

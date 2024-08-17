@@ -11,6 +11,8 @@ import { ProductionModuleDTO } from "../data-transfer-object/ProductionModuleDTO
 import { ProductionModuleProductionOrderId } from "../value-objects/ProductionModuleProductionOrderId";
 import { SewingWorkerHasAlreadyAdded } from "../exceptions/SewingWorkerHasAlreadyAdded";
 import { SewingWorkerNotExists } from "../exceptions/SewingWorkerNotExists";
+import { ProductionModuleEvent } from "../../../ProductionModuleEvent/domain/entities/ProductionModuleEvent";
+import { ProductionModuleEventDTO } from "../../../ProductionModuleEvent/domain/data-transfer-objects/ProductionModuleEventDTO";
 
 export class ProductionModule implements ProductionModuleRoot {
 
@@ -23,7 +25,8 @@ export class ProductionModule implements ProductionModuleRoot {
         private _currentSupervisorId: ProductionModuleSupervisorId,
         private _currentOperationState: ProductionModuleState,
         private _currentSewingWorkerCounter: ProductionModuleSewingWorkerCounter,
-        private _currentSewingWorkerIdList: ProductionModuleSewingWorkerId[]
+        private _currentSewingWorkerIdList: ProductionModuleSewingWorkerId[],
+        private _eventList: ProductionModuleEvent[]
     ) { }
 
     public get currentReference(): ProductionModuleReferences {
@@ -56,6 +59,10 @@ export class ProductionModule implements ProductionModuleRoot {
 
     public get currentSewingWorkerIdList(): ProductionModuleSewingWorkerId[] {
         return this._currentSewingWorkerIdList;
+    }
+
+    public get eventList(): ProductionModuleEvent[] {
+        return this._eventList;
     }
 
     startOperation(): void {
@@ -132,7 +139,8 @@ export class ProductionModule implements ProductionModuleRoot {
             new ProductionModuleSupervisorId(data.currentSupervisorId),
             new ProductionModuleState(data.currentState),
             new ProductionModuleSewingWorkerCounter(data.currentSewingWorkerCounter),
-            data.currentSewingWorkerIdList.map(entry => new ProductionModuleSewingWorkerId(entry))
+            data.currentSewingWorkerIdList.map(entry => new ProductionModuleSewingWorkerId(entry)),
+            data.eventList.map(entry => ProductionModuleEvent.fromPrimitives(entry))
         )
     }
 
@@ -146,7 +154,14 @@ export class ProductionModule implements ProductionModuleRoot {
             this.currentSupervisorId.value,
             this.currentOperationState.value,
             this.currentSewingWorkerCounter.value,
-            this.currentSewingWorkerIdList.map(entry => entry.value)
+            this.currentSewingWorkerIdList.map(entry => entry.value),
+            this.eventList.map(entry => new ProductionModuleEventDTO(
+                entry.id.value,
+                entry.name.value,
+                entry.description.value,
+                entry.value.value,
+                entry.creationDate.value
+            ))
         )
     }
 }
