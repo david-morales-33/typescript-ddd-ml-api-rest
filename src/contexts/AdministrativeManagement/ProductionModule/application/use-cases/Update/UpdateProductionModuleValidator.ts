@@ -6,31 +6,33 @@ import { UserPermissionId } from "../../../../UserPermission/domain/value-object
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
 import { ProductionModuleRepository } from "../../../domain/repositories/ProductionModuleRepository";
 import { ProductionModuleId } from "../../../domain/value-objects/ProductionModuleId";
-import { ProductionModuleAlreadyExistsException } from "../../exceptions/ProductionModuleAlreadyExistsException";
+import { ProductionModuleNotFoundException } from "../../exceptions/ProductionModuleNotFoundException";
 
-export class CreateProductionModuleValidator {
+export class UpdateProductionModuleValidator {
     constructor(
         private productionModuleRepository: ProductionModuleRepository,
         private userPermissionsRepository: UserPermissionRepository
     ) { }
-
-    async execute(params: { createBy: UserId, productionModuleId: ProductionModuleId }) {
-        const { createBy, productionModuleId } = params;
+    async execute(params: {
+        updateBy: UserId,
+        productionModuleId: ProductionModuleId
+    }) {
+        const { productionModuleId, updateBy } = params;
 
         const eventPermission = UserPermission.create(
-            new UserPermissionId(7),
-            new UserPermissionLabel('Agregar Módulo')
+            new UserPermissionId(8),
+            new UserPermissionLabel('Editar Módulo')
         );
 
         const userPermissionValidator = new UserPermissionValidator(this.userPermissionsRepository);
         await userPermissionValidator.execute({
-            userId: createBy,
+            userId: updateBy,
             useCasePermission: eventPermission
         });
 
         const productionModule = await this.productionModuleRepository.find(productionModuleId);
 
-        if (productionModule !== null)
-            throw new ProductionModuleAlreadyExistsException(productionModuleId);
+        if (productionModule === null)
+            throw new ProductionModuleNotFoundException(productionModuleId)
     }
 }
