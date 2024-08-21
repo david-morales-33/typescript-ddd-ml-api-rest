@@ -81,7 +81,6 @@ export class ProductionOrder implements ProductionOrderRoot {
         productionOrderDetailList: [],
         administrativeEventList: CommonModificationEvent[]
     ): ProductionOrder {
-
         return new ProductionOrder(
             productionOrderid,
             reference,
@@ -152,7 +151,6 @@ export class ProductionOrder implements ProductionOrderRoot {
         return eventFound !== undefined;
     }
 
-
     toPrimitives(): ProductionOrderDTO {
         return new ProductionOrderDTO(
             this.productionOrderId.value,
@@ -181,8 +179,7 @@ export class ProductionOrder implements ProductionOrderRoot {
             data.processEndDatePlanned ? new ProductionOrderProcessEndDatePlanned(data.processEndDatePlanned) : null,
             new UserId(data.openByUser),
             [],
-            data.administrativeEventList.map(entry => { return CommonModificationEvent.fromPrimitives(entry) }
-            )
+            data.administrativeEventList.map(entry => { return CommonModificationEvent.fromPrimitives(entry) })
         )
     }
 }
