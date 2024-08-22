@@ -14,6 +14,7 @@ export class ProductionOrderDetailDTO {
         readonly processEndDate: Date | null,
         readonly processStartDatePlanned: Date | null,
         readonly processEndDatePlanned: Date | null,
+        readonly productionModulePlanned: number | null,
         readonly recordsOrderCounter: number,
         readonly recordsOrderCheckedCounter: number,
         readonly countingRecordsOrderListId: number[],
