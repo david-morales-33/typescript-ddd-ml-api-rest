@@ -1,5 +1,6 @@
 import { CommonModificationEvent } from "../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
 import { EventId } from "../../../AdministrativeEvent/domain/value-objects/EventId";
+import { ProductionOrderDetail } from "../../../ProductionOrderDetail/domain/entities/ProductionOrderDetaill";
 import { UserId } from "../../../User/domain/value-objects/UserId";
 import { ProductionOrderDTO } from "../data-transfer-objects/ProductionOrderDTO";
 import { ProductionOrderDetailListEmptyException } from "../exceptions/ProductionOrderDetailListEmptyException";
@@ -20,7 +21,7 @@ export class ProductionOrder implements ProductionOrderRoot {
     readonly productionOrderId: ProductionOrderId;
     readonly reference: ProductionOrderReference;
     readonly openByUser: UserId;
-    readonly productionOrderDetailList: [];
+    readonly productionOrderDetailList: ProductionOrderDetail[];
     readonly recordsOrderCounter: ProductionOrderRecordsCounter;
     readonly recordsOrderCheckedCounter: ProductionOrderRecordsCheckedCounter;
     readonly plannedAmount: ProductionOrderPlannedAmount;
@@ -40,7 +41,7 @@ export class ProductionOrder implements ProductionOrderRoot {
         processStartDatePlanned: ProductionOrderProcessStartDatePlanned | null,
         processEndDatePlanned: ProductionOrderProcessEndDatePlanned | null,
         openByUser: UserId,
-        productionOrderDetailList: [],
+        productionOrderDetailList: ProductionOrderDetail[],
         administrativeEventList: CommonModificationEvent[]
     ) {
         this._processStartDatePlanned = processStartDatePlanned;
@@ -78,7 +79,7 @@ export class ProductionOrder implements ProductionOrderRoot {
         processStartDatePlanned: ProductionOrderProcessStartDatePlanned | null,
         processEndDatePlanned: ProductionOrderProcessEndDatePlanned | null,
         openByUser: UserId,
-        productionOrderDetailList: [],
+        productionOrderDetailList: ProductionOrderDetail[],
         administrativeEventList: CommonModificationEvent[]
     ): ProductionOrder {
         return new ProductionOrder(
@@ -94,7 +95,7 @@ export class ProductionOrder implements ProductionOrderRoot {
         );
     }
 
-    private setInitialCountingRecordsOrderCounter(productionOrderDetailList: any[]): ProductionOrderRecordsCounter {
+    private setInitialCountingRecordsOrderCounter(productionOrderDetailList: ProductionOrderDetail[]): ProductionOrderRecordsCounter {
         const counterList = productionOrderDetailList.map(element => element.countingRecordsOrderListId.length);
         let counterAmount = 0;
 
@@ -105,12 +106,16 @@ export class ProductionOrder implements ProductionOrderRoot {
         return new ProductionOrderRecordsCounter(counterAmount);
     }
 
-    private setInitialCountingRecordsOrderCheckedCounter(productionOrderDetailList: any[]): ProductionOrderRecordsCheckedCounter {
+    private setInitialCountingRecordsOrderCheckedCounter(productionOrderDetailList: ProductionOrderDetail[]): ProductionOrderRecordsCheckedCounter {
         let counterAmount = 0;
+        productionOrderDetailList.forEach(element => {
+            counterAmount = counterAmount + element.countingRecordsOrderCheckedListId.length;
+        });
+
         return new ProductionOrderRecordsCheckedCounter(counterAmount);
     }
 
-    private setInitialPlannedAmount(productionOrderDetailList: any[]): ProductionOrderPlannedAmount {
+    private setInitialPlannedAmount(productionOrderDetailList: ProductionOrderDetail[]): ProductionOrderPlannedAmount {
         let plannedAmount = 0;
         productionOrderDetailList.forEach(element => {
             plannedAmount = plannedAmount + element.plannedAmount.value;
