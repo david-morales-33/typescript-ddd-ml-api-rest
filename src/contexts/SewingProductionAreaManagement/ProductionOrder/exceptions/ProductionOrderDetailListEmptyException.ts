@@ -1,4 +1,4 @@
-import { ProductionOrderId } from "../value-objects/ProductionOrderId";
+import { ProductionOrderId } from "../domain/value-objects/ProductionOrderId";
 
 export class ProductionOrderDetailListEmptyException extends Error {
     constructor(value: ProductionOrderId){

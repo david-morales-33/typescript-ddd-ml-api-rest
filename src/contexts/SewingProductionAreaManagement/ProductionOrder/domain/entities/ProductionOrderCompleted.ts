@@ -1,5 +1,4 @@
-import {ProductionOrder } from '../interfaces/ProductionOrderRoot'
+import { ProductionOrderRoot } from "../interfaces/ProductionOrderRoot";
 
-export class ProductionOrderCompleted implements ProductionOrder{
-
+export class ProductionOrderCompleted {
 }

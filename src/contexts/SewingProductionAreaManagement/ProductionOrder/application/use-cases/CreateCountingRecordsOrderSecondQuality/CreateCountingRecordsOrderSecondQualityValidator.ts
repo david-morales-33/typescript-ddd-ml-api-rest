@@ -5,7 +5,6 @@ import { UserPermissionId } from "../../../../UserPermission/domain/value-object
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionModuleRepository } from "../../../../ProductionModule/domain/repositories/ProductionModuleRepository";
-import { ProductionModuleEventRepository } from "../../../../ProductionModuleEvent/domain/repositories/ProductionModuleEventRepository";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 
 export class CreateCountingRecordsOrderSecondQualityValidator {

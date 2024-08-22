@@ -26,7 +26,7 @@ import { ProductionOrderDetailProcessStartDate } from "./contexts/SewingProducti
 import { ProductionOrderDetailRecordsOrederCheckedCounter } from "./contexts/SewingProductionAreaManagement/ProductionOrderDetail/domain/value-objects/ProductionOrderDetailRecordsOrederCheckedCounter";
 import { ProductionOrderDetailRecordsOrederCounter } from "./contexts/SewingProductionAreaManagement/ProductionOrderDetail/domain/value-objects/ProductionOrderDetailRecordsOrederCounter";
 import { BarcodeEan } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/BarcodeEan";
-import { ColorId } from "./contexts/SewingProductionAreaManagement/Color/domain/value-objects/ColorId";
+import { ColorId } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/ColorId";
 import { CreationDate } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/CreationDate";
 import { GarmentSize } from "./contexts/SewingProductionAreaManagement/Shared/domain/value-object/GarmentSize";
 import { UserId } from "./contexts/SewingProductionAreaManagement/User/domain/value-objects/UserId";
@@ -117,11 +117,8 @@ import { UserId } from "./contexts/SewingProductionAreaManagement/User/domain/va
 // productionOrderNotStarted.addProductionOrderDetail(productionOrderDetailNotStarted2);
 // productionOrderNotStarted.addProductionOrderDetail(productionOrderDetailNotStarted3);
 
-
 const records1 = [1, 2, 3, 4, 5, 6, 7]
 const records2 = [10, 20, 30, 40, 50, 60, 70]
-
-
 
 const productionOrderDetailInProgress1 = new ProductionOrderDetailInProgress(
     new ProductionOrderId('MOB3547'),
@@ -222,6 +219,7 @@ const countingRecordsOrder = new CountingRecordsOrderFirstQualityNotChecked(
     new UserId('11446441925'),
     []
 );
+
 const countingRecordsOrderSecond = new CountingRecordsOrderSecondQualityNotChecked(
     new CountingRecordsOrderId(370),
     new ProductionOrderId('MOB3547'),
@@ -245,8 +243,8 @@ const countingRecordsOrderChecked = new CountingRecordsOrderFirstQualityChecked(
     new ProductionModuleId(6),
     new CountingRecordsOrderProductionScheduleId(1),
     new CountingRecordsOrderEventIdOnProductionModule('08'),
-    new CreationDate(new Date('2024-07-01')),
-    new CreationDate(new Date('2024-07-01')),
+    new CreationDate(new Date()),
+    new CreationDate(new Date()),
     new UserId('11446441925'),
     new UserId('11446441925'),
     []
@@ -266,4 +264,4 @@ productionOrderInProgress.addCountingRecordsOrder(countingRecordsOrderSecond)
 // productionOrderDetailNotStarted3.addCountingRecordOrder(countingRecordsOrder2);
 // productionOrderDetailNotStarted3.addCountingRecordOrder(countingRecordsOrder3);
 
-console.log(productionOrderInProgress.toPrimitives().productionOrderDetailList)
+console.log('holaats')

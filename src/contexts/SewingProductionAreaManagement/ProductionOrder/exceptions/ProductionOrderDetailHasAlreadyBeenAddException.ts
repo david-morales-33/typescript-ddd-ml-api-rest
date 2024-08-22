@@ -1,4 +1,4 @@
-import { ProductionOrderDetailId } from "../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailId";
+import { ProductionOrderDetailId } from "../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailId";
 
 export class ProductionOrderDetailHasAlreadyBeenAddException extends Error {
     constructor(value: ProductionOrderDetailId){

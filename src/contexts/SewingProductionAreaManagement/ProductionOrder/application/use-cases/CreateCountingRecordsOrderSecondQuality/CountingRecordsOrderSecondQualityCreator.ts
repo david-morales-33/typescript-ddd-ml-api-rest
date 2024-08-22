@@ -16,6 +16,9 @@ export class CountingRecordsOrderSecondQualityCreator{
         
         const productionOrder = await this.productionOrderRepository.find(productionOrderId);
 
+        if(productionOrder === null)
+            throw new Error(`The Production Order Id <${productionOrderId.value}> not found`)
+
         countingRecordsOrderList.forEach(countingRecordsOrder => {
             productionOrder.addCountingRecordsOrder(countingRecordsOrder);
         });
