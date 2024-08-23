@@ -12,6 +12,7 @@ export class ColorFinder {
 
         if (color === null)
             throw new ColorNotFoundException(colorId);
+        
         return color;
     }
 }
