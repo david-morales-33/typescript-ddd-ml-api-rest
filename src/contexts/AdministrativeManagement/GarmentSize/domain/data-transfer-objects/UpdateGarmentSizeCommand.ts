@@ -5,17 +5,17 @@ type params = {
     garmentSizeType?: any,
     garmentSizeState?: boolean,
     garmenSizeOrder?: number,
-    createBy: string
+    updateBy: string
 }
 
-export class UpdateGarmentSizeComman {
+export class UpdateGarmentSizeCommand {
 
     readonly garmentSizeId: number;
     readonly garmentSizeLabel: string | null;
     readonly garmentSizeType: any | null;
     readonly garmentSizeState: boolean | null;
     readonly garmenSizeOrder: number | null;
-    readonly createBy: string;
+    readonly updateBy: string;
 
     constructor({
         garmentSizeId,
@@ -23,13 +23,13 @@ export class UpdateGarmentSizeComman {
         garmentSizeLabel,
         garmentSizeState,
         garmentSizeType,
-        createBy
+        updateBy
     }: params) {
         this.garmentSizeId = garmentSizeId;
         this.garmentSizeLabel = garmentSizeLabel ?? null;
         this.garmenSizeOrder = garmenSizeOrder ?? null;
         this.garmentSizeState = garmentSizeState ?? null;
         this.garmentSizeType = garmentSizeType ?? null;
-        this.createBy = createBy;
+        this.updateBy = updateBy;
     }
 }
