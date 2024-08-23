@@ -9,4 +9,8 @@ export class GarmentSizeType extends EnumValueObject<garmentType> {
     protected throwErrorForInvalidValue(value: garmentType): void {
         throw new Error(`The order type ${value} is invalid`);
     }
+
+    setValue(value: any){
+        return new GarmentSizeType(value);
+    }
 }
