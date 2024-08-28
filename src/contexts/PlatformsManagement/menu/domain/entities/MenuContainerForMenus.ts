@@ -1,10 +1,10 @@
 import { MenuContainerForMenusDTO } from "../data-transfer-objects/MenuContainerForMenusDTO";
 import { MenuContainerForOperationsDTO } from "../data-transfer-objects/MenuContainerForOperationsDTO";
-import { MenuRoot } from "../interfaces/MenuRoot";
 import { MenuId } from "../value-objects/MenuId";
 import { MenuName } from "../value-objects/MenuName";
 import { MenuState } from "../value-objects/MenuState";
 import { MenuContainerForOperations } from "./MenuContainerForOperations";
+import {MenuRoot} from '../interfaces/MenuRoot'
 
 export class MenuContainerForMenus implements MenuRoot {
     constructor(
