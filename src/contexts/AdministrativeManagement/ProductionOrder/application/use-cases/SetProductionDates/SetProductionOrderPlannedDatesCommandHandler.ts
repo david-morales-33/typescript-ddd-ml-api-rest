@@ -6,7 +6,7 @@ import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrder
 import { ProductionOrderProcessEndDatePlanned } from "../../../domain/value-objects/ProductionOrderProcessEndDatePlanned";
 import { ProductionOrderProcessStartDatePlanned } from "../../../domain/value-objects/ProductionOrderProcessStartDatePlanned";
 import { ProductionOrderSetterPlannedDates } from "./ProductionOrderSetterPlannedDates";
-import { SetProductionOrderPlannedDatesValidator } from "./setProductionOrderPlannedDatesValidator";
+import { SetProductionOrderPlannedDatesValidator } from "./SetProductionOrderPlannedDatesValidator";
 
 export class SetProductionOrderPlannedDatesCommandHandler implements CommandHandler<SetProductionOrderPlannedDatesCommand> {
 

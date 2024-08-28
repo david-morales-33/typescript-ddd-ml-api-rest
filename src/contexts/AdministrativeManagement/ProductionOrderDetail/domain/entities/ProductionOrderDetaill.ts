@@ -1,6 +1,6 @@
 import { CommonModificationEvent } from "../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
 import { EventId } from "../../../AdministrativeEvent/domain/value-objects/EventId";
-import { CountingRecordsOrderId } from "../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderId";
+import { CountingRecordsOrderId } from "../../../countingRecordsOrder/domain/value-objects/CountingRecordsOrderId";
 import { BarcodeEan } from "../../../shared/domain/value-objects/BarcodeEan";
 import { ColorId } from "../../../shared/domain/value-objects/ColorId";
 import { GarmentSize } from "../../../shared/domain/value-objects/GarmentSize";

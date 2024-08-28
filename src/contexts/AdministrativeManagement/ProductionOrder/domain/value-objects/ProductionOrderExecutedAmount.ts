@@ -1,6 +1,5 @@
 import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
-import { CountingRecordsOrderAmount } from "../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount";
-
+import { CountingRecordsOrderAmount } from "../../../countingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount";
 
 export class ProductionOrderExecutedAmount extends ValueObject<number>{
     constructor(value: number) {

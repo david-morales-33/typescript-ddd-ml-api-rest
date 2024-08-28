@@ -2,25 +2,13 @@ import { CommonCreationEvent } from "../../../../AdministrativeEvent/domain/enti
 import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
 import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
 import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
-import { ProductionModule } from "../../../domain/entities/ProductionModule";
+import { ProductionModule } from "../../../domain/entities/productionModule";
 import { ProductionModuleRepository } from "../../../domain/repositories/ProductionModuleRepository";
 import { ProductionModuleCreateBy } from "../../../domain/value-objects/ProductionModuleCreateBy";
 import { ProductionModuleCreationDate } from "../../../domain/value-objects/ProductionModuleCreationDate";
 import { ProductionModuleId } from "../../../domain/value-objects/ProductionModuleId";
 import { ProductionModuleLabel } from "../../../domain/value-objects/ProductionModuleLabel";
 import { ProductionModuleMachineAmount } from "../../../domain/value-objects/ProductionModuleMachineAmount";
-import { ProductionModuleSupervisorId } from "../../../domain/value-objects/ProductionModuleSupervisorId";
-
-// id,
-// label,
-// machineAmount,
-// currentOperationState,
-// currentSupervisorId,
-// currentSewingWorkerIdList,
-// state,
-// creationDate,
-// createBy,
-// administrativeEventList
 
 export class ProductionModuleCreator {
     constructor(private productionModuleRepository: ProductionModuleRepository) { }

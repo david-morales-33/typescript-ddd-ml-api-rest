@@ -12,7 +12,7 @@ export class SearchColorQueryHandler implements QueryHandler<SearchColorQuery, C
         return SearchColorQuery
     }
 
-    async handle(query: SearchColorQuery): Promise<ColorResponse[]> {
+    async handle(): Promise<ColorResponse[]> {
         return this.colorQueryRepository.searchAll();
     }
 }

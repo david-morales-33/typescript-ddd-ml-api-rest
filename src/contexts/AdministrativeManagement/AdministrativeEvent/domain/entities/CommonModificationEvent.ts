@@ -1,4 +1,4 @@
-import { EventRoot } from "../interfaces/AdministrativeEventRoot";
+import { AdministrativeEventRoot } from "../interfaces/AdministrativeEventRoot";
 import { EventCreateBy } from "../value-objects/EventCreateBy";
 import { EventCreateDate } from "../value-objects/EventCreateDate";
 import { EventDescription } from "../value-objects/EventDescription";
@@ -8,7 +8,7 @@ import { EventNewValue } from "../value-objects/EventNewValue";
 import { EventPreviusValue } from "../value-objects/EventPreviusValue";
 import { CommonModificationEventDTO } from '../data-transfer-object/CommonModificationEventDTO'
 
-export class CommonModificationEvent implements EventRoot {
+export class CommonModificationEvent implements AdministrativeEventRoot {
 
     constructor(
         readonly id: EventId,

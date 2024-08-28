@@ -11,9 +11,9 @@ import { ProductionModuleDTO } from "../data-transfer-objects/ProductionModuleDT
 import { CommonCreationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonCreationEventDTO";
 import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
 import { EventId } from "../../../AdministrativeEvent/domain/value-objects/EventId";
-import { ProductionModuleRoot } from "../interfaces/ProductionModuleRoot";
 import { ProductionModuleLabel } from "../value-objects/ProductionModuleLabel";
 import { ProductionModuleMachineAmount } from "../value-objects/ProductionModuleMachineAmount";
+import { ProductionModuleRoot } from "../interfaces/productionModuleRoot";
 
 export class ProductionModule implements ProductionModuleRoot {
 
