@@ -1,5 +1,5 @@
-import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked";
-import { CountingRecordsOrderSecondQualityNotChecked } from "../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked";
+import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked";
+import { CountingRecordsOrderSecondQualityNotChecked } from "../../../CountingRecordsOrder/domain/entities/CountingRecordOrderSecondQualityNotChecked";
 import { CountingRecordsOrderAmount } from "../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount";
 
 export abstract class ProductionOrderDetailRoot {

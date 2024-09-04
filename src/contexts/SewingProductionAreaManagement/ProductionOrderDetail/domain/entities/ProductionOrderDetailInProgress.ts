@@ -11,8 +11,8 @@ import { ProductionOrderDetailRecordsOrederCheckedCounter } from '../value-objec
 import { BarcodeEan } from '../../../Shared/domain/value-object/BarcodeEan';
 import { CountingRecordsOrderId } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderId';
 import { ProductionOrderDetailInProgressDTO } from '../data-transfer-objects/ProductionOrderDetailInProgressDTO';
-import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked';
-import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked';
+import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked';
+import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/entities/CountingRecordOrderSecondQualityNotChecked';
 import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount';
 import { CountingRecordsOrderListEmptyException } from '../../exceptions/CountingRecordsOrderListEmptyException';
 import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
@@ -172,8 +172,8 @@ export class ProductionOrderDetailInProgress implements ProductionOrderDetailRoo
         processStartDate: Date;
         recordsOrderCounter: number;
         recordsOrderCheckedCounter: number;
-        countingRecordsOrderListId: number[];
-        countingRecordsOrderCheckedListId: number[];
+        countingRecordsOrderListId: string[];
+        countingRecordsOrderCheckedListId: string[];
     }) {
         return new ProductionOrderDetailInProgress(
             new ProductionOrderId(data.productionOrderId),

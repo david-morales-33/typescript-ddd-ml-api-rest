@@ -1,14 +1,15 @@
 import { CountingRecordsOrderId } from "../../../domain/value-objects/CountingRecordsOrderId";
-import { CountingRecordsOrderQueryRepository } from "../../repositories/CountingRecordsOrderQueryRepository";
+import { CountingRecordsOrderResponseRepository } from "../../../domain/repositories/CountingRecordsOrderResponseRepository";
+import { CountingRecordsOrderNotFound } from "../../exceptions/CountingRecordsOrderNotFound";
 
 export class CountingRecordsOrderFinder {
-    constructor(private CountingRecordsOrderQueryRepository: CountingRecordsOrderQueryRepository) { }
+    constructor(private CountingRecordsOrderQueryRepository: CountingRecordsOrderResponseRepository) { }
 
     async execute(countingRecordsOrderId: CountingRecordsOrderId) {
         const productionOrder = await this.CountingRecordsOrderQueryRepository.find(countingRecordsOrderId);
 
         if (productionOrder === null)
-            throw new Error(`The Counting Records Order Id <${countingRecordsOrderId.value}> Not found`);
+            throw new CountingRecordsOrderNotFound(countingRecordsOrderId)
 
         return productionOrder;
     }

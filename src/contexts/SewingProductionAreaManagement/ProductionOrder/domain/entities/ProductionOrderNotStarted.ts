@@ -8,8 +8,8 @@ import { ProductionOrderReference } from "../value-objects/ProductionOrderRefere
 import { UserId } from "../../../User/domain/value-objects/UserId";
 import { ProductionOrderDetailNotStarted } from "../../../ProductionOrderDetail/domain/entities/ProductionOrderDetailNotStarted";
 import { ProductionOrderINotStartedDTO } from "../data-transfer-objects/ProductionOrderINotStartedDTO";
-import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked";
-import { CountingRecordsOrderSecondQualityNotChecked } from "../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked";
+import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked";
+import { CountingRecordsOrderSecondQualityNotChecked } from "../../../CountingRecordsOrder/domain/entities/CountingRecordOrderSecondQualityNotChecked";
 import { ProductionOrderDetailId } from "../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailId";
 import { CountingRecordsOrderAmount } from "../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount";
 import { ProductionOrderDetailListEmptyException } from "../../exceptions/ProductionOrderDetailListEmptyException";

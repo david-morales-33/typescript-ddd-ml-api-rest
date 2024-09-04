@@ -5,7 +5,7 @@ import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
 import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionOrderNotStarted } from "../../../domain/entities/ProductionOrderNotStarted";
-import { ProductionOrderRepository } from "../../../domain/repositories/ProductionOrderRepository";
+import { ProductionOrderCommandRepository } from "../../../domain/repositories/ProductionOrderCommandRepository";
 import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { ProductionOrderReference } from "../../../domain/value-objects/ProductionOrderReference";
 import { ProductionOrderEanExternalServiceDTO } from "../../data-transfer-objects/ProductionOrderEanExternalServiceDTO";
@@ -18,7 +18,7 @@ import { ProductionOrderExternalService } from "../../services/ProductionOrderEx
 export class ProductionOrderCreator {
 
     constructor(
-        private productionOrderRepository: ProductionOrderRepository,
+        private productionOrderRepository: ProductionOrderCommandRepository,
         private productionOrderExternalService: ProductionOrderExternalService,
         private productionOrderEanExternalService: ProductionOrderEanExternalService,
     ) { }
@@ -30,7 +30,7 @@ export class ProductionOrderCreator {
         const productionOrderDetailListFromService = await this.productionOrderExternalService.find(productionOrderId);
 
         if (productionOrderDetailListFromService === null || productionOrderDetailListFromService === undefined)
-            throw new ProductionOrderNotFound(params.productionOrderId);
+            throw new ProductionOrderNotFound(productionOrderId);
 
         const [{ reference }] = productionOrderDetailListFromService;
 

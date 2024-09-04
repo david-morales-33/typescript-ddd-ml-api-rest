@@ -10,8 +10,8 @@ import { BarcodeEan } from '../../../Shared/domain/value-object/BarcodeEan';
 import { ProductionOrderDetailNotStartedDTO } from '../data-transfer-objects/ProductionOrderDetailNotStartedDTO';
 import { CountingRecordsOrderId } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderId';
 import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount';
-import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked';
-import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked';
+import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked';
+import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/entities/CountingRecordOrderSecondQualityNotChecked';
 import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
 import { ColorId } from '../../../Shared/domain/value-object/ColorId';
 

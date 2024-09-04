@@ -10,8 +10,8 @@ import { ProductionOrderProcessStartDate } from "../value-objects/ProductionOrde
 import { ProductionOrderReference } from "../value-objects/ProductionOrderReference";
 import { CountingRecordsOrderAmount } from "../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount";
 import { ProductionOrderDetailId } from "../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailId";
-import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked";
-import { CountingRecordsOrderSecondQualityNotChecked } from "../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked";
+import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked";
+import { CountingRecordsOrderSecondQualityNotChecked } from "../../../CountingRecordsOrder/domain/entities/CountingRecordOrderSecondQualityNotChecked";
 import { ProductionOrderDetailInProgress } from "../../../ProductionOrderDetail/domain/entities/ProductionOrderDetailInProgress";
 import { ProductionOrderDetailNotStarted } from "../../../ProductionOrderDetail/domain/entities/ProductionOrderDetailNotStarted";
 import { ProductionOrderInProgressDTO } from "../data-transfer-objects/ProductionOrderInProgressDTO";

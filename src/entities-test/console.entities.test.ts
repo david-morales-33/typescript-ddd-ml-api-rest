@@ -1,4 +1,4 @@
-import { CountingRecordsOrderFirstQualityNotChecked } from "../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/Entities/CountingRecordOrderFirstQualityNotChecked"
+import { CountingRecordsOrderFirstQualityNotChecked } from "../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked"
 import { CountingRecordsOrderAmount } from "../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount"
 import { CountingRecordsOrderEventIdOnProductionModule } from "../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/value-objects/CountingRecordsOrderEventIdOnProductionModule"
 import { CountingRecordsOrderFinalTime } from "../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/value-objects/CountingRecordsOrderFinalTime"
@@ -21,7 +21,7 @@ import { GarmentSize } from "../contexts/SewingProductionAreaManagement/Shared/d
 import { UserId } from "../contexts/SewingProductionAreaManagement/User/domain/value-objects/UserId"
 
 const event1 = new CountingRecordsOrderEvent(
-    new CountingRecordsOrderEventId(1),
+    new CountingRecordsOrderEventId(''),
     new CountingRecordsOrderEventName('Modificacion de registro'),
     new CountingRecordsOrderAmount(10),
     new CountingRecordsOrderAmount(15),
@@ -29,7 +29,7 @@ const event1 = new CountingRecordsOrderEvent(
 )
 
 const event2 = new CountingRecordsOrderEvent(
-    new CountingRecordsOrderEventId(1),
+    new CountingRecordsOrderEventId(''),
     new CountingRecordsOrderEventName('Modificacion de registro'),
     new CountingRecordsOrderAmount(10),
     new CountingRecordsOrderAmount(15),
@@ -37,7 +37,7 @@ const event2 = new CountingRecordsOrderEvent(
 )
 
 const countingRecordsOrder1 = new CountingRecordsOrderFirstQualityNotChecked(
-    new CountingRecordsOrderId(15),
+    new CountingRecordsOrderId(''),
     new ProductionOrderId('MOB3547'),
     new ColorId('1302'),
     new GarmentSize('36'),
@@ -52,7 +52,7 @@ const countingRecordsOrder1 = new CountingRecordsOrderFirstQualityNotChecked(
     []
 )
 const countingRecordsOrder2 = new CountingRecordsOrderFirstQualityNotChecked(
-    new CountingRecordsOrderId(16),
+    new CountingRecordsOrderId(''),
     new ProductionOrderId('MOB3547'),
     new ColorId('1302'),
     new GarmentSize('36'),

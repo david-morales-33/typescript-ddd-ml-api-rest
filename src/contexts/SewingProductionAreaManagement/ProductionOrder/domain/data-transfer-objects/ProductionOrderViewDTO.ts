@@ -14,5 +14,4 @@ export class ProductionOrderViewDTO {
         public readonly fechaDeInicio: string | Date | null,
         public readonly fechaDeFinalizacion: string | Date | null
     ) { }
-
 }

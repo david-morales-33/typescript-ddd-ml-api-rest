@@ -2,7 +2,7 @@
 
 export class CountingRecordsOrderEventDTO {
     constructor(
-        readonly id: number,
+        readonly id: string,
         readonly name: string,
         readonly previusValue: number,
         readonly currentValue: number,

@@ -1,15 +1,16 @@
+import { ProductionOrderNotFound } from "../../../../ProductionOrder/application/exception/ProductionOrderNotFoundOnService";
 import { ProductionOrderId } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderId";
-import { ProductionOrderDetailQueryRepository } from "../../repositories/ProductionOrderDetailQueryRepository";
+import { ProductionOrderDetailResponseRepository } from "../../../domain/repositories/ProductionOrderDetailResponseRepository";
 
 export class ProductionOrderDetailFinder {
-    constructor(private productionOrderDetailQueryRepository: ProductionOrderDetailQueryRepository){}
+    constructor(private productionOrderDetailResponseRepository: ProductionOrderDetailResponseRepository) { }
 
-    async execute( productionOrderId: ProductionOrderId){
+    async execute(productionOrderId: ProductionOrderId) {
 
-        const productionOrderDetailList = await this.productionOrderDetailQueryRepository.find(productionOrderId);
+        const productionOrderDetailList = await this.productionOrderDetailResponseRepository.find(productionOrderId);
 
-        if(productionOrderDetailList=== null)
-            throw new Error(`Production Order Detail List by ID <${productionOrderId.value}> not found`);
+        if (productionOrderDetailList === null)
+            throw new ProductionOrderNotFound(productionOrderId);
 
         return productionOrderDetailList;
     }

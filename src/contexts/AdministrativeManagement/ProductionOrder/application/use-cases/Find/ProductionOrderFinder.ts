@@ -1,14 +1,13 @@
+import { ProductionOrderResponseRepository } from "../../../domain/repositories/ProductionOrderResponseRepository";
 import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { ProductionOrderNotFoundException } from "../../exceptions/ProductionOrderNotFoundException";
-import { ProductionOrderQueryRepository } from "../../repositories/ProductionOrderQueryRepository";
-
 
 export class ProductionOrderFinder {
-    constructor(private productionOrderQueryRepository: ProductionOrderQueryRepository) { }
+    constructor(private productionOrderResponseRepository: ProductionOrderResponseRepository) { }
 
     async execute(productionOrderId: ProductionOrderId) {
 
-        const productionOrder = await this.productionOrderQueryRepository.find(productionOrderId);
+        const productionOrder = await this.productionOrderResponseRepository.find(productionOrderId);
 
         if(productionOrder=== null)
             throw new ProductionOrderNotFoundException(productionOrderId);

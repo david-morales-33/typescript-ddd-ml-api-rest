@@ -10,7 +10,7 @@ export class ProductionOrderDetailNotStartedDTO {
         readonly executedAmount: number,
         readonly processStartDate: Date | null,
         readonly recordsOrderCounter: number,
-        readonly countingRecordsOrderListId: number[]
+        readonly countingRecordsOrderListId: string[]
     ) { }
     public get className(): string {
         return this._className;

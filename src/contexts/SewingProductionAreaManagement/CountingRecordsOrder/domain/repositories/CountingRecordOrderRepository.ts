@@ -1,4 +1,4 @@
-import { CountingRecordsOrderFirstQualityNotChecked } from "../Entities/CountingRecordOrderFirstQualityNotChecked"
+import { CountingRecordsOrderFirstQualityNotChecked } from "../entities/CountingRecordOrderFirstQualityNotChecked"
 
 export interface CountingRecordsOrderFirstQualityNotCheckedRepository {
     find(): Promise<CountingRecordsOrderFirstQualityNotChecked[]>;

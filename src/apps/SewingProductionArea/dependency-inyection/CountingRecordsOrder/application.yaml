@@ -1,0 +1,14 @@
+services:
+  SewingProductionAreaManagement.CountingRecordsOrder.application.repositories.CountingRecordsOrderQueryRepository:
+    class: ../../../../contexts/SewingProductionAreaManagement/CountingRecordsOrder/infrastructure/SQLServer/SQLServerCountingRecordsOrderRepository
+
+  SewingProductionAreaManagement.CountingRecordsOrder.application.use-cases.Find.CountingRecordsOrderFinder:
+    class: ../../../../contexts/SewingProductionAreaManagement/CountingRecordsOrder/aplication/use-cases/Find/CountingRecordsOrderFinder
+    arguments: ['@SewingProductionAreaManagement.CountingRecordsOrder.application.repositories.CountingRecordsOrderQueryRepository']
+
+  SewingProductionAreaManagement.CountingRecordsOrder.application.use-cases.Find.CountingRecordsOrderQueryHandler:
+    class: ../../../../contexts/SewingProductionAreaManagement/CountingRecordsOrder/aplication/use-cases/Find/CountingRecordsOrderQueryHandler
+    arguments: ['@SewingProductionAreaManagement.CountingRecordsOrder.application.use-cases.Find.CountingRecordsOrderFinder']
+    tags:
+      - { name: 'commandHandler' }
+  

@@ -16,7 +16,6 @@ import { CountingRecordsOrderEventDTO } from "../../../CountingRecordsOrderEvent
 import { ColorId } from "../../../Shared/domain/value-object/ColorId";
 
 export class CountingRecordsOrderFirstQualityNotChecked implements CountingRecordsOrderFirstQuality {
-
     constructor(
         readonly id: CountingRecordsOrderId,
         readonly productionOrderId: ProductionOrderId,

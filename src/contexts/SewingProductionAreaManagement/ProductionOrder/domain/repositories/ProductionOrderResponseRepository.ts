@@ -1,7 +1,8 @@
-import { ProductionOrderId } from "../../domain/value-objects/ProductionOrderId";
+import { ProductionOrderId } from "../value-objects/ProductionOrderId";
 import { ProductionOrderViewDTO } from "../data-transfer-objects/ProductionOrderViewDTO";
 
-export interface ProduccionOrderQueryRepository {
+export interface ProductionOrderResponseRepository {
     find(productionOrderId: ProductionOrderId): Promise<ProductionOrderViewDTO | null>
+    searchAll(): Promise<ProductionOrderViewDTO[]>;
     matching(criteria: any): Promise<ProductionOrderViewDTO[]>
 }

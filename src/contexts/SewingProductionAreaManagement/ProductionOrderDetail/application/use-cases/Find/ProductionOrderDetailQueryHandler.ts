@@ -1,3 +1,4 @@
+import { ProductionOrderId } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderId";
 import { Query } from "../../../../Shared/domain/design-patterns/CQRS/Query";
 import { QueryHandler } from "../../../../Shared/domain/design-patterns/CQRS/QueryHandler";
 import { FindProductionOrderDetailQuery } from "./FindProductionOrderDetailQuery";
@@ -14,6 +15,7 @@ export class ProductionOrderDetailQueryHandler implements QueryHandler<FindProdu
     }
 
     async handle(query: FindProductionOrderDetailQuery): Promise<ProductionOrderDetailResponse[]> {
-        return this.productionOrderDetailFinder.execute(query.productionOderId);
+
+        return this.productionOrderDetailFinder.execute(new ProductionOrderId(query.productionOderId));
     }
 }

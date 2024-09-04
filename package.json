@@ -4,8 +4,9 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
-    "console-integration-test": "node build/console.integration.test.js",
-    "console-entities-test": "node build/console.entities.test.js",
+    "console-integration-test": "ts-node src/entities-test/console.integration.test.ts",
+    "console-entities-test": "node build/entities-test/console.entities.test.js",
+    "build":"tsc --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "David Morales",
@@ -16,6 +17,10 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "mssql": "^11.0.1"
+    "dependency-injection": "^2.3.3",
+    "mssql": "^11.0.1",
+    "node-dependency-injection": "^3.1.2",
+    "reflect-metadata": "^0.2.2",
+    "ts-node": "^10.9.2"
   }
 }

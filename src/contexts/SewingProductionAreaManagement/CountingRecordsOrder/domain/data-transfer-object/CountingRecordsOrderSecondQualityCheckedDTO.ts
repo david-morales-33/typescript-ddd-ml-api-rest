@@ -1,11 +1,9 @@
 
-
 export class CountingRecordsOrderSecondQualityCheckedDTO {
-
     private _className: string = 'CountingRecordOrder.SecondQualityCheckedDTO';
 
     constructor(
-        readonly id: number,
+        readonly id: string,
         readonly productionOrderId: string,
         readonly colorId: string,
         readonly garmentSize: string,

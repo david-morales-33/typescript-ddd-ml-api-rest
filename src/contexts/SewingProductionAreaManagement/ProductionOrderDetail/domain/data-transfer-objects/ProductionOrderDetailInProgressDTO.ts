@@ -14,8 +14,8 @@ export class ProductionOrderDetailInProgressDTO {
         readonly processEndDate: Date | null,
         readonly recordsOrderCounter: number,
         readonly recordsOrderCheckedCounter: number,
-        readonly countingRecordsOrderListId: number[],
-        readonly countingRecordsOrderCheckedListId: number[]
+        readonly countingRecordsOrderListId: string[],
+        readonly countingRecordsOrderCheckedListId: string[]
     ) { }
     
     public get className(): string {

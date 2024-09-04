@@ -7,7 +7,7 @@ export class CountingRecordsOrderFirstQualityNotCheckedDTO extends Command {
     private _className: string = 'CountingRecordsOrder.firstQualityNotCheckedDTO';
 
     constructor(
-        readonly id: number,
+        readonly id: string,
         readonly productionOrderId: string,
         readonly colorId: string,
         readonly garmentSize: string,

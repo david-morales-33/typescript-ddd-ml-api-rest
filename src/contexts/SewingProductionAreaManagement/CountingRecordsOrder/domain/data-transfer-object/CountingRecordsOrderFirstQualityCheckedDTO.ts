@@ -6,7 +6,7 @@ export class CountingRecordsOrderFirstQualityCheckedDTO{
     private _className : string = 'CountingRecordOrder.firstQualityChecked';
 
     constructor(
-        readonly id: number,
+        readonly id: string,
         readonly productionOrderId: string,
         readonly colorId: string,
         readonly garmentSize: string,

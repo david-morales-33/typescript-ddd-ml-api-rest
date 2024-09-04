@@ -1,28 +1,31 @@
-import { CountingRecordsOrderSecondQualityNotChecked } from "../../../../CountingRecordsOrder/domain/Entities/CountingRecordOrderSecondQualityNotChecked";
-import { ProductionOrderRepository } from "../../../domain/repositories/ProductionOrderRepository";
+import { CountingRecordsOrderSecondQualityNotChecked } from "../../../../CountingRecordsOrder/domain/entities/CountingRecordOrderSecondQualityNotChecked";
+import { ProductionOrderCommandRepository } from "../../../domain/repositories/ProductionOrderCommandRepository";
+import { ProductionOrderQueryRepository } from "../../../domain/repositories/ProductionOrderQueryRepository";
+import { CountingRecordsOrderNotProvided } from "../../exception/CountingRecordsOrderNotProvided";
+import { ProductionOrderNotFound } from "../../exception/ProductionOrderNotFoundOnService";
 
-
-export class CountingRecordsOrderSecondQualityCreator{
+export class CountingRecordsOrderSecondQualityCreator {
     constructor(
-        private productionOrderRepository: ProductionOrderRepository
+        private productionOrderQueryRepository: ProductionOrderQueryRepository,
+        private productionOrderCommandRepository: ProductionOrderCommandRepository
     ) { }
 
     async execute(countingRecordsOrderList: CountingRecordsOrderSecondQualityNotChecked[]) {
 
-        if(countingRecordsOrderList.length === 0)
-            throw new Error('Counting Records Order not provided on creator')
+        if (countingRecordsOrderList.length === 0)
+            throw new CountingRecordsOrderNotProvided();
 
         const [{ productionOrderId }] = countingRecordsOrderList;
-        
-        const productionOrder = await this.productionOrderRepository.find(productionOrderId);
 
-        if(productionOrder === null)
-            throw new Error(`The Production Order Id <${productionOrderId.value}> not found`)
+        const productionOrder = await this.productionOrderQueryRepository.find(productionOrderId);
+
+        if (productionOrder === null)
+            throw new ProductionOrderNotFound(productionOrderId)
 
         countingRecordsOrderList.forEach(countingRecordsOrder => {
             productionOrder.addCountingRecordsOrder(countingRecordsOrder);
         });
 
-        await this.productionOrderRepository.save(productionOrder);
+        await this.productionOrderCommandRepository.save(productionOrder);
     }
 }
