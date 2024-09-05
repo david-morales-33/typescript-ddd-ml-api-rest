@@ -1,11 +1,10 @@
 
 export class CountingRecordsOrderViewDTO {
     constructor(
-        public readonly ocrId: number,
+        public readonly ocrId: string,
         public readonly opId: string,
         public readonly referencia: string,
-        public readonly tallaId: number,
-        public readonly tallaEtiqueta: string,
+        public readonly tallaId: string,
         public readonly colorId: string,
         public readonly colorEtiqueta: string,
         public readonly cantidadRegistrada: number,
