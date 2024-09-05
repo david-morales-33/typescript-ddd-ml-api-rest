@@ -1,10 +1,10 @@
+import { ProductionModuleResponseRepository } from "../../../domain/repositories/ProductionModuleResponseRepository";
 import { ProductionModuleId } from "../../../domain/value-objects/ProductionModuleId";
-import { ProductionModuleQueryRepository } from "../../repositories/ProductionModuleQueryRepository";
 
 export class ProductionModuleFinder {
-    constructor(private productionModuleQueryRepository : ProductionModuleQueryRepository){}
+    constructor(private productionModuleResponseRepository : ProductionModuleResponseRepository){}
 
     async execute(){
-        return await this.productionModuleQueryRepository.searchAll();
+        return await this.productionModuleResponseRepository.searchAll();
     }
 }

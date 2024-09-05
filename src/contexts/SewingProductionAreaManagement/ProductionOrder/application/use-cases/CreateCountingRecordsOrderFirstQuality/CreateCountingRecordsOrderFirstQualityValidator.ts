@@ -4,15 +4,15 @@ import { UserPermission } from "../../../../UserPermission/domain/entities/UserP
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
-import { ProductionModuleRepository } from "../../../../ProductionModule/domain/repositories/ProductionModuleRepository";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { CountingRecordsOrderEventIdOnProductionModule } from "../../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderEventIdOnProductionModule";
 import { ProductionModuleEventRepository } from "../../../../ProductionModuleEvent/domain/repositories/ProductionModuleEventRepository";
+import { ProductionModuleQueryRepository } from "../../../../ProductionModule/domain/repositories/ProductionModuleQueryRepository";
 
 export class CreateCountingRecordsOrderFirstQualityValidator {
     constructor(
         private userPermissionsRepository: UserPermissionRepository,
-        private productionModuleRepository: ProductionModuleRepository,
+        private productionModuleQueryRepository: ProductionModuleQueryRepository,
         private productionModuleEventRepository: ProductionModuleEventRepository,
     ) { }
 
@@ -36,7 +36,7 @@ export class CreateCountingRecordsOrderFirstQualityValidator {
             useCasePermission: eventPermission
         });
 
-        const productionModuleFounded = await this.productionModuleRepository.find(productionModuleId);
+        const productionModuleFounded = await this.productionModuleQueryRepository.find(productionModuleId);
 
         if (productionModuleFounded === null || productionModuleFounded === undefined)
             throw new Error('El modulo solicitado no existe');

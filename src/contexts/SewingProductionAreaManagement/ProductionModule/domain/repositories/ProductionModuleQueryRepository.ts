@@ -1,9 +1,6 @@
 import { ProductionModuleRoot } from "../interfaces/productionModuleRoot";
 import { ProductionModuleId } from "../value-objects/ProductionModuleId";
 
-export interface ProductionModuleRepository {
-    save(): Promise<void>;
+export interface ProductionModuleQueryRepository {
     find(productionModuleId: ProductionModuleId): Promise<ProductionModuleRoot | null | undefined>;
-    searchAll(): Promise<ProductionModuleRoot[]>;
-    matching(critery: any): Promise<ProductionModuleRoot[]>;
 }
