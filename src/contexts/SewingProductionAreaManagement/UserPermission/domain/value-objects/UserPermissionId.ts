@@ -1,6 +1,5 @@
 import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
 
-
 export class UserPermissionId extends ValueObject<number> {
     constructor(value: number) {
         super(value);

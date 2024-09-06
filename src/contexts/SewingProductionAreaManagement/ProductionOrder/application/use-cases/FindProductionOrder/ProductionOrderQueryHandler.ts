@@ -6,7 +6,7 @@ import { FindProductionOrderQuery } from "./FindProductionOrderQuery";
 import { ProductionOrderFInder } from "./ProductionOrderFInder";
 import { ProductionOrderResponse } from "./ProductionOrderResponse";
 
-export class ProductionOrderResponseQueryHandler implements QueryHandler<FindProductionOrderQuery, ProductionOrderResponse> {
+export class ProductionOrderQueryHandler implements QueryHandler<FindProductionOrderQuery, ProductionOrderResponse> {
 
     constructor(private productionOrderFinder: ProductionOrderFInder) { }
 

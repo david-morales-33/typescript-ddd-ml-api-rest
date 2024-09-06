@@ -18,11 +18,15 @@ import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { CreateCountingRecordsOrderFirstQualityCommand } from "../../../domain/data-transfer-objects/CreateCountingRecordsOrderFirstQualityCommand";
 import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { CountingRecordsOrderFirstQualityCreator } from "./CountingRecordsOrderFirstQualityCreator";
+import { CreateCountingRecordsOrderFirstQualityValidator } from "./CreateCountingRecordsOrderFirstQualityValidator";
 
 export class CreateCountingRecordsOrderFirstQualityCommandHandler implements
     CommandHandler<CreateCountingRecordsOrderFirstQualityCommand> {
 
-    constructor(private countingRecordsOrderCreator: CountingRecordsOrderFirstQualityCreator) { }
+    constructor(
+        private countingRecordsOrderCreator: CountingRecordsOrderFirstQualityCreator,
+        private validator: CreateCountingRecordsOrderFirstQualityValidator
+    ) { }
 
     subscribedTo(): Command {
         return CreateCountingRecordsOrderFirstQualityCommand;
@@ -40,11 +44,11 @@ export class CreateCountingRecordsOrderFirstQualityCommandHandler implements
                 new CountingRecordsOrderFinalTime(entry.finalTime),
                 new CountingRecordsOrderAmount(entry.amount),
                 new ProductionModuleId(entry.productionModuleId),
-                new CountingRecordsOrderProductionScheduleId(0),
+                new CountingRecordsOrderProductionScheduleId(entry.scheduelId),
                 entry.eventOnProductionModule ? new CountingRecordsOrderEventIdOnProductionModule(entry.eventOnProductionModule) : null,
                 new UserId(entry.userId),
                 new CreationDate(new Date()),
-                
+
                 entry.eventOnCountingRecordsOrder.map(evnt => {
                     return CountingRecordsOrderEvent.create(
                         new CountingRecordsOrderEventId(evnt.id),
@@ -57,6 +61,10 @@ export class CreateCountingRecordsOrderFirstQualityCommandHandler implements
             )
         });
 
+        await this.validator.execute({
+            productionModuleId: new ProductionModuleId(command.countingRecordsOrders[0].productionModuleId),
+            userId: new UserId(command.countingRecordsOrders[0].userId)
+        })
         await this.countingRecordsOrderCreator.execute(countingRecordsOrderList)
     }
 }

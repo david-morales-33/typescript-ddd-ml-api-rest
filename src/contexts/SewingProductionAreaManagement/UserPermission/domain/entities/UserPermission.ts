@@ -29,16 +29,16 @@ export class UserPermission implements UserPermissionRoot {
         return new UserPermission(
             id,
             label,
-            state
+            state ?? new UserPermissionState(true)
         )
     }
 
     isUserPermissionValid(userPermission: UserPermission): void {
         if (
-            this.state &&
-            this.id.equals(userPermission.id) &&
-            this.label.equals(userPermission.label) &&
-            this.state.equals(userPermission.state)
+            !this.state !==
+            !this.id.equals(userPermission.id)!==
+            !this.label.equals(userPermission.label) !==
+            !this.state.equals(userPermission.state)
         )
             throw new UserPermissionNotValidException();
 

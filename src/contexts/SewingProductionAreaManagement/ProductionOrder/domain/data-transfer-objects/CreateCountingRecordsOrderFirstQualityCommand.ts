@@ -18,6 +18,7 @@ type params = {
     userId: string,
     productionModuleId: number,
     amount: number,
+    scheduelId: number,
     eventOnProductionModule: string | null,
     eventOnCountingRecordsOrder: eventOnCountingRecordsOrder[]
 }

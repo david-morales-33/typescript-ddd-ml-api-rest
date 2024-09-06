@@ -8,8 +8,8 @@ type event = {
     eventDate: Date;
 }
 
-type detailParams = {
-    id: number;
+export type detailParams = {
+    id:string;
     colorId: string;
     garmentSize: string;
     recordsAmount: number;
@@ -18,7 +18,7 @@ type detailParams = {
     eventOnCountingRecordsOrderList: event[] | [];
 }
 
-type commandParams = {
+export type commandParams = {
     userId: string;
     productionOrderId: string;
     initialTime: string;

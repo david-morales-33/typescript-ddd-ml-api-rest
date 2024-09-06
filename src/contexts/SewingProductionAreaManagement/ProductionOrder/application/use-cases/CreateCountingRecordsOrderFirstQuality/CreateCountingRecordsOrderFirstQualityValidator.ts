@@ -6,23 +6,21 @@ import { UserPermissionLabel } from "../../../../UserPermission/domain/value-obj
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { CountingRecordsOrderEventIdOnProductionModule } from "../../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderEventIdOnProductionModule";
-import { ProductionModuleEventRepository } from "../../../../ProductionModuleEvent/domain/repositories/ProductionModuleEventRepository";
+import { ProductionModuleEventQueryRepository } from "../../../../ProductionModuleEvent/domain/repositories/ProductionModuleEventQueryRepository";
 import { ProductionModuleQueryRepository } from "../../../../ProductionModule/domain/repositories/ProductionModuleQueryRepository";
 
 export class CreateCountingRecordsOrderFirstQualityValidator {
     constructor(
         private userPermissionsRepository: UserPermissionRepository,
         private productionModuleQueryRepository: ProductionModuleQueryRepository,
-        private productionModuleEventRepository: ProductionModuleEventRepository,
     ) { }
 
     async execute(params: {
         userId: UserId,
         productionModuleId: ProductionModuleId,
-        productionModuleEventId?: CountingRecordsOrderEventIdOnProductionModule | null
     }) {
 
-        const { userId, productionModuleId, productionModuleEventId } = params;
+        const { userId, productionModuleId} = params;
 
         const eventPermission = UserPermission.create(
             new UserPermissionId(16),
@@ -41,12 +39,5 @@ export class CreateCountingRecordsOrderFirstQualityValidator {
         if (productionModuleFounded === null || productionModuleFounded === undefined)
             throw new Error('El modulo solicitado no existe');
 
-
-        if (productionModuleEventId) {
-            const productionModuleEventFound = await this.productionModuleEventRepository.find(productionModuleEventId);
-
-            if (productionModuleEventFound === null || productionModuleEventFound === undefined)
-                throw new Error('El evento que se intenta ingresar no existe');
-        }
     }
 }
