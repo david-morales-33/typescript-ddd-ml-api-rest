@@ -1,67 +1,46 @@
-import { CountingRecordsOrderFirstQualityCreator } from "../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderFirstQuality/CountingRecordsOrderFirstQualityCreator";
-import { CreateCountingRecordsOrderFirstQualityCommandHandler } from "../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderFirstQuality/CreateCountingRecordsOrderFirstQualityCommandHandler";
-import { InMemoryCreateCountingRecordsOrderOneCommandRepository } from "../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/InMemory/InMemoryCreateCountingRecordsOrderOneCommandRepository";
 import { InMemoryProductionOrderQueryRepository } from "../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/InMemory/InMemoryProductionOrderQueryRepository";
-import { CreateCountingRecordsOrderFirstQualityCommand } from '../contexts/SewingProductionAreaManagement/ProductionOrder/domain/data-transfer-objects/CreateCountingRecordsOrderFirstQualityCommand'
-import { CreateCountingRecordsOrderFirstQualityValidator } from "../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderFirstQuality/CreateCountingRecordsOrderFirstQualityValidator";
-import { InMemoryProductionModuleQueryRepository } from "../contexts/SewingProductionAreaManagement/ProductionModule/infrastructure/InMemory/InMemoryProductionModuleQueryRepository";
+import { InMemoryCreateCountingRecordsOrderTwoCommandRepository } from "../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/InMemory/InMemoryCreateCountingRecordsOrderTwoCommandRepository";
+import { CountingRecordsOrderSecondQualityCreator } from "../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderSecondQuality/CountingRecordsOrderSecondQualityCreator";
+import { CreateCountingRecordsOrderSecondQualityCommandHandler } from "../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderSecondQuality/CreateCountingRecordsOrderSecondQualityCommandHandler";
+import {CreateCountingRecordsOrderSecondQualityCommand } from '../contexts/SewingProductionAreaManagement/ProductionOrder/domain/data-transfer-objects/CreateCountingRecordsOrderSecondQualityCommand'
+import { CreateCountingRecordsOrderSecondQualityValidator } from "../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderSecondQuality/CreateCountingRecordsOrderSecondQualityValidator";
 import { InMemoryUserPermissionRepository } from "../contexts/SewingProductionAreaManagement/UserPermission/infrastructure/InMemory/InMemoryUserPermissionRepository";
+import { InMemoryProductionModuleQueryRepository } from "../contexts/SewingProductionAreaManagement/ProductionModule/infrastructure/InMemory/InMemoryProductionModuleQueryRepository";
 
-const validator = new CreateCountingRecordsOrderFirstQualityValidator(
+
+const validator = new CreateCountingRecordsOrderSecondQualityValidator(
     new InMemoryUserPermissionRepository(),
-    new InMemoryProductionModuleQueryRepository(),
+    new InMemoryProductionModuleQueryRepository()
 )
 
-const createCountingRecordsOrderCommandRepository = new InMemoryCreateCountingRecordsOrderOneCommandRepository();
-const countingRecordsOrderQueryRepository = new InMemoryProductionOrderQueryRepository();
-const countingRecordsOrderCreator = new CountingRecordsOrderFirstQualityCreator(countingRecordsOrderQueryRepository, createCountingRecordsOrderCommandRepository);
-const commandHandler = new CreateCountingRecordsOrderFirstQualityCommandHandler(countingRecordsOrderCreator, validator);
-const countingRecordsOrderCommand = new CreateCountingRecordsOrderFirstQualityCommand([
+const countingRecordsOrderCreator = new CountingRecordsOrderSecondQualityCreator(
+    new InMemoryProductionOrderQueryRepository(),
+    new InMemoryCreateCountingRecordsOrderTwoCommandRepository()
+)
+const commandHandler = new CreateCountingRecordsOrderSecondQualityCommandHandler(
+    countingRecordsOrderCreator,
+    validator
+);
+
+const countingRecordsOrderCommand = new CreateCountingRecordsOrderSecondQualityCommand([
     {
         id: 'sasa-asde-gthy-asas-rvdv',
         productionOrderId: 'MOB3547',
         colorId: '1302',
         garmentSize: '36',
-        initialTime: '01:21:41',
-        finalTime: '02:24:1',
         userId: '1146441925',
         productionModuleId: 1,
         amount: 60,
-        scheduelId: 1,
-        eventOnProductionModule: null,
-        eventOnCountingRecordsOrder: []
     },
     {
-        id: 'sasa-asde-gthy-asas-rvdi',
-        productionOrderId: 'MOB3547',
-        colorId: '1302',
-        garmentSize: '36',
-        initialTime: '01:21:41',
-        finalTime: '02:24:14',
-        userId: '1146441925',
-        productionModuleId: 1,
-        amount: 60,
-        scheduelId: 1,
-        eventOnProductionModule: null,
-        eventOnCountingRecordsOrder: []
-    },
-    {
-        id: 'sasa-asde-gthy-asas-rvdx',
+        id: 'sasa-asde-gthy-asas-rvds',
         productionOrderId: 'MOB3547',
         colorId: '1302',
         garmentSize: '38',
-        initialTime: '01:21:41',
-        finalTime: '02:24:14',
         userId: '1146441925',
         productionModuleId: 1,
-        amount: 60,
-        scheduelId: 1,
-        eventOnProductionModule: null,
-        eventOnCountingRecordsOrder: []
-    }
-
+        amount: 40,
+    },
 ])
 
-commandHandler.handle(countingRecordsOrderCommand)
-
-// countingRecordsOrderQueryRepository.find(new ProductionOrderId('MOB3547')).then(res => console.log(res?.toPrimitives()))
+commandHandler.handle(countingRecordsOrderCommand);

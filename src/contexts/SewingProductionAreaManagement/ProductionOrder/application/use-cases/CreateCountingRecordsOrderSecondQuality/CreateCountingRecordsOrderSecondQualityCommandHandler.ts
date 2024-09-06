@@ -11,17 +11,26 @@ import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize"
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { CreateCountingRecordsOrderSecondQualityCommand } from "../../../domain/data-transfer-objects/CreateCountingRecordsOrderSecondQualityCommand";
 import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
+import { CountingRecordsOrderNotProvided } from "../../exception/CountingRecordsOrderNotProvided";
 import { CountingRecordsOrderSecondQualityCreator } from "./CountingRecordsOrderSecondQualityCreator";
+import { CreateCountingRecordsOrderSecondQualityValidator } from "./CreateCountingRecordsOrderSecondQualityValidator";
 
 
 export class CreateCountingRecordsOrderSecondQualityCommandHandler implements CommandHandler<CreateCountingRecordsOrderSecondQualityCommand> {
-    constructor(private countingRecordsOrderCreator: CountingRecordsOrderSecondQualityCreator) { }
+    constructor(
+        private countingRecordsOrderCreator: CountingRecordsOrderSecondQualityCreator,
+        private validator: CreateCountingRecordsOrderSecondQualityValidator
+    ) { }
 
     subscribedTo(): Command {
         return CreateCountingRecordsOrderSecondQualityCommand;
     }
 
     async handle(command: CreateCountingRecordsOrderSecondQualityCommand): Promise<void> {
+
+        if (command.countingRecordsOrders.length === 0)
+            throw new CountingRecordsOrderNotProvided();
+
         const countingRecordsOrderList = command.countingRecordsOrders.map(entry => {
             return CountingRecordsOrderSecondQualityNotChecked.create(
                 new CountingRecordsOrderId(entry.id),
@@ -30,12 +39,15 @@ export class CreateCountingRecordsOrderSecondQualityCommandHandler implements Co
                 new GarmentSize(entry.garmentSize),
                 new CountingRecordsOrderAmount(entry.amount),
                 new ProductionModuleId(entry.productionModuleId),
-                new CountingRecordsOrderProductionScheduleId(0),
+                new CountingRecordsOrderProductionScheduleId(1),
                 new UserId(entry.userId),
                 new CreationDate(new Date())
             )
         });
-
+        await this.validator.execute({
+            userId: new UserId(command.countingRecordsOrders[0].userId),
+            productionModuleId: new ProductionModuleId(command.countingRecordsOrders[0].productionModuleId)
+        })
         await this.countingRecordsOrderCreator.execute(countingRecordsOrderList)
     }
 

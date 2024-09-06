@@ -8,7 +8,6 @@ type params = {
     userId: string,
     productionModuleId: number,
     amount: number,
-    eventOnProductionModule: string | null,
 }
 
 export class CreateCountingRecordsOrderSecondQualityCommand extends Command {

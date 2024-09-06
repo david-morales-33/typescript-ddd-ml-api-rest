@@ -12,9 +12,6 @@ export class CountingRecordsOrderSecondQualityCreator {
 
     async execute(countingRecordsOrderList: CountingRecordsOrderSecondQualityNotChecked[]) {
 
-        if (countingRecordsOrderList.length === 0)
-            throw new CountingRecordsOrderNotProvided();
-
         const [{ productionOrderId }] = countingRecordsOrderList;
 
         const productionOrder = await this.productionOrderQueryRepository.find(productionOrderId);
