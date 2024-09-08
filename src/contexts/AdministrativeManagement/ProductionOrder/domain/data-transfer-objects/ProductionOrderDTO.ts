@@ -1,4 +1,5 @@
 import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
+import { ProductionOrderDetailDTO } from "../../../ProductionOrderDetail/domain/data-transfer-objects/ProductionOrderDetailDTO";
 
 export class ProductionOrderDTO {
     constructor(
@@ -13,7 +14,8 @@ export class ProductionOrderDTO {
         readonly recordsOrderCounter: number,
         readonly recordsOrderCheckedCounter: number,
         readonly openByUser: string,
-        readonly productionOrderDetailList: any[],
+        readonly state: boolean,
+        readonly productionOrderDetailList: ProductionOrderDetailDTO[],
         readonly administrativeEventList: CommonModificationEventDTO[],
     ) { }
 }

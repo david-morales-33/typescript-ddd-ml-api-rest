@@ -17,21 +17,37 @@ import { ProductionModuleRoot } from "../interfaces/productionModuleRoot";
 
 export class ProductionModule implements ProductionModuleRoot {
 
+    readonly id: ProductionModuleId;
+    readonly label: ProductionModuleLabel;
+    readonly creationDate: ProductionModuleCreationDate;
+    readonly createBy: ProductionModuleCreateBy;
+    readonly administrativeEventList: (CommonCreationEvent | CommonModificationEvent)[]
     private _currentSewingWorkerCounter: ProductionModuleSewingWorkerCounter;
     private _currentOperationState: ProductionModuleState;
     private _state: ProductionModuleState;
+    private _machineAmount: ProductionModuleMachineAmount;
+    private _currentSupervisorId: ProductionModuleSupervisorId | null;
+    private _currentSewingWorkerIdList: ProductionModuleSewingWorkerId[];
 
     constructor(
-        readonly id: ProductionModuleId,
-        readonly label: ProductionModuleLabel,
-        private _machineAmount: ProductionModuleMachineAmount,
-        private _currentSupervisorId: ProductionModuleSupervisorId | null,
-        private _currentSewingWorkerIdList: ProductionModuleSewingWorkerId[],
-        readonly creationDate: ProductionModuleCreationDate,
-        readonly createBy: ProductionModuleCreateBy,
-        readonly administrativeEventList: (CommonCreationEvent | CommonModificationEvent)[]
+        id: ProductionModuleId,
+        label: ProductionModuleLabel,
+        machineAmount: ProductionModuleMachineAmount,
+        currentSupervisorId: ProductionModuleSupervisorId | null,
+        currentSewingWorkerIdList: ProductionModuleSewingWorkerId[],
+        creationDate: ProductionModuleCreationDate,
+        createBy: ProductionModuleCreateBy,
+        administrativeEventList: (CommonCreationEvent | CommonModificationEvent)[],
     ) {
-        this._currentSewingWorkerCounter = new ProductionModuleSewingWorkerCounter(_currentSewingWorkerIdList.length);
+        this.id = id;
+        this.label = label;
+        this.creationDate = creationDate;
+        this.createBy = createBy;
+        this.administrativeEventList = administrativeEventList;
+        this._machineAmount= machineAmount;
+        this._currentSupervisorId = currentSupervisorId;
+        this._currentSewingWorkerIdList = currentSewingWorkerIdList;
+        this._currentSewingWorkerCounter = new ProductionModuleSewingWorkerCounter(currentSewingWorkerIdList.length);
         this._state = new ProductionModuleState(true);
         this._currentOperationState = new ProductionModuleState(true);
     }

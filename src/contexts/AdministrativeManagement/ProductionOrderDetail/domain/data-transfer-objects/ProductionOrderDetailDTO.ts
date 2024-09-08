@@ -17,8 +17,8 @@ export class ProductionOrderDetailDTO {
         readonly productionModulePlanned: number | null,
         readonly recordsOrderCounter: number,
         readonly recordsOrderCheckedCounter: number,
-        readonly countingRecordsOrderListId: number[],
-        readonly countingRecordsOrderCheckedListId: number[],
+        readonly countingRecordsOrderListId: string[],
+        readonly countingRecordsOrderCheckedListId: string[],
         readonly administrativeEventList: CommonModificationEventDTO[],
     ) { }
 }

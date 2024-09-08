@@ -6,7 +6,7 @@ export class ProductionModuleAnomalyName extends ValueObject<string>{
         this.ensureLengthIsLessThan50Characters(value)
     }
     private ensureLengthIsLessThan50Characters(value: string): void {
-        if (value.length !== 2) {
+        if (value.length > 50) {
             throw new Error(`The event process Id <${value}> has more than 50 characters`);
         }
     }

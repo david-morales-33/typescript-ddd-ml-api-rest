@@ -5,10 +5,10 @@ import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/Ev
 import { EventModifiedField } from "../../../../AdministrativeEvent/domain/value-objects/EventModifiedField";
 import { EventNewValue } from "../../../../AdministrativeEvent/domain/value-objects/EventNewValue";
 import { EventPreviusValue } from "../../../../AdministrativeEvent/domain/value-objects/EventPreviusValue";
+import { ProductionOrderId } from "../../../../shared/domain/value-objects/ProductionOrderId";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionOrderCommandRepository } from "../../../domain/repositories/ProductionOrderCommandRepository";
 import { ProductionOrderQueryRepository } from "../../../domain/repositories/ProductionOrderQueryRepository";
-import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { ProductionOrderProcessEndDatePlanned } from "../../../domain/value-objects/ProductionOrderProcessEndDatePlanned";
 import { ProductionOrderProcessStartDatePlanned } from "../../../domain/value-objects/ProductionOrderProcessStartDatePlanned";
 import { ProductionOrderNotFoundException } from "../../exceptions/ProductionOrderNotFoundException";

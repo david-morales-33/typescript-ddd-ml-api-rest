@@ -5,7 +5,7 @@
   "scripts": {
     "tsc": "tsc",
     "console-integration-test": "ts-node src/entities-test/console.integration.test.ts",
-    "console-entities-test": "node build/entities-test/console.entities.test.js",
+    "console-entities-test": "ts-node src/entities-test/console.entities.test.ts",
     "build":"tsc --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

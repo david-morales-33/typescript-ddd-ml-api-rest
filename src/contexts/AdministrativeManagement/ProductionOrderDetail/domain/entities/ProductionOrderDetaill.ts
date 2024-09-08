@@ -6,7 +6,6 @@ import { ColorId } from "../../../shared/domain/value-objects/ColorId";
 import { GarmentSize } from "../../../shared/domain/value-objects/GarmentSize";
 import { ProductionOrderId } from "../../../shared/domain/value-objects/ProductionOrderId";
 import { ProductionOrderDetailDTO } from "../data-transfer-objects/ProductionOrderDetailDTO";
-import { CountingRecordsOrderListEmptyException } from "../exceptions/CountingRecordsOrderListEmptyException";
 import { ProductionOrderDetailRoot } from "../interfaces/ProductionOrderDetailRoot";
 import { ProductionOrderDetailExecutedAmount } from "../value-objects/ProductionOrderDetailExecutedAmount";
 import { ProductionOrderDetailFinishDate } from "../value-objects/ProductionOrderDetailFinishDate";
@@ -77,9 +76,6 @@ export class ProductionOrderDetail implements ProductionOrderDetailRoot {
         this.countingRecordsOrderListId = countingRecordsOrderListId;
         this.countingRecordsOrderCheckedListId = countingRecordsOrderCheckedListId;
         this.administrativeEventList = administrativeEventList;
-
-        if (countingRecordsOrderListId.length === 0)
-            throw new CountingRecordsOrderListEmptyException(this.productionOrderDetailId);
 
         this._processEndDatePlanned = processEndDatePlanned;
         this._processStartDatePlanned = processStartDatePlanned;

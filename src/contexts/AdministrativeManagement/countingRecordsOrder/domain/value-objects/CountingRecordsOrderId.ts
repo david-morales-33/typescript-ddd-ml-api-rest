@@ -1,13 +1,13 @@
 import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
 
-export class CountingRecordsOrderId extends ValueObject<number> {
-    constructor(value: number) {
+export class CountingRecordsOrderId extends ValueObject<string> {
+    constructor(value: string) {
         super(value);
-        this.ensurePositiveValue(value)
+        this.ensureLengthIsLessThan50Characteres(value)
     }
-    private ensurePositiveValue(value: number): void {
-        if (value < 0) {
-            throw new Error(`The Id <${value}> is negative`);
+    private ensureLengthIsLessThan50Characteres(value: string): void {
+        if (value.length >50) {
+            throw new Error(`The Id <${value}> has more than 50 characteres`);
         }
     }
 }

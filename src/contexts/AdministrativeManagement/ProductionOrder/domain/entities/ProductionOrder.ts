@@ -6,7 +6,6 @@ import { ProductionOrderDTO } from "../data-transfer-objects/ProductionOrderDTO"
 import { ProductionOrderDetailListEmptyException } from "../exceptions/ProductionOrderDetailListEmptyException";
 import { ProductionOrderRoot } from "../interfaces/ProductionOrderRoot";
 import { ProductionOrderExecutedAmount } from "../value-objects/ProductionOrderExecutedAmount";
-import { ProductionOrderId } from "../value-objects/ProductionOrderId";
 import { ProductionOrderPlannedAmount } from "../value-objects/ProductionOrderPlannedAmount";
 import { ProductionOrderProcessEndDate } from "../value-objects/ProductionOrderProcessEndDate";
 import { ProductionOrderProcessEndDatePlanned } from "../value-objects/ProductionOrderProcessEndDatePlanned";
@@ -15,6 +14,8 @@ import { ProductionOrderProcessStartDatePlanned } from "../value-objects/Product
 import { ProductionOrderRecordsCheckedCounter } from "../value-objects/ProductionOrderRecordsCheckedCounter";
 import { ProductionOrderRecordsCounter } from "../value-objects/ProductionOrderRecordsCounter";
 import { ProductionOrderReference } from "../value-objects/ProductionOrderReference";
+import { ProductionOrderId } from '../../../shared/domain/value-objects/ProductionOrderId'
+import { ProductionOrderState } from "../value-objects/ProductionOrderState";
 
 export class ProductionOrder implements ProductionOrderRoot {
 
@@ -32,6 +33,7 @@ export class ProductionOrder implements ProductionOrderRoot {
 
     private _processStartDatePlanned: ProductionOrderProcessStartDatePlanned | null;
     private _processEndDatePlanned: ProductionOrderProcessEndDatePlanned | null;
+    private _state: ProductionOrderState;
 
     constructor(
         productionOrderid: ProductionOrderId,
@@ -41,11 +43,13 @@ export class ProductionOrder implements ProductionOrderRoot {
         processStartDatePlanned: ProductionOrderProcessStartDatePlanned | null,
         processEndDatePlanned: ProductionOrderProcessEndDatePlanned | null,
         openByUser: UserId,
+        state: ProductionOrderState,
         productionOrderDetailList: ProductionOrderDetail[],
         administrativeEventList: CommonModificationEvent[]
     ) {
         this._processStartDatePlanned = processStartDatePlanned;
         this._processEndDatePlanned = processEndDatePlanned;
+        this._state = state;
 
         if (productionOrderDetailList.length === 0)
             throw new ProductionOrderDetailListEmptyException(productionOrderid)
@@ -71,6 +75,10 @@ export class ProductionOrder implements ProductionOrderRoot {
         return this._processEndDatePlanned;
     }
 
+    public get state(): ProductionOrderState {
+        return this._state;
+    }
+
     static create(
         productionOrderid: ProductionOrderId,
         reference: ProductionOrderReference,
@@ -79,6 +87,7 @@ export class ProductionOrder implements ProductionOrderRoot {
         processStartDatePlanned: ProductionOrderProcessStartDatePlanned | null,
         processEndDatePlanned: ProductionOrderProcessEndDatePlanned | null,
         openByUser: UserId,
+        state: ProductionOrderState,
         productionOrderDetailList: ProductionOrderDetail[],
         administrativeEventList: CommonModificationEvent[]
     ): ProductionOrder {
@@ -90,6 +99,7 @@ export class ProductionOrder implements ProductionOrderRoot {
             processStartDatePlanned,
             processEndDatePlanned,
             openByUser,
+            state,
             productionOrderDetailList,
             administrativeEventList
         );
@@ -169,7 +179,8 @@ export class ProductionOrder implements ProductionOrderRoot {
             this.recordsOrderCounter.value,
             this.recordsOrderCheckedCounter.value,
             this.openByUser.value,
-            [],
+            this.state.value,
+            this.productionOrderDetailList.map(entry => { return entry.toPrimitives() }),
             this.administrativeEventList.map(entry => { return entry.toPrimitives() })
         )
     }
@@ -183,7 +194,8 @@ export class ProductionOrder implements ProductionOrderRoot {
             data.processStartDatePlanned ? new ProductionOrderProcessStartDatePlanned(data.processStartDatePlanned) : null,
             data.processEndDatePlanned ? new ProductionOrderProcessEndDatePlanned(data.processEndDatePlanned) : null,
             new UserId(data.openByUser),
-            [],
+            new ProductionOrderState(data.state),
+            data.productionOrderDetailList.map(entry => { return ProductionOrderDetail.fromPrimitives(entry) }),
             data.administrativeEventList.map(entry => { return CommonModificationEvent.fromPrimitives(entry) })
         )
     }

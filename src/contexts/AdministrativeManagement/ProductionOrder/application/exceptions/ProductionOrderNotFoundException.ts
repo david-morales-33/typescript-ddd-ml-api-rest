@@ -1,4 +1,4 @@
-import { ProductionOrderId } from "../../domain/value-objects/ProductionOrderId";
+import { ProductionOrderId } from "../../../shared/domain/value-objects/ProductionOrderId";
 
 export class ProductionOrderNotFoundException extends Error {
     constructor(productionOrderId: ProductionOrderId) {

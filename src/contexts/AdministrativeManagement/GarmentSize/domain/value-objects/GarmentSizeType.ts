@@ -1,13 +1,11 @@
+import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
 import { EnumValueObject } from "../../../shared/domain/value-objects/EnumValueObject";
 
 enum garmentType { PANTY = 'Panty', BRASIER = 'Brasier' }
 
-export class GarmentSizeType extends EnumValueObject<garmentType> {
-    constructor(values: garmentType) {
-        super(values, Object.values(garmentType));
-    }
-    protected throwErrorForInvalidValue(value: garmentType): void {
-        throw new Error(`The order type ${value} is invalid`);
+export class GarmentSizeType extends ValueObject<string> {
+    constructor(value: string) {
+        super(value)
     }
 
     setValue(value: any){

@@ -8,7 +8,6 @@ import { UserProfileName } from '../value-objects/UserProfileName';
 import { CommonModificationEvent } from '../../../AdministrativeEvent/domain/entities/CommonModificationEvent';
 
 export class CommonUser implements UserRoot {
-
     constructor(
         readonly id: UserId,
         readonly name: UserName,
@@ -24,7 +23,7 @@ export class CommonUser implements UserRoot {
         profileId: UserProfileId,
         profileName: UserProfileName,
         description: UserDescription,
-        modificationEventList: any[]
+        modificationEventList: CommonModificationEvent[]
     ): CommonUser {
         return new CommonUser(
             id,
