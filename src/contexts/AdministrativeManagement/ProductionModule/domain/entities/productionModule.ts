@@ -44,7 +44,7 @@ export class ProductionModule implements ProductionModuleRoot {
         this.creationDate = creationDate;
         this.createBy = createBy;
         this.administrativeEventList = administrativeEventList;
-        this._machineAmount= machineAmount;
+        this._machineAmount = machineAmount;
         this._currentSupervisorId = currentSupervisorId;
         this._currentSewingWorkerIdList = currentSewingWorkerIdList;
         this._currentSewingWorkerCounter = new ProductionModuleSewingWorkerCounter(currentSewingWorkerIdList.length);
@@ -89,8 +89,7 @@ export class ProductionModule implements ProductionModuleRoot {
             id,
             label,
             machineAmount,
-            currentSupervisorId,
-            [],
+            currentSupervisorId, [],
             creationDate,
             createBy,
             administrativeEventList

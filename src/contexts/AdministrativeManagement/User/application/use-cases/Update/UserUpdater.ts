@@ -5,7 +5,8 @@ import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/Ev
 import { EventModifiedField } from "../../../../AdministrativeEvent/domain/value-objects/EventModifiedField";
 import { EventNewValue } from "../../../../AdministrativeEvent/domain/value-objects/EventNewValue";
 import { EventPreviusValue } from "../../../../AdministrativeEvent/domain/value-objects/EventPreviusValue";
-import { AuthUserRepository } from "../../../domain/repositories/AuthUserRepository";
+import { UserAuthQueryRepository } from "../../../domain/repositories/UserAuthQueryRepository";
+import { UserCommandRepository } from "../../../domain/repositories/UserCommandRepository";
 import { UserDescription } from "../../../domain/value-objects/UserDescription";
 import { UserId } from "../../../domain/value-objects/UserId";
 import { UserIdType } from "../../../domain/value-objects/UserIdType";
@@ -16,7 +17,8 @@ import { UserNotFoundException } from "../../exceptions/UserNotFoundException";
 
 export class UserUpdater {
     constructor(
-        private userRepository: AuthUserRepository
+        private userQueryRepository: UserAuthQueryRepository,
+        private userCommandRepository: UserCommandRepository
     ) { }
 
     async execute(params: {
@@ -30,7 +32,7 @@ export class UserUpdater {
     }) {
         const { userId, newName, newProfileId, newDescription, newIdType, newPassword, updateBy } = params;
 
-        const user = await this.userRepository.find(userId);
+        const user = await this.userQueryRepository.find(userId);
 
         if (user === undefined || user === null)
             throw new UserNotFoundException(userId);
@@ -138,6 +140,6 @@ export class UserUpdater {
             })
         }
 
-        await this.userRepository.save(user);
+        await this.userCommandRepository.save(user);
     }
 }

@@ -1,5 +1,4 @@
 import { UserId } from '../value-objects/UserId';
-import { CommonUserDTO } from '../data-transfer-objects/CommonUserDTO';
 import { UserRoot } from '../interfaces/UserRoot';
 import { UserDescription } from '../value-objects/UserDescription';
 import { UserName } from '../value-objects/UserName';

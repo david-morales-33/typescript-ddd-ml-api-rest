@@ -1,5 +1,5 @@
 
-export class UserViewDTO {
+export class AuthUserViewDTO {
     constructor(
         public readonly nombre: string,
         public readonly documentoId: string,

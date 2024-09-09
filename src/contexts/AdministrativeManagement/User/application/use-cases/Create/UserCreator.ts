@@ -3,7 +3,7 @@ import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-ob
 import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
 import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
 import { AuthUser } from "../../../domain/entities/AuthUser";
-import { AuthUserRepository } from "../../../domain/repositories/AuthUserRepository";
+import { UserCommandRepository } from '../../../domain/repositories/UserCommandRepository';
 import { UserDescription } from "../../../domain/value-objects/UserDescription";
 import { UserId } from "../../../domain/value-objects/UserId";
 import { UserIdType } from "../../../domain/value-objects/UserIdType";
@@ -16,8 +16,7 @@ import { UserExternalService } from "../../services/UserExternalService";
 export class UserCreator {
     constructor(
         private userExternalService: UserExternalService,
-        private userRepository: AuthUserRepository,
-
+        private userRepository: UserCommandRepository,
     ) { }
 
     async execute(params: {

@@ -1,12 +1,11 @@
+import { UserResponseRepository } from "../../../domain/repositories/UserResponseRepository";
 import { UserId } from "../../../domain/value-objects/UserId";
-import { UserViewDTO } from "../../data-transfer-objects/UserViewDTO";
 import { UserNotFoundException } from "../../exceptions/UserNotFoundException";
-import { UserQueryRepository } from "../../repositories/UserQueryRepository";
 
 export class UserFinder {
-    constructor(private userRepository: UserQueryRepository) { }
+    constructor(private userRepository: UserResponseRepository) { }
 
-    async execute(userId: UserId): Promise<UserViewDTO> {
+    async execute(userId: UserId) {
         const user = await this.userRepository.find(userId);
 
         if (user === null)
