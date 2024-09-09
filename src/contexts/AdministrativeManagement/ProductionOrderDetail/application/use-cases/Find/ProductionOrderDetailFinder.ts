@@ -1,10 +1,9 @@
 import { ProductionOrderId } from "../../../../shared/domain/value-objects/ProductionOrderId";
-import { ProductionOrderDetailNotFoundException } from "../../exceptions/ProductionOrderDetailNotFoundException";
+import { ProductionOrderDetailResponseRepository } from "../../../domain/repositories/ProductionOrderDetailResponseRepository";
 import { ProductionOrderNotFoundException } from "../../exceptions/ProductionOrderNotFoundException";
-import { ProductionOrderDetailQueryRepository } from "../../repositories/ProductionOrderDetailQueryRepository";
 
 export class ProductionOrderDetailFinder {
-    constructor(private productionOrderDetailQueryRepository: ProductionOrderDetailQueryRepository) { }
+    constructor(private productionOrderDetailQueryRepository: ProductionOrderDetailResponseRepository) { }
 
     async execute(productionOrderId: ProductionOrderId) {
 

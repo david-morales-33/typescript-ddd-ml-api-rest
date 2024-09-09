@@ -9,12 +9,16 @@ import { ProductionModuleId } from "../../../../ProductionModule/domain/value-ob
 import { ProductionOrderProcessEndDatePlanned } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderProcessEndDatePlanned";
 import { ProductionOrderProcessStartDatePlanned } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderProcessStartDatePlanned";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
-import { ProductionOrderDetailRepository } from "../../../domain/repositories/ProductionOrderDetailRepository";
+import { ProductionOrderDetailCommandRepository } from "../../../domain/repositories/ProductionOrderDetailCommandRepository";
+import { ProductionOrderDetailQueryRepository } from "../../../domain/repositories/ProductionOrderDetailQueryRepository";
 import { ProductionOrderDetailId } from "../../../domain/value-objects/ProductionOrderDetailId";
 import { ProductionOrderDetailNotFoundException } from "../../exceptions/ProductionOrderDetailNotFoundException";
 
 export class ProductionOrderDetailSetterPlannedDates {
-    constructor(private productionOrderRepository: ProductionOrderDetailRepository) { }
+    constructor(
+        private productionOrderQueryRepository: ProductionOrderDetailQueryRepository,
+        private productionOrderCommandRepository: ProductionOrderDetailCommandRepository,
+    ) { }
 
     async execute(params: {
         productionOrderDetailId: ProductionOrderDetailId,
@@ -26,7 +30,7 @@ export class ProductionOrderDetailSetterPlannedDates {
 
         const { productionOrderDetailId, processEndDatePlanned, processStartDatePlanned, productionModuleId, setBy } = params;
 
-        const productionOrderDetail = await this.productionOrderRepository.find(productionOrderDetailId);
+        const productionOrderDetail = await this.productionOrderQueryRepository.find(productionOrderDetailId);
 
         if (productionOrderDetail === null)
             throw new ProductionOrderDetailNotFoundException(productionOrderDetailId);
@@ -76,6 +80,6 @@ export class ProductionOrderDetailSetterPlannedDates {
             event: setProductionModulePlannedEvent
         })
 
-        await this.productionOrderRepository.save(productionOrderDetail);
+        await this.productionOrderCommandRepository.save(productionOrderDetail);
     }
 }
