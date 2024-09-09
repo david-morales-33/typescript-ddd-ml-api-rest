@@ -7,13 +7,17 @@ import { EventNewValue } from "../../../../AdministrativeEvent/domain/value-obje
 import { EventPreviusValue } from "../../../../AdministrativeEvent/domain/value-objects/EventPreviusValue";
 import { ColorId } from "../../../../shared/domain/value-objects/ColorId";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
-import { ColorRepository } from "../../../domain/repositories/ColorRepository";
+import { ColorCommandRepository } from "../../../domain/repositories/ColorCommandRepository";
+import { ColorQueryRepository } from "../../../domain/repositories/ColorQueryRepository";
 import { ColorLabel } from "../../../domain/value-objects/ColorLabel";
 import { ColorState } from "../../../domain/value-objects/ColorState";
 import { ColorNotFoundException } from "../../exceptions/ColorNotFoundException";
 
 export class ColorUpdater {
-    constructor(private colorRepository: ColorRepository) { }
+    constructor(
+        private colorQueryRepository: ColorQueryRepository,
+        private colorCommandRepository: ColorCommandRepository,
+    ) { }
 
     async execute(params: {
         updateBy: UserId,
@@ -24,7 +28,7 @@ export class ColorUpdater {
 
         const { updateBy, colorId, newLabel, newState } = params;
 
-        const color = await this.colorRepository.find(colorId);
+        const color = await this.colorQueryRepository.find(colorId);
 
         if (color === null)
             throw new ColorNotFoundException(colorId);
@@ -73,6 +77,6 @@ export class ColorUpdater {
             })
         }
 
-        await this.colorRepository.save(color);
+        await this.colorCommandRepository.save(color);
     }
 }

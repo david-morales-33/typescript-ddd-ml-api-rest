@@ -1,10 +1,9 @@
 import { ColorId } from "../../../../shared/domain/value-objects/ColorId";
+import { ColorResponseRepository } from "../../../domain/repositories/ColorResponseRepository";
 import { ColorNotFoundException } from "../../exceptions/ColorNotFoundException";
-import { ColorQueryRepository } from "../../repositories/ColorQueryRepository";
-
 
 export class ColorFinder {
-    constructor(private colorQueryRepository: ColorQueryRepository) { }
+    constructor(private colorQueryRepository: ColorResponseRepository) { }
 
     async execuete(colorId: ColorId) {
 

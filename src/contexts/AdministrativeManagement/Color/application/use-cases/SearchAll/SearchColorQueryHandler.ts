@@ -1,18 +1,18 @@
 import { Query } from "../../../../../Shared/domain/design-patterns/CQRS/Query";
 import { QueryHandler } from "../../../../../Shared/domain/design-patterns/CQRS/QueryHandler";
-import { ColorQueryRepository } from "../../repositories/ColorQueryRepository";
 import { ColorResponse } from "./ColorResponse";
+import { ColorSearcher } from "./ColorSearcher";
 import { SearchColorQuery } from "./SearchColorQuery";
 
 export class SearchColorQueryHandler implements QueryHandler<SearchColorQuery, ColorResponse[]> {
 
-    constructor(private colorQueryRepository: ColorQueryRepository) { }
+    constructor(private colorQuerySearcher : ColorSearcher) { }
 
     subscribedTo(): Query {
         return SearchColorQuery
     }
 
     async handle(): Promise<ColorResponse[]> {
-        return this.colorQueryRepository.searchAll();
+        return this.colorQuerySearcher.execute();
     }
 }

@@ -1,4 +1,4 @@
 import { Response } from "../../../../../Shared/domain/design-patterns/CQRS/Response";
-import { ColorViewDTO } from "../../data-transfer-objects/ColorViewDTO";
+import { ColorViewDTO } from "../../../domain/data-transfer-objects/ColorViewDTO";
 
 export class ColorResponse extends ColorViewDTO implements Response { }
