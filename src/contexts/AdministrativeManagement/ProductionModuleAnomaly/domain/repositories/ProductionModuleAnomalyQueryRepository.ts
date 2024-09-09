@@ -1,7 +1,6 @@
 import { ProductionModuleAnomaly } from "../entities/ProductionModuleAnomaly";
 import { ProductionModuleAnomalyId } from "../value-objects/ProductionModuleAnomalyId";
 
-export interface ProductionModuleAnomalyRepository {
-    save(productionModuleAnomaly: ProductionModuleAnomaly): Promise<void>;
+export interface ProductionModuleAnomalyQueryRepository {
     find(productionModuleAnomalyId: ProductionModuleAnomalyId): Promise<ProductionModuleAnomaly | null>
 }

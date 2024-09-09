@@ -4,18 +4,18 @@ import { UserPermission } from "../../../../UserPermission/domain/entities/UserP
 import { UserPermissionRepository } from "../../../../UserPermission/domain/repositories/UserPermissionRepository";
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
-import { ProductionModuleAnomalyRepository } from "../../../domain/repositories/ProductionModuleAnomalyRepository";
+import { ProductionModuleAnomalyQueryRepository } from "../../../domain/repositories/ProductionModuleAnomalyQueryRepository";
 import { ProductionModuleAnomalyId } from "../../../domain/value-objects/ProductionModuleAnomalyId";
 
 export class CreateProductionModuleAnomalyValidator {
     constructor(
-        private productionModuleAnomaly: ProductionModuleAnomalyRepository,
+        private productionModuleAnomalyQueryRepository: ProductionModuleAnomalyQueryRepository,
         private userPermissionsRepository: UserPermissionRepository,
     ) { }
     async execute(params: { createBy: UserId, productionModuleAnomalyId: ProductionModuleAnomalyId }) {
         const { createBy, productionModuleAnomalyId } = params;
 
-        const productionModuleAnomaly = await this.productionModuleAnomaly.find(productionModuleAnomalyId)
+        const productionModuleAnomaly = await this.productionModuleAnomalyQueryRepository.find(productionModuleAnomalyId)
         if (productionModuleAnomaly !== null)
             throw new Error(`The Production Module Anomaly <${productionModuleAnomalyId.value}> already exists`);
 

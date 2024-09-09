@@ -4,13 +4,13 @@ import { EventDescription } from "../../../../AdministrativeEvent/domain/value-o
 import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionModuleAnomaly } from "../../../domain/entities/ProductionModuleAnomaly";
-import { ProductionModuleAnomalyRepository } from "../../../domain/repositories/ProductionModuleAnomalyRepository";
+import { ProductionModuleAnomalyCommandRepository } from "../../../domain/repositories/ProductionModuleAnomalyCommandRepository";
 import { ProductionModuleAnomalyId } from "../../../domain/value-objects/ProductionModuleAnomalyId";
 import { ProductionModuleAnomalyName } from "../../../domain/value-objects/ProductionModuleAnomalyName";
 
 
 export class CreatorProductionModuleAnomaly {
-    constructor(private productionModuleAnomalyRepository: ProductionModuleAnomalyRepository) { }
+    constructor(private productionModuleAnomalyRepository: ProductionModuleAnomalyCommandRepository) { }
     async execute(params: {
         createBy: UserId,
         productionModuleAnomalyId: ProductionModuleAnomalyId,

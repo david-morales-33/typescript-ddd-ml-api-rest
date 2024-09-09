@@ -1,10 +1,8 @@
-import { ProductionModuleAnomalyRepository } from "../../../domain/repositories/ProductionModuleAnomalyRepository";
+import { ProductionModuleAnomalyResponseRepository } from "../../../domain/repositories/ProductionModuleAnomalyResponseRepository";
 import { ProductionModuleAnomalyId } from "../../../domain/value-objects/ProductionModuleAnomalyId";
-import { ProductionModuleAnomalyQueryRepository } from "../../repositories/ProductionModuleAnomalyQueryRepository";
-
 
 export class ProductionModuleAnomalyFinder {
-    constructor( private productionModuleAnomalyRepository: ProductionModuleAnomalyQueryRepository){}
+    constructor( private productionModuleAnomalyRepository: ProductionModuleAnomalyResponseRepository){}
 
     async execute(productionModuleAnomalyId: ProductionModuleAnomalyId){
 
