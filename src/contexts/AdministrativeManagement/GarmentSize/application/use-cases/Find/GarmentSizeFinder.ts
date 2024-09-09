@@ -1,11 +1,10 @@
-import { GarmentSizeRepository } from "../../../domain/repositories/GarmentSizeRepository";
+import { GarmentSizeResponseRepository } from "../../../domain/repositories/GarmentSizeResponseRepository";
 import { GarmentSizeId } from "../../../domain/value-objects/GarmentSizeId";
 import { GarmentSizeNotFoundException } from "../../exceptions/GarmentSizeNotFoundException";
-import { GarmentSizeQueryRepository } from "../../repositories/GarmentSizeQueryRepository";
 
 export class GarmentSizeFinder {
     constructor(
-        private garmentSizeQueryRepository: GarmentSizeQueryRepository
+        private garmentSizeQueryRepository: GarmentSizeResponseRepository
     ) { }
 
     async execute(garmentSizeId: GarmentSizeId) {

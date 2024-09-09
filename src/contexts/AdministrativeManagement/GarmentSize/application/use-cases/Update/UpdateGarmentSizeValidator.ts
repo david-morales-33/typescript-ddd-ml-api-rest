@@ -5,7 +5,6 @@ import { UserPermissionRepository } from "../../../../UserPermission/domain/repo
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
 
-
 export class UpdateGarmentSizeValidator {
     constructor (
         private userPermissionsRepository: UserPermissionRepository,

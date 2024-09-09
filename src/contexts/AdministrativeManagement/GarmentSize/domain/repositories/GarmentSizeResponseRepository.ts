@@ -1,6 +1,6 @@
 import { GarmentSizeId } from "../../domain/value-objects/GarmentSizeId";
-import { GarmentSizeViewDTO } from "../data-transfer-objects/GarmentSizeViewDTO";
+import { GarmentSizeViewDTO } from "../../domain/data-transfer-objects/GarmentSizeViewDTO";
 
-export interface GarmentSizeQueryRepository {
+export interface GarmentSizeResponseRepository {
     find(garmentSizeId: GarmentSizeId): Promise<GarmentSizeViewDTO | null>;
 }

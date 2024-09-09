@@ -10,7 +10,6 @@ import { GarmentSizeType } from "../../../domain/value-objects/GarmentSizeType";
 import { GarmentSizeUpdater } from "./GarmentSizeUpdater";
 import { UpdateGarmentSizeValidator } from "./UpdateGarmentSizeValidator";
 
-
 export class UpdateGarmentSizeCommandHandler implements CommandHandler<UpdateGarmentSizeCommand> {
 
     constructor(

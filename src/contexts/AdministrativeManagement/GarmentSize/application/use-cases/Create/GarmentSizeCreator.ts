@@ -4,16 +4,15 @@ import { EventDescription } from "../../../../AdministrativeEvent/domain/value-o
 import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { GarmentSize } from "../../../domain/entities/GarmentSize";
-import { GarmentSizeRepository } from "../../../domain/repositories/GarmentSizeRepository";
+import { GarmentSizeCommandRepository } from "../../../domain/repositories/GarmentSizeCommandRepository";
 import { GarmentSizeId } from "../../../domain/value-objects/GarmentSizeId";
 import { GarmentSizeLabel } from "../../../domain/value-objects/GarmentSizeLabel";
 import { GarmentSizeOrder } from "../../../domain/value-objects/GarmentSizeOrder";
 import { GarmentSizeState } from "../../../domain/value-objects/GarmentSizeState";
 import { GarmentSizeType } from "../../../domain/value-objects/GarmentSizeType";
 
-
 export class GarmentSizeCreator {
-    constructor(private garmentSizeRepository: GarmentSizeRepository) { }
+    constructor(private garmentSizeRepository: GarmentSizeCommandRepository) { }
 
     async execute(params: {
         garmentSizeId: GarmentSizeId,

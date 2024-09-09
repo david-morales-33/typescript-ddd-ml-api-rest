@@ -6,7 +6,8 @@ import { EventModifiedField } from "../../../../AdministrativeEvent/domain/value
 import { EventNewValue } from "../../../../AdministrativeEvent/domain/value-objects/EventNewValue";
 import { EventPreviusValue } from "../../../../AdministrativeEvent/domain/value-objects/EventPreviusValue";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
-import { GarmentSizeRepository } from "../../../domain/repositories/GarmentSizeRepository";
+import { GarmentSizeCommandRepository } from "../../../domain/repositories/GarmentSizeCommandRepository";
+import { GarmentSizeQueryRepository } from "../../../domain/repositories/GarmentSizeQueryRepository";
 import { GarmentSizeId } from "../../../domain/value-objects/GarmentSizeId";
 import { GarmentSizeLabel } from "../../../domain/value-objects/GarmentSizeLabel";
 import { GarmentSizeOrder } from "../../../domain/value-objects/GarmentSizeOrder";
@@ -15,7 +16,10 @@ import { GarmentSizeType } from "../../../domain/value-objects/GarmentSizeType";
 import { GarmentSizeNotFoundException } from "../../exceptions/GarmentSizeNotFoundException";
 
 export class GarmentSizeUpdater {
-    constructor(private garmentSizeRepository: GarmentSizeRepository) { }
+    constructor(
+        private garmentSizeQueryRepository: GarmentSizeQueryRepository,
+        private garmentSizeCommandRepository: GarmentSizeCommandRepository,
+    ) { }
 
     async execute(params: {
         garmentSizeId: GarmentSizeId,
@@ -27,7 +31,7 @@ export class GarmentSizeUpdater {
     }) {
         const { updateBy, garmentSizeId, newLabel, newOrder, newState, newType } = params;
 
-        const garmentSize = await this.garmentSizeRepository.find(garmentSizeId);
+        const garmentSize = await this.garmentSizeQueryRepository.find(garmentSizeId);
 
         if (garmentSize === null)
             throw new GarmentSizeNotFoundException(garmentSizeId);
@@ -113,6 +117,6 @@ export class GarmentSizeUpdater {
             })
         }
 
-        await this.garmentSizeRepository.save(garmentSize);
+        await this.garmentSizeCommandRepository.save(garmentSize);
     }
 }

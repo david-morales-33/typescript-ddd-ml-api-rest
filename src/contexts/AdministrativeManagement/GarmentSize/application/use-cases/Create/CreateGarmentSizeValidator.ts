@@ -4,14 +4,13 @@ import { UserPermission } from "../../../../UserPermission/domain/entities/UserP
 import { UserPermissionRepository } from "../../../../UserPermission/domain/repositories/UserPermissionRepository";
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
-import { GarmentSizeRepository } from "../../../domain/repositories/GarmentSizeRepository";
+import { GarmentSizeQueryRepository } from "../../../domain/repositories/GarmentSizeQueryRepository";
 import { GarmentSizeId } from "../../../domain/value-objects/GarmentSizeId";
 import { GarmentSIzeAlreadyExists } from "../../exceptions/GarmentSIzeAlreadyExists";
 
-
 export class CreateGarmentSizeValidator {
     constructor (
-        private garmentSizeRepository : GarmentSizeRepository,
+        private garmentSizeRepository : GarmentSizeQueryRepository,
         private userPermissionsRepository: UserPermissionRepository,
     ){}
 

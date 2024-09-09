@@ -5,7 +5,6 @@ import { FindGarmentSizeQuery } from "./FindGarmentSizeQuery";
 import { GarmentSizeFinder } from "./GarmentSizeFinder";
 import { GarmentSizeReponse } from "./GarmentSizeReponse";
 
-
 export class FindGarmentSizeQueryHandler implements QueryHandler<FindGarmentSizeQuery, GarmentSizeReponse>{
     constructor(private garmentSizeFinder: GarmentSizeFinder){}
 
