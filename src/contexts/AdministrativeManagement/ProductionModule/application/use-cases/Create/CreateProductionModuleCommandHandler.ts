@@ -2,7 +2,6 @@ import { Command } from "../../../../../Shared/domain/Command";
 import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { CreateProductionModuleCommand } from "../../../domain/data-transfer-objects/CreateProductionModuleCommand";
-import { ProductionModuleRepository } from "../../../domain/repositories/ProductionModuleRepository";
 import { ProductionModuleId } from "../../../domain/value-objects/ProductionModuleId";
 import { ProductionModuleMachineAmount } from "../../../domain/value-objects/ProductionModuleMachineAmount";
 import { CreateProductionModuleValidator } from "./CreateProductionModuleValidator";

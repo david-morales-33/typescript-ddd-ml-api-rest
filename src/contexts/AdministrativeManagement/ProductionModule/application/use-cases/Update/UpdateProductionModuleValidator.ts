@@ -4,13 +4,13 @@ import { UserPermission } from "../../../../UserPermission/domain/entities/UserP
 import { UserPermissionRepository } from "../../../../UserPermission/domain/repositories/UserPermissionRepository";
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
-import { ProductionModuleRepository } from "../../../domain/repositories/ProductionModuleRepository";
+import { ProductionModuleQueryRepository } from "../../../domain/repositories/ProductionModuleQuerydRepository";
 import { ProductionModuleId } from "../../../domain/value-objects/ProductionModuleId";
 import { ProductionModuleNotFoundException } from "../../exceptions/ProductionModuleNotFoundException";
 
 export class UpdateProductionModuleValidator {
     constructor(
-        private productionModuleRepository: ProductionModuleRepository,
+        private productionModuleRepository: ProductionModuleQueryRepository,
         private userPermissionsRepository: UserPermissionRepository
     ) { }
     async execute(params: {

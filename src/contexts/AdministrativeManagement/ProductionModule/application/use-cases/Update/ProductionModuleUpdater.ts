@@ -6,7 +6,8 @@ import { EventModifiedField } from "../../../../AdministrativeEvent/domain/value
 import { EventNewValue } from "../../../../AdministrativeEvent/domain/value-objects/EventNewValue";
 import { EventPreviusValue } from "../../../../AdministrativeEvent/domain/value-objects/EventPreviusValue";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
-import { ProductionModuleRepository } from "../../../domain/repositories/ProductionModuleRepository";
+import { ProductionModuleCommandRepository } from "../../../domain/repositories/ProductionModuleCommandRepository";
+import { ProductionModuleQueryRepository } from "../../../domain/repositories/ProductionModuleQuerydRepository";
 import { ProductionModuleId } from "../../../domain/value-objects/ProductionModuleId";
 import { ProductionModuleMachineAmount } from "../../../domain/value-objects/ProductionModuleMachineAmount";
 import { ProductionModuleState } from "../../../domain/value-objects/ProductionModuleState";
@@ -14,7 +15,10 @@ import { ProductionModuleSupervisorId } from "../../../domain/value-objects/Prod
 import { ProductionModuleNotFoundException } from "../../exceptions/ProductionModuleNotFoundException";
 
 export class ProductionModuleUpdater {
-    constructor(private productionModuleRepository: ProductionModuleRepository) { }
+    constructor(
+        private productionModuleQueryRepository: ProductionModuleQueryRepository,
+        private productionModuleCommandRepository: ProductionModuleCommandRepository,
+    ) { }
 
     async execute(params: {
         productionModuleId: ProductionModuleId,
@@ -27,7 +31,7 @@ export class ProductionModuleUpdater {
 
         const { newCurrentSupervisor, newMachineAmount, newOperationState, newState, productionModuleId, updateBy } = params;
 
-        const productionModule = await this.productionModuleRepository.find(productionModuleId)
+        const productionModule = await this.productionModuleQueryRepository.find(productionModuleId)
 
         if (productionModule === null)
             throw new ProductionModuleNotFoundException(productionModuleId)
@@ -116,7 +120,7 @@ export class ProductionModuleUpdater {
             })
         }
 
-        await this.productionModuleRepository.save(productionModule);
+        await this.productionModuleCommandRepository.save(productionModule);
 
     }
 }

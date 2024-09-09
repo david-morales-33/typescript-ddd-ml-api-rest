@@ -3,7 +3,7 @@ import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-ob
 import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
 import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
 import { ProductionModule } from "../../../domain/entities/productionModule";
-import { ProductionModuleRepository } from "../../../domain/repositories/ProductionModuleRepository";
+import { ProductionModuleCommandRepository } from "../../../domain/repositories/ProductionModuleCommandRepository";
 import { ProductionModuleCreateBy } from "../../../domain/value-objects/ProductionModuleCreateBy";
 import { ProductionModuleCreationDate } from "../../../domain/value-objects/ProductionModuleCreationDate";
 import { ProductionModuleId } from "../../../domain/value-objects/ProductionModuleId";
@@ -11,7 +11,7 @@ import { ProductionModuleLabel } from "../../../domain/value-objects/ProductionM
 import { ProductionModuleMachineAmount } from "../../../domain/value-objects/ProductionModuleMachineAmount";
 
 export class ProductionModuleCreator {
-    constructor(private productionModuleRepository: ProductionModuleRepository) { }
+    constructor(private productionModuleRepository: ProductionModuleCommandRepository) { }
 
     async execute(params: {
         productionModuleId: ProductionModuleId,

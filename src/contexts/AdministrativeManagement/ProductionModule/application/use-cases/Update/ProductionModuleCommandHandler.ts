@@ -6,10 +6,8 @@ import { ProductionModuleId } from "../../../domain/value-objects/ProductionModu
 import { ProductionModuleMachineAmount } from "../../../domain/value-objects/ProductionModuleMachineAmount";
 import { ProductionModuleState } from "../../../domain/value-objects/ProductionModuleState";
 import { ProductionModuleSupervisorId } from "../../../domain/value-objects/ProductionModuleSupervisorId";
-import { CreateProductionModuleValidator } from "../Create/CreateProductionModuleValidator";
 import { ProductionModuleUpdater } from "./ProductionModuleUpdater";
 import { UpdateProductionModuleValidator } from "./UpdateProductionModuleValidator";
-
 
 export class ProductionModuleCommandHandler implements CommandHandler<UpdateProductionModuleCommand> {
 
