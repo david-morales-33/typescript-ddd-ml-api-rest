@@ -157,6 +157,17 @@ export class ProductionOrder implements ProductionOrderRoot {
         }
     }
 
+    updateState(params: { value: ProductionOrderState, event: CommonModificationEvent }) {
+        const { value, event } = params;
+
+        if (!this.hasAddedEvent(event.id) && this._state.value !== value.value) {
+            this.addNewEvent(event);
+            value.value ?
+                this._state = this.state.setInTrue() :
+                this._state = this.state.setInFalse();
+        }
+    }
+
     private addNewEvent(event: CommonModificationEvent): void {
         this.administrativeEventList.push(event);
     }
