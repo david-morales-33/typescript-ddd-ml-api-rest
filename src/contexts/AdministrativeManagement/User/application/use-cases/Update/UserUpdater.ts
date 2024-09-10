@@ -13,6 +13,7 @@ import { UserIdType } from "../../../domain/value-objects/UserIdType";
 import { UserName } from "../../../domain/value-objects/UserName";
 import { UserPassword } from "../../../domain/value-objects/UserPassword";
 import { UserProfileId } from "../../../domain/value-objects/UserProfileId";
+import { UserState } from "../../../domain/value-objects/UserState";
 import { UserNotFoundException } from "../../exceptions/UserNotFoundException";
 
 export class UserUpdater {
@@ -28,20 +29,21 @@ export class UserUpdater {
         newProfileId: UserProfileId | null,
         newDescription: UserDescription | null,
         newPassword: UserPassword | null,
+        newState: UserState | null,
         updateBy: UserId
     }) {
-        const { userId, newName, newProfileId, newDescription, newIdType, newPassword, updateBy } = params;
+        const { userId, newName, newProfileId, newDescription, newIdType, newPassword, updateBy, newState } = params;
 
         const user = await this.userQueryRepository.find(userId);
 
         if (user === undefined || user === null)
             throw new UserNotFoundException(userId);
 
-        const eventId = new EventId(0);
         const eventCreateDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Actualizacion de usuario');
 
         if (newName) {
+            const eventId = new EventId(1);
             const modifiedField = new EventModifiedField('nombre');
             const previusValue = new EventPreviusValue(user.name.value);
             const newValue = new EventNewValue(newName.value);
@@ -61,7 +63,8 @@ export class UserUpdater {
         }
 
         if (newProfileId) {
-            const modifiedField = new EventModifiedField('perfil_id');
+            const eventId = new EventId(2);
+            const modifiedField = new EventModifiedField('perfil');
             const previusValue = new EventPreviusValue(user.profileId.value.toString());
             const newValue = new EventNewValue(newProfileId.value.toString());
 
@@ -81,7 +84,8 @@ export class UserUpdater {
         }
 
         if (newPassword) {
-            const modifiedField = new EventModifiedField('contrasena');
+            const eventId = new EventId(3);
+            const modifiedField = new EventModifiedField('contraseña');
             const previusValue = new EventPreviusValue(user.password.value);
             const newValue = new EventNewValue(newPassword.value);
 
@@ -101,7 +105,8 @@ export class UserUpdater {
         }
 
         if (newDescription) {
-            const modifiedField = new EventModifiedField('descripcion');
+            const eventId = new EventId(4);
+            const modifiedField = new EventModifiedField('descripción');
             const previusValue = new EventPreviusValue(user.description.value);
             const newValue = new EventNewValue(newDescription.value);
 
@@ -121,7 +126,8 @@ export class UserUpdater {
         }
 
         if (newIdType) {
-            const modifiedField = new EventModifiedField('documento_id');
+            const eventId = new EventId(5);
+            const modifiedField = new EventModifiedField('Tipo de documento');
             const previusValue = new EventPreviusValue(user.idType.value.toString());
             const newValue = new EventNewValue(newIdType.value.toString());
 
@@ -136,6 +142,25 @@ export class UserUpdater {
             );
             user.updateUserIdType({
                 value: newIdType,
+                event
+            })
+        }
+        if(newState){
+            const eventId = new EventId(6);
+            const modifiedField = new EventModifiedField('Estado');
+            const previusValue = new EventPreviusValue(user.state.value?'Habilitado':'Deshabilitado');
+            const newValue = new EventNewValue(newState.value?'Habilitado':'Deshabilitado');
+            const event = CommonModificationEvent.create(
+                eventId,
+                updateBy,
+                eventCreateDate,
+                eventDescription,
+                modifiedField,
+                previusValue,
+                newValue
+            );
+            user.updateUserState({
+                value: newState,
                 event
             })
         }

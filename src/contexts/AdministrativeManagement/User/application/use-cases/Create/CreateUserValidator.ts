@@ -3,6 +3,7 @@ import { UserPermission } from "../../../../UserPermission/domain/entities/UserP
 import { UserPermissionRepository } from "../../../../UserPermission/domain/repositories/UserPermissionRepository";
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
+import { UserPermissionState } from "../../../../UserPermission/domain/value-objects/UserPermissionState";
 import { UserAdminQueryRepository } from "../../../domain/repositories/UserAdminQueryRepository";
 import { UserId } from "../../../domain/value-objects/UserId";
 import { UserAlreadyExistException } from "../../exceptions/UserAlreadyExistException";
@@ -19,11 +20,12 @@ export class CreateUserValidator {
 
         const eventPermission = UserPermission.create(
             new UserPermissionId(4),
-            new UserPermissionLabel('Crear Cuenta')
+            new UserPermissionLabel('Crear Cuenta'),
+            new UserPermissionState(true)
         );
 
         const userFinded = await this.userRepository.find(userId);
-        if (userFinded !== null || userFinded !== undefined)
+        if (userFinded !== null )
             throw new UserAlreadyExistException(userId.value)
 
         const userPermissionValidator = new UserPermissionValidator(this.userPermissionsRepository);

@@ -7,6 +7,7 @@ import { UserIdType } from "../../../domain/value-objects/UserIdType";
 import { UserName } from "../../../domain/value-objects/UserName";
 import { UserPassword } from "../../../domain/value-objects/UserPassword";
 import { UserProfileId } from "../../../domain/value-objects/UserProfileId";
+import { UserState } from "../../../domain/value-objects/UserState";
 import { UpdateUserValidator } from "./UpdateUserValidator";
 import { UserUpdater } from "./UserUpdater";
 
@@ -22,7 +23,7 @@ export class UpdateUserCommandHandler implements CommandHandler<UpdateUserComman
     }
 
     async handle(command: UpdateUserCommand): Promise<void> {
-        
+
         const userId = new UserId(command.userId);
         const updateBy = new UserId(command.updateBy);
 
@@ -34,6 +35,7 @@ export class UpdateUserCommandHandler implements CommandHandler<UpdateUserComman
             newPassword: command.newPassword ? new UserPassword(command.newPassword) : null,
             newDescription: command.newDescription ? new UserDescription(command.newDescription) : null,
             newIdType: command.newIdType ? new UserIdType(command.newIdType) : null,
+            newState: command.newState !== null ? new UserState(command.newState) : null,
             newProfileId: command.newProfileId ? new UserProfileId(command.newProfileId) : null
         })
     }

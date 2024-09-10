@@ -12,6 +12,7 @@ export class AuthUserDTO {
         readonly profileId: number,
         readonly description: string,
         readonly password: string,
+        readonly state: boolean,
         readonly eventList: (CommonCreationEventDTO | CommonModificationEventDTO)[]
     ) { }
 

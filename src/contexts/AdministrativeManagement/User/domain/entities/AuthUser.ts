@@ -11,6 +11,7 @@ import { UserIdType } from "../value-objects/UserIdType";
 import { UserName } from "../value-objects/UserName";
 import { UserPassword } from "../value-objects/UserPassword";
 import { UserProfileId } from "../value-objects/UserProfileId";
+import { UserState } from '../value-objects/UserState';
 
 export class AuthUser implements UserRoot {
 
@@ -20,6 +21,7 @@ export class AuthUser implements UserRoot {
     private _description: UserDescription;
     private _idType: UserIdType;
     private _password: UserPassword;
+    private _state: UserState;
     readonly eventList: (CommonCreationEvent | CommonModificationEvent)[];
 
     constructor(
@@ -29,6 +31,7 @@ export class AuthUser implements UserRoot {
         profileId: UserProfileId,
         description: UserDescription,
         password: UserPassword,
+        state: UserState,
         eventList: (CommonCreationEvent | CommonModificationEvent)[]
     ) {
         this.id = id;
@@ -37,6 +40,7 @@ export class AuthUser implements UserRoot {
         this._description = description;
         this._idType = idType;
         this._password = password;
+        this._state = state;
         this.eventList = eventList;
     }
 
@@ -59,6 +63,9 @@ export class AuthUser implements UserRoot {
     public get idType(): UserIdType {
         return this._idType;
     }
+    public get state(): UserState {
+        return this._state;
+    }
 
     static create(
         id: UserId,
@@ -67,6 +74,7 @@ export class AuthUser implements UserRoot {
         profileId: UserProfileId,
         description: UserDescription,
         password: UserPassword,
+        state: UserState,
         eventList: (CommonCreationEvent | CommonModificationEvent)[]
 
     ): AuthUser {
@@ -77,13 +85,14 @@ export class AuthUser implements UserRoot {
             profileId,
             description,
             password,
+            state,
             eventList
         )
     }
 
     updateUserName(params: { value: UserName, event: CommonModificationEvent }): void {
         const { value, event } = params;
-        if (!this.hasAddedEvent(event.id)) {
+        if (this._name.value !== value.value && !this.hasAddedEvent(event.id)) {
             this.addNewEvent(event);
             this._name = this.name.setValue(value.value)
         }
@@ -99,7 +108,7 @@ export class AuthUser implements UserRoot {
 
     updateUserProfileId(params: { value: UserProfileId, event: CommonModificationEvent }): void {
         const { value, event } = params;
-        if (!this.hasAddedEvent(event.id)) {
+        if (this._profileId.value !== value.value && !this.hasAddedEvent(event.id)) {
             this.addNewEvent(event);
             this._profileId = this.profileId.setValue(value.value)
         }
@@ -107,7 +116,7 @@ export class AuthUser implements UserRoot {
 
     updateUserDescription(params: { value: UserDescription, event: CommonModificationEvent }): void {
         const { value, event } = params;
-        if (!this.hasAddedEvent(event.id)) {
+        if (this._description.value !== value.value && !this.hasAddedEvent(event.id)) {
             this.addNewEvent(event);
             this._description = this.description.setValue(value.value)
         }
@@ -115,9 +124,20 @@ export class AuthUser implements UserRoot {
 
     updateUserIdType(params: { value: UserIdType, event: CommonModificationEvent }): void {
         const { value, event } = params;
-        if (!this.hasAddedEvent(event.id)) {
+        if (this.idType.value !== value.value && !this.hasAddedEvent(event.id)) {
             this.addNewEvent(event);
             this._idType = this.idType.setValue(value.value)
+        }
+    }
+
+    updateUserState(params: { value: UserState, event: CommonModificationEvent }): void {
+        const { value, event } = params;
+        if (this._state.value !== value.value && !this.hasAddedEvent(event.id)) {
+            this.addNewEvent(event);
+            this._state ?
+                this._state = this.state.setInFalse() :
+                this._state = this.state.setInTrue();
+
         }
     }
 
@@ -138,6 +158,7 @@ export class AuthUser implements UserRoot {
             new UserProfileId(data.profileId),
             new UserDescription(data.description),
             new UserPassword(data.password),
+            new UserState(data.state),
             data.eventList.map(entry => {
                 if (entry.className === 'CreationEvent.commonDTO')
                     return CommonCreationEvent.fromPrimitives(entry as CommonCreationEventDTO)
@@ -154,6 +175,7 @@ export class AuthUser implements UserRoot {
             this.profileId.value,
             this.description.value,
             this.password.value,
+            this.state.value,
             this.eventList.map(entry => {
                 return entry.toPrimitives()
             })

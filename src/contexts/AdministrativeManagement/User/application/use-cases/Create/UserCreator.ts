@@ -10,6 +10,7 @@ import { UserIdType } from "../../../domain/value-objects/UserIdType";
 import { UserName } from "../../../domain/value-objects/UserName";
 import { UserPassword } from "../../../domain/value-objects/UserPassword";
 import { UserProfileId } from "../../../domain/value-objects/UserProfileId";
+import { UserState } from '../../../domain/value-objects/UserState';
 import { UserNotFoundException } from "../../exceptions/UserNotFoundException";
 import { UserExternalService } from "../../services/UserExternalService";
 
@@ -34,7 +35,7 @@ export class UserCreator {
         if (userFinded === null || userFinded === undefined)
             throw new UserNotFoundException(userId);
 
-        const eventId = new EventId(0);
+        const eventId = new EventId(1);
         const creationDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Integración de usuario');
 
@@ -47,6 +48,7 @@ export class UserCreator {
 
         const userName = new UserName(userFinded.userName);
         const userDescription = new UserDescription(userFinded.userDescription);
+        const userState = new UserState(true);
 
         const newUser = AuthUser.create(
             userId,
@@ -55,6 +57,7 @@ export class UserCreator {
             userProfileId,
             userDescription,
             userPassword,
+            userState,
             [creationEvent]
         )
 
