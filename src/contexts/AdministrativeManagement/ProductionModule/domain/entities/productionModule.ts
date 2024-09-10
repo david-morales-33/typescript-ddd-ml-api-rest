@@ -126,23 +126,24 @@ export class ProductionModule implements ProductionModuleRoot {
             this.addNewEvent(event);
             if (this.state.value === value.value)
                 throw new Error(`The Production Module State has already been set to <${value.value}>`)
-            if (value.value)
-                this._state = this.state.setInTrue();
-            else
+            if (this._state)
                 this._state = this.state.setInFalse();
+            else
+                this._state = this.state.setInTrue();
         }
     }
 
     updateCurrentOperationState(params: { value: ProductionModuleState, event: CommonModificationEvent }) {
         const { value, event } = params;
+        console.log(params)
         if (!this.hasAddedEvent(event.id)) {
             if (this._currentOperationState.value === value.value)
                 throw new Error(`The Production Module State has already been set to <${value.value}>`)
 
-            if (value.value)
-                this.startOperation();
-            else
+            if (this._currentOperationState.value)
                 this.stopOperation();
+            else
+                this.startOperation();
             this.addNewEvent(event);
         }
     }

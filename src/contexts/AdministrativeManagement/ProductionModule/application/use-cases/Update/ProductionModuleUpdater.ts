@@ -36,11 +36,11 @@ export class ProductionModuleUpdater {
         if (productionModule === null)
             throw new ProductionModuleNotFoundException(productionModuleId)
 
-        const eventId = new EventId(0);
         const eventCreateDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Actualización de usuario');
 
         if (newCurrentSupervisor !== null) {
+            const eventId = new EventId(1);
             const modifiedField = new EventModifiedField('supervisor');
             const previusValue = new EventPreviusValue(!productionModule.currentSupervisorId ? 'null' : productionModule.currentSupervisorId.value);
             const newValue = new EventNewValue(newCurrentSupervisor.value);
@@ -61,6 +61,7 @@ export class ProductionModuleUpdater {
         }
 
         if (newMachineAmount !== null) {
+            const eventId = new EventId(2);
             const modifiedField = new EventModifiedField('cantidad de maquina');
             const previusValue = new EventPreviusValue(!productionModule.machineAmount ? 'Sin valor asignado' : productionModule.machineAmount.value.toString());
             const newValue = new EventNewValue(newMachineAmount.value.toString());
@@ -81,8 +82,9 @@ export class ProductionModuleUpdater {
         }
 
         if (newOperationState !== null) {
+            const eventId = new EventId(3);
             const modifiedField = new EventModifiedField('Estado de operación');
-            const previusValue = new EventPreviusValue(!productionModule.currentOperationState ? 'Sin valor asignado' : newOperationState.value ? 'En proceso' : 'Detenido');
+            const previusValue = new EventPreviusValue(productionModule.currentOperationState === null ? 'Sin Valor Asignado' : productionModule.currentOperationState ? 'En proceso' : 'Detenido');
             const newValue = new EventNewValue(newOperationState.value ? 'En proceso' : 'Detenido');
             const event = CommonModificationEvent.create(
                 eventId,
@@ -101,6 +103,7 @@ export class ProductionModuleUpdater {
         }
 
         if (newState !== null) {
+            const eventId = new EventId(4);
             const modifiedField = new EventModifiedField('supervisor');
             const previusValue = new EventPreviusValue(!productionModule.state ? 'No Asignado' : productionModule.state ? 'Habilitado' : 'Deshabilitado');
             const newValue = new EventNewValue(newState.value ? 'Habilitado' : 'Deshabilitado');

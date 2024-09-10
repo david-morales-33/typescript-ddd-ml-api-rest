@@ -29,8 +29,8 @@ export class ProductionModuleCommandHandler implements CommandHandler<UpdateProd
         await this.productionModuleUpdater.execute({
             newCurrentSupervisor: command.newCurrentSupervisor ? new ProductionModuleSupervisorId(command.newCurrentSupervisor) : null,
             newMachineAmount: command.newMachineAmount ? new ProductionModuleMachineAmount(command.newMachineAmount) : null,
-            newOperationState: command.newOperationState ? new ProductionModuleState(command.newOperationState) : null,
-            newState: command.newState ? new ProductionModuleState(command.newState) : null,
+            newOperationState: command.newOperationState !== null ? new ProductionModuleState(command.newOperationState) : null,
+            newState: command.newState !== null ? new ProductionModuleState(command.newState) : null,
             productionModuleId,
             updateBy,
         })

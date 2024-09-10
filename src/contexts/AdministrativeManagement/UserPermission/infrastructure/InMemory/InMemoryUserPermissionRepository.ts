@@ -13,9 +13,10 @@ export class InMemoryUserPermissionRepository implements UserPermissionRepositor
             UserPermission.fromPrimitives(new UserPermissionDTO(33, 'Crear OCR de segundas', true)),
             UserPermission.fromPrimitives(new UserPermissionDTO(4, 'Crear Cuenta', true)),
             UserPermission.fromPrimitives(new UserPermissionDTO(5, 'Editar Cuenta', true)),
+            UserPermission.fromPrimitives(new UserPermissionDTO(7, 'Agregar Módulo', true)),
+            UserPermission.fromPrimitives(new UserPermissionDTO(8, 'Editar Módulo', true))
         ]
     }
-
 
     async searchAll(userId: UserId): Promise<UserPermission[]> {
         console.log(`Se obtuvieron los permisos del usuario <${userId.value}>...`)
