@@ -1,4 +1,3 @@
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
 import { Query } from "../../../../../Shared/domain/Query";
 import { QueryHandler } from "../../../../../Shared/domain/QueryHandler";
 import { ProductionModuleId } from "../../../domain/value-objects/ProductionModuleId";
@@ -7,7 +6,8 @@ import { ProductionModuleFinder } from "./ProductionModuleFinder";
 import { ProductionModuleResponse } from "./ProductionModuleResponse";
 
 
-export class FindProductionModuleCommandHandler implements QueryHandler<FindProductionModuleQuery, ProductionModuleResponse> {
+
+export class FindProductionModuleQueryHandler implements QueryHandler<FindProductionModuleQuery, ProductionModuleResponse> {
     constructor(private productionModulefinder: ProductionModuleFinder) { }
 
     subscribedTo(): Query {

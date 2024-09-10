@@ -14,6 +14,12 @@ export class InMemoryProductionModuleResponseRepository implements ProductionMod
     }
 
     async find(productionModuleId: ProductionModuleId): Promise<ProductionModuleViewDTO | null> {
+
+        // const productionModuleResposeRepository = new InMemoryProductionModuleResponseRepository();
+        // const finder = new ProductionModuleFinder(productionModuleResposeRepository);
+        // const queryHandler = new FindProductionModuleQueryHandler(finder);
+        // const query = new FindProductionModuleQuery(1);
+        // queryHandler.handle(query).then(res => console.log(res))
         const productionModule = this.productionModuleList.find(entry => entry.moduloId === productionModuleId.value);
 
         if (productionModule === undefined)
