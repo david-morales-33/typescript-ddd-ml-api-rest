@@ -14,6 +14,7 @@ export class InMemoryUserPermissionRepository implements UserPermissionRepositor
             UserPermission.fromPrimitives(new UserPermissionDTO(4, 'Crear Cuenta', true)),
             UserPermission.fromPrimitives(new UserPermissionDTO(5, 'Editar Cuenta', true)),
             UserPermission.fromPrimitives(new UserPermissionDTO(7, 'Agregar Módulo', true)),
+            UserPermission.fromPrimitives(new UserPermissionDTO(24, 'Editar OP', true)),
             UserPermission.fromPrimitives(new UserPermissionDTO(8, 'Editar Módulo', true))
         ]
     }

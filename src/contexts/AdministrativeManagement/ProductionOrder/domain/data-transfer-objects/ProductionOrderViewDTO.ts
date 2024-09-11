@@ -1,3 +1,4 @@
+import { ProductionOrderDetailViewDTO } from "../../../ProductionOrderDetail/domain/data-transfer-objects/ProductionOrderDetailViewDTO";
 
 export class ProductionOrderViewDTO {
     constructor(
@@ -14,6 +15,6 @@ export class ProductionOrderViewDTO {
         public readonly fechaDeInicio: string | Date | null,
         public readonly fechaDeFinalizacion: string | Date | null,
         public readonly fechaDeInicioPlaneada: string | Date | null,
-        public readonly fechaDeFinalizacionPlaneada: string | Date | null
+        public readonly fechaDeFinalizacionPlaneada: string | Date | null,
     ) { }
 }

@@ -5,6 +5,7 @@ import { UserPermission } from "../../../../UserPermission/domain/entities/UserP
 import { UserPermissionRepository } from "../../../../UserPermission/domain/repositories/UserPermissionRepository";
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
+import { UserPermissionState } from "../../../../UserPermission/domain/value-objects/UserPermissionState";
 
 export class UpdateProductionOrderValidator {
     constructor(private userPermissionsRepository: UserPermissionRepository) { }
@@ -12,8 +13,9 @@ export class UpdateProductionOrderValidator {
     async execute(updateBy: UserId) {
 
         const eventPermission = UserPermission.create(
-            new UserPermissionId(8),
-            new UserPermissionLabel('Editar Módulo')
+            new UserPermissionId(24),
+            new UserPermissionLabel('Editar OP'),
+            new UserPermissionState(true)
         );
 
         const userPermissionValidator = new UserPermissionValidator(this.userPermissionsRepository);

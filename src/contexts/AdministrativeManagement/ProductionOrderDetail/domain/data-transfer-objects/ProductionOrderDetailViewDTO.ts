@@ -14,7 +14,6 @@ export class ProductionOrderDetailViewDTO {
         public readonly estado: boolean,
         public readonly ordenIniciadaPorUsuarioId: string,
         public readonly ordenIniciadaPorUsuarioNombre: string,
-        public readonly descripcionDeUsuario: string,
         public readonly fechaDeInicio: string | Date | null,
         public readonly fechaDeFinalizacion: string | Date | null,
         public readonly fechaDeInicioPlaneada: string | Date | null,
