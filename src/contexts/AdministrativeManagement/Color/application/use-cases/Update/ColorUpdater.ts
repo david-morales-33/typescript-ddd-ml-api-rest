@@ -33,11 +33,11 @@ export class ColorUpdater {
         if (color === null)
             throw new ColorNotFoundException(colorId);
 
-        const eventId = new EventId(0);
         const eventCreateDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Actualización de color');
-
+        
         if (newLabel !== null) {
+            const eventId = new EventId(1);
             const modifiedField = new EventModifiedField('Etiqueta');
             const previusValue = new EventPreviusValue(color.label.value);
             const newValue = new EventNewValue(newLabel.value);
@@ -58,6 +58,7 @@ export class ColorUpdater {
         }
 
         if (newState !== null) {
+            const eventId = new EventId(2);
             const modifiedField = new EventModifiedField('Etiqueta');
             const previusValue = new EventPreviusValue(color.state.value ? 'Habilitado' : 'Deshabilitado');
             const newValue = new EventNewValue(newState.value ? 'Habilitado' : 'Deshabilitado');

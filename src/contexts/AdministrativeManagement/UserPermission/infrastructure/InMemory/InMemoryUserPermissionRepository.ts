@@ -2,7 +2,7 @@ import { UserId } from "../../../User/domain/value-objects/UserId";
 import { UserPermissionDTO } from "../../domain/data-transfer-objects/UserPermissionDTO";
 import { UserPermission } from "../../domain/entities/UserPermission";
 import { UserPermissionRepository } from "../../domain/repositories/UserPermissionRepository";
-// 12	Agrega Talla	1
+
 export class InMemoryUserPermissionRepository implements UserPermissionRepository {
     private userPermissions: UserPermission[];
 
@@ -17,6 +17,7 @@ export class InMemoryUserPermissionRepository implements UserPermissionRepositor
             UserPermission.fromPrimitives(new UserPermissionDTO(24, 'Editar OP', true)),
             UserPermission.fromPrimitives(new UserPermissionDTO(8, 'Editar Módulo', true)),
             UserPermission.fromPrimitives(new UserPermissionDTO(12, 'Agregar Talla', true)),
+            UserPermission.fromPrimitives(new UserPermissionDTO(0, 'Editar propiedades de color', true))
         ]
     }
 
