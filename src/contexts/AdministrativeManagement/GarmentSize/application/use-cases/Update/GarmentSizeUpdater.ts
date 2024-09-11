@@ -36,11 +36,11 @@ export class GarmentSizeUpdater {
         if (garmentSize === null)
             throw new GarmentSizeNotFoundException(garmentSizeId);
 
-        const eventId = new EventId(0);
         const eventCreateDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Actualización de talla');
-
+        
         if (newLabel !== null) {
+            const eventId = new EventId(1);
             const modifiedField = new EventModifiedField('Etiqueta de la talla');
             const previusValue = new EventPreviusValue(garmentSize.label.value);
             const newValue = new EventNewValue(newLabel.value);
@@ -61,6 +61,7 @@ export class GarmentSizeUpdater {
         }
 
         if (newType !== null) {
+            const eventId = new EventId(2);
             const modifiedField = new EventModifiedField('Tipo de talla');
             const previusValue = new EventPreviusValue(garmentSize.garmentType.value);
             const newValue = new EventNewValue(newType.value);
@@ -80,6 +81,7 @@ export class GarmentSizeUpdater {
         }
 
         if (newOrder !== null) {
+            const eventId = new EventId(3);
             const modifiedField = new EventModifiedField('Orden');
             const previusValue = new EventPreviusValue(garmentSize.order.value.toString());
             const newValue = new EventNewValue(newOrder.value.toString());
@@ -99,6 +101,7 @@ export class GarmentSizeUpdater {
         }
 
         if (newState !== null) {
+            const eventId = new EventId(4);
             const modifiedField = new EventModifiedField('Estado de la talla');
             const previusValue = new EventPreviusValue(garmentSize.state.value ? 'Habilitado' : 'Deshabilitado');
             const newValue = new EventNewValue(newState.value ? 'Habilitado' : 'Deshabilitado');

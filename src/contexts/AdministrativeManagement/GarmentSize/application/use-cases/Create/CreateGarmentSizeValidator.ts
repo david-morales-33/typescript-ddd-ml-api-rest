@@ -4,23 +4,25 @@ import { UserPermission } from "../../../../UserPermission/domain/entities/UserP
 import { UserPermissionRepository } from "../../../../UserPermission/domain/repositories/UserPermissionRepository";
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
+import { UserPermissionState } from "../../../../UserPermission/domain/value-objects/UserPermissionState";
 import { GarmentSizeQueryRepository } from "../../../domain/repositories/GarmentSizeQueryRepository";
 import { GarmentSizeId } from "../../../domain/value-objects/GarmentSizeId";
 import { GarmentSIzeAlreadyExists } from "../../exceptions/GarmentSIzeAlreadyExists";
 
 export class CreateGarmentSizeValidator {
-    constructor (
-        private garmentSizeRepository : GarmentSizeQueryRepository,
+    constructor(
+        private garmentSizeRepository: GarmentSizeQueryRepository,
         private userPermissionsRepository: UserPermissionRepository,
-    ){}
+    ) { }
 
-    async execute(params:{createBy: UserId, garmentSizeId: GarmentSizeId}){
+    async execute(params: { createBy: UserId, garmentSizeId: GarmentSizeId }) {
 
-        const { createBy, garmentSizeId }=params;
+        const { createBy, garmentSizeId } = params;
 
         const eventPermission = UserPermission.create(
             new UserPermissionId(12),
-            new UserPermissionLabel('Agregar Talla')
+            new UserPermissionLabel('Agregar Talla'),
+            new UserPermissionState(true)
         );
 
         const userPermissionValidator = new UserPermissionValidator(this.userPermissionsRepository);
@@ -31,8 +33,8 @@ export class CreateGarmentSizeValidator {
 
         const garmentSize = await this.garmentSizeRepository.find(garmentSizeId);
 
-        if(garmentSize!==null)
+        if (garmentSize !== null)
             throw new GarmentSIzeAlreadyExists(garmentSizeId);
-        
+
     }
 }

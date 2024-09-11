@@ -23,7 +23,7 @@ export class GarmentSizeCreator {
     }) {
         const { garmentSizeOrder, garmentSizeId, garmentSizeLabel, garmentSizeType, createBy } = params;
 
-        const eventId = new EventId(0);
+        const eventId = new EventId(1);
         const creationDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Creación de usuario');
 
