@@ -20,8 +20,8 @@ export class CreateProductionModuleAnomalyValidator {
             throw new Error(`The Production Module Anomaly <${productionModuleAnomalyId.value}> already exists`);
 
         const eventPermission = UserPermission.create(
-            new UserPermissionId(0),
-            new UserPermissionLabel('')
+            new UserPermissionId(35),
+            new UserPermissionLabel('Agregar nueva anormalidad de módulo')
         );
         const userPermissionValidator = new UserPermissionValidator(this.userPermissionsRepository);
         await userPermissionValidator.execute({

@@ -7,7 +7,7 @@ import { ProductionModuleAnomalyName } from "../../../domain/value-objects/Produ
 import { CreateProductionModuleAnomalyValidator } from "./CreateProductionModuleAnomalyValidator";
 import { CreatorProductionModuleAnomaly } from "./CreatorProductionModuleAnomaly";
 
-export class CreateProductionModuleAnomalyHandler implements CommandHandler<CreateProductionModuleAnomalyCommand> {
+export class CreateProductionModuleAnomalyCommandHandler implements CommandHandler<CreateProductionModuleAnomalyCommand> {
 
     constructor(
         private creatorProductionModuleAnomaly: CreatorProductionModuleAnomaly,

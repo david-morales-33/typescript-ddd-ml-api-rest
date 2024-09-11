@@ -17,7 +17,8 @@ export class InMemoryUserPermissionRepository implements UserPermissionRepositor
             UserPermission.fromPrimitives(new UserPermissionDTO(24, 'Editar OP', true)),
             UserPermission.fromPrimitives(new UserPermissionDTO(8, 'Editar Módulo', true)),
             UserPermission.fromPrimitives(new UserPermissionDTO(12, 'Agregar Talla', true)),
-            UserPermission.fromPrimitives(new UserPermissionDTO(0, 'Editar propiedades de color', true))
+            UserPermission.fromPrimitives(new UserPermissionDTO(0, 'Editar propiedades de color', true)),
+            UserPermission.fromPrimitives(new UserPermissionDTO(35, 'Agregar nueva anormalidad de módulo', true)),
         ]
     }
 
