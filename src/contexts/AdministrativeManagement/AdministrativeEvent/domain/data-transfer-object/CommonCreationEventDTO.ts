@@ -4,7 +4,7 @@ export class CommonCreationEventDTO {
     private _className: string = 'CreationEvent.commonDTO';
 
     constructor(
-        readonly id: number,
+        readonly id: string,
         readonly createBy: string,
         readonly createDate: Date,
         readonly description: string

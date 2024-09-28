@@ -1,3 +1,3 @@
-import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
+import { Uuid } from "../../../../Shared/domain/value-object/Uuid";
 
-export class CountingRecordsOrderId extends ValueObject<string> { }
+export class CountingRecordsOrderId extends Uuid { }

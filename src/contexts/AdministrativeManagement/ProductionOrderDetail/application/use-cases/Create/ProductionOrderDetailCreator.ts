@@ -6,6 +6,7 @@ import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionOrder } from "../../../../ProductionOrder/domain/entities/ProductionOrder";
 import { ProductionOrderCommandRepository } from "../../../../ProductionOrder/domain/repositories/ProductionOrderCommandRepository";
 import { ProductionOrderReference } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderReference";
+import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
 
 
 export class ProductionOrderDetailCreator {
@@ -18,7 +19,7 @@ export class ProductionOrderDetailCreator {
     }) {
         const { createBy } = params;
 
-        const eventId = new EventId(1);
+        const eventId = new EventId(Uuid.random().value);
         const creationDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Creación de OP');
 

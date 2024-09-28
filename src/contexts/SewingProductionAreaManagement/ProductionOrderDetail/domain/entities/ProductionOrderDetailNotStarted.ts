@@ -98,8 +98,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoo
     }
 
     private hasAddedCountingRecordOrder(countingRecordsOrder: CountingRecordsOrderId): boolean {
-        const findedCountingRecordsOrder = this.countingRecordsOrderListId.
-            find(element => element.value === countingRecordsOrder.value);
+        const findedCountingRecordsOrder = this.countingRecordsOrderListId.find(element => element.value === countingRecordsOrder.value);
         return findedCountingRecordsOrder !== undefined;
     }
 

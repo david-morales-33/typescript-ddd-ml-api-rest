@@ -1,3 +1,4 @@
+import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
 import { CommonModificationEvent } from "../../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
 import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
 import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
@@ -38,7 +39,7 @@ export class ProductionOrderUpdater {
         const eventDescription = new EventDescription('Actualización de OP');
 
         if (processStartDatePlanned !== null) {
-            const eventId = new EventId(1);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('Fecha planeada para inicio de proceso');
             const previusValue = new EventPreviusValue(
                 productionOrder.processStartDatePlanned === null ?
@@ -62,7 +63,7 @@ export class ProductionOrderUpdater {
         }
 
         if (processEndDatePlanned !== null) {
-            const eventId = new EventId(2);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('Fecha planeada para finalización de proceso');
             const previusValue = new EventPreviusValue(
                 productionOrder.processEndDatePlanned === null ?
@@ -86,7 +87,7 @@ export class ProductionOrderUpdater {
         }
 
         if (state !== null) {
-            const eventId = new EventId(3);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('Estado');
             const previusValue = new EventPreviusValue(productionOrder.state ? 'Habilitado' : 'Deshabilitado');
             const newValue = new EventNewValue(state.value ? 'Habilitado' : 'Deshabilitado');

@@ -6,7 +6,8 @@ import { EventId } from "../value-objects/EventId";
 import { EventModifiedField } from "../value-objects/EventModifiedField";
 import { EventNewValue } from "../value-objects/EventNewValue";
 import { EventPreviusValue } from "../value-objects/EventPreviusValue";
-import { CommonModificationEventDTO } from '../data-transfer-object/CommonModificationEventDTO'
+import { CommonModificationEventDTO } from '../data-transfer-object/CommonModificationEventDTO';
+import { Uuid } from "../../../../Shared/domain/value-object/Uuid";
 
 export class CommonModificationEvent implements AdministrativeEventRoot {
 
@@ -42,7 +43,7 @@ export class CommonModificationEvent implements AdministrativeEventRoot {
 
     static fromPrimitives(data: CommonModificationEventDTO): CommonModificationEvent {
         return new CommonModificationEvent(
-            new EventId(data.id),
+            new EventId(Uuid.random().value),
             new EventCreateBy(data.createBy),
             new EventCreateDate(data.createDate),
             new EventDescription(data.description),

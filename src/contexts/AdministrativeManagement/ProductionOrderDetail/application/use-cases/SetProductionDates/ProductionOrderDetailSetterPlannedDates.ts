@@ -1,3 +1,4 @@
+import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
 import { CommonModificationEvent } from "../../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
 import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
 import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
@@ -36,7 +37,7 @@ export class ProductionOrderDetailSetterPlannedDates {
             throw new ProductionOrderDetailNotFoundException(productionOrderDetailId);
 
         const setStartPlannedDateEvent = CommonModificationEvent.create(
-            new EventId(0),
+            new EventId(Uuid.random().value),
             setBy,
             new EventCreateDate(new Date()),
             new EventDescription('Asignación de fecha de inicio'),
@@ -46,7 +47,7 @@ export class ProductionOrderDetailSetterPlannedDates {
         );
 
         const setEndPlannedDateEvent = CommonModificationEvent.create(
-            new EventId(0),
+            new EventId(Uuid.random().value),
             setBy,
             new EventCreateDate(new Date()),
             new EventDescription('Asignación de fecha de finalización'),
@@ -56,7 +57,7 @@ export class ProductionOrderDetailSetterPlannedDates {
         );
 
         const setProductionModulePlannedEvent = CommonModificationEvent.create(
-            new EventId(0),
+            new EventId(Uuid.random().value),
             setBy,
             new EventCreateDate(new Date()),
             new EventDescription('Asignación de módulo para ejecución de suborden'),

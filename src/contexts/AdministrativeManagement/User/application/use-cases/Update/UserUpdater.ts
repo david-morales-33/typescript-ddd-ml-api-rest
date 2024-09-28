@@ -1,3 +1,4 @@
+import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
 import { CommonModificationEvent } from "../../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
 import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
 import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
@@ -43,7 +44,7 @@ export class UserUpdater {
         const eventDescription = new EventDescription('Actualizacion de usuario');
 
         if (newName) {
-            const eventId = new EventId(1);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('nombre');
             const previusValue = new EventPreviusValue(user.name.value);
             const newValue = new EventNewValue(newName.value);
@@ -63,7 +64,7 @@ export class UserUpdater {
         }
 
         if (newProfileId) {
-            const eventId = new EventId(2);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('perfil');
             const previusValue = new EventPreviusValue(user.profileId.value.toString());
             const newValue = new EventNewValue(newProfileId.value.toString());
@@ -84,7 +85,7 @@ export class UserUpdater {
         }
 
         if (newPassword) {
-            const eventId = new EventId(3);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('contraseña');
             const previusValue = new EventPreviusValue(user.password.value);
             const newValue = new EventNewValue(newPassword.value);
@@ -105,7 +106,7 @@ export class UserUpdater {
         }
 
         if (newDescription) {
-            const eventId = new EventId(4);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('descripción');
             const previusValue = new EventPreviusValue(user.description.value);
             const newValue = new EventNewValue(newDescription.value);
@@ -126,7 +127,7 @@ export class UserUpdater {
         }
 
         if (newIdType) {
-            const eventId = new EventId(5);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('Tipo de documento');
             const previusValue = new EventPreviusValue(user.idType.value.toString());
             const newValue = new EventNewValue(newIdType.value.toString());
@@ -146,7 +147,7 @@ export class UserUpdater {
             })
         }
         if(newState){
-            const eventId = new EventId(6);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('Estado');
             const previusValue = new EventPreviusValue(user.state.value?'Habilitado':'Deshabilitado');
             const newValue = new EventNewValue(newState.value?'Habilitado':'Deshabilitado');

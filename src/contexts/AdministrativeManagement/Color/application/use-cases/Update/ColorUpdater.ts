@@ -1,3 +1,4 @@
+import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
 import { CommonModificationEvent } from "../../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
 import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
 import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
@@ -35,9 +36,9 @@ export class ColorUpdater {
 
         const eventCreateDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Actualización de color');
-        
+
         if (newLabel !== null) {
-            const eventId = new EventId(1);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('Etiqueta');
             const previusValue = new EventPreviusValue(color.label.value);
             const newValue = new EventNewValue(newLabel.value);
@@ -58,7 +59,7 @@ export class ColorUpdater {
         }
 
         if (newState !== null) {
-            const eventId = new EventId(2);
+            const eventId = new EventId(Uuid.random().value);
             const modifiedField = new EventModifiedField('Etiqueta');
             const previusValue = new EventPreviusValue(color.state.value ? 'Habilitado' : 'Deshabilitado');
             const newValue = new EventNewValue(newState.value ? 'Habilitado' : 'Deshabilitado');

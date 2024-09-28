@@ -3,7 +3,7 @@ export class CommonModificationEventDTO {
     private _className: string = 'ModificationEvent.commonDTO';
 
     constructor(
-        readonly id: number,
+        readonly id: string,
         readonly createBy: string,
         readonly createDate: Date,
         readonly description: string,

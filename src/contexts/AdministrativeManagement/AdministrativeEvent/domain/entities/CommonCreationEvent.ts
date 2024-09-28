@@ -3,7 +3,8 @@ import { EventCreateBy } from "../value-objects/EventCreateBy";
 import { EventCreateDate } from "../value-objects/EventCreateDate";
 import { EventDescription } from "../value-objects/EventDescription";
 import { EventId } from "../value-objects/EventId";
-import { CommonCreationEventDTO } from '../data-transfer-object/CommonCreationEventDTO'
+import { CommonCreationEventDTO } from '../data-transfer-object/CommonCreationEventDTO';
+import { Uuid } from '../../../../Shared/domain/value-object/Uuid'
 
 export class CommonCreationEvent implements AdministrativeEventRoot {
 
@@ -30,13 +31,12 @@ export class CommonCreationEvent implements AdministrativeEventRoot {
 
     static fromPrimitives(data: CommonCreationEventDTO): CommonCreationEvent {
         return new CommonCreationEvent(
-            new EventId(data.id),
+            new EventId(Uuid.random().value),
             new EventCreateBy(data.createBy),
             new EventCreateDate(data.createDate),
             new EventDescription(data.description)
         );
     }
-
 
     toPrimitives(): CommonCreationEventDTO {
         return new CommonCreationEventDTO(

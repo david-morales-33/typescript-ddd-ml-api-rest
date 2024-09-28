@@ -1,3 +1,4 @@
+import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
 import { CommonCreationEvent } from "../../../../AdministrativeEvent/domain/entities/CommonCreationEvent";
 import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
 import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
@@ -23,7 +24,7 @@ export class GarmentSizeCreator {
     }) {
         const { garmentSizeOrder, garmentSizeId, garmentSizeLabel, garmentSizeType, createBy } = params;
 
-        const eventId = new EventId(1);
+        const eventId = new EventId(Uuid.random().value);
         const creationDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Creación de usuario');
 

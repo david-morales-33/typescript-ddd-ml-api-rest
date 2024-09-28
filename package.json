@@ -6,7 +6,7 @@
     "tsc": "tsc",
     "console-integration-test": "ts-node src/entities-test/console.integration.test.ts",
     "console-entities-test": "ts-node src/entities-test/console.entities.test.ts",
-    "build":"tsc --build",
+    "build": "tsc --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "David Morales",
@@ -14,6 +14,8 @@
   "description": "",
   "devDependencies": {
     "@types/mssql": "^9.1.5",
+    "@types/uuid": "^10.0.0",
+    "@types/uuid-validate": "^0.0.3",
     "typescript": "^5.5.4"
   },
   "dependencies": {
@@ -21,6 +23,8 @@
     "mssql": "^11.0.1",
     "node-dependency-injection": "^3.1.2",
     "reflect-metadata": "^0.2.2",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "uuid": "^10.0.0",
+    "uuid-validate": "^0.0.3"
   }
 }

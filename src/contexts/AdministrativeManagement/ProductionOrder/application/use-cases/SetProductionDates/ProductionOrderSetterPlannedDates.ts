@@ -1,3 +1,4 @@
+import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
 import { CommonModificationEvent } from "../../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
 import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
 import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
@@ -33,7 +34,7 @@ export class ProductionOrderSetterPlannedDates {
         if (productionOrder === null)
             throw new ProductionOrderNotFoundException(productionOrderId);
 
-        const eventId = new EventId(0);
+        const eventId = new EventId(Uuid.random().value);
         const eventCreateDate = new EventCreateDate(new Date());
         const eventDescription = new EventDescription('Asignación de fecha de ejecución');
         const modifiedField = new EventModifiedField('nombre');
