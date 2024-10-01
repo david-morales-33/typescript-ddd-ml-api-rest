@@ -1,6 +1,7 @@
 import { ContainerBuilder } from 'node-dependency-injection';
-import path from 'path'
 
 export const container = new ContainerBuilder();
 
-import './CountingRecordsOrder/application';
+// import './CountingRecordsOrder/application';
+require('./CountingRecordsOrder/application');
+require('./ProductionModule/application');
