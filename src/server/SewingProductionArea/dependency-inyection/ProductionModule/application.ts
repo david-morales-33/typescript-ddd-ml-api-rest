@@ -3,6 +3,7 @@ import { InMemeryProductionModuelResponseRepository } from '../../../../contexts
 import { ProductionModuleFinder } from '../../../../contexts/SewingProductionAreaManagement/ProductionModule/application/use-cases/Find/ProductionModuleFinder';
 import { ProductionModuleFinder as ProductionModuleSearcher } from '../../../../contexts/SewingProductionAreaManagement/ProductionModule/application/use-cases/SearchAll/ProductionModuleFinder';
 import { SearchAllProductionModuleQueryHandler } from '../../../../contexts/SewingProductionAreaManagement/ProductionModule/application/use-cases/SearchAll/SearchAllProductionModuleQueryHandler'
+import { InMemoryProductionModuleQueryRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionModule/infrastructure/InMemory/InMemoryProductionModuleQueryRepository'
 
 const inMemeryProductionModuelResponseRepository = container.register('SewingProductionAreaManagement.infrastructure.ProductionModule.InMemeryProductionModuelResponseRepository', InMemeryProductionModuelResponseRepository);
 
@@ -13,5 +14,7 @@ container.register('SewingProductionAreaManagement.application.ProductionModule.
 const productionModuleSearcher = container.register('SewingProductionAreaManagement.application.ProductionModule.ProductionModuleSearcher', ProductionModuleSearcher).addArgument(inMemeryProductionModuelResponseRepository);
 
 container.register('SewingProductionAreaManagement.application.ProductionModule.SearchAllProductionModuleQueryHandler', SearchAllProductionModuleQueryHandler).addArgument(productionModuleSearcher);
+
+container.register('SewingProductionAreaManagement.infrastructure.ProductionModule.InMemoryProductionModuleQueryRepository', InMemoryProductionModuleQueryRepository);
 
 
