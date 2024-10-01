@@ -1,4 +1,4 @@
-import { container } from '../server/SewingProductionArea/dependency-inyection/application';
+import { container } from '../server/SewingProductionAreaManagement/dependency-inyection/application';
 
 const repo = container.get('SewingProductionAreaManagement.application.ProductionOrder.CreateCountingRecordsOrderSecondQualityCommandHandler')
 
