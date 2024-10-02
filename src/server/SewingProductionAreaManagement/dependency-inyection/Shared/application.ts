@@ -1,5 +1,5 @@
 import { container } from '../application';
-import { SQLServerPoolFactory } from '../../../../contexts/Shared/infrastructure/percistence/SQLServere/SQLServerPoolFactory';
+import { SQLServerPoolFactory } from '../../../../contexts/Shared/infrastructure/persistence/SQLServere/SQLServerPoolFactory';
 
 // container.register();
 

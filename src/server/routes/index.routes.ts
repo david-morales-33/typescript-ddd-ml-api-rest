@@ -12,7 +12,7 @@ export class ContextRoutes {
     }
 
     private inizialicer() {
-        this.router.use('/mujer-latina/administracion/', this.administrativeManagementRoutes.router);
-        this.router.use('/mujer-latina/confeccion/', this.sewingProductionAreaManagementRoutes.router);
+        this.router.use('/mujer-latina/proceso-administrativo/', this.administrativeManagementRoutes.router);
+        this.router.use('/mujer-latina/proceso-confeccion/', this.sewingProductionAreaManagementRoutes.router);
     }
 }
