@@ -6,6 +6,8 @@ export enum Operator {
   GT = '>',
   LT = '<',
   CONTAINS = 'CONTAINS',
+  CONTAINS_RIGHT = 'CONTAINS_RIGHT',
+  CONTAINS_LEFT = 'CONTAINS_LEFT',
   NOT_CONTAINS = 'NOT_CONTAINS'
 }
 

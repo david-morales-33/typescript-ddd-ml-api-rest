@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-export class CountingRecordsOrderRouter {
+export class CountingRecordsOrderRoutes {
 
-    public countingRecordsOrderRouter = Router();
+    public router = Router();
 
     constructor() {
         this.inizialicer();

@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-export class ProductionOrderRouter {
+export class ProductionOrderRoutes {
 
-    public productionOrderRouter = Router();
+    public router = Router();
 
     constructor() {
         this.inizialicer();
