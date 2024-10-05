@@ -1,16 +1,10 @@
 import { EnviromentConfig } from '../../../../../../server/EnviromentConfig';
+// import {SQLServerConfig} from '../../../../../Shared/infrastructure/persistence/SQLServere/SQLServerConfig'
+import { config as SQLServerConfig } from 'mssql';
 
-interface ConfigureDB {
-    user: string
-    password: string
-    server: string
-    database: string,
-    pool: any,
-    options: any
-}
 
 export class SQLServerConfigFactory {
-    static createConfig(): ConfigureDB {
+    static createConfig(): SQLServerConfig {
         const env = new EnviromentConfig();
         const pool = {
             max: 10,
@@ -23,6 +17,7 @@ export class SQLServerConfigFactory {
         }
         return {
             user: env.DB_USER,
+            port: parseInt(env.DB_PORT),
             password: env.DB_PASSWORD,
             server: env.DB_HOST,
             database: env.DB_DATABASE,
