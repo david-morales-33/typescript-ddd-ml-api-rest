@@ -32,17 +32,19 @@ export abstract class SQLServerRepository {
         return (await this._pool).close()
     }
 
-    protected async execute(params: dbParameters[] | []): Promise<sql.IProcedureResult<any>> {
+    protected async execute(params: dbParameters[] | []): Promise<sql.IRecordSet<any>> {
         const query = (await this.connection()).request();
 
-        if (params !== undefined)
-            params.forEach(element => { query.input(element.name, element.type, element.value) });
+        params.forEach(element => { query.input(element.name, element.type, element.value) });
 
-        return await query.execute<Promise<sql.IProcedureResult<any>>>(this.procedureStoreName());
+        const { recordset, returnValue } = await query.execute(this.procedureStoreName());
+        if (returnValue !== 1)
+            this.throwQueryError(recordset[0].MENSAJE);
+        return recordset;
     }
 
     protected createTVPTable(values: any[], tableType: string, columns: { name: string, type: paramType }[]) {
-        const table = new sql.Table(tableType); 
+        const table = new sql.Table(tableType);
 
         columns.forEach(col => {
             table.columns.add(col.name, col.type);
@@ -63,5 +65,9 @@ export abstract class SQLServerRepository {
                 valor: filter.value
             }
         });
+    }
+
+    protected throwQueryError(message: string) {
+        throw new Error(message)
     }
 }
