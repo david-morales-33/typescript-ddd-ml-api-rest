@@ -4,7 +4,7 @@ import { Order } from "../../../domain/design-patterns/Criteria/Order";
 import { Operator as ComparisonOperator } from "../../../domain/design-patterns/Criteria/FilterOperator";
 import { Operator as LogicOperator } from "../../../domain/design-patterns/Criteria/LogicOperator";
 
-type SQLComparisonOperator = '=' | '<>' | '>' | '<' | 'LIKE' | 'NOT LIKE';
+type SQLComparisonOperator = '=' | '<>' | '>' | '<' | 'LIKE' | 'NOT LIKE' | 'IS' | 'IS NOT';
 type SQLLogicOperator = 'AND' | 'OR';
 type SQLDirection = 'ASC' | 'DESC';
 
@@ -28,7 +28,9 @@ export class SQLServerCriteriaConverter {
             [ComparisonOperator.GT, this.greaterThanFilter],
             [ComparisonOperator.LT, this.lowerThanFilter],
             [ComparisonOperator.CONTAINS, this.containsFilter],
-            [ComparisonOperator.NOT_CONTAINS, this.notContainsFilter]
+            [ComparisonOperator.NOT_CONTAINS, this.notContainsFilter],
+            [ComparisonOperator.IS_NULL, this.notContainsFilter],
+            [ComparisonOperator.IS_NOT_NULL, this.notContainsFilter],
         ]);
         this.filterLogicOperatorTransformers = new Map<LogicOperator, TransformerFunction<SQLLogicOperator>>([
             [LogicOperator.AND, this.AndFilter],
@@ -81,6 +83,12 @@ export class SQLServerCriteriaConverter {
     }
     private notContainsFilter(): SQLComparisonOperator {
         return 'NOT LIKE'
+    }
+    private isFilter(): SQLComparisonOperator {
+        return 'IS';
+    }
+    private isNotFilter(): SQLComparisonOperator {
+        return 'IS NOT'
     }
     private AndFilter(): SQLLogicOperator {
         return 'AND'

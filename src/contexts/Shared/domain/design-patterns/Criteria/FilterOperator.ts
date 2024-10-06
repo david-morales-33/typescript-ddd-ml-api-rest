@@ -2,6 +2,8 @@ import { EnumValueObject } from "../../value-object/EnumValueObject";
 
 export enum Operator {
   EQUAL = '=',
+  IS_NULL = 'IS_NULL',
+  IS_NOT_NULL = 'IS_NOT_NULL',
   NOT_EQUAL = '!=',
   GT = '>',
   LT = '<',
