@@ -1,17 +1,17 @@
 import sql, { ConnectionPool } from 'mssql';
-import { SQLServerCriteriaConverter } from './SQLServerCriteriaConverter';
+import { SQLQueryFilters, SQLServerCriteriaConverter } from './SQLServerCriteriaConverter';
 
-export type dbParameters = {
-    name: string;
-    type:
-    | sql.ISqlTypeFactoryWithLength
+type paramType = | sql.ISqlTypeFactoryWithLength
     | sql.ISqlTypeFactoryWithNoParams
     | sql.ISqlTypeFactoryWithPrecisionScale
     | sql.ISqlTypeFactoryWithScale
     | sql.ISqlTypeFactoryWithTvpType;
+
+export type dbParameters = {
+    name: string;
+    type: paramType;
     value: any
 }
-
 export abstract class SQLServerRepository {
     protected criteriaConverter: SQLServerCriteriaConverter;
 
@@ -37,32 +37,55 @@ export abstract class SQLServerRepository {
         tvp?: {
             tvp_param: string,
             tvp_name: string,
-            tvp_params: dbParameters[] | []
+            tvp_values: dbParameters[] | []
         }
     ): Promise<sql.IProcedureResult<any>> {
 
         if (tvp !== undefined) {
-            const { tvp_name, tvp_param, tvp_params } = tvp;
-            const tvpParameters = this.TVPConverter(tvp_param, tvp_name, tvp_params);
-            const newParams = [...tvp_params, tvpParameters];
+            const { tvp_name, tvp_param, tvp_values } = tvp;
+            const tvpParameters = this.TVPConverter(tvp_param, tvp_name, tvp_values);
+            const newParams = [...params, tvpParameters];
 
             const query = this.setterQueryInputs((await this.connection()).request(), newParams)
             return await query.execute<Promise<sql.IProcedureResult<any>>>(this.procedureStoreName());
         }
-        
         const query = this.setterQueryInputs((await this.connection()).request(), params)
         return await query.execute<Promise<sql.IProcedureResult<any>>>(this.procedureStoreName());
     }
 
-    protected TVPConverter(tvp_param: string, tvp_name: string, params?: dbParameters[]): dbParameters {
+    protected createTVPTable(values: any[], tableType: string, columns: { name: string, type: paramType }[]) {
+        const table = new sql.Table(tableType);  // Crea la tabla de tipo TVP
+
+        columns.forEach(col => {
+            table.columns.add(col.name, col.type);
+        });
+
+        values.forEach(row => {
+            table.rows.add(...columns.map(col => row[col.name]));
+        });
+        return table;
+    }
+
+    protected TVPConverter(tvp_param: string, tvp_name: string, values?: dbParameters[]): dbParameters {
         const TvpParam: dbParameters = { name: tvp_param, type: sql.TVP, value: new sql.Table(tvp_name) }
 
-        if (params !== undefined)
-            params.forEach((element, idx) => {
+        if (values !== undefined)
+            values.forEach((element, idx) => {
                 TvpParam.value.columns.add(element.name, element.type);
                 TvpParam.value.rows.add((idx + 1), element.value);
             });
         return TvpParam;
+    }
+
+    protected convertToPersistenceFilters(filters: SQLQueryFilters[]) {
+        return filters.map(filter => {
+            return {
+                operador_logico: filter.logicOperator,
+                campo: filter.field,
+                operador_comparacion: filter.comparisonOperator,
+                valor: filter.value
+            }
+        });
     }
 
     private setterQueryInputs(query: sql.Request, params?: dbParameters[]): sql.Request {
@@ -72,3 +95,4 @@ export abstract class SQLServerRepository {
     }
 
 }
+Object.keys(SQLServerRepository)

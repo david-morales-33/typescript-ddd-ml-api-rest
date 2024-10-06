@@ -8,7 +8,7 @@ type SQLComparisonOperator = '=' | '<>' | '>' | '<' | 'LIKE' | 'NOT LIKE';
 type SQLLogicOperator = 'AND' | 'OR';
 type SQLDirection = 'ASC' | 'DESC';
 
-interface SQLQueryFilters {
+export interface SQLQueryFilters {
     comparisonOperator: SQLComparisonOperator;
     logicOperator: SQLLogicOperator;
     field: string;

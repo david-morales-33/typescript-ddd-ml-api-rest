@@ -1,27 +1,31 @@
-import { container } from "../server/SewingProductionAreaManagement/dependency-inyection/application";
+import { container } from '../server/SewingProductionAreaManagement/dependency-inyection/application'
 import { SQLServerCountingOrderRecordsRepository } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/infrastructure/persistence/SQLServer/SQLServerCountingOrderRecordsRepository'
-import { CountingRecordsOrderId } from "../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/value-objects/CountingRecordsOrderId";
-import { } from 'uuid'
-import { SQLServerPoolFactory } from "../contexts/Shared/infrastructure/persistence/SQLServere/SQLServerPoolFactory";
-import { SQLServerConfigFactory } from "../contexts/SewingProductionAreaManagement/Shared/infrastructure/persistence/SQLServer/SQLServerConfigFactory";
-import { Criteria } from "../contexts/Shared/domain/design-patterns/Criteria/Criteria";
-import { Filters } from "../contexts/Shared/domain/design-patterns/Criteria/Filters";
-import { Order } from "../contexts/Shared/domain/design-patterns/Criteria/Order";
-
-const repo = container.get<SQLServerCountingOrderRecordsRepository>('SewingProductionAreaManagement.infrastructure.CountingRecordsOrder.SqlServerCountingOrderRecordsRepository');
+import { CountingRecordsOrderPersistenceDTO } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/infrastructure/persistence/data-transfer-objects/CountingRecordsOrderPersistenceDTO'
+import { Criteria } from '../contexts/Shared/domain/design-patterns/Criteria/Criteria'
+import { Filters } from '../contexts/Shared/domain/design-patterns/Criteria/Filters'
+import { FilterField } from '../contexts/Shared/domain/design-patterns/Criteria/FilterField'
+import { Order } from '../contexts/Shared/domain/design-patterns/Criteria/Order'
 
 async function query() {
     try {
-        // const id = new CountingRecordsOrderId(CountingRecordsOrderId.random().value);
-        const filters = Filters.fromValues([]);
-        const order = Order.fromValues('asc','asc')
-        const criteria = new Criteria(filters,order,0,0)
-        await repo.match(criteria)
-        // await repo.find(id)
-        // const pool = await container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager')
+        const filtros = Filters.fromValues([
+            // new Map([
+            //     ['field', 'ocr_id'], 
+            //     ['operator', '='], 
+            //     ['value', 'ssrthgff-dffdfd-rfgtrfgtf-fdrtgf']
+            // ]),
+            new Map([
+                ['field', 'op'], 
+                ['operator', 'CONTAINS'], 
+                ['value', 'MOB%']
+            ]),
+        ]);
 
-        // const pool = await SQLServerPoolFactory.createPool('SewingProductionAreaManagement',SQLServerConfigFactory.createConfig())
-        // console.log(pool)
+        const orden = Order.fromValues();
+        const criterio = new Criteria(filtros, orden)
+
+        container.get<SQLServerCountingOrderRecordsRepository>('SewingProductionAreaManagement.infrastructure.CountingRecordsOrder.SqlServerCountingOrderRecordsRepository').match(criterio)
+
     } catch (error) {
         console.log(error)
     }
