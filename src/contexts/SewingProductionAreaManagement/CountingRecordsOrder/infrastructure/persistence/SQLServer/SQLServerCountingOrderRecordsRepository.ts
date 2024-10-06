@@ -43,7 +43,7 @@ export class SQLServerCountingOrderRecordsRepository extends SQLServerRepository
 
         const domainfilters = this.criteriaConverter.convert(criteria);
         const persistenceFilters = this.convertToPersistenceFilters(domainfilters)
-        console.log(persistenceFilters)
+        // console.log(persistenceFilters)
         const tvp_filters = this.createTVPTable(
             persistenceFilters,
             'tvp_gestion_ml_db_filtro_criterio_solicitud',
@@ -59,6 +59,7 @@ export class SQLServerCountingOrderRecordsRepository extends SQLServerRepository
                 { campo: 'ocr_id', alias: null },
                 { campo: 'op', alias: null },
                 { campo: 'referencia', alias: null },
+                { campo: 'cantidad_registros', alias: 'unidades' },
 
             ],
             'tvp_gestion_ml_db_filtro_campo_solicitud',

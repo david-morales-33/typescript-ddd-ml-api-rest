@@ -19,6 +19,11 @@ async function query() {
                 ['operator', 'CONTAINS'], 
                 ['value', 'MOB%']
             ]),
+            new Map([
+                ['field', 'cantidad_registros'], 
+                ['operator', '>'], 
+                ['value', '63']
+            ]),
         ]);
 
         const orden = Order.fromValues();
