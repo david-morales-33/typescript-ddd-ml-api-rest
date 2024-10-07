@@ -29,8 +29,8 @@ export class SQLServerCriteriaConverter {
             [ComparisonOperator.LT, this.lowerThanFilter],
             [ComparisonOperator.CONTAINS, this.containsFilter],
             [ComparisonOperator.NOT_CONTAINS, this.notContainsFilter],
-            [ComparisonOperator.IS_NULL, this.notContainsFilter],
-            [ComparisonOperator.IS_NOT_NULL, this.notContainsFilter],
+            [ComparisonOperator.IS_NULL, this.isFilter],
+            [ComparisonOperator.IS_NOT_NULL, this.isNotFilter],
         ]);
         this.filterLogicOperatorTransformers = new Map<LogicOperator, TransformerFunction<SQLLogicOperator>>([
             [LogicOperator.AND, this.AndFilter],

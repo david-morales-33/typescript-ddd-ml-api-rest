@@ -43,7 +43,7 @@ export class InMemoryProductionOrderResponseRepository implements ProductionOrde
         return this.productionOrderList;
     }
 
-    async matching(): Promise<ProductionOrderViewDTO[]> {
+    async match(): Promise<ProductionOrderViewDTO[]> {
         return this.productionOrderList;
     }
 }

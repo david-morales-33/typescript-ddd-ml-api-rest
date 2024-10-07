@@ -17,6 +17,7 @@ import { CountingRecordsOrderSecondQualityCreator } from '../../../../contexts/S
 import { CreateCountingRecordsOrderSecondQualityValidator } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderSecondQuality/CreateCountingRecordsOrderSecondQualityValidator'
 import { InMemoryCreateCountingRecordsOrderTwoCommandRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/InMemory/InMemoryCreateCountingRecordsOrderTwoCommandRepository'
 import { CreateCountingRecordsOrderSecondQualityCommandHandler } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderSecondQuality/CreateCountingRecordsOrderSecondQualityCommandHandler'
+import { SQLServerProductionOrderResponseRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderResponseRepository';
 
 const inMemoryProductionOrderResponseRepository = container.
     register('SewingProductionAreaManagement.infrastructure.ProductionOrder.InMemoryProductionOrderResponseRepository', InMemoryProductionOrderResponseRepository);
@@ -44,6 +45,9 @@ const productionOrderFinder = container.register('SewingProductionAreaManagement
 
 container.register('SewingProductionAreaManagement.application.ProductionOrder.ProductionOrderQueryHandler', ProductionOrderQueryHandler).
     addArgument(productionOrderFinder);
+
+const sqlServerProductionOrderResponseRepository = container.register('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderResponseRepository', SQLServerProductionOrderResponseRepository).
+    addArgument(container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'));
 
 const productionOrderCreator = container.
     register('SewingProductionAreaManagement.application.ProductionOrder.inMemoryCreateProductionOrderCommandRepository', ProductionOrderCreator).
