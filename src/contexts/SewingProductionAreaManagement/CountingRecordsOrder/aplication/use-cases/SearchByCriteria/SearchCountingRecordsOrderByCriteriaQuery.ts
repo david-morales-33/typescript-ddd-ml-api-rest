@@ -1,4 +1,6 @@
-export class SearchCountingRecordsOrderByCriteriaQuery {
+import { Query } from "../../../../../Shared/domain/Query";
+
+export class SearchCountingRecordsOrderByCriteriaQuery implements Query {
     readonly filters: Array<Map<string, string>>;
     readonly orderBy?: string;
     readonly orderType?: string;
