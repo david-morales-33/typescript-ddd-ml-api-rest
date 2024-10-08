@@ -1,4 +1,6 @@
-export class ProductionOrderExternalServiceDTO {
+import { ServiceResponse } from "../../../../Shared/infrastructure/services/WebService/ServiceResponse";
+
+export class ProductionOrderExternalServiceDTO implements ServiceResponse {
 
     private _className: string = 'ProductionOrderExternalService.DTO';
 

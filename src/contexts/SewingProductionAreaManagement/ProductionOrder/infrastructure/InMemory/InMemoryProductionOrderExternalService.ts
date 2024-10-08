@@ -20,10 +20,8 @@ export class InMemoryExternalServiceRepository implements ProductionOrderExterna
     }
     
 
-    async find(productionOderId: ProductionOrderId): Promise<ProductionOrderExternalServiceDTO[] | null> {
+    async find(productionOderId: ProductionOrderId): Promise<ProductionOrderExternalServiceDTO[]> {
         const productionOrderDetailList = this.productionOrderList.filter(entry => entry.op === productionOderId.value)
-        if (productionOrderDetailList.length === 0)
-            return null;
         return productionOrderDetailList;
     }
 

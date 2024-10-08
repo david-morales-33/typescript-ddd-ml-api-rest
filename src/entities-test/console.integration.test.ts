@@ -1,16 +1,19 @@
-import { container } from '../server/SewingProductionAreaManagement/dependency-inyection/application'
 import { Criteria } from '../contexts/Shared/domain/design-patterns/Criteria/Criteria'
 import { Filters } from '../contexts/Shared/domain/design-patterns/Criteria/Filters'
 import { Order } from '../contexts/Shared/domain/design-patterns/Criteria/Order'
 import { CountingRecordsOrderId } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/value-objects/CountingRecordsOrderId'
 import { FilterByOpType } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/filters/FilterByOpType'
-import { ProductionOrderId } from '../contexts/SewingProductionAreaManagement/ProductionOrder/domain/value-objects/ProductionOrderId'
 import { Filter } from '../contexts/Shared/domain/design-patterns/Criteria/Filter'
 import { FilterField } from '../contexts/Shared/domain/design-patterns/Criteria/FilterField'
 import { FilterOperator, Operator } from '../contexts/Shared/domain/design-patterns/Criteria/FilterOperator'
 import { FilterValue } from '../contexts/SewingProductionAreaManagement/Shared/domain/design-patterns/Criteria/FilterValue';
+import { AxiosConfig } from '../contexts/Shared/infrastructure/services/WebService/WebServiceConfig'
+import { container } from '../server/SewingProductionAreaManagement/dependency-inyection/application'
+import { ProductionOrderId } from '../contexts/SewingProductionAreaManagement/ProductionOrder/domain/value-objects/ProductionOrderId'
 import { SQLServerUserPermission } from '../contexts/SewingProductionAreaManagement/UserPermission/infrastructure/Persistence/SQLServer/SQLServerUserPermission'
 import { UserId } from '../contexts/SewingProductionAreaManagement/User/domain/value-objects/UserId'
+import { WebServiceProductionOrderConfigFactory } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Services/WebService/WebServiceProductionOrderConfigFactory'
+import { WebServiceProductionOrder } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Services/WebService/WebServiceProductionOrder'
 
 async function query() {
     try {
@@ -28,9 +31,7 @@ async function query() {
         // const orden = Order.fromValues();
         // const criterio = new Criteria(filtros, orden)
 
-        const id = new ProductionOrderId('MOB4399')
-
-        const res = await container.get<SQLServerUserPermission>('SewingProductionAreaManagement.infrastructure.UserPermission.SQLServerUserPermission').searchAll(new UserId('1146441925'))
+        const res = await container.get<WebServiceProductionOrder>('SewingProductionAreaManagement.infrastructure.Services.WebServiceProductionOrder').find(new ProductionOrderId('MOB4399'))
         console.log(res)
 
     } catch (error) {
@@ -39,3 +40,5 @@ async function query() {
 }
 
 query();
+
+
