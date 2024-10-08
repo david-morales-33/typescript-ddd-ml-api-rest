@@ -9,7 +9,8 @@ import { Filter } from '../contexts/Shared/domain/design-patterns/Criteria/Filte
 import { FilterField } from '../contexts/Shared/domain/design-patterns/Criteria/FilterField'
 import { FilterOperator, Operator } from '../contexts/Shared/domain/design-patterns/Criteria/FilterOperator'
 import { FilterValue } from '../contexts/SewingProductionAreaManagement/Shared/domain/design-patterns/Criteria/FilterValue';
-import { SQLServerProductionOrderDetail } from '../contexts/SewingProductionAreaManagement/ProductionOrderDetail/infrastructure/Persistence/SQLServer/SQLServerProductionOrderDetail'
+import { SQLServerUserPermission } from '../contexts/SewingProductionAreaManagement/UserPermission/infrastructure/Persistence/SQLServer/SQLServerUserPermission'
+import { UserId } from '../contexts/SewingProductionAreaManagement/User/domain/value-objects/UserId'
 
 async function query() {
     try {
@@ -29,7 +30,7 @@ async function query() {
 
         const id = new ProductionOrderId('MOB4399')
 
-        const res = await container.get<SQLServerProductionOrderDetail>('SewingProductionAreaManagement.infrastructure.ProductionOrderDetail.SqlServerProductionOrderDetail').find(new ProductionOrderId('MOB4399'))
+        const res = await container.get<SQLServerUserPermission>('SewingProductionAreaManagement.infrastructure.UserPermission.SQLServerUserPermission').searchAll(new UserId('1146441925'))
         console.log(res)
 
     } catch (error) {
