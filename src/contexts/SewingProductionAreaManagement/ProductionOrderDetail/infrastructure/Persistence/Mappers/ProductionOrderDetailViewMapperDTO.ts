@@ -5,8 +5,9 @@ export interface ProductionOrderDetailPersistenceObject {
     referencia: string;
     tipo_referencia_id: number;
     tipo_referencia: string;
-    tipo_prenda_id: number;
-    tipo_prenda: string;
+    tipo_proceso_id: number;
+    tipo_proceso: string;
+    tipo_op_id: string;
     tipo_op: string;
     color_id: string;
     color: string;

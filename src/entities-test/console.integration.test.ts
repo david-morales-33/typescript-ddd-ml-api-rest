@@ -1,5 +1,4 @@
 import { container } from '../server/SewingProductionAreaManagement/dependency-inyection/application'
-import { SQLServerProductionOrderResponseRepository } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderResponseRepository'
 import { Criteria } from '../contexts/Shared/domain/design-patterns/Criteria/Criteria'
 import { Filters } from '../contexts/Shared/domain/design-patterns/Criteria/Filters'
 import { Order } from '../contexts/Shared/domain/design-patterns/Criteria/Order'
@@ -9,7 +8,8 @@ import { ProductionOrderId } from '../contexts/SewingProductionAreaManagement/Pr
 import { Filter } from '../contexts/Shared/domain/design-patterns/Criteria/Filter'
 import { FilterField } from '../contexts/Shared/domain/design-patterns/Criteria/FilterField'
 import { FilterOperator, Operator } from '../contexts/Shared/domain/design-patterns/Criteria/FilterOperator'
-import { FilterValue } from '../contexts/SewingProductionAreaManagement/Shared/domain/design-patterns/Criteria/FilterValue'
+import { FilterValue } from '../contexts/SewingProductionAreaManagement/Shared/domain/design-patterns/Criteria/FilterValue';
+import { SQLServerProductionOrderDetail } from '../contexts/SewingProductionAreaManagement/ProductionOrderDetail/infrastructure/Persistence/SQLServer/SQLServerProductionOrderDetail'
 
 async function query() {
     try {
@@ -27,9 +27,9 @@ async function query() {
         // const orden = Order.fromValues();
         // const criterio = new Criteria(filtros, orden)
 
-        const id = new ProductionOrderId('MOP4399')
+        const id = new ProductionOrderId('MOB4399')
 
-        const res = await container.get<SQLServerProductionOrderResponseRepository>('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderResponseRepository').find(id)
+        const res = await container.get<SQLServerProductionOrderDetail>('SewingProductionAreaManagement.infrastructure.ProductionOrderDetail.SqlServerProductionOrderDetail').find(new ProductionOrderId('MOB4399'))
         console.log(res)
 
     } catch (error) {

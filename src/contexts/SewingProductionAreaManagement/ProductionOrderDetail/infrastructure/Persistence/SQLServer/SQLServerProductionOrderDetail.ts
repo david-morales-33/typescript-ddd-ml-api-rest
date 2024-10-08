@@ -33,7 +33,7 @@ export class SQLServerProductionOrderDetail extends SQLServerRepository implemen
             {
                 name: 'entidad',
                 type: sql.VarChar,
-                value: 'vw_gestion_ml_db_proceso_produccion_orden_conteo_registro'
+                value: 'vw_gestion_ml_db_proceso_confeccion_orden_produccion_detalles'
             },
             {
                 name: 'filtros',
@@ -57,7 +57,7 @@ export class SQLServerProductionOrderDetail extends SQLServerRepository implemen
             {
                 name: 'entidad',
                 type: sql.VarChar,
-                value: 'vw_gestion_ml_db_proceso_produccion_orden_conteo_registro'
+                value: 'vw_gestion_ml_db_proceso_confeccion_orden_produccion_detalles'
             }
         ]
         try {

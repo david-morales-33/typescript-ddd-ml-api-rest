@@ -7,3 +7,4 @@ require('./UserPermission/application');
 require('./CountingRecordsOrder/application');
 require('./ProductionModule/application');
 require('./ProductionOrder/application');
+require('./ProductionOrderDetail/application');
