@@ -47,10 +47,11 @@ export class SQLServerProductionOrderQueryRepository extends SQLServerRepository
             },
         ]
         try {
+            const result1 = await this.getProductionOrderDetailsById(productionOrderId.value)
             const result: ProductionOrderPersistenceObject[] = await this.execute(params);
             if (result.length === 0)
                 return null;
-            const productionOrder = ProductionOrderQueryMapperDTO.convertFromPersistenceObject(result[0])
+            const productionOrder = ProductionOrderQueryMapperDTO.convertFromPersistenceObject(result[0], result1.map(entry => entry.toPrimitives()));
             return productionOrder;
         }
         catch (error) { throw (error) }
@@ -86,13 +87,14 @@ export class SQLServerProductionOrderQueryRepository extends SQLServerRepository
         ];
         try {
             const result: ProductionOrderDetailPersistenceObject[] = await this.execute(params);
-            return result.map(ProductionOrderDetailQueryMapperDTO.convertFromPersistenceObject)
+            const CountingRecordsOrdeIdList = await this.getCountingRecordsOrderByOp(productionOrderId)
+            return result.map(entry => ProductionOrderDetailQueryMapperDTO.convertFromPersistenceObject(entry, CountingRecordsOrdeIdList));
         }
         catch (error) { throw (error) }
 
     }
 
-    private async getCountingRecordsOrderByOp(productionOrderId: string): Promise<CountingRecordsOrderIdDTO[]> {
+    private async getCountingRecordsOrderByOp(productionOrderId: string): Promise<CountingRecordsOrderIdDTO[] | []> {
         const filtros = Filters.fromValues([
             new Map([['field', 'op'], ['operator', '='], ['value', productionOrderId]])
         ]);
