@@ -29,19 +29,19 @@ export class ProductionOrderCreator {
 
         const productionOrderDetailListFromService = await this.productionOrderExternalService.find(productionOrderId);
 
-        
-        if (productionOrderDetailListFromService === null )
+
+        if (productionOrderDetailListFromService === null)
             throw new ProductionOrderNotFound(productionOrderId);
-        
+
         const [{ reference }] = productionOrderDetailListFromService;
-        
+
         const productionOrderReference = new ProductionOrderReference(reference);
-        
-        const eanListFromService = await this.productionOrderEanExternalService.matching({
+
+        const eanListFromService = await this.productionOrderEanExternalService.match({
             reference: productionOrderReference
         });
 
-        if (eanListFromService === null || eanListFromService === undefined)
+        if (eanListFromService.length === 0)
             throw new EanNotFound();
 
         const productionOrderDetailList = this.mapper({

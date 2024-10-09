@@ -6,11 +6,11 @@ export class WebServiceFactory {
     private static services: { [key: string]: AxiosRequestConfig } = {}
 
     static createConnection(serviceName: string, config: AxiosConfig): AxiosRequestConfig {
-        let connectionConfig = WebServiceFactory.getService(serviceName);
-        if (!connectionConfig) {
-            connectionConfig = WebServiceFactory.createConnectionConfig(config)
+        // let connectionConfig = WebServiceFactory.getService(serviceName);
+        // if (!connectionConfig) {
+            const connectionConfig = WebServiceFactory.createConnectionConfig(config)
             WebServiceFactory.registerService(serviceName, connectionConfig);
-        }
+        // }
         return connectionConfig;
     }
 

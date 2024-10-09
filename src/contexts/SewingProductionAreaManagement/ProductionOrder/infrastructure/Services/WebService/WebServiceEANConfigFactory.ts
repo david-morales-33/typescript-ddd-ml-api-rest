@@ -2,7 +2,8 @@ import { EnviromentConfig } from "../../../../../../server/EnviromentConfig";
 import { AxiosConfig } from "../../../../../Shared/infrastructure/services/WebService/WebServiceConfig";
 
 export class WebServiceEANConfigFactory {
-    static createConfig(reference?: string, colorId?: string, garmentSizeId?: string): AxiosConfig {
+    static createConfig(params: { reference?: string, colorId?: string, garmentSizeId?: string }): AxiosConfig {
+        const { reference, colorId, garmentSizeId } = params;
         const env = new EnviromentConfig();
         return {
             data: `<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://tempuri.org/">\n   

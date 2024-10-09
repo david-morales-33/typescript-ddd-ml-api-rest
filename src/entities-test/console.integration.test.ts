@@ -14,6 +14,9 @@ import { SQLServerUserPermission } from '../contexts/SewingProductionAreaManagem
 import { UserId } from '../contexts/SewingProductionAreaManagement/User/domain/value-objects/UserId'
 import { WebServiceProductionOrderConfigFactory } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Services/WebService/WebServiceProductionOrderConfigFactory'
 import { WebServiceProductionOrder } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Services/WebService/WebServiceProductionOrder'
+import { WebServiceEAN } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Services/WebService/WebServiceEAN'
+import { GarmentSize } from '../contexts/SewingProductionAreaManagement/Shared/domain/value-object/GarmentSize'
+import { ColorId } from '../contexts/SewingProductionAreaManagement/Shared/domain/value-object/ColorId'
 
 async function query() {
     try {
@@ -31,8 +34,18 @@ async function query() {
         // const orden = Order.fromValues();
         // const criterio = new Criteria(filtros, orden)
 
-        const res = await container.get<WebServiceProductionOrder>('SewingProductionAreaManagement.infrastructure.Services.WebServiceProductionOrder').find(new ProductionOrderId('MOB4399'))
-        console.log(res)
+        // const service = new WebServiceEAN();
+        // const res = await service.match({
+        //     reference: 'MAR110358',
+        //     garmentSize: new GarmentSize('38')
+        // })
+
+        const res = await container.get<WebServiceEAN>('SewingProductionAreaManagement.infrastructure.Services.WebServiceEAN').match({
+                reference: 'MAR110358',
+                garmentSize: new GarmentSize('38'),
+                colorId: new ColorId('1311')
+            });
+
 
     } catch (error) {
         console.log(error)

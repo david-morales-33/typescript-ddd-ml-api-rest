@@ -7,6 +7,7 @@ export class ProductionOrderEanExternalServiceDTO {
         readonly ean: string,
         readonly reference: string,
         readonly colorId: string,
+        readonly colorLabel: string,
         readonly garmentSize: string
     ) { }
 
