@@ -5,5 +5,4 @@ import { ProductionOrderInProgress } from "../entities/ProductionOrderInProgress
 
 export interface ProductionOrderQueryRepository {
     find(productionOrderId: ProductionOrderId): Promise<ProductionOrderNotStarted | ProductionOrderInProgress | null>
-    searchAll(): Promise<(ProductionOrderNotStarted | ProductionOrderInProgress)[]>;
 }

@@ -18,6 +18,7 @@ import { CreateCountingRecordsOrderSecondQualityValidator } from '../../../../co
 import { InMemoryCreateCountingRecordsOrderTwoCommandRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/InMemory/InMemoryCreateCountingRecordsOrderTwoCommandRepository'
 import { CreateCountingRecordsOrderSecondQualityCommandHandler } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderSecondQuality/CreateCountingRecordsOrderSecondQualityCommandHandler'
 import { SQLServerProductionOrderResponseRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderResponseRepository';
+import { SQLServerProductionOrderQueryRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderQueryRepository';
 
 const inMemoryProductionOrderResponseRepository = container.
     register('SewingProductionAreaManagement.infrastructure.ProductionOrder.InMemoryProductionOrderResponseRepository', InMemoryProductionOrderResponseRepository);
@@ -47,6 +48,9 @@ container.register('SewingProductionAreaManagement.application.ProductionOrder.P
     addArgument(productionOrderFinder);
 
 const sqlServerProductionOrderResponseRepository = container.register('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderResponseRepository', SQLServerProductionOrderResponseRepository).
+    addArgument(container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'));
+
+const sqlServerProductionOrderQueryRepository = container.register('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderQueryRepository', SQLServerProductionOrderQueryRepository).
     addArgument(container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'));
 
 const productionOrderCreator = container.

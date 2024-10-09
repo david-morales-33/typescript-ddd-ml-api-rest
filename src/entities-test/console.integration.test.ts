@@ -17,6 +17,10 @@ import { WebServiceProductionOrder } from '../contexts/SewingProductionAreaManag
 import { WebServiceEAN } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Services/WebService/WebServiceEAN'
 import { GarmentSize } from '../contexts/SewingProductionAreaManagement/Shared/domain/value-object/GarmentSize'
 import { ColorId } from '../contexts/SewingProductionAreaManagement/Shared/domain/value-object/ColorId'
+import { SQLServerProductionOrderQueryRepository } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderQueryRepository'
+import { v4 as uuid } from 'uuid';
+import validate from 'uuid-validate';
+
 
 async function query() {
     try {
@@ -40,12 +44,8 @@ async function query() {
         //     garmentSize: new GarmentSize('38')
         // })
 
-        const res = await container.get<WebServiceEAN>('SewingProductionAreaManagement.infrastructure.Services.WebServiceEAN').match({
-                reference: 'MAR110358',
-                garmentSize: new GarmentSize('38'),
-                colorId: new ColorId('1311')
-            });
-
+        const res =await container.get<SQLServerProductionOrderQueryRepository>('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderQueryRepository').find(new ProductionOrderId('MOP4500'))
+        console.log(res)
 
     } catch (error) {
         console.log(error)
@@ -54,4 +54,5 @@ async function query() {
 
 query();
 
+// console.log(validate('55575788-6c23-4d62-ba353-05226891149'))
 
