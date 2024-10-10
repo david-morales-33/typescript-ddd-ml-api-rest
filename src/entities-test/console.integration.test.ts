@@ -44,8 +44,8 @@ async function query() {
         //     garmentSize: new GarmentSize('38')
         // })
 
-        await container.get<SQLServerProductionOrderQueryRepository>('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderQueryRepository').find(new ProductionOrderId('MOP4500'))
-        // console.log(res)
+        const res = await container.get<SQLServerProductionOrderQueryRepository>('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderQueryRepository').find(new ProductionOrderId('MOP4500'))
+        console.log(res?.toPrimitives())
 
     } catch (error) {
         console.log(error)
