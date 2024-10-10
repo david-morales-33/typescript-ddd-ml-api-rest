@@ -8,7 +8,7 @@ import { FilterField } from '../contexts/Shared/domain/design-patterns/Criteria/
 import { FilterOperator, Operator } from '../contexts/Shared/domain/design-patterns/Criteria/FilterOperator'
 import { FilterValue } from '../contexts/SewingProductionAreaManagement/Shared/domain/design-patterns/Criteria/FilterValue';
 import { AxiosConfig } from '../contexts/Shared/infrastructure/services/WebService/WebServiceConfig'
-import { container } from '../server/SewingProductionAreaManagement/dependency-inyection/application'
+// import { container } from '../server/SewingProductionAreaManagement/dependency-inyection/application'
 import { ProductionOrderId } from '../contexts/SewingProductionAreaManagement/ProductionOrder/domain/value-objects/ProductionOrderId'
 import { SQLServerUserPermission } from '../contexts/SewingProductionAreaManagement/UserPermission/infrastructure/Persistence/SQLServer/SQLServerUserPermission'
 import { UserId } from '../contexts/SewingProductionAreaManagement/User/domain/value-objects/UserId'
@@ -20,6 +20,8 @@ import { ColorId } from '../contexts/SewingProductionAreaManagement/Shared/domai
 import { SQLServerProductionOrderQueryRepository } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderQueryRepository'
 import { v4 as uuid } from 'uuid';
 import validate from 'uuid-validate';
+import { SQLServerProductionModuleRepository } from '../contexts/PlatformsManagement/productionModule/infrastructure/Persistence/SQLServer/SQLServerProductionModuleRepository'
+import { container } from '../server/Platforms/dependency-inyection/application'
 
 
 async function query() {
@@ -44,8 +46,8 @@ async function query() {
         //     garmentSize: new GarmentSize('38')
         // })
 
-        const res = await container.get<SQLServerProductionOrderQueryRepository>('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderQueryRepository').find(new ProductionOrderId('MOP4500'))
-        console.log(res?.toPrimitives())
+        const res = await container.get<SQLServerProductionModuleRepository>('PlatformManagement.infrastructure.productionModule.SqlServerProductionModuleRepository').search()
+        console.log(res)
 
     } catch (error) {
         console.log(error)
