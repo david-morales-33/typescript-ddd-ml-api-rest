@@ -20,8 +20,9 @@ import { ColorId } from '../contexts/SewingProductionAreaManagement/Shared/domai
 import { SQLServerProductionOrderQueryRepository } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderQueryRepository'
 import { v4 as uuid } from 'uuid';
 import validate from 'uuid-validate';
-import { SQLServerProductionModuleRepository } from '../contexts/PlatformsManagement/productionModule/infrastructure/Persistence/SQLServer/SQLServerProductionModuleRepository'
 import { container } from '../server/Platforms/dependency-inyection/application'
+import { SQLServerProductionModuleRepository } from '../contexts/PlatformsManagement/ProductionModule/infrastructure/Persistence/SQLServer/SQLServerProductionModuleRepository'
+import { SQLServerProductionModuleEvent } from '../contexts/PlatformsManagement/ProductionModuleEvent/infrastructure/Persistence/SQLServer/SQLServerProductionModuleEvent'
 
 
 async function query() {
@@ -46,7 +47,7 @@ async function query() {
         //     garmentSize: new GarmentSize('38')
         // })
 
-        const res = await container.get<SQLServerProductionModuleRepository>('PlatformManagement.infrastructure.productionModule.SqlServerProductionModuleRepository').search()
+        const res = await container.get<SQLServerProductionModuleEvent>('PlatformManagement.infrastructure.productionModule.SQLServerProductionModuleEvent').search()
         console.log(res)
 
     } catch (error) {
@@ -56,5 +57,4 @@ async function query() {
 
 query();
 
-// console.log(validate('55575788-6c23-4d62-ba353-05226891149'))
 
