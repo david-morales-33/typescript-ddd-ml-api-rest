@@ -35,6 +35,7 @@ export class ProductionOrderDetailQueryMapperDTO {
                 productionOrderId: entity.op,
                 plannedAmount: parseInt(entity.cantidad_unidades_planeadas_proceso),
                 colorId: entity.color_id,
+                colorLabel: entity.color,
                 garmentSize: entity.talla,
                 ean: entity.ean
             })

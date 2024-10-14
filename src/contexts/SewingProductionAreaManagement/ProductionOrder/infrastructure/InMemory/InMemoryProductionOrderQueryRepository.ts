@@ -10,40 +10,61 @@ import { UserId } from "../../../User/domain/value-objects/UserId";
 import { ProductionOrderInProgress } from "../../domain/entities/ProductionOrderInProgress";
 import { ProductionOrderNotStarted } from "../../domain/entities/ProductionOrderNotStarted";
 import { ProductionOrderReference } from "../../domain/value-objects/ProductionOrderReference";
+import { ColorLabel } from "../../../Shared/domain/value-object/ColorLabel";
+import { GarmentType } from "../../../Shared/domain/value-object/GarmentType";
+import { ProductionModuleId } from "../../../ProductionModule/domain/value-objects/ProductionModuleId";
 
 export class InMemoryProductionOrderQueryRepository implements ProductionOrderQueryRepository {
     private productionOrderList: (ProductionOrderNotStarted | ProductionOrderInProgress)[]
 
     constructor() {
         const DetailNotStarted1 = new ProductionOrderDetailNotStarted(
-            new ProductionOrderId('MOB3547'),
-            new ColorId('1302'),
-            new GarmentSize('34'),
-            new BarcodeEan('7704666565678'),
-            new ProductionOrderDetailPlannedAmount(200)
+            new ProductionOrderId('MOP4415'),
+            new ColorId('1603'),
+            new ColorLabel('PALO/ROSA'),
+            new GarmentSize('L'),
+            new BarcodeEan('7703498019402'),
+            new ProductionOrderDetailPlannedAmount(50)
         )
 
         const DetailNotStarted2 = new ProductionOrderDetailNotStarted(
-            new ProductionOrderId('MOB3547'),
-            new ColorId('1302'),
-            new GarmentSize('36'),
-            new BarcodeEan('7704666565678'),
-            new ProductionOrderDetailPlannedAmount(200)
+            new ProductionOrderId('MOP4415'),
+            new ColorId('1603'),
+            new ColorLabel('PALO/ROSA'),
+            new GarmentSize('M'),
+            new BarcodeEan('7703498019419'),
+            new ProductionOrderDetailPlannedAmount(600)
         )
 
         const DetailNotStarted3 = new ProductionOrderDetailNotStarted(
-            new ProductionOrderId('MOB3547'),
-            new ColorId('1302'),
-            new GarmentSize('38'),
-            new BarcodeEan('7704666565678'),
-            new ProductionOrderDetailPlannedAmount(200)
+            new ProductionOrderId('MOP4415'),
+            new ColorId('1603'),
+            new ColorLabel('PALO/ROSA'),
+            new GarmentSize('XL'),
+            new BarcodeEan('7703498019426'),
+            new ProductionOrderDetailPlannedAmount(800)
         )
+        // const DetailNotStarted4 = new ProductionOrderDetailNotStarted(
+        //     new ProductionOrderId('MOP4414'),
+        //     new ColorId('1100'),
+        //     new ColorLabel('BLANCO'),
+        //     new GarmentSize('XL'),
+        //     new BarcodeEan('7703498019242'),
+        //     new ProductionOrderDetailPlannedAmount(250)
+        // )
 
         const productionOrderNotStarted = new ProductionOrderNotStarted(
-            new ProductionOrderId('MOB3547'),
-            new ProductionOrderReference('MAR8546'),
-            new UserId('11446441925'),
-            [DetailNotStarted1, DetailNotStarted2, DetailNotStarted3]
+            new ProductionOrderId('MOP4415'),
+            new ProductionOrderReference('MAR579'),
+            new GarmentType('MOP'),
+            new ProductionModuleId(10),
+            new UserId('1146441925'),
+            [
+                DetailNotStarted1, 
+                DetailNotStarted2, 
+                DetailNotStarted3,
+                // DetailNotStarted4
+            ]
         );
 
         this.productionOrderList = [

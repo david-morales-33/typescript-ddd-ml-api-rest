@@ -8,6 +8,7 @@ export class ProductionOrderExternalServiceDTO implements ServiceResponse {
         readonly op: string,
         readonly reference: string,
         readonly colorId: string,
+        readonly colorLabel: string,
         readonly garmentSize: string,
         readonly plannedAmount: number,
         readonly completedAmount: number,

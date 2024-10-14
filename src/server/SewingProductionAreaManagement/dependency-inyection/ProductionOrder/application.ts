@@ -19,6 +19,7 @@ import { InMemoryCreateCountingRecordsOrderTwoCommandRepository } from '../../..
 import { CreateCountingRecordsOrderSecondQualityCommandHandler } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderSecondQuality/CreateCountingRecordsOrderSecondQualityCommandHandler'
 import { SQLServerProductionOrderResponseRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderResponseRepository';
 import { SQLServerProductionOrderQueryRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderQueryRepository';
+import { SQLServerCreateProductionOrderCommandRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerCreateProductionOrderCommandRepository'
 
 const inMemoryProductionOrderResponseRepository = container.
     register('SewingProductionAreaManagement.infrastructure.ProductionOrder.InMemoryProductionOrderResponseRepository', InMemoryProductionOrderResponseRepository);
@@ -51,6 +52,9 @@ const sqlServerProductionOrderResponseRepository = container.register('SewingPro
     addArgument(container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'));
 
 const sqlServerProductionOrderQueryRepository = container.register('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderQueryRepository', SQLServerProductionOrderQueryRepository).
+    addArgument(container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'));
+
+const sqlServerCreateProductionOrderCommandRepository = container.register('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateProductionOrderCommandRepository', SQLServerCreateProductionOrderCommandRepository).
     addArgument(container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'));
 
 const productionOrderCreator = container.

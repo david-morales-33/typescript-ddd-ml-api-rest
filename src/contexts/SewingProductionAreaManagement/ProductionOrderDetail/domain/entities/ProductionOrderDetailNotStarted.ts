@@ -14,6 +14,7 @@ import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRec
 import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/entities/CountingRecordOrderSecondQualityNotChecked';
 import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
 import { ColorId } from '../../../Shared/domain/value-object/ColorId';
+import { ColorLabel } from '../../../Shared/domain/value-object/ColorLabel';
 
 export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoot {
 
@@ -28,6 +29,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoo
     constructor(
         readonly productionOrderId: ProductionOrderId,
         readonly colorId: ColorId,
+        readonly colorLabel: ColorLabel,
         readonly garmentSize: GarmentSize,
         readonly ean: BarcodeEan,
         readonly plannedAmount: ProductionOrderDetailPlannedAmount,
@@ -62,6 +64,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoo
     static create(
         productionOrderId: ProductionOrderId,
         colorId: ColorId,
+        colorLabel: ColorLabel,
         garmentSize: GarmentSize,
         ean: BarcodeEan,
         plannedAmount: ProductionOrderDetailPlannedAmount,
@@ -69,6 +72,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoo
         return new ProductionOrderDetailNotStarted(
             productionOrderId,
             colorId,
+            colorLabel,
             garmentSize,
             ean,
             plannedAmount
@@ -105,6 +109,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoo
     static fromPrimitives(data: {
         productionOrderId: string;
         colorId: string;
+        colorLabel: string;
         garmentSize: string;
         ean: string;
         plannedAmount: number;
@@ -112,6 +117,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoo
         return new ProductionOrderDetailNotStarted(
             new ProductionOrderId(data.productionOrderId),
             new ColorId(data.colorId),
+            new ColorLabel(data.colorLabel),
             new GarmentSize(data.garmentSize),
             new BarcodeEan(data.ean),
             new ProductionOrderDetailPlannedAmount(data.plannedAmount),
@@ -123,6 +129,7 @@ export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoo
             this.productionOrderDetailId.getProductionOrderDetalId(),
             this.productionOrderId.value,
             this.colorId.value,
+            this.colorLabel.value,
             this.garmentSize.value,
             this.ean.value,
             this.plannedAmount.value,

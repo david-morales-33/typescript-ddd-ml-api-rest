@@ -19,6 +19,8 @@ import { ProductionOrderDetailInProgressDTO } from "../../../ProductionOrderDeta
 import { ProductionOrderDetailNotStartedDTO } from "../../../ProductionOrderDetail/domain/data-transfer-objects/ProductionOrderDetailNotStartedDTO";
 import { ProductionOrderDetailListEmptyException } from "../../exceptions/ProductionOrderDetailListEmptyException";
 import { ProductionOrderDetailNotFoundException } from "../../exceptions/ProductionOrderDetailNotFoundException";
+import { GarmentType } from "../../../Shared/domain/value-object/GarmentType";
+import { ProductionModuleId } from "../../../ProductionModule/domain/value-objects/ProductionModuleId";
 
 export class ProductionOrderInProgress implements ProductionOrderRoot {
 
@@ -31,6 +33,8 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
     constructor(
         readonly productionOrderid: ProductionOrderId,
         readonly reference: ProductionOrderReference,
+        readonly garmentType: GarmentType,
+        readonly productionModuleAsigned: ProductionModuleId,
         readonly processStartDate: ProductionOrderProcessStartDate,
         readonly openByUser: UserId,
         readonly productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[],
@@ -69,6 +73,8 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
     static create(
         productionOrderid: ProductionOrderId,
         reference: ProductionOrderReference,
+        garmentType: GarmentType,
+        productionModuleAsigned: ProductionModuleId,
         processStartDate: ProductionOrderProcessStartDate,
         openByUser: UserId,
         productionOrderDetailList: ProductionOrderDetailInProgress[] | ProductionOrderDetailNotStarted[]
@@ -77,6 +83,8 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
         return new ProductionOrderInProgress(
             productionOrderid,
             reference,
+            garmentType,
+            productionModuleAsigned,
             processStartDate,
             openByUser,
             productionOrderDetailList,
@@ -90,7 +98,7 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
             countingRecordsOrder.garmentSize,
             countingRecordsOrder.productionOrderId
         );
-        
+
         const productionOrderDetail = this.productionOrderDetailList.find(element => element.productionOrderDetailId.getProductionOrderDetalId() === productionOrderDetailId.getProductionOrderDetalId());
 
         if (productionOrderDetail === undefined)
@@ -163,24 +171,26 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
 
     private setInitialPlannedAmount(productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[]): ProductionOrderPlannedAmount {
         let plannedAmount = 0;
-        productionOrderDetailList.forEach(element=>{
+        productionOrderDetailList.forEach(element => {
             plannedAmount = plannedAmount + element.plannedAmount.value;
         });
         return new ProductionOrderPlannedAmount(plannedAmount);
     }
 
-    private setInitialExecutedAmount(productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[]): ProductionOrderExecutedAmount{
+    private setInitialExecutedAmount(productionOrderDetailList: (ProductionOrderDetailInProgress | ProductionOrderDetailNotStarted)[]): ProductionOrderExecutedAmount {
         let executedAmount = 0;
         productionOrderDetailList.forEach(element => {
             executedAmount = executedAmount + element.executedAmount.value;
         });
-        return new ProductionOrderExecutedAmount(executedAmount); 
+        return new ProductionOrderExecutedAmount(executedAmount);
     }
 
     toPrimitives(): ProductionOrderInProgressDTO {
         return new ProductionOrderInProgressDTO(
             this.productionOrderid.value,
             this.reference.value,
+            this.garmentType.value,
+            this.productionModuleAsigned.value,
             this.plannedAmount.value,
             this.executedAmount.value,
             this.processStartDate.value,
@@ -196,6 +206,8 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
         return new ProductionOrderInProgress(
             new ProductionOrderId(data.productionOrderid),
             new ProductionOrderReference(data.reference),
+            new GarmentType(data.garmentType),
+            new ProductionModuleId(data.productionModuleAsigned),
             new ProductionOrderProcessStartDate(data.processStartDate),
             new UserId(data.openByUser),
             data.productionOrderDetailList.map(entry => {

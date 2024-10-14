@@ -1,8 +1,11 @@
+import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { ProductionOrderDetailNotStarted } from "../../../../ProductionOrderDetail/domain/entities/ProductionOrderDetailNotStarted";
 import { ProductionOrderDetailPlannedAmount } from "../../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailPlannedAmount";
 import { BarcodeEan } from "../../../../Shared/domain/value-object/BarcodeEan";
 import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
+import { ColorLabel } from "../../../../Shared/domain/value-object/ColorLabel";
 import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
+import { GarmentType } from "../../../../Shared/domain/value-object/GarmentType";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionOrderNotStarted } from "../../../domain/entities/ProductionOrderNotStarted";
 import { ProductionOrderCommandRepository } from "../../../domain/repositories/ProductionOrderCommandRepository";
@@ -23,9 +26,14 @@ export class ProductionOrderCreator {
         private productionOrderEanExternalService: ProductionOrderEanExternalService,
     ) { }
 
-    async execute(params: { productionOrderId: ProductionOrderId, userId: UserId }): Promise<void> {
+    async execute(params: { 
+        productionOrderId: ProductionOrderId, 
+        userId: UserId,
+        productionModule: ProductionModuleId,
+        garmentType: GarmentType
+     }): Promise<void> {
 
-        const { productionOrderId, userId } = params;
+        const { productionOrderId, userId, productionModule, garmentType } = params;
 
         const productionOrderDetailListFromService = await this.productionOrderExternalService.find(productionOrderId);
 
@@ -52,6 +60,8 @@ export class ProductionOrderCreator {
         const productionOrderNotStated = ProductionOrderNotStarted.create(
             productionOrderId,
             productionOrderReference,
+            garmentType,
+            productionModule, 
             userId,
             productionOrderDetailList
         );
@@ -78,6 +88,7 @@ export class ProductionOrderCreator {
             return ProductionOrderDetailNotStarted.create(
                 new ProductionOrderId(entry.op),
                 new ColorId(entry.colorId),
+                new ColorLabel(entry.colorLabel),
                 new GarmentSize(entry.garmentSize),
                 new BarcodeEan(ean.ean),
                 new ProductionOrderDetailPlannedAmount(entry.plannedAmount)

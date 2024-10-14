@@ -15,6 +15,8 @@ import { CountingRecordsOrderAmount } from "../../../CountingRecordsOrder/domain
 import { ProductionOrderDetailListEmptyException } from "../../exceptions/ProductionOrderDetailListEmptyException";
 import { ProductionOrderDetailNotFoundException } from "../../exceptions/ProductionOrderDetailNotFoundException";
 import { ProductionOrderDetailHasAlreadyBeenAddException } from "../../exceptions/ProductionOrderDetailHasAlreadyBeenAddException";
+import { ProductionModuleId } from "../../../ProductionModule/domain/value-objects/ProductionModuleId";
+import { GarmentType } from "../../../Shared/domain/value-object/GarmentType";
 
 export class ProductionOrderNotStarted implements ProductionOrderRoot {
 
@@ -26,6 +28,8 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
     constructor(
         readonly productionOrderid: ProductionOrderId,
         readonly reference: ProductionOrderReference,
+        readonly garmentType: GarmentType,
+        readonly productionModuleAsigned: ProductionModuleId,
         readonly openByUser: UserId,
         readonly productionOrderDetailList: ProductionOrderDetailNotStarted[]
     ) {
@@ -57,6 +61,8 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
     static create(
         productionOrderid: ProductionOrderId,
         reference: ProductionOrderReference,
+        garmentType: GarmentType,
+        productionModuleAsigned: ProductionModuleId,
         openByUser: UserId,
         productionOrderDetailList: ProductionOrderDetailNotStarted[]
     ): ProductionOrderNotStarted {
@@ -64,6 +70,8 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
         return new ProductionOrderNotStarted(
             productionOrderid,
             reference,
+            garmentType,
+            productionModuleAsigned,
             openByUser,
             productionOrderDetailList
         );
@@ -144,6 +152,8 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
         return new ProductionOrderNotStarted(
             new ProductionOrderId(data.productionOrderid),
             new ProductionOrderReference(data.reference),
+            new GarmentType(data.garmentType),
+            new ProductionModuleId(data.productionModuleAsigned),
             new UserId(data.openByUser),
             data.productionOrderDetailList.map(entry => ProductionOrderDetailNotStarted.fromPrimitives(entry))
         )
@@ -153,6 +163,8 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
         return new ProductionOrderINotStartedDTO(
             this.productionOrderid.value,
             this.reference.value,
+            this.garmentType.value,
+            this.productionModuleAsigned.value,
             this.plannedAmount.value,
             this.executedAmount.value,
             this.processStartDate ? this.processStartDate.value : null,

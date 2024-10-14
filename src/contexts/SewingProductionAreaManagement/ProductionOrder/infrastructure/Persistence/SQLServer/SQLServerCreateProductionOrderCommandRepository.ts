@@ -6,11 +6,13 @@ import { TVPSchemeProductionOrderDetails } from "../TVPSchemes/TVPSchemeProducti
 import sql from 'mssql';
 
 export class SQLServerCreateProductionOrderCommandRepository extends SQLServerRepository implements ProductionOrderCommandRepository {
+
     protected procedureStoreName(): string {
         return 'sp_gestion_ml_db_produccion_op_insersion';
     }
 
     async save(productionOrder: ProductionOrderNotStarted): Promise<void> {
+
         const persistenceDetails = this.convertProductionOrderDetailToDataTVP(productionOrder.productionOrderDetailList);
         const tvp_details = this.createTVPTable(
             persistenceDetails,
@@ -18,38 +20,18 @@ export class SQLServerCreateProductionOrderCommandRepository extends SQLServerRe
             TVPSchemeProductionOrderDetails
         );
         const params: dbParameters[] = [
-            {
-                name: 'id_op',
-                type: sql.VarChar,
-                value: productionOrder.productionOrderid.value
-            },
-            {
-                name: 'id_referencia',
-                type: sql.VarChar,
-                value: productionOrder.reference.value
-            },
-            {
-                name: 'tipo_prenda',
-                type: sql.VarChar,
-                value: ''
-            },
-            {
-                name: 'id_modulo',
-                type: sql.VarChar,
-                value: ''
-            },
-            {
-                name: 'creado_por',
-                type: sql.VarChar,
-                value: productionOrder.openByUser.value
-            },
-            {
-                name: 'detalles',
-                type: sql.TVP,
-                value: tvp_details
-            },
+            { name: 'id_op', type: sql.VarChar, value: productionOrder.productionOrderid.value },
+            { name: 'id_referencia', type: sql.VarChar, value: productionOrder.reference.value },
+            { name: 'tipo_prenda', type: sql.VarChar, value: productionOrder.garmentType.value },
+            { name: 'id_mdl', type: sql.Int, value: productionOrder.productionModuleAsigned.value },
+            { name: 'creado_por', type: sql.VarChar, value: productionOrder.openByUser.value },
+            { name: 'detalles', type: sql.TVP, value: tvp_details }
         ]
-
+        try {
+            await this.execute(params);
+        }
+        catch (error) { throw (error) }
+        finally { this.disconnection() }
     }
 
     private convertProductionOrderDetailToDataTVP(details: ProductionOrderDetailNotStarted[]) {
@@ -57,7 +39,7 @@ export class SQLServerCreateProductionOrderCommandRepository extends SQLServerRe
             return {
                 id_talla: entry.garmentSize.value,
                 id_color: entry.colorId.value,
-                color_etiqueta: '',              //modificar
+                color_etiqueta: entry.colorLabel.value,              //modificar
                 ean: entry.ean.value,
                 cantidad_unidades_planeadas: entry.plannedAmount.value
             }

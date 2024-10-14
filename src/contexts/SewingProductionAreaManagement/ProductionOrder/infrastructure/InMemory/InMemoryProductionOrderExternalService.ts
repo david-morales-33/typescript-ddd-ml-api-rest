@@ -8,14 +8,14 @@ export class InMemoryExternalServiceRepository implements ProductionOrderExterna
 
     constructor() {
         this.productionOrderList = [
-            new ProductionOrderExternalServiceDTO('MOP3214', 'MAR8245', '1010', '2XL', 200, 0, 0),
-            new ProductionOrderExternalServiceDTO('MOP3214', 'MAR8245', '1010', 'XL', 200, 0, 0),
-            new ProductionOrderExternalServiceDTO('MOP3214', 'MAR8245', '1010', 'L', 200, 0, 0),
-            new ProductionOrderExternalServiceDTO('MOP3214', 'MAR8245', '1010', 'S', 200, 0, 0),
-            new ProductionOrderExternalServiceDTO('MOP3218', 'MAR8248', '1010', '42', 200, 0, 0),
-            new ProductionOrderExternalServiceDTO('MOP3218', 'MAR8248', '1010', '40', 200, 0, 0),
-            new ProductionOrderExternalServiceDTO('MOP3218', 'MAR8248', '1010', '38', 200, 0, 0),
-            new ProductionOrderExternalServiceDTO('MOP3218', 'MAR8248', '1010', '36', 200, 0, 0),
+            new ProductionOrderExternalServiceDTO('MOP3214', 'MAR8245', '1010','NEGRO', '2XL', 200, 0, 0),
+            new ProductionOrderExternalServiceDTO('MOP3214', 'MAR8245', '1010','NEGRO', 'XL', 200, 0, 0),
+            new ProductionOrderExternalServiceDTO('MOP3214', 'MAR8245', '1010','NEGRO', 'L', 200, 0, 0),
+            new ProductionOrderExternalServiceDTO('MOP3214', 'MAR8245', '1010','NEGRO', 'S', 200, 0, 0),
+            new ProductionOrderExternalServiceDTO('MOP3218', 'MAR8248', '1010','NEGRO', '42', 200, 0, 0),
+            new ProductionOrderExternalServiceDTO('MOP3218', 'MAR8248', '1010','NEGRO', '40', 200, 0, 0),
+            new ProductionOrderExternalServiceDTO('MOP3218', 'MAR8248', '1010','NEGRO', '38', 200, 0, 0),
+            new ProductionOrderExternalServiceDTO('MOP3218', 'MAR8248', '1010','NEGRO', '36', 200, 0, 0),
         ]
     }
     
