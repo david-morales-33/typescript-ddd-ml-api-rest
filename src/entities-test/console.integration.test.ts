@@ -24,7 +24,7 @@ async function query() {
                 new Filter(
                     new FilterField('prf_id'),
                     new FilterOperator(Operator.EQUAL),
-                    new FilterValue('9')
+                    new FilterValue('1')
                 ),
             ]), 
             new Order(

@@ -1,6 +1,6 @@
-import { Operation } from "../../../operation/domain/entities/Operation";
+import { Operation } from "../../../Operation/domain/entities/Operation";
 import { MenuContainerForOperationsDTO } from "../data-transfer-objects/MenuContainerForOperationsDTO";
-import { MenuRoot } from "../interfaces/MenuRoot";
+import { MenuRoot } from "../interfaces/menuRoot";
 import { MenuId } from "../value-objects/MenuId";
 import { MenuName } from "../value-objects/MenuName";
 import { MenuState } from "../value-objects/MenuState";

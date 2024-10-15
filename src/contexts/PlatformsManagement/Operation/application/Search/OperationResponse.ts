@@ -1,8 +1,7 @@
 import { Operation } from "../../domain/entities/Operation";
 
-interface OperationResponse {
+export interface OperationResponse {
     operacionId: number,
-    menuId: number,
     perfilId: number,
     plataformaId: number,
     operacion: string,
@@ -15,7 +14,6 @@ export class OperationsResponse {
         this.operations = operations.map(entry => {
             return {
                 operacionId: entry.id.value,
-                menuId: entry.menuId.value,
                 perfilId: entry.profileId.value,
                 plataformaId: entry.platformId.value,
                 operacion: entry.label.value,

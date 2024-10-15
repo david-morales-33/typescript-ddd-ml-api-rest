@@ -1,4 +1,4 @@
-import { MenuId } from "../../../menu/domain/value-objects/MenuId";
+import { MenuId } from "../../../Menu/domain/value-objects/MenuId";
 import { PlatformId } from "../../../Shared/domain/value-objects/PlatformId";
 import { ProfileId } from "../../../Shared/domain/value-objects/ProfileId";
 import { OperationDTO } from "../data-transfer-objects/OperationDTO";
@@ -10,7 +10,6 @@ import { OperationState } from "../value-objects/OperationState";
 export class Operation implements OperationRoot {
     constructor(
         readonly id: OperationId,
-        readonly menuId: MenuId,
         readonly platformId: PlatformId,
         readonly profileId: ProfileId,
         readonly label: OperationName,
@@ -19,7 +18,6 @@ export class Operation implements OperationRoot {
 
     static create(
         id: OperationId,
-        menuId: MenuId,
         platformId: PlatformId,
         profileId: ProfileId,
         label: OperationName,
@@ -27,7 +25,6 @@ export class Operation implements OperationRoot {
     ): Operation {
         return new Operation(
             id,
-            menuId,
             platformId,
             profileId,
             label,
@@ -38,7 +35,6 @@ export class Operation implements OperationRoot {
     static fromPrimitives(data: OperationDTO): Operation {
         return new Operation(
             new OperationId(data.operationId),
-            new MenuId(data.menuId),
             new PlatformId(data.platformId),
             new ProfileId(data.profileId),
             new OperationName(data.label),
@@ -49,7 +45,6 @@ export class Operation implements OperationRoot {
     toPrimitives(): OperationDTO {
         return new OperationDTO(
             this.id.value,
-            this.menuId.value,
             this.platformId.value,
             this.profileId.value,
             this.label.value,

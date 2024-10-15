@@ -1,8 +1,6 @@
-import { EnviromentId } from "../../../Shared/domain/value-objects/EnviromentId";
-import { PlatformId } from "../../../Shared/domain/value-objects/PlatformId";
-import { ProfileId } from "../../../Shared/domain/value-objects/ProfileId";
+import { Criteria } from "../../../../Shared/domain/design-patterns/Criteria/Criteria";
 import { MenuContainerForMenus } from "../entities/MenuContainerForMenus";
 
 export interface MenuRepository {
-    match(criteria: { enviromentId?: EnviromentId, profileId?: ProfileId, platformId?: PlatformId }): Promise<MenuContainerForMenus | null>;
+    match(criteria: Criteria): Promise<MenuContainerForMenus[]>;
 }
