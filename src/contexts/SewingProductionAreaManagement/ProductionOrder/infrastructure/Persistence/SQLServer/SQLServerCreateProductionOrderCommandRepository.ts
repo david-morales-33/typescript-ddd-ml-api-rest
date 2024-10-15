@@ -6,13 +6,10 @@ import { TVPSchemeProductionOrderDetails } from "../TVPSchemes/TVPSchemeProducti
 import sql from 'mssql';
 
 export class SQLServerCreateProductionOrderCommandRepository extends SQLServerRepository implements ProductionOrderCommandRepository {
-
     protected procedureStoreName(): string {
         return 'sp_gestion_ml_db_produccion_op_insersion';
     }
-
     async save(productionOrder: ProductionOrderNotStarted): Promise<void> {
-
         const persistenceDetails = this.convertProductionOrderDetailToDataTVP(productionOrder.productionOrderDetailList);
         const tvp_details = this.createTVPTable(
             persistenceDetails,
@@ -27,9 +24,7 @@ export class SQLServerCreateProductionOrderCommandRepository extends SQLServerRe
             { name: 'creado_por', type: sql.VarChar, value: productionOrder.openByUser.value },
             { name: 'detalles', type: sql.TVP, value: tvp_details }
         ]
-        try {
-            await this.execute(params);
-        }
+        try { await this.execute(params) }
         catch (error) { throw (error) }
         finally { this.disconnection() }
     }
@@ -39,7 +34,7 @@ export class SQLServerCreateProductionOrderCommandRepository extends SQLServerRe
             return {
                 id_talla: entry.garmentSize.value,
                 id_color: entry.colorId.value,
-                color_etiqueta: entry.colorLabel.value,              //modificar
+                color_etiqueta: entry.colorLabel.value,
                 ean: entry.ean.value,
                 cantidad_unidades_planeadas: entry.plannedAmount.value
             }

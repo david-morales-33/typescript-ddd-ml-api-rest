@@ -5,3 +5,4 @@ export const container = new ContainerBuilder();
 require('./Shared/application');
 require('./ProductionModule/application');
 require('./ProductionModuleEvent/application');
+require('./Operation/application');
