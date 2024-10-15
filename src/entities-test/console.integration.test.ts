@@ -6,25 +6,23 @@ import { ProductionOrderId } from '../contexts/SewingProductionAreaManagement/Pr
 import { ProductionOrderNotStarted } from '../contexts/SewingProductionAreaManagement/ProductionOrder/domain/entities/ProductionOrderNotStarted';
 import { SQLServerCountingOrderRecordsRepository } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/infrastructure/persistence/SQLServer/SQLServerCountingOrderRecordsRepository';
 import { CountingRecordsOrderId } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/value-objects/CountingRecordsOrderId';
+import { SQLServerUserPermission } from '../contexts/SewingProductionAreaManagement/UserPermission/infrastructure/Persistence/SQLServer/SQLServerUserPermission';
+import { UserId } from '../contexts/SewingProductionAreaManagement/User/domain/value-objects/UserId';
+import { CreateProductionOrderCommandHandler } from '../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateProductionOrder/CreateProductionOrderCommandHandler';
+import { CreateProductionOrderCommand } from '../contexts/SewingProductionAreaManagement/ProductionOrder/domain/data-transfer-objects/CreateProductionOrderCommand';
 
 async function query() {
     try {
-        const repository = new InMemoryProductionOrderQueryRepository();
-        const productionOrder = (await repository.find(new ProductionOrderId('MOP4415'))) as ProductionOrderNotStarted;
-        // console.log(productionOrder.toPrimitives())
+        await container.get<CreateProductionOrderCommandHandler>('SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreateProductionOrderCommandHandler')
+            .handle(new CreateProductionOrderCommand({
+                userId: '1146441925',
+                productionOrderId: 'MOP4418',
+                garmentType: 'MOB',
+                productionModuleAssigned: 15
+            }))
 
-        await container.get<SQLServerCreateProductionOrderCommandRepository>('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateProductionOrderCommandRepository')
-        .save(productionOrder);
-        // const res= await container.get<SQLServerCountingOrderRecordsRepository>('SewingProductionAreaManagement.infrastructure.CountingRecordsOrder.SqlServerCountingOrderRecordsRepository')
-        // .find(new CountingRecordsOrderId('18f20e0c-6914-4e41-9a12-5907e9871d75'));
-
-        // console.log(res)
-
-    } catch (error) {
-        console.log(error)
-    }
+    } catch (error) { console.log(error) }
 }
-
 query();
 
 // console.log(validate('55575788-6c23-4d62-ba353-05226891149'))

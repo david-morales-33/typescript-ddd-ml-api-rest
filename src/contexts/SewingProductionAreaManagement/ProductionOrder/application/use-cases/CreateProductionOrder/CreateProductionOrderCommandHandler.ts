@@ -26,7 +26,7 @@ export class CreateProductionOrderCommandHandler implements CommandHandler<Creat
         const garmentType = new GarmentType(command.garmentType);
         const productionModule = new ProductionModuleId(command.productionModuleAssigned);
 
-        await this.productionOrderValidator.execute(userId);
+        await this.productionOrderValidator.execute(userId)
         await this.productionOrderCreator.execute({ productionOrderId, userId, garmentType, productionModule })
     }
 }

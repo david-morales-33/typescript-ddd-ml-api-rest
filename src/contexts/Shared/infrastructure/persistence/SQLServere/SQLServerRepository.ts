@@ -38,7 +38,7 @@ export abstract class SQLServerRepository {
         params.forEach(element => { query.input(element.name, element.type, element.value) });
 
         const { recordset, returnValue } = await query.execute(this.procedureStoreName());
-        console.log(recordset, returnValue, 'error')
+        console.log( returnValue, 'res')
         if (returnValue !== 1)
             this.throwQueryError(recordset[0]);
         return recordset;
