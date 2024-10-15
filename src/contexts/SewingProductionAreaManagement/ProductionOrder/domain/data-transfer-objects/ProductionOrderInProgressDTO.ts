@@ -5,6 +5,8 @@ export class ProductionOrderInProgressDTO {
     constructor(
         readonly productionOrderid: string,
         readonly reference: string,
+        readonly garmentType: string,
+        readonly productionModuleAsigned: number,
         readonly plannedAmount: number,
         readonly executedAmount: number,
         readonly processStartDate: Date,

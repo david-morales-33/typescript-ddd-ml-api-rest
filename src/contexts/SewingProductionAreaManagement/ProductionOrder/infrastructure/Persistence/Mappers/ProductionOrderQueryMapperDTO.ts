@@ -38,6 +38,8 @@ export class ProductionOrderQueryMapperDTO {
                 new ProductionOrderINotStartedDTO(
                     entity.op,
                     entity.referencia,
+                    '',
+                    29,
                     parseInt(entity.cantidad_unidades_planeadas_proceso),
                     parseInt(entity.cantidad_unidades_ejecutadas_proceso),
                     entity.fecha_apertura_proceso || null,
@@ -52,6 +54,8 @@ export class ProductionOrderQueryMapperDTO {
                 new ProductionOrderInProgressDTO(
                     entity.op,
                     entity.referencia,
+                    '',
+                    29,
                     parseInt(entity.cantidad_unidades_planeadas_proceso),
                     parseInt(entity.cantidad_unidades_ejecutadas_proceso),
                     entity.fecha_apertura_proceso,

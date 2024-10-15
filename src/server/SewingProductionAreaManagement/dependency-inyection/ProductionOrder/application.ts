@@ -19,6 +19,7 @@ import { InMemoryCreateCountingRecordsOrderTwoCommandRepository } from '../../..
 import { CreateCountingRecordsOrderSecondQualityCommandHandler } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderSecondQuality/CreateCountingRecordsOrderSecondQualityCommandHandler'
 import { SQLServerProductionOrderResponseRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderResponseRepository';
 import { SQLServerProductionOrderQueryRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderQueryRepository';
+import { SQLServerCreateProductionOrderCommandRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerCreateProductionOrderCommandRepository'
 
 const inMemoryProductionOrderResponseRepository = container.
     register('SewingProductionAreaManagement.infrastructure.ProductionOrder.InMemoryProductionOrderResponseRepository', InMemoryProductionOrderResponseRepository);
@@ -53,20 +54,43 @@ const sqlServerProductionOrderResponseRepository = container.register('SewingPro
 const sqlServerProductionOrderQueryRepository = container.register('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderQueryRepository', SQLServerProductionOrderQueryRepository).
     addArgument(container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'));
 
-const productionOrderCreator = container.
+
+const productionOrderCreatorInMemory = container.
     register('SewingProductionAreaManagement.application.ProductionOrder.inMemoryCreateProductionOrderCommandRepository', ProductionOrderCreator).
     addArgument(inMemoryCreateProductionOrderCommandRepository).
     addArgument(inMemoryProductionOrderExternalServiceRepository).
     addArgument(inMemoryProductionOrderEANExternalService);
 
-const productionOrderValidator = container.
+const productionOrderValidatorInMemory = container.
     register('SewingProductionAreaManagement.application.ProductionOrder.ProductionOrderValidator', ProductionOrderValidator).
     addArgument(container.get('SewingProductionAreaManagement.infrastructure.UserPermission.InMemoryUserPermissionRepository'));
 
 container.
-    register('SewingProductionAreaManagement.application.ProductionOrder.CreateProductionOrderCommandHandler', CreateProductionOrderCommandHandler).
-    addArgument(productionOrderCreator).
-    addArgument(productionOrderValidator);
+    register('SewingProductionAreaManagement.application.ProductionOrder.CreateProductionOrderCommandHandlerInMemory', CreateProductionOrderCommandHandler).
+    addArgument(productionOrderCreatorInMemory).
+    addArgument(productionOrderValidatorInMemory);
+
+// ================================sql server <create order> ==================================================================
+
+container.                  //Registro de repositorio <command> para crear la OP
+    register('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateProductionOrderCommandRepository', SQLServerCreateProductionOrderCommandRepository).
+    addArgument(container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'));
+
+container.                              //Registro de creador 
+    register('SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreatorProductionOrder', ProductionOrderCreator).
+    addArgument(container.get('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateProductionOrderCommandRepository')).
+    addArgument(container.get('SewingProductionAreaManagement.infrastructure.Services.WebServiceProductionOrder')).
+    addArgument(container.get('SewingProductionAreaManagement.infrastructure.Services.WebServiceEAN'));
+
+container.                              //Registro de validador 
+    register('SewingProductionAreaManagement.application.ProductionOrder.PersistenceProductionOrderValidator', ProductionOrderValidator).
+    addArgument(container.get('SewingProductionAreaManagement.infrastructure.UserPermission.SQLServerUserPermission'));
+
+container.                           //Registro de command handler 
+    register('SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreateProductionOrderCommandHandler', CreateProductionOrderCommandHandler).
+    addArgument(container.get('SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreatorProductionOrder')).
+    addArgument(container.get('SewingProductionAreaManagement.application.ProductionOrder.PersistenceProductionOrderValidator'));
+//=========================================================================================================================================
 
 const createCountingRecordsOrderFirstQualityValidator = container.
     register('SewingProductionAreaManagement.application.ProductionOrder.CreateCountingRecordsOrderFirstQualityValidator', CreateCountingRecordsOrderFirstQualityValidator).

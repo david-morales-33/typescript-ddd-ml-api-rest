@@ -8,6 +8,7 @@ export class ProductionOrderExternalServiceMapperDTO {
             entity.OP[0].trim(),
             entity.Referencia[0].trim(),
             entity.Id_Color[0].trim(),
+            entity.Color[0].trim(),
             entity.Talla[0].trim(),
             parseInt(entity.Planeada[0].trim()),
             parseInt(entity.Completada[0].trim()),

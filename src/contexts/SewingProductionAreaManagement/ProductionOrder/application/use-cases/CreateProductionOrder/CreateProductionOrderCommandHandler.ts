@@ -5,6 +5,8 @@ import { CreateProductionOrderCommand } from "../../../domain/data-transfer-obje
 import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { ProductionOrderValidator } from "./ProductionOrderValidator";
 import { ProductionOrderCreator } from "./ProductionOrderCreator";
+import { GarmentType } from "../../../../Shared/domain/value-object/GarmentType";
+import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 
 export class CreateProductionOrderCommandHandler implements CommandHandler<CreateProductionOrderCommand> {
 
@@ -21,8 +23,10 @@ export class CreateProductionOrderCommandHandler implements CommandHandler<Creat
 
         const productionOrderId = new ProductionOrderId(command.productionOrderId);
         const userId = new UserId(command.userId);
+        const garmentType = new GarmentType(command.garmentType);
+        const productionModule = new ProductionModuleId(command.productionModuleAssigned);
 
-        await this.productionOrderValidator.execute(userId);
-        await this.productionOrderCreator.execute({ productionOrderId, userId })
+        await this.productionOrderValidator.execute(userId)
+        await this.productionOrderCreator.execute({ productionOrderId, userId, garmentType, productionModule })
     }
 }

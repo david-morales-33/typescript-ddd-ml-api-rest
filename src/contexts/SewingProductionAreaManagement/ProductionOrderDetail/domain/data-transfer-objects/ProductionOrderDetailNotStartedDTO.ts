@@ -4,6 +4,7 @@ export class ProductionOrderDetailNotStartedDTO {
         readonly productionOrderDetailId: string,
         readonly productionOrderId: string,
         readonly colorId: string,
+        readonly colorLabel: string,
         readonly garmentSize: string,
         readonly ean: string,
         readonly plannedAmount: number,
