@@ -4,7 +4,9 @@ export class MenuContainerForOperationsDTO {
     private _className: string = 'menuContainer.forOperationsDTO'
     constructor(
         readonly id: number,
-        readonly name: string,
+        readonly plataformaId: number,
+        readonly profileId: number,
+        readonly label: string,
         readonly state: boolean,
         readonly children: OperationDTO[]
     ) { }

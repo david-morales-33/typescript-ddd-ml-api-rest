@@ -15,7 +15,7 @@ export class MenuContainerForMenus implements MenuRoot {
         readonly profileId: ProfileId,
         readonly label: MenuName,
         readonly state: MenuState,
-        readonly children: MenuContainerForMenus[]
+        readonly children: (MenuContainerForMenus | MenuContainerForOperations)[]
     ) { }
 
     static create(
@@ -43,7 +43,11 @@ export class MenuContainerForMenus implements MenuRoot {
             new ProfileId(data.profileId),
             new MenuName(data.label),
             new MenuState(data.state),
-            data.children.map(entry => MenuContainerForMenus.fromPrimitives(entry))
+            data.children.map(entry => {
+                if (entry.className === 'menuContainer.forMenusDTO')
+                    return MenuContainerForMenus.fromPrimitives(entry as MenuContainerForMenusDTO)
+                return MenuContainerForOperations.fromPrimitives(entry as MenuContainerForOperationsDTO)
+            })
         )
     }
 

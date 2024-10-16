@@ -6,9 +6,9 @@ export class MenuContainerForMenusDTO {
         readonly id: number,
         readonly plataformaId: number,
         readonly profileId: number,
-        readonly label:string,
+        readonly label: string,
         readonly state: boolean,
-        readonly children: MenuContainerForMenusDTO[]
+        readonly children: (MenuContainerForMenusDTO | MenuContainerForOperationsDTO)[]
     ) { }
     public get className(): string {
         return this._className;
