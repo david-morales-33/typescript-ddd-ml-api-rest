@@ -10,6 +10,7 @@ import { Filter } from '../contexts/Shared/domain/design-patterns/Criteria/Filte
 import { FilterField } from '../contexts/Shared/domain/design-patterns/Criteria/FilterField';
 import { FilterOperator, Operator } from '../contexts/Shared/domain/design-patterns/Criteria/FilterOperator';
 import { FilterValue } from '../contexts/Shared/domain/design-patterns/Criteria/FilterValue';
+import { SQLServerMenuRepository } from '../contexts/PlatformsManagement/Menu/infrastructure/Persistence/SQLServer/SQLServerMenuRepository';
 
 async function query() {
     try {
@@ -19,7 +20,7 @@ async function query() {
                 new Filter(
                     new FilterField('ptf_id'),
                     new FilterOperator(Operator.EQUAL),
-                    new FilterValue('1')
+                    new FilterValue('2')
                 ),
                 new Filter(
                     new FilterField('prf_id'),
@@ -32,7 +33,7 @@ async function query() {
                 new OrderType(OrderTypes.ASC)
             )
         )
-        const res = await container.get<SQLServerOperationRepository>('PlatformManagement.infrastructure.productionModule.SqlServerOperationRepository').match(criterio);
+        const res = await container.get<SQLServerMenuRepository>('PlatformManagement.infrastructure.menu.SqlServerMenuRepository').match(criterio);
         console.log(res)
     } catch (error) { console.log(error) }
 }

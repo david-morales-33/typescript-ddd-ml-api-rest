@@ -4,8 +4,7 @@ export class MenuContainerForMenusDTO {
     private _className: string = 'menuContainer.forMenusDTO'
     constructor(
         readonly id: number,
-        readonly plataformaId: number,
-        readonly profileId: number,
+        readonly masterId: number| null,
         readonly label: string,
         readonly state: boolean,
         readonly children: (MenuContainerForMenusDTO | MenuContainerForOperationsDTO)[]

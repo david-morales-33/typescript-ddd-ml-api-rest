@@ -6,3 +6,4 @@ require('./Shared/application');
 require('./ProductionModule/application');
 require('./ProductionModuleEvent/application');
 require('./Operation/application');
+require('./Menu/application')

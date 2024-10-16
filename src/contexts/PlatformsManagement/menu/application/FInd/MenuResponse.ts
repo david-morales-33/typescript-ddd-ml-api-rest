@@ -2,18 +2,26 @@ import { OperationResponse } from "../../../Operation/application/Search/Operati
 import { MenuContainerForMenusDTO } from "../../domain/data-transfer-objects/MenuContainerForMenusDTO";
 import { MenuContainerForMenus } from "../../domain/entities/MenuContainerForMenus";
 
-interface MenuResponse {
+interface MenuForOperations {
     menuId: number,
     plataformaId: number,
     perfilId: number,
     item: string,
-    state: boolean,
-    childrens: MenuResponse[] | OperationResponse[]
+    estado: boolean,
+    childrens: OperationResponse[]
 }
+interface MenuForMenus {
+    menuId: number,
+    plataformaId: number,
+    perfilId: number,
+    item: string,
+    estado: boolean,
+    childrens: (MenuForMenus | MenuForOperations)[]
+}
+
 
 export class MenusResponse {
     public readonly menu: MenuContainerForMenusDTO;
-
     constructor(menu: MenuContainerForMenus) {
         this.menu = menu.toPrimitives();
     }

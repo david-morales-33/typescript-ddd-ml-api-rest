@@ -5,14 +5,11 @@ import { MenuName } from "../value-objects/MenuName";
 import { MenuState } from "../value-objects/MenuState";
 import { MenuContainerForOperations } from "./MenuContainerForOperations";
 import { MenuRoot } from '../interfaces/menuRoot'
-import { PlatformId } from "../../../Shared/domain/value-objects/PlatformId";
-import { ProfileId } from "../../../Shared/domain/value-objects/ProfileId";
 
 export class MenuContainerForMenus implements MenuRoot {
     constructor(
         readonly id: MenuId,
-        readonly plataformaId: PlatformId,
-        readonly profileId: ProfileId,
+        readonly masterId: MenuId | null,
         readonly label: MenuName,
         readonly state: MenuState,
         readonly children: (MenuContainerForMenus | MenuContainerForOperations)[]
@@ -20,16 +17,14 @@ export class MenuContainerForMenus implements MenuRoot {
 
     static create(
         id: MenuId,
-        plataformaId: PlatformId,
-        profileId: ProfileId,
+        masterId: MenuId | null,
         label: MenuName,
         state: MenuState,
         children: MenuContainerForMenus[]
     ): MenuContainerForMenus {
         return new MenuContainerForMenus(
             id,
-            plataformaId,
-            profileId,
+            masterId,
             label,
             state,
             children
@@ -39,8 +34,7 @@ export class MenuContainerForMenus implements MenuRoot {
     static fromPrimitives(data: MenuContainerForMenusDTO): MenuContainerForMenus {
         return new MenuContainerForMenus(
             new MenuId(data.id),
-            new PlatformId(data.plataformaId),
-            new ProfileId(data.profileId),
+            data.masterId === null ? null : new MenuId(data.masterId),
             new MenuName(data.label),
             new MenuState(data.state),
             data.children.map(entry => {
@@ -54,8 +48,7 @@ export class MenuContainerForMenus implements MenuRoot {
     toPrimitives(): MenuContainerForMenusDTO {
         return new MenuContainerForMenusDTO(
             this.id.value,
-            this.plataformaId.value,
-            this.profileId.value,
+            this.masterId === null ? null : this.masterId.value,
             this.label.value,
             this.state.value,
             this.children.map(entry => entry.toPrimitives())
