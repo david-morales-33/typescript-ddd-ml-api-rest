@@ -1,5 +1,5 @@
+import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
 import { GarmentSizeResponseRepository } from "../../../domain/repositories/GarmentSizeResponseRepository";
-import { GarmentSizeId } from "../../../domain/value-objects/GarmentSizeId";
 import { GarmentSizeNotFoundException } from "../../exceptions/GarmentSizeNotFoundException";
 
 export class GarmentSizeFinder {

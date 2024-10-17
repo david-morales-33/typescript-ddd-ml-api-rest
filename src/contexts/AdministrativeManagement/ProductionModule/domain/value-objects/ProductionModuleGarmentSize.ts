@@ -1,4 +1,4 @@
-import { GarmentSize } from "../../../shared/domain/value-objects/GarmentSize";
+import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
 
 export class ProductionModuleGarmentSize extends GarmentSize {
 

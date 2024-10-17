@@ -4,7 +4,7 @@ import { ProductionModuleId } from "../../../../ProductionModule/domain/value-ob
 import { ProductionOrderProcessEndDatePlanned } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderProcessEndDatePlanned";
 import { ProductionOrderProcessStartDatePlanned } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderProcessStartDatePlanned";
 import { ColorId } from "../../../../../Shared/domain/value-object/ColorId";
-import { GarmentSize } from "../../../../shared/domain/value-objects/GarmentSize";
+import { GarmentSize } from "../../../../../Shared/domain/value-object/GarmentSize";
 import { ProductionOrderId } from "../../../../shared/domain/value-objects/ProductionOrderId";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { SetProductionOrderDetailPlannedDatesCommand } from "../../../domain/data-transfer-objects/SetProductionOrderDetailPlannedDatesCommand";

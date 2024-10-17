@@ -1,8 +1,8 @@
 import { Command } from "../../../../../Shared/domain/Command";
 import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
-import { UserId } from "../../../../User/domain/value-objects/UserId";
+import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
+import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { CreateGarmentSizeComman } from "../../../domain/data-transfer-objects/CreateGarmentSizeComman";
-import { GarmentSizeId } from "../../../domain/value-objects/GarmentSizeId";
 import { GarmentSizeLabel } from "../../../domain/value-objects/GarmentSizeLabel";
 import { GarmentSizeOrder } from "../../../domain/value-objects/GarmentSizeOrder";
 import { GarmentSizeType } from "../../../domain/value-objects/GarmentSizeType";

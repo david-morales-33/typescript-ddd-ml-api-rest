@@ -1,5 +1,5 @@
 import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
-import { GarmentSize } from "../../../shared/domain/value-objects/GarmentSize";
+import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
 
 export class GarmentSizeLabel  extends GarmentSize{ 
     constructor(value: string){

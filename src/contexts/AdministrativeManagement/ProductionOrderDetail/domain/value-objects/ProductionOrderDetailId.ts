@@ -1,5 +1,5 @@
 import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
-import { GarmentSize } from "../../../shared/domain/value-objects/GarmentSize";
+import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
 import { ProductionOrderId } from "../../../shared/domain/value-objects/ProductionOrderId";
 
 export class ProductionOrderDetailId {

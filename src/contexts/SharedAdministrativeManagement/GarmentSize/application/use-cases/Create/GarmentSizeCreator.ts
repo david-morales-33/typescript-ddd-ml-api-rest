@@ -3,14 +3,14 @@ import { CommonCreationEvent } from "../../../../../Shared/domain/entities/Commo
 import { EventCreateDate } from "../../../../../Shared/domain/value-object/EventCreateDate";
 import { EventDescription } from "../../../../../Shared/domain/value-object/EventDescription";
 import { EventId } from "../../../../../Shared/domain/value-object/EventId";
-import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { GarmentSize } from "../../../domain/entities/GarmentSize";
 import { GarmentSizeCommandRepository } from "../../../domain/repositories/GarmentSizeCommandRepository";
-import { GarmentSizeId } from "../../../domain/value-objects/GarmentSizeId";
 import { GarmentSizeLabel } from "../../../domain/value-objects/GarmentSizeLabel";
 import { GarmentSizeOrder } from "../../../domain/value-objects/GarmentSizeOrder";
 import { GarmentSizeState } from "../../../domain/value-objects/GarmentSizeState";
 import { GarmentSizeType } from "../../../domain/value-objects/GarmentSizeType";
+import { UserId } from "../../../../../Shared/domain/value-object/UserId";
+import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
 
 export class GarmentSizeCreator {
     constructor(private garmentSizeRepository: GarmentSizeCommandRepository) { }

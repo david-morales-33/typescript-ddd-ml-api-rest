@@ -6,15 +6,15 @@ import { EventId } from "../../../../../Shared/domain/value-object/EventId";
 import { EventModifiedField } from "../../../../../Shared/domain/value-object/EventModifiedField";
 import { EventNewValue } from "../../../../../Shared/domain/value-object/EventNewValue";
 import { EventPreviusValue } from "../../../../../Shared/domain/value-object/EventPreviusValue";
-import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { GarmentSizeCommandRepository } from "../../../domain/repositories/GarmentSizeCommandRepository";
 import { GarmentSizeQueryRepository } from "../../../domain/repositories/GarmentSizeQueryRepository";
-import { GarmentSizeId } from "../../../domain/value-objects/GarmentSizeId";
 import { GarmentSizeLabel } from "../../../domain/value-objects/GarmentSizeLabel";
 import { GarmentSizeOrder } from "../../../domain/value-objects/GarmentSizeOrder";
 import { GarmentSizeState } from "../../../domain/value-objects/GarmentSizeState";
 import { GarmentSizeType } from "../../../domain/value-objects/GarmentSizeType";
 import { GarmentSizeNotFoundException } from "../../exceptions/GarmentSizeNotFoundException";
+import { UserId } from "../../../../../Shared/domain/value-object/UserId";
+import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
 
 export class GarmentSizeUpdater {
     constructor(

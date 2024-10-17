@@ -1,5 +1,5 @@
 import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
-import { EnumValueObject } from "../../../shared/domain/value-objects/EnumValueObject";
+import { EnumValueObject } from "../../../../AdministrativeManagement/shared/domain/value-objects/EnumValueObject";
 
 enum garmentType { PANTY = 'Panty', BRASIER = 'Brasier' }
 

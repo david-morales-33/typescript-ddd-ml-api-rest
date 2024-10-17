@@ -3,9 +3,9 @@ import { CommonModificationEventDTO } from "../../../../Shared/data-transfer-obj
 import { CommonCreationEvent } from "../../../../Shared/domain/entities/CommonCreationEvent";
 import { CommonModificationEvent } from "../../../../Shared/domain/entities/CommonModificationEvent";
 import { EventId } from "../../../../Shared/domain/value-object/EventId";
+import { GarmentSizeId } from "../../../../Shared/domain/value-object/GarmentSizeId";
 import { GarmentSizeDTO } from "../data-transfer-objects/GarmentSizeDTO";
 import { GarmentSizeRoot } from "../interfaces/GarmentSizeRoot";
-import { GarmentSizeId } from "../value-objects/GarmentSizeId";
 import { GarmentSizeLabel } from "../value-objects/GarmentSizeLabel";
 import { GarmentSizeOrder } from "../value-objects/GarmentSizeOrder";
 import { GarmentSizeState } from "../value-objects/GarmentSizeState";

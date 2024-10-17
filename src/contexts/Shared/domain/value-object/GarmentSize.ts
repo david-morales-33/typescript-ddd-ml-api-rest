@@ -1,4 +1,4 @@
-import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
+import { ValueObject } from "./ValueObject";
 
 export class GarmentSize extends ValueObject<string> {
 
