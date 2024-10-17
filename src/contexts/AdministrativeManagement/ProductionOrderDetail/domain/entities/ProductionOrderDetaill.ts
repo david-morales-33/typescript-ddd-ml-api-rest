@@ -1,8 +1,8 @@
-import { CommonModificationEvent } from "../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
-import { EventId } from "../../../AdministrativeEvent/domain/value-objects/EventId";
+import { CommonModificationEvent } from "../../../../Shared/domain/entities/CommonModificationEvent";
+import { EventId } from "../../../../Shared/domain/value-object/EventId";
 import { CountingRecordsOrderId } from "../../../countingRecordsOrder/domain/value-objects/CountingRecordsOrderId";
 import { BarcodeEan } from "../../../shared/domain/value-objects/BarcodeEan";
-import { ColorId } from "../../../shared/domain/value-objects/ColorId";
+import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
 import { GarmentSize } from "../../../shared/domain/value-objects/GarmentSize";
 import { ProductionOrderId } from "../../../shared/domain/value-objects/ProductionOrderId";
 import { ProductionOrderDetailDTO } from "../data-transfer-objects/ProductionOrderDetailDTO";

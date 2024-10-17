@@ -1,12 +1,12 @@
-import { AuthUser } from "../../domain/entities/AuthUser";
-import { UserAuthQueryRepository } from "../../domain/repositories/UserAuthQueryRepository";
-import { UserDescription } from "../../domain/value-objects/UserDescription";
-import { UserId } from "../../domain/value-objects/UserId";
-import { UserIdType } from "../../domain/value-objects/UserIdType";
-import { UserName } from "../../domain/value-objects/UserName";
-import { UserPassword } from "../../domain/value-objects/UserPassword";
-import { UserProfileId } from "../../domain/value-objects/UserProfileId";
-import { UserState } from "../../domain/value-objects/UserState";
+import { UserDescription } from "../../../../Shared/domain/value-object/UserDescription";
+import { UserId } from "../../../../Shared/domain/value-object/UserId";
+import { UserIdType } from "../../../../Shared/domain/value-object/UserIdType";
+import { UserName } from "../../../../Shared/domain/value-object/UserName";
+import { UserProfileId } from "../../../../Shared/domain/value-object/UserProfileId";
+import { UserState } from "../../../../Shared/domain/value-object/UserState";
+import { AuthUser } from "../../../../SharedAdministrativeManagement/User/domain/entities/AuthUser";
+import { UserAuthQueryRepository } from "../../../../SharedAdministrativeManagement/User/domain/repositories/UserAuthQueryRepository";
+import { UserPassword } from "../../../../SharedAdministrativeManagement/User/domain/value-objets/UserPassword";
 
 export class InMemoryUserAuthRepository implements UserAuthQueryRepository {
     private userList: AuthUser[];

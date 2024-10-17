@@ -1,8 +1,8 @@
-import { CommonCreationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonCreationEventDTO";
-import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
-import { CommonCreationEvent } from "../../../AdministrativeEvent/domain/entities/CommonCreationEvent";
-import { CommonModificationEvent } from "../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
-import { EventId } from "../../../AdministrativeEvent/domain/value-objects/EventId";
+import { CommonCreationEventDTO } from "../../../../Shared/data-transfer-object/CommonCreationEventDTO";
+import { CommonModificationEventDTO } from "../../../../Shared/data-transfer-object/CommonModificationEventDTO";
+import { CommonCreationEvent } from "../../../../Shared/domain/entities/CommonCreationEvent";
+import { CommonModificationEvent } from "../../../../Shared/domain/entities/CommonModificationEvent";
+import { EventId } from "../../../../Shared/domain/value-object/EventId";
 import { GarmentSizeDTO } from "../data-transfer-objects/GarmentSizeDTO";
 import { GarmentSizeRoot } from "../interfaces/GarmentSizeRoot";
 import { GarmentSizeId } from "../value-objects/GarmentSizeId";

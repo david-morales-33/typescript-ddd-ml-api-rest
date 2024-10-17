@@ -3,7 +3,7 @@ import { ProductionOrderDetailExecutedAmount } from "../../../ProductionOrderDet
 import { ProductionOrderDetailPlannedAmount } from "../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailPlannedAmount";
 import { ProductionOrderDetailState } from "../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailState";
 import { BarcodeEan } from "../../../shared/domain/value-objects/BarcodeEan";
-import { ColorId } from "../../../shared/domain/value-objects/ColorId";
+import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
 import { GarmentSize } from "../../../shared/domain/value-objects/GarmentSize";
 import { ProductionOrderId } from "../../../shared/domain/value-objects/ProductionOrderId";
 import { UserId } from "../../../User/domain/value-objects/UserId";

@@ -1,5 +1,5 @@
 import { AuthUser } from "../../domain/entities/AuthUser";
-import { UserCommandRepository } from "../../domain/repositories/UserCommandRepository";
+import { UserCommandRepository } from "../../../../SharedAdministrativeManagement/User/domain/repositories/UserCommandRepository";
 
 export class InMemoryUpdateUserCommandRepository implements UserCommandRepository {
     async save(user: AuthUser): Promise<void> {

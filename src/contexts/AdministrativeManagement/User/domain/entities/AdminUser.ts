@@ -1,15 +1,15 @@
-import { UserId } from '../value-objects/UserId';
 import { UserRoot } from '../interfaces/UserRoot';
 import { UserDescription } from '../value-objects/UserDescription';
-import { UserName } from '../value-objects/UserName';
-import { UserProfileId } from '../value-objects/UserProfileId';
-import { UserProfileName } from '../value-objects/UserProfileName';
 import { UserPermission } from '../../../UserPermission/domain/entities/UserPermission';
 import { UserPermissionId } from '../../../UserPermission/domain/value-objects/UserPermissionId';
 import { UserPermissionLabel } from '../../../UserPermission/domain/value-objects/UserPermissionLabel';
 import { UserPermissionState } from '../../../UserPermission/domain/value-objects/UserPermissionState';
 import { UserPermissionListNotProvided } from '../exceptions/UserPermissionListNotProvided';
 import { AdminUserDTO } from '../data-transfer-objects/AdminUserDTO';
+import { UserId } from '../../../../Shared/domain/value-object/UserId';
+import { UserName } from '../../../../Shared/domain/value-object/UserName';
+import { UserProfileId } from '../../../../Shared/domain/value-object/UserProfileId';
+import { UserProfileName } from '../../../../Shared/domain/value-object/UserProfileName';
 
 export class AdminUser implements UserRoot {
 

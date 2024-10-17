@@ -1,8 +1,8 @@
 import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
-import { CommonCreationEvent } from "../../../../AdministrativeEvent/domain/entities/CommonCreationEvent";
-import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
-import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
-import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
+import { CommonCreationEvent } from "../../../../../Shared/domain/entities/CommonCreationEvent";
+import { EventCreateDate } from "../../../../../Shared/domain/value-object/EventCreateDate";
+import { EventDescription } from "../../../../../Shared/domain/value-object/EventDescription";
+import { EventId } from "../../../../../Shared/domain/value-object/EventId";
 import { ProductionModule } from "../../../domain/entities/productionModule";
 import { ProductionModuleCommandRepository } from "../../../domain/repositories/ProductionModuleCommandRepository";
 import { ProductionModuleCreateBy } from "../../../domain/value-objects/ProductionModuleCreateBy";

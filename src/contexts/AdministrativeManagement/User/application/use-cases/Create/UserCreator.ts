@@ -1,18 +1,18 @@
 import { Uuid } from '../../../../../Shared/domain/value-object/Uuid';
-import { CommonCreationEvent } from '../../../../AdministrativeEvent/domain/entities/CommonCreationEvent';
-import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
-import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
-import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
+import { CommonCreationEvent } from '../../../../../Shared/domain/entities/CommonCreationEvent';
+import { EventCreateDate } from "../../../../../Shared/domain/value-object/EventCreateDate";
+import { EventDescription } from "../../../../../Shared/domain/value-object/EventDescription";
+import { EventId } from "../../../../../Shared/domain/value-object/EventId";
 import { AuthUser } from "../../../domain/entities/AuthUser";
-import { UserCommandRepository } from '../../../domain/repositories/UserCommandRepository';
+import { UserCommandRepository } from '../../../../../SharedAdministrativeManagement/User/domain/repositories/UserCommandRepository';
 import { UserDescription } from "../../../domain/value-objects/UserDescription";
 import { UserId } from "../../../domain/value-objects/UserId";
-import { UserIdType } from "../../../domain/value-objects/UserIdType";
+import { UserIdType } from "../../../../../Shared/domain/value-object/UserIdType";
 import { UserName } from "../../../domain/value-objects/UserName";
 import { UserPassword } from "../../../domain/value-objects/UserPassword";
 import { UserProfileId } from "../../../domain/value-objects/UserProfileId";
 import { UserState } from '../../../domain/value-objects/UserState';
-import { UserNotFoundException } from "../../exceptions/UserNotFoundException";
+import { UserNotFoundException } from "../../../../../Shared/domain/exceptions/UserNotFoundException";
 import { UserExternalService } from "../../services/UserExternalService";
 
 export class UserCreator {

@@ -1,4 +1,4 @@
-import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
+import { CommonModificationEventDTO } from "../../../../Shared/data-transfer-object/CommonModificationEventDTO";
 import { ProductionOrderDetailDTO } from "../../../ProductionOrderDetail/domain/data-transfer-objects/ProductionOrderDetailDTO";
 
 export class ProductionOrderDTO {

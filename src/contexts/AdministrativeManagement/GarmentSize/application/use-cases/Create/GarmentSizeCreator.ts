@@ -1,8 +1,8 @@
 import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
-import { CommonCreationEvent } from "../../../../AdministrativeEvent/domain/entities/CommonCreationEvent";
-import { EventCreateDate } from "../../../../AdministrativeEvent/domain/value-objects/EventCreateDate";
-import { EventDescription } from "../../../../AdministrativeEvent/domain/value-objects/EventDescription";
-import { EventId } from "../../../../AdministrativeEvent/domain/value-objects/EventId";
+import { CommonCreationEvent } from "../../../../../Shared/domain/entities/CommonCreationEvent";
+import { EventCreateDate } from "../../../../../Shared/domain/value-object/EventCreateDate";
+import { EventDescription } from "../../../../../Shared/domain/value-object/EventDescription";
+import { EventId } from "../../../../../Shared/domain/value-object/EventId";
 import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { GarmentSize } from "../../../domain/entities/GarmentSize";
 import { GarmentSizeCommandRepository } from "../../../domain/repositories/GarmentSizeCommandRepository";

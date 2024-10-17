@@ -1,5 +1,5 @@
-import { CommonModificationEvent } from "../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
-import { EventId } from "../../../AdministrativeEvent/domain/value-objects/EventId";
+import { CommonModificationEvent } from "../../../../Shared/domain/entities/CommonModificationEvent";
+import { EventId } from "../../../../Shared/domain/value-object/EventId";
 import { ProductionOrderDetail } from "../../../ProductionOrderDetail/domain/entities/ProductionOrderDetaill";
 import { UserId } from "../../../User/domain/value-objects/UserId";
 import { ProductionOrderDTO } from "../data-transfer-objects/ProductionOrderDTO";

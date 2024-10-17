@@ -3,7 +3,7 @@ import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { ProductionOrderProcessEndDatePlanned } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderProcessEndDatePlanned";
 import { ProductionOrderProcessStartDatePlanned } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderProcessStartDatePlanned";
-import { ColorId } from "../../../../shared/domain/value-objects/ColorId";
+import { ColorId } from "../../../../../Shared/domain/value-object/ColorId";
 import { GarmentSize } from "../../../../shared/domain/value-objects/GarmentSize";
 import { ProductionOrderId } from "../../../../shared/domain/value-objects/ProductionOrderId";
 import { UserId } from "../../../../User/domain/value-objects/UserId";

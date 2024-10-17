@@ -1,7 +1,7 @@
-import { CommonCreationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonCreationEventDTO";
-import { CommonModificationEventDTO } from "../../../AdministrativeEvent/domain/data-transfer-object/CommonModificationEventDTO";
-import { CommonCreationEvent } from "../../../AdministrativeEvent/domain/entities/CommonCreationEvent";
-import { CommonModificationEvent } from "../../../AdministrativeEvent/domain/entities/CommonModificationEvent";
+import { CommonCreationEventDTO } from "../../../../Shared/data-transfer-object/CommonCreationEventDTO";
+import { CommonModificationEventDTO } from "../../../../Shared/data-transfer-object/CommonModificationEventDTO";
+import { CommonCreationEvent } from "../../../../Shared/domain/entities/CommonCreationEvent";
+import { CommonModificationEvent } from "../../../../Shared/domain/entities/CommonModificationEvent";
 import { ProductionModuleAnomalyDTO } from "../data-transfer-objects/ProductionModuleAnomalyDTO";
 import { ProductionModuleAnomalyRoot } from "../interfaces/ProductionModuleAnomalyRoot";
 import { ProductionModuleAnomalyId } from "../value-objects/ProductionModuleAnomalyId";

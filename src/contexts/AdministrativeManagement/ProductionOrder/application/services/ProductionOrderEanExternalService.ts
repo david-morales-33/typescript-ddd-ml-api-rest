@@ -1,5 +1,5 @@
 
-import { ColorId } from "../../../shared/domain/value-objects/ColorId";
+import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
 import { GarmentSize } from "../../../shared/domain/value-objects/GarmentSize";
 import { ProductionOrderEanExternalServiceDTO } from "../data-transfer-objects/ProductionOrderEanExternalServiceDTO";
 

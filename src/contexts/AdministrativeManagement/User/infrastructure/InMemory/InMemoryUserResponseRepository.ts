@@ -1,4 +1,4 @@
-import { AuthUserViewDTO } from "../../domain/data-transfer-objects/AuthUserViewDTO";
+import { AuthUserViewDTO } from "../../../../SharedAdministrativeManagement/User/domain/data-transfer-objects/AuthUserViewDTO";
 import { CommonUserViewDTO } from "../../domain/data-transfer-objects/CommonUserViewDTO";
 import { UserResponseRepository } from "../../domain/repositories/UserResponseRepository";
 import { UserId } from "../../domain/value-objects/UserId";

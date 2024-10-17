@@ -1,6 +1,6 @@
-import { UserExternalServiceDTO } from "../../application/data-transfer-objects/UserExternalServiceDTO";
-import { UserExternalService } from "../../application/services/UserExternalService";
-import { UserId } from "../../domain/value-objects/UserId";
+import { UserId } from "../../../../Shared/domain/value-object/UserId";
+import { UserExternalService } from "../../../../SharedAdministrativeManagement/User/application/services/UserExternalService";
+import { UserExternalServiceDTO } from "../../../../SharedAdministrativeManagement/User/domain/data-transfer-objects/UserExternalServiceDTO";
 
 export class InMemoryExternalService implements UserExternalService {
 

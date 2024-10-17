@@ -1,16 +1,16 @@
-import { UserId } from '../value-objects/UserId';
 import { UserDTO } from '../data-transfer-objects/UserDTO';
 import { UserRoot } from '../interfaces/User';
 import { UserDescription } from '../value-objects/UserDescription';
-import { UserName } from '../value-objects/UserName';
-import { UserProfileId } from '../value-objects/UserProfileId';
-import { UserProfileName } from '../value-objects/UserProfileName';
 import { UserPermission } from '../../../UserPermission/domain/entities/UserPermission';
 import { UserPermissionDTO } from '../../../UserPermission/domain/data-transfer-objects/UserPermissionDTO';
 import { UserPermissionId } from '../../../UserPermission/domain/value-objects/UserPermissionId';
 import { UserPermissionLabel } from '../../../UserPermission/domain/value-objects/UserPermissionLabel';
 import { UserPermissionState } from '../../../UserPermission/domain/value-objects/UserPermissionState';
 import { UserPermissionListNotProvided } from '../exceptions/UserPermissionListNotProvided';
+import { UserId } from '../../../../Shared/domain/value-object/UserId';
+import { UserProfileId } from '../../../../Shared/domain/value-object/UserProfileId';
+import { UserProfileName } from '../../../../Shared/domain/value-object/UserProfileName';
+import { UserName } from '../../../../Shared/domain/value-object/UserName';
 
 export class User implements UserRoot {
     constructor(

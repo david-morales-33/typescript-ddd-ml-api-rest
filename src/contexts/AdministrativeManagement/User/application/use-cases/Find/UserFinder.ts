@@ -1,6 +1,6 @@
 import { UserResponseRepository } from "../../../domain/repositories/UserResponseRepository";
 import { UserId } from "../../../domain/value-objects/UserId";
-import { UserNotFoundException } from "../../exceptions/UserNotFoundException";
+import { UserNotFoundException } from "../../../../../Shared/domain/exceptions/UserNotFoundException";
 
 export class UserFinder {
     constructor(private userRepository: UserResponseRepository) { }
