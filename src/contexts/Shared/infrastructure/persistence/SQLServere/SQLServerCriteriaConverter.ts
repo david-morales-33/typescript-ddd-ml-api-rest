@@ -1,8 +1,8 @@
-import { Criteria } from "../../../domain/design-patterns/Criteria/Criteria";
-import { Filter } from "../../../domain/design-patterns/Criteria/Filter";
-import { Order } from "../../../domain/design-patterns/Criteria/Order";
-import { Operator as ComparisonOperator } from "../../../domain/design-patterns/Criteria/FilterOperator";
-import { Operator as LogicOperator } from "../../../domain/design-patterns/Criteria/LogicOperator";
+import { Criteria } from "../../../domain/Criteria/Criteria";
+import { Filter } from "../../../domain/Criteria/Filter";
+import { Order } from "../../../domain/Criteria/Order";
+import { Operator as ComparisonOperator } from "../../../domain/Criteria/FilterOperator";
+import { Operator as LogicOperator } from "../../../domain/Criteria/LogicOperator";
 
 type SQLComparisonOperator = '=' | '<>' | '>' | '<' | 'LIKE' | 'NOT LIKE' | 'IS' | 'IS NOT';
 type SQLLogicOperator = 'AND' | 'OR';

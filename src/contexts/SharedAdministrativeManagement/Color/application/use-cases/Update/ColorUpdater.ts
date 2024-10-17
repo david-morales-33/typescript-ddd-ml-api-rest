@@ -9,10 +9,10 @@ import { EventPreviusValue } from "../../../../../Shared/domain/value-object/Eve
 import { ColorId } from "../../../../../Shared/domain/value-object/ColorId";
 import { ColorCommandRepository } from "../../../domain/repositories/ColorCommandRepository";
 import { ColorQueryRepository } from "../../../domain/repositories/ColorQueryRepository";
-import { ColorLabel } from "../../../domain/value-objects/ColorLabel";
 import { ColorState } from "../../../domain/value-objects/ColorState";
 import { ColorNotFoundException } from "../../exceptions/ColorNotFoundException";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
+import { ColorLabel } from "../../../../../Shared/domain/value-object/ColorLabel";
 
 export class ColorUpdater {
     constructor(

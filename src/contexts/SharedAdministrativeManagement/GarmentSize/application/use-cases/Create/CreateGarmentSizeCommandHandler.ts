@@ -1,5 +1,5 @@
-import { Command } from "../../../../../Shared/domain/Command";
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
+import { Command } from "../../../../../Shared/domain/CQRS/Command";
+import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";
 import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { CreateGarmentSizeComman } from "../../../domain/data-transfer-objects/CreateGarmentSizeComman";

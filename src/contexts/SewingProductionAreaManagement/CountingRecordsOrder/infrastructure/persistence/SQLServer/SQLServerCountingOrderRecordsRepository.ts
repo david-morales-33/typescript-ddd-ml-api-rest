@@ -1,4 +1,4 @@
-import { Criteria } from "../../../../../Shared/domain/design-patterns/Criteria/Criteria";
+import { Criteria } from "../../../../../Shared/domain/Criteria/Criteria";
 import { dbParameters, SQLServerRepository } from "../../../../../Shared/infrastructure/persistence/SQLServere/SQLServerRepository";
 import { TVPSchemeFields } from "../../../../../Shared/infrastructure/persistence/TVPSchemes/TVPSchemeFields";
 import { TVPSchemeFilters } from "../../../../../Shared/infrastructure/persistence/TVPSchemes/TVPSchemeFilters";
@@ -8,8 +8,8 @@ import { CountingRecordsOrderId } from "../../../domain/value-objects/CountingRe
 import sql from 'mssql';
 import { CountingRecordsOrderViewMapperDTO, PersistenceObject } from "../Mappers/CountingRecordsOrderViewMapperDTO";
 import { TVPSchemeCountingRecordsOrder } from "../TVPSchemes/TVPSchemeCountingRecordsOrder";
-import { Filters } from "../../../../../Shared/domain/design-patterns/Criteria/Filters";
-import { Order } from "../../../../../Shared/domain/design-patterns/Criteria/Order";
+import { Filters } from "../../../../../Shared/domain/Criteria/Filters";
+import { Order } from "../../../../../Shared/domain/Criteria/Order";
 
 
 export class SQLServerCountingOrderRecordsRepository extends SQLServerRepository implements CountingRecordsOrderResponseRepository {

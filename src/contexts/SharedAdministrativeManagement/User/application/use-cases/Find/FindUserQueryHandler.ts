@@ -1,5 +1,5 @@
-import { Query } from "../../../../../Shared/domain/design-patterns/CQRS/Query";
-import { QueryHandler } from "../../../../../Shared/domain/design-patterns/CQRS/QueryHandler";
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
+import { QueryHandler } from "../../../../../Shared/domain/CQRS/QueryHandler";
 import { FindUserQuery } from "./FindUserQuery";
 import { UserFinder } from "./UserFinder";
 import { UserResponse } from "./UserResponse";

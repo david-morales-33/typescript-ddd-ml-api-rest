@@ -3,7 +3,6 @@ import { ProductionOrderRecordsCounter } from "../value-objects/ProductionOrderR
 import { ProductionOrderRecordsCheckedCounter } from "../value-objects/ProductionOrderRecordsCheckedCounter";
 import { ProductionOrderExecutedAmount } from "../value-objects/ProductionOrderExecutedAmount";
 import { ProductionOrderProcessEndDate } from "../value-objects/ProductionOrderProcessEndDate";
-import { ProductionOrderId } from "../value-objects/ProductionOrderId";
 import { ProductionOrderPlannedAmount } from "../value-objects/ProductionOrderPlannedAmount";
 import { ProductionOrderProcessStartDate } from "../value-objects/ProductionOrderProcessStartDate";
 import { ProductionOrderReference } from "../value-objects/ProductionOrderReference";
@@ -21,6 +20,8 @@ import { ProductionOrderDetailNotFoundException } from "../../exceptions/Product
 import { GarmentType } from "../../../Shared/domain/value-object/GarmentType";
 import { ProductionModuleId } from "../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { UserId } from "../../../../Shared/domain/value-object/UserId";
+import { ProductionOrderId } from "../../../../Shared/domain/value-object/ProductionOrderId";
+import { ReferenceId } from "../../../../Shared/domain/value-object/ReferenceId";
 
 export class ProductionOrderInProgress implements ProductionOrderRoot {
 
@@ -32,7 +33,7 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
 
     constructor(
         readonly productionOrderid: ProductionOrderId,
-        readonly reference: ProductionOrderReference,
+        readonly reference: ReferenceId,
         readonly garmentType: GarmentType,
         readonly productionModuleAsigned: ProductionModuleId,
         readonly processStartDate: ProductionOrderProcessStartDate,
@@ -72,7 +73,7 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
 
     static create(
         productionOrderid: ProductionOrderId,
-        reference: ProductionOrderReference,
+        reference: ReferenceId,
         garmentType: GarmentType,
         productionModuleAsigned: ProductionModuleId,
         processStartDate: ProductionOrderProcessStartDate,
@@ -205,7 +206,7 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
     static fromPrimitives(data: ProductionOrderInProgressDTO): ProductionOrderInProgress {
         return new ProductionOrderInProgress(
             new ProductionOrderId(data.productionOrderid),
-            new ProductionOrderReference(data.reference),
+            new ReferenceId(data.reference),
             new GarmentType(data.garmentType),
             new ProductionModuleId(data.productionModuleAsigned),
             new ProductionOrderProcessStartDate(data.processStartDate),

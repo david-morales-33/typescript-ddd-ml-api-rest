@@ -1,5 +1,5 @@
-import { Command } from "../../../../../Shared/domain/Command";
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
+import { Command } from "../../../../../Shared/domain/CQRS/Command";
+import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";
 import { UserDescription } from "../../../../../Shared/domain/value-object/UserDescription";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { UserIdType } from "../../../../../Shared/domain/value-object/UserIdType";

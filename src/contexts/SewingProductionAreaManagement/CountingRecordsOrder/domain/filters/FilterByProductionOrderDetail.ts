@@ -1,8 +1,8 @@
-import { Filter } from "../../../../Shared/domain/design-patterns/Criteria/Filter";
-import { FilterField } from "../../../../Shared/domain/design-patterns/Criteria/FilterField";
-import { FilterOperator, Operator } from "../../../../Shared/domain/design-patterns/Criteria/FilterOperator";
-import { Filters } from "../../../../Shared/domain/design-patterns/Criteria/Filters";
-import { FilterValue } from "../../../../Shared/domain/design-patterns/Criteria/FilterValue";
+import { Filter } from "../../../../Shared/domain/Criteria/Filter";
+import { FilterField } from "../../../../Shared/domain/Criteria/FilterField";
+import { FilterOperator, Operator } from "../../../../Shared/domain/Criteria/FilterOperator";
+import { Filters } from "../../../../Shared/domain/Criteria/Filters";
+import { FilterValue } from "../../../../Shared/domain/Criteria/FilterValue";
 
 export class FilterByProductionOrderDetail extends Filters {
     constructor(productionOrder: string, color: string, size: string) {

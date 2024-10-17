@@ -1,4 +1,4 @@
-import { Criteria } from "../../../../../Shared/domain/design-patterns/Criteria/Criteria";
+import { Criteria } from "../../../../../Shared/domain/Criteria/Criteria";
 import { dbParameters, SQLServerRepository } from "../../../../../Shared/infrastructure/persistence/SQLServere/SQLServerRepository";
 import { TVPSchemeFields } from "../../../../../Shared/infrastructure/persistence/TVPSchemes/TVPSchemeFields";
 import { TVPSchemeFilters } from "../../../../../Shared/infrastructure/persistence/TVPSchemes/TVPSchemeFilters";

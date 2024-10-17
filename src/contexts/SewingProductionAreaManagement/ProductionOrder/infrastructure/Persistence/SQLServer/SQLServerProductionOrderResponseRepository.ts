@@ -1,12 +1,12 @@
-import { Criteria } from "../../../../../Shared/domain/design-patterns/Criteria/Criteria";
+import { Criteria } from "../../../../../Shared/domain/Criteria/Criteria";
 import { SQLServerRepository, dbParameters } from "../../../../../Shared/infrastructure/persistence/SQLServere/SQLServerRepository";
 import { ProductionOrderViewDTO } from "../../../domain/data-transfer-objects/ProductionOrderViewDTO";
 import { ProductionOrderResponseRepository } from "../../../domain/repositories/ProductionOrderResponseRepository";
 import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { TVPSchemeFilters } from "../../../../../Shared/infrastructure/persistence/TVPSchemes/TVPSchemeFilters";
 import sql from 'mssql';
-import { Filters } from "../../../../../Shared/domain/design-patterns/Criteria/Filters";
-import { Order } from "../../../../../Shared/domain/design-patterns/Criteria/Order";
+import { Filters } from "../../../../../Shared/domain/Criteria/Filters";
+import { Order } from "../../../../../Shared/domain/Criteria/Order";
 import { ProductionOrderPersistenceObject, ProductionOrderViewMapperDTO } from "../Mappers/ProductionOrderViewMapperDTO";
 
 export class SQLServerProductionOrderResponseRepository extends SQLServerRepository implements ProductionOrderResponseRepository {

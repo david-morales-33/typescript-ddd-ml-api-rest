@@ -1,4 +1,4 @@
-import { EnumValueObject } from "../../value-object/EnumValueObject";
+import { EnumValueObject } from "../value-object/EnumValueObject";
 
 export enum Operator {
   EQUAL = '=',

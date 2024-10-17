@@ -1,9 +1,8 @@
-import { QueryHandler } from '../../../../../Shared/domain/QueryHandler';
 import { CountingRecordsOrderReportsQuery} from './CountingRecordsOrderReportsQuery';
 import { CountingRecordsOrderReportsResponse } from '../SearchAll/CountingRecordsOrderReportsResponse';
-import { Query } from '../../../../../Shared/domain/Query';
 import { CountingRecordsOrderReportsSearcher } from './CountingRecordsOrderReportsSearcher';
-
+import { QueryHandler } from '../../../../../Shared/domain/CQRS/QueryHandler';
+import { Query } from '../../../../../Shared/domain/CQRS/Query';
 
 export class CountingRecordsOrderReportsQueryHandler implements QueryHandler<CountingRecordsOrderReportsQuery, CountingRecordsOrderReportsResponse>{
 

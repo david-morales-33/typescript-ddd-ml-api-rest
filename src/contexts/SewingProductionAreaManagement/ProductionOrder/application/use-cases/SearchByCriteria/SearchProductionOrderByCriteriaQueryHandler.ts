@@ -1,5 +1,5 @@
-import { Filters } from "../../../../../Shared/domain/design-patterns/Criteria/Filters";
-import { Order } from "../../../../../Shared/domain/design-patterns/Criteria/Order";
+import { Filters } from "../../../../../Shared/domain/Criteria/Filters";
+import { Order } from "../../../../../Shared/domain/Criteria/Order";
 import { Query } from "../../../../../Shared/domain/Query";
 import { QueryHandler } from "../../../../../Shared/domain/QueryHandler";
 import { ProductionOrderByCriteriaSearcher } from "./ProductionOrderByCriteriaSearcher";

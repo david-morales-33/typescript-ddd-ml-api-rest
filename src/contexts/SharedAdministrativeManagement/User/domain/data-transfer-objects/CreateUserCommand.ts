@@ -1,4 +1,4 @@
-import { Command } from "../../../../Shared/domain/Command";
+import { Command } from "../../../../Shared/domain/CQRS/Command";
 
 type params = {
     userId: string;

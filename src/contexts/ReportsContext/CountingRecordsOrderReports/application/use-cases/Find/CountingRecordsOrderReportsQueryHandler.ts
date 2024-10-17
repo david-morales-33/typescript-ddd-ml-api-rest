@@ -1,5 +1,5 @@
-import { Query } from '../../../../../Shared/domain/Query';
-import { QueryHandler } from '../../../../../Shared/domain/QueryHandler'
+import { Query } from '../../../../../Shared/domain/CQRS/Query';
+import { QueryHandler } from '../../../../../Shared/domain/CQRS/QueryHandler';
 import { CountingRecordsOrderReportsId } from '../../../domain/value-objects/CountingRecordsOrderReportsId';
 import { CountingRecordsOrderReportsReference } from '../../../domain/value-objects/CountingRecordsOrderReportsReference';
 import { CountingRecordsOrderReportsProductionOrderType } from '../../../domain/value-objects/CountingRecordsOrderReportsType';

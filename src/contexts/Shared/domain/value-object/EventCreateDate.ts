@@ -1,3 +1,3 @@
-import { CreationDate } from "../../../SewingProductionAreaManagement/Shared/domain/value-object/CreationDate";
+import { CreationDate } from "./CreationDate";
 
 export class EventCreateDate extends CreationDate { }

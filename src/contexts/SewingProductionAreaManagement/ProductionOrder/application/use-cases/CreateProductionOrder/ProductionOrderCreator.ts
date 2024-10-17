@@ -1,16 +1,16 @@
+import { BarcodeEan } from "../../../../../SewingProductionAdministrativeManagement/shared/domain/value-objects/BarcodeEan";
+import { ColorId } from "../../../../../Shared/domain/value-object/ColorId";
+import { ColorLabel } from "../../../../../Shared/domain/value-object/ColorLabel";
+import { GarmentSize } from "../../../../../Shared/domain/value-object/GarmentSize";
+import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
+import { ReferenceId } from "../../../../../Shared/domain/value-object/ReferenceId";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { ProductionOrderDetailNotStarted } from "../../../../ProductionOrderDetail/domain/entities/ProductionOrderDetailNotStarted";
 import { ProductionOrderDetailPlannedAmount } from "../../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailPlannedAmount";
-import { BarcodeEan } from "../../../../Shared/domain/value-object/BarcodeEan";
-import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
-import { ColorLabel } from "../../../../Shared/domain/value-object/ColorLabel";
-import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
 import { GarmentType } from "../../../../Shared/domain/value-object/GarmentType";
 import { ProductionOrderNotStarted } from "../../../domain/entities/ProductionOrderNotStarted";
 import { ProductionOrderCommandRepository } from "../../../domain/repositories/ProductionOrderCommandRepository";
-import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
-import { ProductionOrderReference } from "../../../domain/value-objects/ProductionOrderReference";
 import { ProductionOrderEanExternalServiceDTO } from "../../data-transfer-objects/ProductionOrderEanExternalServiceDTO";
 import { ProductionOrderExternalServiceDTO } from "../../data-transfer-objects/ProductionOrderExternalServiceDTO";
 import { EanNotFound } from "../../exception/EanNotFound";
@@ -43,7 +43,7 @@ export class ProductionOrderCreator {
 
         const [{ reference }] = productionOrderDetailListFromService;
 
-        const productionOrderReference = new ProductionOrderReference(reference);
+        const productionOrderReference = new ReferenceId(reference);
 
         const eanListFromService = await this.productionOrderEanExternalService.match({
             reference: productionOrderReference

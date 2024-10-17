@@ -1,9 +1,9 @@
-import { QueryHandler } from '../../../../../Shared/domain/QueryHandler'
 import { ProductionModuleReportsSearcherResponse } from './ProductionModuleReportsResponse'
 import { ProductionModuleReportsQuery } from './ProductionModuleReportsQuery'
-import { Query } from '../../../../../Shared/domain/Query'
 import { ProductionModuleReportModuleId } from '../../../domain/value-objects/ProductionModuleReportModuleId'
 import { ProductionModuleReportsQueryRepository } from '../../../domain/repositories/ProductionModuleReportsQueryRepository'
+import { QueryHandler } from '../../../../../Shared/domain/CQRS/QueryHandler';
+import { Query } from '../../../../../Shared/domain/CQRS/Query';
 
 export class ProductionModuleReportsQueryHandler implements QueryHandler<ProductionModuleReportsQuery, ProductionModuleReportsSearcherResponse[]> {
 

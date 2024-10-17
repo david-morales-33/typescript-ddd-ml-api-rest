@@ -1,6 +1,6 @@
-import { Criteria } from "../../../../../Shared/domain/design-patterns/Criteria/Criteria";
-import { Filters } from "../../../../../Shared/domain/design-patterns/Criteria/Filters";
-import { Order } from "../../../../../Shared/domain/design-patterns/Criteria/Order";
+import { Criteria } from "../../../../../Shared/domain/Criteria/Criteria";
+import { Filters } from "../../../../../Shared/domain/Criteria/Filters";
+import { Order } from "../../../../../Shared/domain/Criteria/Order";
 import { dbParameters, SQLServerRepository } from "../../../../../Shared/infrastructure/persistence/SQLServere/SQLServerRepository";
 import { TVPSchemeFilters } from "../../../../../Shared/infrastructure/persistence/TVPSchemes/TVPSchemeFilters";
 import { ProductionOrderInProgress } from "../../../domain/entities/ProductionOrderInProgress";

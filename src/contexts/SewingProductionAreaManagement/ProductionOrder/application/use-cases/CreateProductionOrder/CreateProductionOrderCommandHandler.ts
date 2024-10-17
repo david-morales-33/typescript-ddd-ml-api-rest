@@ -1,12 +1,12 @@
-import { Command } from "../../../../../Shared/domain/Command";
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
+import { Command } from "../../../../../Shared/domain/CQRS/Command";
 import { CreateProductionOrderCommand } from "../../../domain/data-transfer-objects/CreateProductionOrderCommand";
-import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { ProductionOrderValidator } from "./ProductionOrderValidator";
 import { ProductionOrderCreator } from "./ProductionOrderCreator";
 import { GarmentType } from "../../../../Shared/domain/value-object/GarmentType";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
+import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
+import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";
 
 export class CreateProductionOrderCommandHandler implements CommandHandler<CreateProductionOrderCommand> {
 

@@ -1,4 +1,4 @@
-import { Criteria } from "../../../../Shared/domain/design-patterns/Criteria/Criteria";
+import { Criteria } from "../../../../Shared/domain/Criteria/Criteria";
 import { EnviromentId } from "../../../Shared/domain/value-objects/EnviromentId";
 import { PlatformId } from "../../../Shared/domain/value-objects/PlatformId";
 import { ProfileId } from "../../../Shared/domain/value-objects/ProfileId";

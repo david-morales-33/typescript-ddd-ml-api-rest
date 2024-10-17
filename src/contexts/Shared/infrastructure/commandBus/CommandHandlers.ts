@@ -1,4 +1,4 @@
-import { Command } from '../../domain/Command';
+import { Command } from '../../domain/CQRS/Command';
 import { CommandHandler } from '../../domain/CommandHandler';
 import { CommandNotRegisteredError } from '../../domain/CommandNotRegisteredError';
 

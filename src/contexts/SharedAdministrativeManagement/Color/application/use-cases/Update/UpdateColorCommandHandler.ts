@@ -1,9 +1,9 @@
-import { Command } from "../../../../../Shared/domain/Command";
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
+import { Command } from "../../../../../Shared/domain/CQRS/Command";
+import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";
 import { ColorId } from "../../../../../Shared/domain/value-object/ColorId";
+import { ColorLabel } from "../../../../../Shared/domain/value-object/ColorLabel";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { UpdateColorCommand } from "../../../domain/data-transfer-objects/UpdateColorCommand";
-import { ColorLabel } from "../../../domain/value-objects/ColorLabel";
 import { ColorState } from "../../../domain/value-objects/ColorState";
 import { ColorUpdater } from "./ColorUpdater";
 import { UpdateColorValidator } from "./UpdateColorValidator";

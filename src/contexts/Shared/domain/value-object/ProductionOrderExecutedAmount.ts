@@ -1,5 +1,5 @@
 import { ValueObject } from "./ValueObject";
-import { CountingRecordsOrderAmount } from "../../../SewingProductionAdministrativeManagement/countingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount";
+import { CountingRecordsOrderAmount } from "./CountingRecordsOrderAmount";
 
 export class ProductionOrderExecutedAmount extends ValueObject<number>{
     constructor(value: number) {

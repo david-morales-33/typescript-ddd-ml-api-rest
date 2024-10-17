@@ -1,5 +1,4 @@
-import { Command } from "../../../../../Shared/domain/Command";
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
+import { Command } from "../../../../../Shared/domain/CQRS/Command";
 import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
 import { UpdateProductionOrderCommand } from "../../../domain/data-transfer-objects/UpdateProductionOrderCommand";
 import { ProductionOrderProcessEndDatePlanned } from "../../../../../Shared/domain/value-object/ProductionOrderProcessEndDatePlanned";
@@ -8,6 +7,7 @@ import { ProductionOrderState } from "../../../../../Shared/domain/value-object/
 import { ProductionOrderUpdater } from "./ProductionOrderUpdater";
 import { UpdateProductionOrderValidator } from "./UpdateProductionOrderValidator";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
+import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";
 
 export class ProductionOrderCommandHandler implements CommandHandler<UpdateProductionOrderCommand> {
     constructor(

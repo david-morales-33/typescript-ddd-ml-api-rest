@@ -1,3 +1,3 @@
-import { Query } from "../../../../../Shared/domain/design-patterns/CQRS/Query";
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
 
 export class SearchColorQuery implements Query { }

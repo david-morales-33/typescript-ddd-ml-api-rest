@@ -1,4 +1,4 @@
-import { Criteria } from "../../../../Shared/domain/design-patterns/Criteria/Criteria";
+import { Criteria } from "../../../../Shared/domain/Criteria/Criteria";
 import { MenuContainerForMenus } from "../entities/MenuContainerForMenus";
 
 export interface MenuRepository {

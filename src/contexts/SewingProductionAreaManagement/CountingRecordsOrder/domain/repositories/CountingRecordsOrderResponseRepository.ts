@@ -1,6 +1,6 @@
 import { CountingRecordsOrderId } from "../value-objects/CountingRecordsOrderId";
 import { CountingRecordsOrderViewDTO } from "../data-transfer-object/CountingRecordsOrderViewDTO";
-import { Criteria } from "../../../../Shared/domain/design-patterns/Criteria/Criteria";
+import { Criteria } from "../../../../Shared/domain/Criteria/Criteria";
 
 export interface CountingRecordsOrderResponseRepository {
     find(countingRecordsOrderId: CountingRecordsOrderId): Promise<CountingRecordsOrderViewDTO | null>;

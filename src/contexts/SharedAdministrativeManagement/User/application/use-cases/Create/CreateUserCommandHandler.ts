@@ -1,5 +1,4 @@
-import { Command } from "../../../../../Shared/domain/Command";
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
+import { Command } from "../../../../../Shared/domain/CQRS/Command";
 import { CreateUserCommand } from "../../../domain/data-transfer-objects/CreateUserCommand";
 import { CreateUserValidator } from "./CreateUserValidator";
 import { UserCreator } from "./UserCreator";
@@ -7,6 +6,7 @@ import { UserProfileId } from "../../../../../Shared/domain/value-object/UserPro
 import { UserPassword } from "../../../domain/value-objets/UserPassword";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { UserIdType } from "../../../../../Shared/domain/value-object/UserIdType";
+import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";
 
 export class CreateUserCommandHandler implements CommandHandler<CreateUserCommand> {
 

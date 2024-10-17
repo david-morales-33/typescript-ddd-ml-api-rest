@@ -1,4 +1,4 @@
-import { Query } from "../../../../../Shared/domain/design-patterns/CQRS/Query";
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
 
 export class FindColorQuery implements Query {
     constructor(public readonly colorId: string) { }

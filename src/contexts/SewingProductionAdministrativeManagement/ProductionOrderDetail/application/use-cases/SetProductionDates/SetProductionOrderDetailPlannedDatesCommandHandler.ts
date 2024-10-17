@@ -1,5 +1,4 @@
-import { Command } from "../../../../../Shared/domain/Command";
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
+import { Command } from "../../../../../Shared/domain/CQRS/Command";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { ProductionOrderProcessEndDatePlanned } from "../../../../../Shared/domain/value-object/ProductionOrderProcessEndDatePlanned";
 import { ProductionOrderProcessStartDatePlanned } from "../../../../../Shared/domain/value-object/ProductionOrderProcessStartDatePlanned";
@@ -11,6 +10,7 @@ import { ProductionOrderDetailId } from "../../../domain/value-objects/Productio
 import { ProductionOrderDetailSetterPlannedDates } from "./ProductionOrderDetailSetterPlannedDates";
 import { SetProductionOrderDetailPlannedDatesValidator } from "./SetProductionOrderDetailPlannedDatesValidator";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
+import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";
 
 export class SetProductionOrderPlannedDatesCommandHandler implements CommandHandler<SetProductionOrderDetailPlannedDatesCommand> {
 

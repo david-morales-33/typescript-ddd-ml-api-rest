@@ -1,4 +1,4 @@
-import { Query } from '../../../../../Shared/domain/Query'
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
 
 export class ProductionModuleReportsQuery implements Query {
     constructor(

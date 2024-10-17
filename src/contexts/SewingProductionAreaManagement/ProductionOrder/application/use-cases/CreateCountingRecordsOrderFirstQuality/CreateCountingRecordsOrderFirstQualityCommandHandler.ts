@@ -1,5 +1,9 @@
-import { Command } from "../../../../../Shared/domain/Command";
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
+import { Command } from "../../../../../Shared/domain/CQRS/Command";
+import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";
+import { ColorId } from "../../../../../Shared/domain/value-object/ColorId";
+import { CreationDate } from "../../../../../Shared/domain/value-object/CreationDate";
+import { GarmentSize } from "../../../../../Shared/domain/value-object/GarmentSize";
+import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { CountingRecordsOrderFirstQualityNotChecked } from "../../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked";
 import { CountingRecordsOrderAmount } from "../../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount";
@@ -12,11 +16,7 @@ import { CountingRecordsOrderEvent } from "../../../../CountingRecordsOrderEvent
 import { CountingRecordsOrderEventId } from "../../../../CountingRecordsOrderEvent/domain/value-objects/CountingRecordsOrderEventId";
 import { CountingRecordsOrderEventName } from "../../../../CountingRecordsOrderEvent/domain/value-objects/CountingRecordsOrderEventName";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
-import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
-import { CreationDate } from "../../../../Shared/domain/value-object/CreationDate";
-import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
 import { CreateCountingRecordsOrderFirstQualityCommand } from "../../../domain/data-transfer-objects/CreateCountingRecordsOrderFirstQualityCommand";
-import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { CountingRecordsOrderFirstQualityCreator } from "./CountingRecordsOrderFirstQualityCreator";
 import { CreateCountingRecordsOrderFirstQualityValidator } from "./CreateCountingRecordsOrderFirstQualityValidator";
 

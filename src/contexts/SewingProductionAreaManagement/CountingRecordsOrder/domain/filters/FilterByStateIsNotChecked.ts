@@ -1,7 +1,7 @@
-import { Filter } from "../../../../Shared/domain/design-patterns/Criteria/Filter";
-import { FilterField } from "../../../../Shared/domain/design-patterns/Criteria/FilterField";
-import { FilterOperator, Operator } from "../../../../Shared/domain/design-patterns/Criteria/FilterOperator";
-import { FilterValue } from "../../../../Shared/domain/design-patterns/Criteria/FilterValue";
+import { Filter } from "../../../../Shared/domain/Criteria/Filter";
+import { FilterField } from "../../../../Shared/domain/Criteria/FilterField";
+import { FilterOperator, Operator } from "../../../../Shared/domain/Criteria/FilterOperator";
+import { FilterValue } from "../../../../Shared/domain/Criteria/FilterValue";
 
 export class FilterByStateIsNotChecked extends Filter {
     constructor() {

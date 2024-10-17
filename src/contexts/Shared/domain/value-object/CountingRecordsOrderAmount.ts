@@ -1,4 +1,4 @@
-import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
+import { ValueObject } from "./ValueObject";
 
 export class CountingRecordsOrderAmount extends ValueObject<number>{
     constructor(value: number) {

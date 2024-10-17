@@ -1,11 +1,11 @@
-import { Query } from '../../../../../Shared/domain/Query';
-import { QueryHandler } from '../../../../../Shared/domain/QueryHandler';
 import { ProductionModuleReportsQuery } from '../Find/ProductionModuleReportsQuery'
 import { ProductionModuleReportsResponse } from '../Find/ProductionModuleReportsResponse'
 import { ProductionModuleReportsFinder } from '../Find/ProductionModuleReportsFinder'
 import { ProductionModuleReportReference } from '../../../domain/value-objects/ProductionModuleReportReference'
 import { ProductionModuleReportModuleId } from '../../../domain/value-objects/ProductionModuleReportModuleId'
 import { ProductionModuleReportId } from '../../../domain/value-objects/ProductionModuleReportId'
+import { QueryHandler } from '../../../../../Shared/domain/CQRS/QueryHandler'
+import { Query } from '../../../../../Shared/domain/CQRS/Query'
 
 export class ProductionModuleReportsQueryHandler implements QueryHandler<ProductionModuleReportsQuery, ProductionModuleReportsResponse> {
     constructor(private productionModuleReportsFinder: ProductionModuleReportsFinder) { }

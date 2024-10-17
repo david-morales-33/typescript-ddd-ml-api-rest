@@ -1,7 +1,6 @@
-import { CommandHandler } from "../../../../../Shared/domain/CommandHandler";
-import { Query } from "../../../../Shared/domain/design-patterns/CQRS/Query";
-import { QueryHandler } from "../../../../Shared/domain/design-patterns/CQRS/QueryHandler";
-import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
+import { QueryHandler } from "../../../../../Shared/domain/CQRS/QueryHandler";
+import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
 import { FindProductionOrderQuery } from "./FindProductionOrderQuery";
 import { ProductionOrderFInder } from "./ProductionOrderFInder";
 import { ProductionOrderResponse } from "./ProductionOrderResponse";

@@ -1,4 +1,4 @@
-import { Command } from '../../domain/Command';
+import { Command } from '../../domain/CQRS/Command';
 import { CommandBus } from './../../domain/CommandBus';
 import { CommandHandlers } from './CommandHandlers';
 

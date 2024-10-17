@@ -1,7 +1,7 @@
-import { Query } from "../../../../../Shared/domain/design-patterns/CQRS/Query";
-import { QueryHandler } from "../../../../../Shared/domain/design-patterns/CQRS/QueryHandler";
-import { Filters } from "../../../../../Shared/domain/design-patterns/Criteria/Filters";
-import { Order } from "../../../../../Shared/domain/design-patterns/Criteria/Order";
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
+import { QueryHandler } from "../../../../../Shared/domain/CQRS/QueryHandler";
+import { Filters } from "../../../../../Shared/domain/Criteria/Filters";
+import { Order } from "../../../../../Shared/domain/Criteria/Order";
 import { CommonUserResponse } from "./CommonUserResponse";
 import { SearchUsersByCriteriaQuery } from "./SearchUsersByCriteriaQuery";
 import { UsersByCriteriaSearcher } from "./UsersByCriteriaSearcher";
