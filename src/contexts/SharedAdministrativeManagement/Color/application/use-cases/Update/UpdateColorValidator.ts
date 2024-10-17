@@ -1,9 +1,9 @@
-import { UserPermissionValidator } from "../../../../../AdministrativeManagement/UserPermission/application/Validate/UserPermissionValidator";
-import { UserPermission } from "../../../../../AdministrativeManagement/UserPermission/domain/entities/UserPermission";
-import { UserPermissionRepository } from "../../../../../AdministrativeManagement/UserPermission/domain/repositories/UserPermissionRepository";
-import { UserPermissionId } from "../../../../../AdministrativeManagement/UserPermission/domain/value-objects/UserPermissionId";
-import { UserPermissionLabel } from "../../../../../AdministrativeManagement/UserPermission/domain/value-objects/UserPermissionLabel";
+import { UserPermissionValidator } from "../../../../../Shared/application/Validate/UserPermissionValidator";
+import { UserPermissionRepository } from "../../../../../Shared/domain/repositories/UserPermissionRepository";
+import { UserPermissionId } from "../../../../../Shared/domain/value-object/UserPermissionId";
+import { UserPermissionLabel } from "../../../../../Shared/domain/value-object/UserPermissionLabel";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
+import { UserPermission } from "../../../../../Shared/domain/entities/UserPermission";
 
 
 export class UpdateColorValidator {

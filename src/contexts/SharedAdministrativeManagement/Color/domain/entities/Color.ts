@@ -1,5 +1,5 @@
-import { CommonCreationEventDTO } from "../../../../Shared/data-transfer-object/CommonCreationEventDTO";
-import { CommonModificationEventDTO } from "../../../../Shared/data-transfer-object/CommonModificationEventDTO";
+import { CommonCreationEventDTO } from "../../../../Shared/domain/data-transfer-object/CommonCreationEventDTO";
+import { CommonModificationEventDTO } from "../../../../Shared/domain/data-transfer-object/CommonModificationEventDTO";
 import { CommonCreationEvent } from "../../../../Shared/domain/entities/CommonCreationEvent";
 import { CommonModificationEvent } from "../../../../Shared/domain/entities/CommonModificationEvent";
 import { EventId } from "../../../../Shared/domain/value-object/EventId";

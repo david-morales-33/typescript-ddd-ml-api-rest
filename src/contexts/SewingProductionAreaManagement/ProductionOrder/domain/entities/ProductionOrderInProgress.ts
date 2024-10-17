@@ -1,4 +1,3 @@
-import { UserId } from "../../../User/domain/value-objects/UserId";
 import { ProductionOrderRoot } from "../interfaces/ProductionOrderRoot";
 import { ProductionOrderRecordsCounter } from "../value-objects/ProductionOrderRecordsCounter";
 import { ProductionOrderRecordsCheckedCounter } from "../value-objects/ProductionOrderRecordsCheckedCounter";
@@ -21,6 +20,7 @@ import { ProductionOrderDetailListEmptyException } from "../../exceptions/Produc
 import { ProductionOrderDetailNotFoundException } from "../../exceptions/ProductionOrderDetailNotFoundException";
 import { GarmentType } from "../../../Shared/domain/value-object/GarmentType";
 import { ProductionModuleId } from "../../../ProductionModule/domain/value-objects/ProductionModuleId";
+import { UserId } from "../../../../Shared/domain/value-object/UserId";
 
 export class ProductionOrderInProgress implements ProductionOrderRoot {
 

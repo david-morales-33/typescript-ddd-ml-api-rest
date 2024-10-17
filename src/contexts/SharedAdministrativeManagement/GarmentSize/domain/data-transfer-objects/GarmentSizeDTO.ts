@@ -1,5 +1,5 @@
-import { CommonCreationEventDTO } from "../../../../Shared/data-transfer-object/CommonCreationEventDTO";
-import { CommonModificationEventDTO } from "../../../../Shared/data-transfer-object/CommonModificationEventDTO";
+import { CommonCreationEventDTO } from "../../../../Shared/domain/data-transfer-object/CommonCreationEventDTO";
+import { CommonModificationEventDTO } from "../../../../Shared/domain/data-transfer-object/CommonModificationEventDTO";
 
 export class GarmentSizeDTO {
     private _className: string = 'GarmentSize.DTO'

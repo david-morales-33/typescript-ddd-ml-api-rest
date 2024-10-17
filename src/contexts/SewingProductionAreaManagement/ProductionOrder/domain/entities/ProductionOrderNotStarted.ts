@@ -5,7 +5,6 @@ import { ProductionOrderId } from "../value-objects/ProductionOrderId";
 import { ProductionOrderPlannedAmount } from "../value-objects/ProductionOrderPlannedAmount";
 import { ProductionOrderProcessStartDate } from "../value-objects/ProductionOrderProcessStartDate";
 import { ProductionOrderReference } from "../value-objects/ProductionOrderReference";
-import { UserId } from "../../../User/domain/value-objects/UserId";
 import { ProductionOrderDetailNotStarted } from "../../../ProductionOrderDetail/domain/entities/ProductionOrderDetailNotStarted";
 import { ProductionOrderINotStartedDTO } from "../data-transfer-objects/ProductionOrderINotStartedDTO";
 import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked";
@@ -17,6 +16,7 @@ import { ProductionOrderDetailNotFoundException } from "../../exceptions/Product
 import { ProductionOrderDetailHasAlreadyBeenAddException } from "../../exceptions/ProductionOrderDetailHasAlreadyBeenAddException";
 import { ProductionModuleId } from "../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { GarmentType } from "../../../Shared/domain/value-object/GarmentType";
+import { UserId } from "../../../../Shared/domain/value-object/UserId";
 
 export class ProductionOrderNotStarted implements ProductionOrderRoot {
 

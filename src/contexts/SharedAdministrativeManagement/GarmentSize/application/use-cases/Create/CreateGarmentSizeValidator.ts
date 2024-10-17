@@ -1,13 +1,13 @@
-import { UserPermissionValidator } from "../../../../../AdministrativeManagement/UserPermission/application/Validate/UserPermissionValidator";
-import { UserPermission } from "../../../../../AdministrativeManagement/UserPermission/domain/entities/UserPermission";
-import { UserPermissionRepository } from "../../../../../AdministrativeManagement/UserPermission/domain/repositories/UserPermissionRepository";
-import { UserPermissionId } from "../../../../../AdministrativeManagement/UserPermission/domain/value-objects/UserPermissionId";
-import { UserPermissionLabel } from "../../../../../AdministrativeManagement/UserPermission/domain/value-objects/UserPermissionLabel";
-import { UserPermissionState } from "../../../../../AdministrativeManagement/UserPermission/domain/value-objects/UserPermissionState";
+import { UserPermissionValidator } from "../../../../../Shared/application/Validate/UserPermissionValidator";
+import { UserPermissionRepository } from "../../../../../Shared/domain/repositories/UserPermissionRepository";
+import { UserPermissionId } from "../../../../../Shared/domain/value-object/UserPermissionId";
+import { UserPermissionLabel } from "../../../../../Shared/domain/value-object/UserPermissionLabel";
+import { UserPermissionState } from "../../../../../Shared/domain/value-object/UserPermissionState";
 import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { GarmentSizeQueryRepository } from "../../../domain/repositories/GarmentSizeQueryRepository";
 import { GarmentSIzeAlreadyExists } from "../../exceptions/GarmentSIzeAlreadyExists";
+import { UserPermission } from "../../../../../Shared/domain/entities/UserPermission";
 
 export class CreateGarmentSizeValidator {
     constructor(

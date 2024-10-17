@@ -3,11 +3,9 @@ import { UserPermissionValidator } from "../../../../UserPermission/application/
 import { UserPermission } from "../../../../UserPermission/domain/entities/UserPermission";
 import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
 import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
-import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { ProductionModuleId } from "../../../../ProductionModule/domain/value-objects/ProductionModuleId";
-import { CountingRecordsOrderEventIdOnProductionModule } from "../../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderEventIdOnProductionModule";
-import { ProductionModuleEventQueryRepository } from "../../../../ProductionModuleEvent/domain/repositories/ProductionModuleEventQueryRepository";
 import { ProductionModuleQueryRepository } from "../../../../ProductionModule/domain/repositories/ProductionModuleQueryRepository";
+import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 
 export class CreateCountingRecordsOrderFirstQualityValidator {
     constructor(

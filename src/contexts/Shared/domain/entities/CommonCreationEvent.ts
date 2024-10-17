@@ -3,7 +3,7 @@ import { EventCreateBy } from "../value-object/EventCreateBy";
 import { EventCreateDate } from "../value-object/EventCreateDate";
 import { EventDescription } from "../value-object/EventDescription";
 import { EventId } from "../value-object/EventId";
-import { CommonCreationEventDTO } from '../../data-transfer-object/CommonCreationEventDTO';
+import { CommonCreationEventDTO } from '../data-transfer-object/CommonCreationEventDTO';
 import { Uuid } from '../value-object/Uuid'
 
 export class CommonCreationEvent implements AdministrativeEventRoot {

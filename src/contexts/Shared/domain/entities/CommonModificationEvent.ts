@@ -6,7 +6,7 @@ import { EventId } from "../value-object/EventId";
 import { EventModifiedField } from "../value-object/EventModifiedField";
 import { EventNewValue } from "../value-object/EventNewValue";
 import { EventPreviusValue } from "../value-object/EventPreviusValue";
-import { CommonModificationEventDTO } from '../../data-transfer-object/CommonModificationEventDTO';
+import { CommonModificationEventDTO } from '../data-transfer-object/CommonModificationEventDTO';
 import { Uuid } from "../value-object/Uuid";
 
 export class CommonModificationEvent implements AdministrativeEventRoot {
