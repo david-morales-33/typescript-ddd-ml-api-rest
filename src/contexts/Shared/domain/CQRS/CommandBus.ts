@@ -1,4 +1,4 @@
-import { Command } from './CQRS/Command';
+import { Command } from "./Command";
 
 export interface CommandBus {
   dispatch(command: Command): Promise<void>;

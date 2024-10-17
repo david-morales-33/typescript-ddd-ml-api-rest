@@ -3,7 +3,7 @@ import { UserPermissionRepository } from "../../../../../Shared/domain/repositor
 import { UserPermissionId } from "../../../../../Shared/domain/value-object/UserPermissionId";
 import { UserPermissionLabel } from "../../../../../Shared/domain/value-object/UserPermissionLabel";
 import { UserPermissionState } from "../../../../../Shared/domain/value-object/UserPermissionState";
-import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
+import { GarmentSize as GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSize";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { GarmentSizeQueryRepository } from "../../../domain/repositories/GarmentSizeQueryRepository";
 import { GarmentSIzeAlreadyExists } from "../../exceptions/GarmentSIzeAlreadyExists";

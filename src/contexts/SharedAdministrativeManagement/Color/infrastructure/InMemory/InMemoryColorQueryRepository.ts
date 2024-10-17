@@ -1,7 +1,7 @@
 import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
+import { ColorLabel } from "../../../../Shared/domain/value-object/ColorLabel";
 import { Color } from "../../domain/entities/Color";
 import { ColorQueryRepository } from "../../domain/repositories/ColorQueryRepository";
-import { ColorLabel } from "../../domain/value-objects/ColorLabel";
 import { ColorState } from "../../domain/value-objects/ColorState";
 
 export class InMemoryColorQueryRepository implements ColorQueryRepository {

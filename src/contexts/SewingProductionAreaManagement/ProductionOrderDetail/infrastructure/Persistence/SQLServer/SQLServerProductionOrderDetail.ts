@@ -3,11 +3,11 @@ import { Filters } from "../../../../../Shared/domain/Criteria/Filters";
 import { Order } from "../../../../../Shared/domain/Criteria/Order";
 import { dbParameters, SQLServerRepository } from "../../../../../Shared/infrastructure/persistence/SQLServere/SQLServerRepository";
 import { TVPSchemeFilters } from "../../../../../Shared/infrastructure/persistence/TVPSchemes/TVPSchemeFilters";
-import { ProductionOrderId } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderId";
 import { ProductionOrderDetailViewDTO } from "../../../domain/data-transfer-objects/ProductionOrderDetailViewDTO";
 import { ProductionOrderDetailResponseRepository } from "../../../domain/repositories/ProductionOrderDetailResponseRepository";
 import sql from 'mssql';
 import { ProductionOrderDetailPersistenceObject, ProductionOrderDetailViewMapperDTO } from "../Mappers/ProductionOrderDetailViewMapperDTO";
+import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
 
 export class SQLServerProductionOrderDetail extends SQLServerRepository implements ProductionOrderDetailResponseRepository {
     protected procedureStoreName(): string {

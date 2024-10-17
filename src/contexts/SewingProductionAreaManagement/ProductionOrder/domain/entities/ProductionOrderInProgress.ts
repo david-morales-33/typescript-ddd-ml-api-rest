@@ -5,7 +5,6 @@ import { ProductionOrderExecutedAmount } from "../value-objects/ProductionOrderE
 import { ProductionOrderProcessEndDate } from "../value-objects/ProductionOrderProcessEndDate";
 import { ProductionOrderPlannedAmount } from "../value-objects/ProductionOrderPlannedAmount";
 import { ProductionOrderProcessStartDate } from "../value-objects/ProductionOrderProcessStartDate";
-import { ProductionOrderReference } from "../value-objects/ProductionOrderReference";
 import { CountingRecordsOrderAmount } from "../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount";
 import { ProductionOrderDetailId } from "../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailId";
 import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked";

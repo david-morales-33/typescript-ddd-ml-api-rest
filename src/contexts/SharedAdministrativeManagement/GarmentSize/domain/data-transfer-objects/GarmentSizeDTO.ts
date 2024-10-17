@@ -4,7 +4,7 @@ import { CommonModificationEventDTO } from "../../../../Shared/domain/data-trans
 export class GarmentSizeDTO {
     private _className: string = 'GarmentSize.DTO'
     constructor(
-        readonly id: number,
+        readonly id: string,
         readonly label: string,
         readonly garmentType: any,
         readonly order: number,

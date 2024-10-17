@@ -1,4 +1,4 @@
-import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
+import { GarmentSize as GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSize";
 import { GarmentSizeResponseRepository } from "../../../domain/repositories/GarmentSizeResponseRepository";
 import { GarmentSizeNotFoundException } from "../../exceptions/GarmentSizeNotFoundException";
 

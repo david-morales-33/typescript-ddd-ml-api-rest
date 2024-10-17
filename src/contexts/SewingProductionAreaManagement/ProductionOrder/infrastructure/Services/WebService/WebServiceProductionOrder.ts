@@ -2,10 +2,10 @@ import { AxiosResponse } from "axios";
 import { WebServiceInterface } from "../../../../../Shared/infrastructure/services/WebService/WebServiceInterface";
 import { ProductionOrderExternalServiceDTO } from "../../../application/data-transfer-objects/ProductionOrderExternalServiceDTO";
 import { ProductionOrderExternalService } from "../../../application/services/ProductionOrderExternalService";
-import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import { parseString } from 'xml2js';
 import { ProductionOrderExternalServiceMapperDTO, ProductionOrderServiceObject } from "../Mappers/ProductionOrderExternalServiceMapperDTO";
 import { WebServiceProductionOrderConfigFactory } from "./WebServiceProductionOrderConfigFactory";
+import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
 
 export class WebServiceProductionOrder extends WebServiceInterface<ProductionOrderExternalServiceDTO> implements ProductionOrderExternalService {
 

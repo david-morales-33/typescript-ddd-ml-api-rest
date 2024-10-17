@@ -1,6 +1,6 @@
 
 type params = {
-    garmentSizeId: number,
+    garmentSizeId: string,
     garmentSizeLabel: string,
     garmentSizeType: any,
     garmenSizeOrder: number,
@@ -12,7 +12,7 @@ export class CreateGarmentSizeComman {
     readonly garmentSizeLabel: string;
     readonly garmentSizeType: any;
     readonly garmenSizeOrder: number;
-    readonly garmentSizeId: number;
+    readonly garmentSizeId: string;
     readonly createBy: string;
 
     constructor({

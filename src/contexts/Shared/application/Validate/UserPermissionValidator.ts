@@ -1,8 +1,8 @@
-import { UserId } from "../../../User/domain/value-objects/UserId";
-import { UserPermission } from "../../../AdministrativeManagement/UserPermission/domain/entities/UserPermission";
 import { UnauthorizedUserAccessException } from "../exceptions/UnauthorizedUserAccessException";
 import { UserDoesNotHavePermissionException } from "../exceptions/UserDoesNotHavePermissionException";
 import { UserPermissionRepository } from "../../domain/repositories/UserPermissionRepository";
+import { UserId } from "../../domain/value-object/UserId";
+import { UserPermission } from "../../domain/entities/UserPermission";
 
 export class UserPermissionValidator {
 

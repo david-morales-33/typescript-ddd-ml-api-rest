@@ -1,5 +1,3 @@
-import { BarcodeEan } from "../../../Shared/domain/value-object/BarcodeEan";
-
 
 export class EanNotFound extends Error {
     constructor(){

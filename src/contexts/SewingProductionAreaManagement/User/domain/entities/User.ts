@@ -1,16 +1,15 @@
 import { UserDTO } from '../data-transfer-objects/UserDTO';
 import { UserRoot } from '../interfaces/User';
-import { UserDescription } from '../value-objects/UserDescription';
-import { UserPermission } from '../../../UserPermission/domain/entities/UserPermission';
-import { UserPermissionDTO } from '../../../UserPermission/domain/data-transfer-objects/UserPermissionDTO';
-import { UserPermissionId } from '../../../UserPermission/domain/value-objects/UserPermissionId';
-import { UserPermissionLabel } from '../../../UserPermission/domain/value-objects/UserPermissionLabel';
-import { UserPermissionState } from '../../../UserPermission/domain/value-objects/UserPermissionState';
 import { UserPermissionListNotProvided } from '../exceptions/UserPermissionListNotProvided';
 import { UserId } from '../../../../Shared/domain/value-object/UserId';
 import { UserProfileId } from '../../../../Shared/domain/value-object/UserProfileId';
 import { UserProfileName } from '../../../../Shared/domain/value-object/UserProfileName';
 import { UserName } from '../../../../Shared/domain/value-object/UserName';
+import { UserPermission } from '../../../../Shared/domain/entities/UserPermission';
+import { UserDescription } from '../../../../Shared/domain/value-object/UserDescription';
+import { UserPermissionId } from '../../../../Shared/domain/value-object/UserPermissionId';
+import { UserPermissionLabel } from '../../../../Shared/domain/value-object/UserPermissionLabel';
+import { UserPermissionState } from '../../../../Shared/domain/value-object/UserPermissionState';
 
 export class User implements UserRoot {
     constructor(
@@ -19,7 +18,7 @@ export class User implements UserRoot {
         readonly profileId: UserProfileId,
         readonly profileName: UserProfileName,
         readonly permissions: UserPermission[],
-        readonly description: UserDescription,
+        readonly description: UserDescription
     ) {
         if (permissions.length === 0)
             throw new UserPermissionListNotProvided();

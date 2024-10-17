@@ -1,6 +1,6 @@
-import { GarmentSize } from "../../../Shared/domain/value-object/GarmentSize";
-import { ProductionOrderId } from "../../../ProductionOrder/domain/value-objects/ProductionOrderId";
-import { ColorId } from "../../../Shared/domain/value-object/ColorId";
+import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
+import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
+import { ProductionOrderId } from "../../../../Shared/domain/value-object/ProductionOrderId";
 
 export class ProductionOrderDetailId {
 

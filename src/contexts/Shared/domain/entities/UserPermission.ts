@@ -1,12 +1,11 @@
+import { UserPermissionDTO } from "../data-transfer-object/UserPermissionDTO";
 import { UserPermissionNotValidException } from "../exceptions/UserPermissionNotValidException";
-import { UserPermissionDTO } from "../../../../Shared/domain/data-transfer-object/UserPermissionDTO";
 import { UserPermissionRoot } from "../interfaces/UserPermissionRoot";
-import { UserPermissionId } from "../value-objects/UserPermissionId";
-import { UserPermissionLabel } from "../value-objects/UserPermissionLabel";
-import { UserPermissionState } from "../value-objects/UserPermissionState";
+import { UserPermissionId } from "../value-object/UserPermissionId";
+import { UserPermissionLabel } from "../value-object/UserPermissionLabel";
+import { UserPermissionState } from "../value-object/UserPermissionState";
 
 export class UserPermission implements UserPermissionRoot {
-
     readonly state: UserPermissionState;
     readonly id: UserPermissionId;
     readonly label: UserPermissionLabel;

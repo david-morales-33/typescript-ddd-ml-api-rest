@@ -1,4 +1,4 @@
-import { ProductionOrderId } from "../../../ProductionOrder/domain/value-objects/ProductionOrderId";
+import { ProductionOrderId } from "../../../../Shared/domain/value-object/ProductionOrderId";
 
 
 export class ProductionModuleProductionOrderId extends ProductionOrderId {

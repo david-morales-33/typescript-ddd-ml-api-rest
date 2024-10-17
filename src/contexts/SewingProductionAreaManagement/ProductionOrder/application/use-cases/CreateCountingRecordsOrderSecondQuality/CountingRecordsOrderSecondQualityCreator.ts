@@ -1,7 +1,6 @@
 import { CountingRecordsOrderSecondQualityNotChecked } from "../../../../CountingRecordsOrder/domain/entities/CountingRecordOrderSecondQualityNotChecked";
 import { ProductionOrderCommandRepository } from "../../../domain/repositories/ProductionOrderCommandRepository";
 import { ProductionOrderQueryRepository } from "../../../domain/repositories/ProductionOrderQueryRepository";
-import { CountingRecordsOrderNotProvided } from "../../exception/CountingRecordsOrderNotProvided";
 import { ProductionOrderNotFound } from "../../exception/ProductionOrderNotFoundOnService";
 
 export class CountingRecordsOrderSecondQualityCreator {

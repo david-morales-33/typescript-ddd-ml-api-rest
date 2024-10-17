@@ -1,6 +1,6 @@
-import { ProductionOrderReference } from "../../../ProductionOrder/domain/value-objects/ProductionOrderReference";
+import { ReferenceId } from "../../../../Shared/domain/value-object/ReferenceId";
 
-export class ProductionModuleReferences extends ProductionOrderReference {
+export class ProductionModuleReferences extends ReferenceId {
     constructor(value: string) {
         super(value)
     }

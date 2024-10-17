@@ -1,3 +1,3 @@
-import { UserId } from "../../../User/domain/value-objects/UserId";
+import { UserId } from "./UserId";
 
 export class EventCreateBy extends UserId { }

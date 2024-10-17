@@ -1,5 +1,5 @@
+import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
 import { ProductionOrderNotFound } from "../../../../ProductionOrder/application/exception/ProductionOrderNotFoundOnService";
-import { ProductionOrderId } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderId";
 import { ProductionOrderDetailResponseRepository } from "../../../domain/repositories/ProductionOrderDetailResponseRepository";
 
 export class ProductionOrderDetailFinder {

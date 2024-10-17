@@ -1,10 +1,8 @@
 import { ProductionOrderRoot } from "../interfaces/ProductionOrderRoot";
 import { ProductionOrderRecordsCounter } from "../value-objects/ProductionOrderRecordsCounter";
 import { ProductionOrderExecutedAmount } from "../value-objects/ProductionOrderExecutedAmount";
-import { ProductionOrderId } from "../value-objects/ProductionOrderId";
 import { ProductionOrderPlannedAmount } from "../value-objects/ProductionOrderPlannedAmount";
 import { ProductionOrderProcessStartDate } from "../value-objects/ProductionOrderProcessStartDate";
-import { ProductionOrderReference } from "../value-objects/ProductionOrderReference";
 import { ProductionOrderDetailNotStarted } from "../../../ProductionOrderDetail/domain/entities/ProductionOrderDetailNotStarted";
 import { ProductionOrderINotStartedDTO } from "../data-transfer-objects/ProductionOrderINotStartedDTO";
 import { CountingRecordsOrderFirstQualityNotChecked } from "../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked";
@@ -17,6 +15,8 @@ import { ProductionOrderDetailHasAlreadyBeenAddException } from "../../exception
 import { ProductionModuleId } from "../../../ProductionModule/domain/value-objects/ProductionModuleId";
 import { GarmentType } from "../../../Shared/domain/value-object/GarmentType";
 import { UserId } from "../../../../Shared/domain/value-object/UserId";
+import { ProductionOrderId } from "../../../../Shared/domain/value-object/ProductionOrderId";
+import { ReferenceId } from "../../../../Shared/domain/value-object/ReferenceId";
 
 export class ProductionOrderNotStarted implements ProductionOrderRoot {
 
@@ -27,7 +27,7 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
 
     constructor(
         readonly productionOrderid: ProductionOrderId,
-        readonly reference: ProductionOrderReference,
+        readonly reference: ReferenceId,
         readonly garmentType: GarmentType,
         readonly productionModuleAsigned: ProductionModuleId,
         readonly openByUser: UserId,
@@ -60,7 +60,7 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
 
     static create(
         productionOrderid: ProductionOrderId,
-        reference: ProductionOrderReference,
+        reference: ReferenceId,
         garmentType: GarmentType,
         productionModuleAsigned: ProductionModuleId,
         openByUser: UserId,
@@ -151,7 +151,7 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
     static fromPrimitives(data: ProductionOrderINotStartedDTO) {
         return new ProductionOrderNotStarted(
             new ProductionOrderId(data.productionOrderid),
-            new ProductionOrderReference(data.reference),
+            new ReferenceId(data.reference),
             new GarmentType(data.garmentType),
             new ProductionModuleId(data.productionModuleAsigned),
             new UserId(data.openByUser),

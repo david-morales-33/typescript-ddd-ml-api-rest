@@ -1,7 +1,7 @@
+import { UserId } from "../../../../Shared/domain/value-object/UserId";
 import { AuthUserViewDTO } from "../../../../SharedAdministrativeManagement/User/domain/data-transfer-objects/AuthUserViewDTO";
 import { CommonUserViewDTO } from "../../../../SharedAdministrativeManagement/User/domain/data-transfer-objects/CommonUserViewDTO";
 import { UserResponseRepository } from "../../../../SharedAdministrativeManagement/User/domain/repositories/UserResponseRepository";
-import { UserId } from "../../domain/value-objects/UserId";
 
 export class InMemoryUserResponseRepository implements UserResponseRepository {
 

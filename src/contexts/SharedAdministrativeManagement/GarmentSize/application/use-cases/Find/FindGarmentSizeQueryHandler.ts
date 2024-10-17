@@ -1,6 +1,6 @@
 import { Query } from "../../../../../Shared/domain/CQRS/Query";
 import { QueryHandler } from "../../../../../Shared/domain/CQRS/QueryHandler";
-import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
+import { GarmentSize as GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSize";
 import { FindGarmentSizeQuery } from "./FindGarmentSizeQuery";
 import { GarmentSizeFinder } from "./GarmentSizeFinder";
 import { GarmentSizeReponse } from "./GarmentSizeReponse";

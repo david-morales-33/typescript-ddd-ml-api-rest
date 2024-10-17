@@ -1,6 +1,6 @@
 import { GarmentSize } from "../../domain/entities/GarmentSize";
+import { GarmentSize as GarmentSizeId } from '../../../../Shared/domain/value-object/GarmentSize'
 import { GarmentSizeQueryRepository } from "../../domain/repositories/GarmentSizeQueryRepository";
-import { GarmentSizeId } from "../../domain/value-objects/GarmentSizeId";
 import { GarmentSizeLabel } from "../../domain/value-objects/GarmentSizeLabel";
 import { GarmentSizeOrder } from "../../domain/value-objects/GarmentSizeOrder";
 import { GarmentSizeState } from "../../domain/value-objects/GarmentSizeState";
@@ -12,7 +12,7 @@ export class InMemoryGarmentSizeQueryRepository implements GarmentSizeQueryRepos
     constructor() {
         this.garmentSizeList = [
             new GarmentSize(
-                new GarmentSizeId(1),
+                new GarmentSizeId('XL'),
                 new GarmentSizeLabel('XL'),
                 new GarmentSizeType('Panty'),
                 new GarmentSizeOrder(0),
@@ -20,7 +20,7 @@ export class InMemoryGarmentSizeQueryRepository implements GarmentSizeQueryRepos
                 []
             ),
             new GarmentSize(
-                new GarmentSizeId(1),
+                new GarmentSizeId('XL'),
                 new GarmentSizeLabel('XL'),
                 new GarmentSizeType('Panty'),
                 new GarmentSizeOrder(0),

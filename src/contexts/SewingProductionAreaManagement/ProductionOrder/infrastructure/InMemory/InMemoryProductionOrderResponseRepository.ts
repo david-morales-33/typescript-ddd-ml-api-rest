@@ -1,6 +1,6 @@
+import { ProductionOrderId } from "../../../../Shared/domain/value-object/ProductionOrderId";
 import { ProductionOrderViewDTO } from "../../domain/data-transfer-objects/ProductionOrderViewDTO";
 import { ProductionOrderResponseRepository } from "../../domain/repositories/ProductionOrderResponseRepository";
-import { ProductionOrderId } from "../../domain/value-objects/ProductionOrderId";
 
 export class InMemoryProductionOrderResponseRepository implements ProductionOrderResponseRepository {
 

@@ -1,6 +1,6 @@
 export class GarmentSizeViewDTO{
     constructor(
-        readonly tallaId: number,
+        readonly tallaId: string,
         readonly tallaLabel: string,
         readonly tipo: string,
         readonly order: number,

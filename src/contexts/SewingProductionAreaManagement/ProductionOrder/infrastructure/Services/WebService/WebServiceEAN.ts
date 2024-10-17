@@ -1,12 +1,12 @@
 import { AxiosResponse } from "axios";
 import { WebServiceInterface } from "../../../../../Shared/infrastructure/services/WebService/WebServiceInterface";
 import { parseString } from 'xml2js';
-import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
-import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
 import { ProductionOrderEanExternalServiceDTO } from "../../../application/data-transfer-objects/ProductionOrderEanExternalServiceDTO";
 import { ProductionOrderEanExternalService } from "../../../application/services/ProductionOrderEanExternalService";
 import { WebServiceEANConfigFactory } from "./WebServiceEANConfigFactory";
 import { ProductionOrderEanExternalServiceMapperDTO, ProductionOrderEanServiceObject } from "../Mappers/ProductionOrderEanExternalServiceMapperDTO";
+import { ColorId } from "../../../../../Shared/domain/value-object/ColorId";
+import { GarmentSize } from "../../../../../Shared/domain/value-object/GarmentSize";
 
 export class WebServiceEAN extends WebServiceInterface<ProductionOrderEanExternalServiceDTO> implements ProductionOrderEanExternalService {
 

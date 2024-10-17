@@ -1,4 +1,4 @@
-import { UserPermissionDTO } from "../../../domain/data-transfer-objects/UserPermissionDTO"
+import { UserPermissionDTO } from "../../../domain/data-transfer-object/UserPermissionDTO"
 import { UserPermission } from "../../../domain/entities/UserPermission"
 
 export interface UserPermissionPersistenceObject {

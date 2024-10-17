@@ -1,4 +1,4 @@
-import { GarmentSizeId } from "../../domain/value-objects/GarmentSizeId";
+import { GarmentSize as GarmentSizeId  } from "../../../../Shared/domain/value-object/GarmentSize";
 
 export class GarmentSizeNotFoundException extends Error {
     constructor(garmentSizeId: GarmentSizeId) {

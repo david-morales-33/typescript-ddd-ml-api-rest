@@ -1,13 +1,11 @@
-import { ProductionOrderId } from "../../../../ProductionOrder/domain/value-objects/ProductionOrderId";
-import { Query } from "../../../../Shared/domain/design-patterns/CQRS/Query";
-import { QueryHandler } from "../../../../Shared/domain/design-patterns/CQRS/QueryHandler";
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
+import { QueryHandler } from "../../../../../Shared/domain/CQRS/QueryHandler";
+import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
 import { FindProductionOrderDetailQuery } from "./FindProductionOrderDetailQuery";
 import { ProductionOrderDetailFinder } from "./ProductionOrderDetailFinder";
 import { ProductionOrderDetailResponse } from "./ProductionOrderDetailResponse";
 
-
 export class ProductionOrderDetailQueryHandler implements QueryHandler<FindProductionOrderDetailQuery, ProductionOrderDetailResponse[]> {
-
     constructor(private productionOrderDetailFinder: ProductionOrderDetailFinder) { }
 
     subscribedTo(): Query {

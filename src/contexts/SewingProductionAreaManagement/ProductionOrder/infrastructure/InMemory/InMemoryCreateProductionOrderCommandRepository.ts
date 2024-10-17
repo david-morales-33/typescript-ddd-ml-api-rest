@@ -1,5 +1,4 @@
 import { ProductionOrderNotStarted } from "../../domain/entities/ProductionOrderNotStarted";
-import { ProductionOrderRoot } from "../../domain/interfaces/ProductionOrderRoot";
 import { ProductionOrderCommandRepository } from "../../domain/repositories/ProductionOrderCommandRepository";
 
 export class InMemoryCreateProductionOrderCommandRepository implements ProductionOrderCommandRepository {

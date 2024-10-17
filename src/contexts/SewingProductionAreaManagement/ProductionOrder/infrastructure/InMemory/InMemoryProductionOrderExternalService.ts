@@ -1,6 +1,6 @@
+import { ProductionOrderId } from "../../../../Shared/domain/value-object/ProductionOrderId";
 import { ProductionOrderExternalServiceDTO } from "../../application/data-transfer-objects/ProductionOrderExternalServiceDTO";
 import { ProductionOrderExternalService } from "../../application/services/ProductionOrderExternalService";
-import { ProductionOrderId } from "../../domain/value-objects/ProductionOrderId";
 
 export class InMemoryExternalServiceRepository implements ProductionOrderExternalService {
 

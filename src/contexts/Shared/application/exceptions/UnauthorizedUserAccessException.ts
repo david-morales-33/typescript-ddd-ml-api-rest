@@ -1,5 +1,4 @@
-import { UserId } from "../../../User/domain/value-objects/UserId";
-
+import { UserId } from "../../domain/value-object/UserId";
 
 export class UnauthorizedUserAccessException extends Error{
     constructor(value: UserId) {

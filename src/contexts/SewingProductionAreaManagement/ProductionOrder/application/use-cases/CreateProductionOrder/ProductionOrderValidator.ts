@@ -1,9 +1,9 @@
+import { UserPermissionValidator } from "../../../../../Shared/application/Validate/UserPermissionValidator";
+import { UserPermission } from "../../../../../Shared/domain/entities/UserPermission";
+import { UserPermissionRepository } from "../../../../../Shared/domain/repositories/UserPermissionRepository";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
-import { UserPermissionValidator } from "../../../../UserPermission/application/Validate/UserPermissionValidator";
-import { UserPermission } from "../../../../UserPermission/domain/entities/UserPermission";
-import { UserPermissionRepository } from "../../../../UserPermission/domain/repositories/UserPermissionRepository";
-import { UserPermissionId } from "../../../../UserPermission/domain/value-objects/UserPermissionId";
-import { UserPermissionLabel } from "../../../../UserPermission/domain/value-objects/UserPermissionLabel";
+import { UserPermissionId } from "../../../../../Shared/domain/value-object/UserPermissionId";
+import { UserPermissionLabel } from "../../../../../Shared/domain/value-object/UserPermissionLabel";
 
 export class ProductionOrderValidator {
 

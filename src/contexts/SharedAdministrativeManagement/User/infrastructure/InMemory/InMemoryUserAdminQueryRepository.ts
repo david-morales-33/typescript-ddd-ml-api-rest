@@ -1,12 +1,12 @@
 import { UserPermissionDTO } from "../../../../Shared/domain/data-transfer-object/UserPermissionDTO";
-import { UserPermission } from "../../../UserPermission/domain/entities/UserPermission";
-import { AdminUser } from "../../domain/entities/AdminUser";
+import { UserPermission } from "../../../../Shared/domain/entities/UserPermission";
+import { UserDescription } from "../../../../Shared/domain/value-object/UserDescription";
+import { UserId } from "../../../../Shared/domain/value-object/UserId";
+import { UserName } from "../../../../Shared/domain/value-object/UserName";
+import { UserProfileId } from "../../../../Shared/domain/value-object/UserProfileId";
+import { UserProfileName } from "../../../../Shared/domain/value-object/UserProfileName";
 import { UserAdminQueryRepository } from "../../../../SharedAdministrativeManagement/User/domain/repositories/UserAdminQueryRepository";
-import { UserDescription } from "../../domain/value-objects/UserDescription";
-import { UserId } from "../../domain/value-objects/UserId";
-import { UserName } from "../../domain/value-objects/UserName";
-import { UserProfileId } from "../../domain/value-objects/UserProfileId";
-import { UserProfileName } from "../../domain/value-objects/UserProfileName";
+import { AdminUser } from "../../domain/entities/AdminUser";
 
 export class InMemoryUserAdminQueryRepository implements UserAdminQueryRepository {
 

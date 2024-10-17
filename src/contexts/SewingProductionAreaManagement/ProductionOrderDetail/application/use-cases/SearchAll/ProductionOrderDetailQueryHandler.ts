@@ -1,5 +1,5 @@
-import { Query } from "../../../../../Shared/domain/Query";
-import { QueryHandler } from "../../../../../Shared/domain/QueryHandler";
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
+import { QueryHandler } from "../../../../../Shared/domain/CQRS/QueryHandler";
 import { ProductionOrderDetailResponse } from "./ProductionOrderDetailResponse";
 import { ProductionOrderDetailSearcher } from "./ProductionOrderDetailSearcher";
 import { SearchProductionOrderDetailQuery } from "./SearchProductionOrderDetailQuery";

@@ -1,4 +1,4 @@
-import { Query } from "../../../../../Shared/domain/Query";
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
 
 export class SearchCountingRecordsOrderByCriteriaQuery implements Query {
     readonly filters: Array<Map<string, string>>;

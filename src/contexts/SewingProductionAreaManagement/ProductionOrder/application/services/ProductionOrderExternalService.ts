@@ -1,4 +1,4 @@
-import { ProductionOrderId } from "../../domain/value-objects/ProductionOrderId";
+import { ProductionOrderId } from "../../../../Shared/domain/value-object/ProductionOrderId";
 import { ProductionOrderExternalServiceDTO } from "../data-transfer-objects/ProductionOrderExternalServiceDTO";
 
 export interface ProductionOrderExternalService {

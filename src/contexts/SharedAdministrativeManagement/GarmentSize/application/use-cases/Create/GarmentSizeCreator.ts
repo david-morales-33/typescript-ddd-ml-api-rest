@@ -1,3 +1,4 @@
+import { GarmentSize as GarmentSizeId} from '../../../../../Shared/domain/value-object/GarmentSize'
 import { Uuid } from "../../../../../Shared/domain/value-object/Uuid";
 import { CommonCreationEvent } from "../../../../../Shared/domain/entities/CommonCreationEvent";
 import { EventCreateDate } from "../../../../../Shared/domain/value-object/EventCreateDate";
@@ -10,7 +11,6 @@ import { GarmentSizeOrder } from "../../../domain/value-objects/GarmentSizeOrder
 import { GarmentSizeState } from "../../../domain/value-objects/GarmentSizeState";
 import { GarmentSizeType } from "../../../domain/value-objects/GarmentSizeType";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
-import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
 
 export class GarmentSizeCreator {
     constructor(private garmentSizeRepository: GarmentSizeCommandRepository) { }

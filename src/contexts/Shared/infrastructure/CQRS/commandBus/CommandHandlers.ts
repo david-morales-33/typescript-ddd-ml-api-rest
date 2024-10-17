@@ -1,6 +1,6 @@
-import { Command } from '../../domain/CQRS/Command';
-import { CommandHandler } from '../../domain/CommandHandler';
-import { CommandNotRegisteredError } from '../../domain/CommandNotRegisteredError';
+import { Command } from '../../../domain/CQRS/Command';
+import { CommandHandler } from '../../../domain/CQRS/CommandHandler';
+import { CommandNotRegisteredError } from '../../../domain/exceptions/CommandNotRegisteredError';
 
 
 export class CommandHandlers extends Map<Command, CommandHandler<Command>> {

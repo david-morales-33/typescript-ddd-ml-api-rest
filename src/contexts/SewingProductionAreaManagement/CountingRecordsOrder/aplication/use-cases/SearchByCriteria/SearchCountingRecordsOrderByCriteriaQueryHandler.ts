@@ -1,7 +1,7 @@
+import { Query } from "../../../../../Shared/domain/CQRS/Query";
+import { QueryHandler } from "../../../../../Shared/domain/CQRS/QueryHandler";
 import { Filters } from "../../../../../Shared/domain/Criteria/Filters";
 import { Order } from "../../../../../Shared/domain/Criteria/Order";
-import { Query } from "../../../../../Shared/domain/Query";
-import { QueryHandler } from "../../../../../Shared/domain/QueryHandler";
 import { CountingRecordsOrderByCriteriaSearcher } from "./CountingRecordsOrderByCriteriaSearcher";
 import { CountingRecordsOrderResponse } from "./CountingRecordsOrderResponse";
 import { SearchCountingRecordsOrderByCriteriaQuery } from "./SearchCountingRecordsOrderByCriteriaQuery";

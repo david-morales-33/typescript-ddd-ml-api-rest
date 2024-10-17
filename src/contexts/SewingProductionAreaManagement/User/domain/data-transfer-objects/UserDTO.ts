@@ -1,4 +1,4 @@
-import { UserPermissionDTO } from "../../../UserPermission/domain/data-transfer-objects/UserPermissionDTO";
+import { UserPermissionDTO } from "../../../../Shared/domain/data-transfer-object/UserPermissionDTO";
 
 export class UserDTO {
     private _className: string = 'User.DTO';

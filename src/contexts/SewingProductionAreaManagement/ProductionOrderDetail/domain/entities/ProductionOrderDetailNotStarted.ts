@@ -1,20 +1,20 @@
 import { ProductionOrderDetailRoot } from '../interfaces/ProductionOrderDetailRoot';
-import { GarmentSize } from '../../../Shared/domain/value-object/GarmentSize';
-import { ProductionOrderId } from '../../../ProductionOrder/domain/value-objects/ProductionOrderId';
 import { ProductionOrderDetailRecordsOrederCounter } from '../value-objects/ProductionOrderDetailRecordsOrederCounter';
 import { ProductionOrderDetailExecutedAmount } from '../value-objects/ProductionOrderDetailExecutedAmount';
 import { ProductionOrderDetailId } from '../value-objects/ProductionOrderDetailId';
 import { ProductionOrderDetailPlannedAmount } from '../value-objects/ProductionOrderDetailPlannedAmount';
 import { ProductionOrderDetailProcessStartDate } from '../value-objects/ProductionOrderDetailProcessStartDate';
-import { BarcodeEan } from '../../../Shared/domain/value-object/BarcodeEan';
 import { ProductionOrderDetailNotStartedDTO } from '../data-transfer-objects/ProductionOrderDetailNotStartedDTO';
 import { CountingRecordsOrderId } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderId';
 import { CountingRecordsOrderAmount } from '../../../CountingRecordsOrder/domain/value-objects/CountingRecordsOrderAmount';
 import { CountingRecordsOrderFirstQualityNotChecked } from '../../../CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked';
 import { CountingRecordsOrderSecondQualityNotChecked } from '../../../CountingRecordsOrder/domain/entities/CountingRecordOrderSecondQualityNotChecked';
 import { CountingRecordsOrderHasAlreadyBeenAddedException } from '../../exceptions/CountingRecordsOrderHasAlreadyBeenAddedException';
-import { ColorId } from '../../../Shared/domain/value-object/ColorId';
-import { ColorLabel } from '../../../Shared/domain/value-object/ColorLabel';
+import { ProductionOrderId } from '../../../../Shared/domain/value-object/ProductionOrderId';
+import { ColorId } from '../../../../Shared/domain/value-object/ColorId';
+import { ColorLabel } from '../../../../Shared/domain/value-object/ColorLabel';
+import { GarmentSize } from '../../../../Shared/domain/value-object/GarmentSize';
+import { BarcodeEan } from '../../../../SewingProductionAdministrativeManagement/shared/domain/value-objects/BarcodeEan';
 
 export class ProductionOrderDetailNotStarted implements ProductionOrderDetailRoot {
 

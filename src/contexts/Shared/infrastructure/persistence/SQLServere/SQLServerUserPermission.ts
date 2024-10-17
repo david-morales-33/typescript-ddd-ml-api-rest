@@ -1,13 +1,13 @@
-import { Criteria } from "../../../../../Shared/domain/Criteria/Criteria";
-import { Filters } from "../../../../../Shared/domain/Criteria/Filters";
-import { Order } from "../../../../../Shared/domain/Criteria/Order";
-import { dbParameters, SQLServerRepository } from "../../../../../Shared/infrastructure/persistence/SQLServere/SQLServerRepository";
-import { TVPSchemeFilters } from "../../../../../Shared/infrastructure/persistence/TVPSchemes/TVPSchemeFilters";
-import { UserId } from "../../../../User/domain/value-objects/UserId";
 import { UserPermission } from "../../../domain/entities/UserPermission";
 import { UserPermissionRepository } from "../../../domain/repositories/UserPermissionRepository";
 import sql from 'mssql';
 import { UserPermissionMapper, UserPermissionPersistenceObject } from "../Mappers/UserPermissionMapper";
+import { dbParameters, SQLServerRepository } from "./SQLServerRepository";
+import { UserId } from "../../../domain/value-object/UserId";
+import { Filters } from "../../../domain/Criteria/Filters";
+import { Order } from "../../../domain/Criteria/Order";
+import { Criteria } from "../../../domain/Criteria/Criteria";
+import { TVPSchemeFilters } from "../TVPSchemes/TVPSchemeFilters";
 
 export class SQLServerUserPermission extends SQLServerRepository implements UserPermissionRepository {
     protected procedureStoreName(): string {

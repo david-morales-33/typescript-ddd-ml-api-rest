@@ -1,6 +1,6 @@
 
 type params = {
-    garmentSizeId: number,
+    garmentSizeId: string,
     garmentSizeLabel?: string,
     garmentSizeType?: any,
     garmentSizeState?: boolean,
@@ -10,7 +10,7 @@ type params = {
 
 export class UpdateGarmentSizeCommand {
 
-    readonly garmentSizeId: number;
+    readonly garmentSizeId: string;
     readonly garmentSizeLabel: string | null;
     readonly garmentSizeType: any | null;
     readonly garmentSizeState: boolean | null;

@@ -3,13 +3,13 @@ import { CommonModificationEventDTO } from "../../../../Shared/domain/data-trans
 import { CommonCreationEvent } from "../../../../Shared/domain/entities/CommonCreationEvent";
 import { CommonModificationEvent } from "../../../../Shared/domain/entities/CommonModificationEvent";
 import { EventId } from "../../../../Shared/domain/value-object/EventId";
-import { GarmentSizeId } from "../../../../Shared/domain/value-object/GarmentSizeId";
 import { GarmentSizeDTO } from "../data-transfer-objects/GarmentSizeDTO";
 import { GarmentSizeRoot } from "../interfaces/GarmentSizeRoot";
 import { GarmentSizeLabel } from "../value-objects/GarmentSizeLabel";
 import { GarmentSizeOrder } from "../value-objects/GarmentSizeOrder";
 import { GarmentSizeState } from "../value-objects/GarmentSizeState";
 import { GarmentSizeType } from "../value-objects/GarmentSizeType";
+import { GarmentSize as GarmentSizeId} from '../../../../Shared/domain/value-object/GarmentSize'
 
 export class GarmentSize implements GarmentSizeRoot {
 

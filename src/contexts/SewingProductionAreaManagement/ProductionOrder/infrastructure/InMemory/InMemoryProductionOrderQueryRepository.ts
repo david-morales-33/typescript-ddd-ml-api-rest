@@ -1,18 +1,17 @@
-import { ProductionOrderRoot } from "../../domain/interfaces/ProductionOrderRoot";
 import { ProductionOrderQueryRepository } from "../../domain/repositories/ProductionOrderQueryRepository";
-import { ProductionOrderId } from "../../domain/value-objects/ProductionOrderId";
 import { ProductionOrderDetailNotStarted } from "../../../ProductionOrderDetail/domain/entities/ProductionOrderDetailNotStarted";
 import { ProductionOrderDetailPlannedAmount } from "../../../ProductionOrderDetail/domain/value-objects/ProductionOrderDetailPlannedAmount";
-import { BarcodeEan } from "../../../Shared/domain/value-object/BarcodeEan";
-import { ColorId } from "../../../Shared/domain/value-object/ColorId";
-import { GarmentSize } from "../../../Shared/domain/value-object/GarmentSize";
-import { UserId } from "../../../User/domain/value-objects/UserId";
 import { ProductionOrderInProgress } from "../../domain/entities/ProductionOrderInProgress";
 import { ProductionOrderNotStarted } from "../../domain/entities/ProductionOrderNotStarted";
-import { ProductionOrderReference } from "../../domain/value-objects/ProductionOrderReference";
-import { ColorLabel } from "../../../Shared/domain/value-object/ColorLabel";
 import { GarmentType } from "../../../Shared/domain/value-object/GarmentType";
 import { ProductionModuleId } from "../../../ProductionModule/domain/value-objects/ProductionModuleId";
+import { ProductionOrderId } from "../../../../Shared/domain/value-object/ProductionOrderId";
+import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
+import { ColorLabel } from "../../../../Shared/domain/value-object/ColorLabel";
+import { GarmentSize } from "../../../../Shared/domain/value-object/GarmentSize";
+import { BarcodeEan } from "../../../../SewingProductionAdministrativeManagement/shared/domain/value-objects/BarcodeEan";
+import { ReferenceId } from "../../../../Shared/domain/value-object/ReferenceId";
+import { UserId } from "../../../../Shared/domain/value-object/UserId";
 
 export class InMemoryProductionOrderQueryRepository implements ProductionOrderQueryRepository {
     private productionOrderList: (ProductionOrderNotStarted | ProductionOrderInProgress)[]
@@ -55,7 +54,7 @@ export class InMemoryProductionOrderQueryRepository implements ProductionOrderQu
 
         const productionOrderNotStarted = new ProductionOrderNotStarted(
             new ProductionOrderId('MOP4415'),
-            new ProductionOrderReference('MAR579'),
+            new ReferenceId('MAR579'),
             new GarmentType('MOP'),
             new ProductionModuleId(10),
             new UserId('1146441925'),

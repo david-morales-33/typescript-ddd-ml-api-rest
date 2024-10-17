@@ -1,5 +1,5 @@
-import { UserId } from "../../../User/domain/value-objects/UserId";
 import { UserPermission } from "../entities/UserPermission";
+import { UserId } from "../value-object/UserId";
 
 export interface UserPermissionRepository {
     searchAll(userId: UserId): Promise <UserPermission[]>;

@@ -6,14 +6,12 @@ import { EventId } from "../../../../Shared/domain/value-object/EventId";
 import { ColorId } from "../../../../Shared/domain/value-object/ColorId";
 import { ColorDTO } from "../data-transfer-objects/ColorDTO";
 import { ColorRoot } from "../interfaces/ColorRoot";
-import { ColorLabel } from "../value-objects/ColorLabel";
 import { ColorState } from "../value-objects/ColorState";
+import { ColorLabel } from "../../../../Shared/domain/value-object/ColorLabel";
 
 export class Color implements ColorRoot {
-
     readonly id: ColorId;
     readonly administrativeEventList: (CommonModificationEvent | CommonCreationEvent)[];
-
     private _label: ColorLabel;
     private _state: ColorState;
 
@@ -50,7 +48,7 @@ export class Color implements ColorRoot {
         const { value, event } = params;
         if (!this.hasAddedEvent(event.id)) {
             this.addNewEvent(event);
-            this._label = this.label.setValue(value.value)
+            this._label = new ColorLabel(value.value)
         }
     }
 

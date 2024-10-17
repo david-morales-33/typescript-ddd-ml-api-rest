@@ -6,7 +6,6 @@ import { TVPSchemeFilters } from "../../../../../Shared/infrastructure/persisten
 import { ProductionOrderInProgress } from "../../../domain/entities/ProductionOrderInProgress";
 import { ProductionOrderNotStarted } from "../../../domain/entities/ProductionOrderNotStarted";
 import { ProductionOrderQueryRepository } from "../../../domain/repositories/ProductionOrderQueryRepository";
-import { ProductionOrderId } from "../../../domain/value-objects/ProductionOrderId";
 import sql from 'mssql';
 import { ProductionOrderQueryMapperDTO } from "../Mappers/ProductionOrderQueryMapperDTO";
 import { ProductionOrderPersistenceObject } from "../Mappers/ProductionOrderQueryMapperDTO";
@@ -14,6 +13,7 @@ import { TVPSchemeCountingRecordsOrderIdList } from "../TVPSchemes/TVPSchemeCoun
 import { TVPSchemeFields } from "../../../../../Shared/infrastructure/persistence/TVPSchemes/TVPSchemeFields";
 import { CountingRecordsOrderIdDTO, CountingRecordsOrderIdMapperDTO, CountingRecordsOrderIdPersistenceObject } from "../Mappers/CountingRecordsOrderIdMapperDTO";
 import { ProductionOrderDetailPersistenceObject, ProductionOrderDetailQueryMapperDTO } from "../Mappers/ProductionOrderDetailQueryMapperDTO";
+import { ProductionOrderId } from "../../../../../Shared/domain/value-object/ProductionOrderId";
 
 export class SQLServerProductionOrderQueryRepository extends SQLServerRepository implements ProductionOrderQueryRepository {
     protected procedureStoreName(): string {

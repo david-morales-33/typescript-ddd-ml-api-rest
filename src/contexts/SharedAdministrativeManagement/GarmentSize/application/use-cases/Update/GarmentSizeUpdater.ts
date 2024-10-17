@@ -14,7 +14,7 @@ import { GarmentSizeState } from "../../../domain/value-objects/GarmentSizeState
 import { GarmentSizeType } from "../../../domain/value-objects/GarmentSizeType";
 import { GarmentSizeNotFoundException } from "../../exceptions/GarmentSizeNotFoundException";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
-import { GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSizeId";
+import { GarmentSize as GarmentSizeId } from "../../../../../Shared/domain/value-object/GarmentSize";
 
 export class GarmentSizeUpdater {
     constructor(
