@@ -4,24 +4,38 @@ import { MenuId } from "../value-objects/MenuId";
 import { MenuName } from "../value-objects/MenuName";
 import { MenuState } from "../value-objects/MenuState";
 import { MenuContainerForOperations } from "./MenuContainerForOperations";
-import {MenuRoot} from '../interfaces/MenuRoot'
+import { MenuRoot } from '../interfaces/menuRoot'
 
 export class MenuContainerForMenus implements MenuRoot {
     constructor(
         readonly id: MenuId,
-        readonly name: MenuName,
+        readonly masterId: MenuId | null,
+        readonly label: MenuName,
         readonly state: MenuState,
         readonly children: (MenuContainerForMenus | MenuContainerForOperations)[]
     ) { }
 
-    static create(id: MenuId, name: MenuName, state: MenuState, children: (MenuContainerForMenus | MenuContainerForOperations)[]): MenuContainerForMenus {
-        return new MenuContainerForMenus(id, name, state, children);
+    static create(
+        id: MenuId,
+        masterId: MenuId | null,
+        label: MenuName,
+        state: MenuState,
+        children: MenuContainerForMenus[]
+    ): MenuContainerForMenus {
+        return new MenuContainerForMenus(
+            id,
+            masterId,
+            label,
+            state,
+            children
+        )
     }
 
     static fromPrimitives(data: MenuContainerForMenusDTO): MenuContainerForMenus {
         return new MenuContainerForMenus(
             new MenuId(data.id),
-            new MenuName(data.name),
+            data.masterId === null ? null : new MenuId(data.masterId),
+            new MenuName(data.label),
             new MenuState(data.state),
             data.children.map(entry => {
                 if (entry.className === 'menuContainer.forMenusDTO')
@@ -34,9 +48,10 @@ export class MenuContainerForMenus implements MenuRoot {
     toPrimitives(): MenuContainerForMenusDTO {
         return new MenuContainerForMenusDTO(
             this.id.value,
-            this.name.value,
+            this.masterId === null ? null : this.masterId.value,
+            this.label.value,
             this.state.value,
-            this.children.map(entry => { return entry.toPrimitives() })
+            this.children.map(entry => entry.toPrimitives())
         )
     }
 }

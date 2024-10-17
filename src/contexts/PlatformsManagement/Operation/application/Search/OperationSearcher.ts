@@ -1,19 +1,15 @@
-import { EnviromentId } from "../../../Shared/domain/value-objects/EnviromentId";
-import { PlatformId } from "../../../Shared/domain/value-objects/PlatformId";
-import { ProfileId } from "../../../Shared/domain/value-objects/ProfileId";
+import { Criteria } from "../../../../Shared/domain/design-patterns/Criteria/Criteria";
+import { Filters } from "../../../../Shared/domain/design-patterns/Criteria/Filters";
+import { Order } from "../../../../Shared/domain/design-patterns/Criteria/Order";
 import { OperationRepository } from "../../domain/repositories/OperationRepository";
-import { OperationResponse } from "./OperationResponse";
+import { OperationsResponse } from "./OperationResponse";
 
-export class OperationFinder {
+export class OperationSearcher {
     constructor(private operationRepository: OperationRepository) { }
 
-    async execute(enviromentId?: EnviromentId, profileId?: ProfileId, platformId?: PlatformId) {
-
-        const operations = await this.operationRepository.match({
-            enviromentId,
-            profileId,
-            platformId
-        });
-        return new OperationResponse(operations);
+    async execute(filters: Filters, order: Order, limit?: number, offset?: number) {
+        const criteria = new Criteria(filters, order, limit, offset);
+        const operations = await this.operationRepository.match(criteria);
+        return new OperationsResponse(operations);
     }
 }

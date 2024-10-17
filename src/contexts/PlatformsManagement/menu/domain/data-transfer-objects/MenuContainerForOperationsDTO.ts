@@ -1,10 +1,10 @@
-import { OperationDTO } from "../../../operation/domain/data-transfer-objects/OperationDTO";
+import { OperationDTO } from '../../../Operation/domain/data-transfer-objects/OperationDTO'
 
 export class MenuContainerForOperationsDTO {
     private _className: string = 'menuContainer.forOperationsDTO'
     constructor(
         readonly id: number,
-        readonly name: string,
+        readonly label: string,
         readonly state: boolean,
         readonly children: OperationDTO[]
     ) { }
