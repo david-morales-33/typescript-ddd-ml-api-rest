@@ -11,6 +11,8 @@ import { UserProfileId } from "../../../../Shared/domain/value-object/UserProfil
 import { UserState } from "../../../../Shared/domain/value-object/UserState";
 import { AuthUserDTO } from "../data-transfer-objects/AuthUserDTO";
 import { UserRoot } from "../interface/UserRoot";
+import { PasswordService } from "../services/PasswordService";
+import { TokenService } from "../services/TokenService";
 import { UserPassword } from "../value-objets/UserPassword";
 
 export class AuthUser implements UserRoot {
@@ -147,6 +149,10 @@ export class AuthUser implements UserRoot {
     private hasAddedEvent(eventId: EventId) {
         const eventFound = this.eventList.find(elemente => elemente.id.value === eventId.value);
         return eventFound !== undefined;
+    }
+
+    public async checkPassword(service: PasswordService, password: UserPassword): Promise<boolean> {
+        return (await service.compare(this._password, password)).value;
     }
 
     static fromPrimitives(data: AuthUserDTO): AuthUser {

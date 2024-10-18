@@ -1,5 +1,5 @@
 
-import { AdminUserDTO } from '../../../../SharedAdministrativeManagement/User/domain/entities/AdminUserDTO';
+import { AdminUserDTO } from '../data-transfer-objects/AdminUserDTO';
 import { UserId } from '../../../../Shared/domain/value-object/UserId';
 import { UserName } from '../../../../Shared/domain/value-object/UserName';
 import { UserProfileId } from '../../../../Shared/domain/value-object/UserProfileId';
