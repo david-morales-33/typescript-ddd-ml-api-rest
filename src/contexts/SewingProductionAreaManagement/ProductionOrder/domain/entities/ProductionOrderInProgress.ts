@@ -29,6 +29,8 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
     private _processEndDate: ProductionOrderProcessEndDate | null;
     private _plannedAmount: ProductionOrderPlannedAmount;
     private _executedAmount: ProductionOrderExecutedAmount;
+    public newRecordsOrderListFirstQuality: CountingRecordsOrderFirstQualityNotChecked[] = [];
+    public newRecordsOrderListSecondQuality: CountingRecordsOrderSecondQualityNotChecked[] = [];
 
     constructor(
         readonly productionOrderid: ProductionOrderId,
@@ -98,7 +100,6 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
             countingRecordsOrder.garmentSize,
             countingRecordsOrder.productionOrderId
         );
-
         const productionOrderDetail = this.productionOrderDetailList.find(element => element.productionOrderDetailId.getProductionOrderDetalId() === productionOrderDetailId.getProductionOrderDetalId());
 
         if (productionOrderDetail === undefined)
@@ -108,8 +109,22 @@ export class ProductionOrderInProgress implements ProductionOrderRoot {
         this.incrementExecutedAmount(countingRecordsOrder.recordsAmount);
         this.incrementRecordsCounter();
 
+        if (countingRecordsOrder.toPrimitives().className === 'CountingRecordsOrder.firstQualityNotCheckedDTO'){
+            this.addFirstQualityEntity(countingRecordsOrder as CountingRecordsOrderFirstQualityNotChecked)}
+
+        if (countingRecordsOrder.toPrimitives().className === 'countingRecordsOrder.secondtQualityNotCheckedDTO'){
+            this.addSecontQualityEntity(countingRecordsOrder as CountingRecordsOrderSecondQualityNotChecked)}
+
         if (this.hasCompletedPlannedAmount())
             this.closeOrder();
+    }
+
+    addFirstQualityEntity(countingRecordsOrder: CountingRecordsOrderFirstQualityNotChecked): void {
+        this.newRecordsOrderListFirstQuality.push(countingRecordsOrder);
+    }
+
+    addSecontQualityEntity(countingRecordsOrder: CountingRecordsOrderSecondQualityNotChecked): void {
+        this.newRecordsOrderListSecondQuality.push(countingRecordsOrder)
     }
 
     addCountingRecordsOrderNotChecked(countingRecordsOrder: CountingRecordsOrderFirstQualityNotChecked | CountingRecordsOrderSecondQualityNotChecked): void {

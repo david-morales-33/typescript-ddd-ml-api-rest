@@ -2,6 +2,7 @@ import { ProductionOrderDetailInProgressDTO } from '../../../ProductionOrderDeta
 import { ProductionOrderDetailNotStartedDTO } from '../../../ProductionOrderDetail/domain/data-transfer-objects/ProductionOrderDetailNotStartedDTO'
 
 export class ProductionOrderInProgressDTO {
+    private _className: string = 'ProductionOrder.inProgressDTO'
     constructor(
         readonly productionOrderid: string,
         readonly reference: string,
@@ -16,4 +17,8 @@ export class ProductionOrderInProgressDTO {
         readonly openByUser: string,
         readonly productionOrderDetailList: (ProductionOrderDetailInProgressDTO | ProductionOrderDetailNotStartedDTO)[],
     ) { }
+
+    public get className(): string {
+        return this._className
+    }
 }

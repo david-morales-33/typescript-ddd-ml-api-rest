@@ -20,6 +20,7 @@ import { CreateCountingRecordsOrderSecondQualityCommandHandler } from '../../../
 import { SQLServerProductionOrderResponseRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderResponseRepository';
 import { SQLServerProductionOrderQueryRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderQueryRepository';
 import { SQLServerCreateProductionOrderCommandRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerCreateProductionOrderCommandRepository'
+import { SQLServerCreateCountingRecordsOrderOneCommandRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerCreateCountingRecordsOrderOneCommandRepository';
 
 const inMemoryProductionOrderResponseRepository = container.
     register('SewingProductionAreaManagement.infrastructure.ProductionOrder.InMemoryProductionOrderResponseRepository', InMemoryProductionOrderResponseRepository);
@@ -91,7 +92,12 @@ container.                           //Registro de command handler
     addArgument(container.get('SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreatorProductionOrder')).
     addArgument(container.get('SewingProductionAreaManagement.application.ProductionOrder.PersistenceProductionOrderValidator'));
 //=========================================================================================================================================
+// ================================================crear orden de conteo===================================================================
+container.                  //Registro de repositorio <command> para crear orden de registro
+    register('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateCountingRecordsOrderOneCommandRepository', SQLServerCreateCountingRecordsOrderOneCommandRepository).
+    addArgument(container.get('SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'));
 
+//=========================================================================================================================================
 const createCountingRecordsOrderFirstQualityValidator = container.
     register('SewingProductionAreaManagement.application.ProductionOrder.CreateCountingRecordsOrderFirstQualityValidator', CreateCountingRecordsOrderFirstQualityValidator).
     addArgument(container.get('SewingProductionAreaManagement.infrastructure.UserPermission.InMemoryUserPermissionRepository')).

@@ -1,4 +1,4 @@
-import { SQLServerMenuRepository } from '../../../../contexts/PlatformsManagement/menu/infrastructure/Persistence/SQLServer/SQLServerMenuRepository';
+import { SQLServerMenuRepository } from '../../../../contexts/PlatformsManagement/Menu/infrastructure/Persistence/SQLServer/SQLServerMenuRepository';
 import { container } from '../application'
 
 container.

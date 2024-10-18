@@ -24,6 +24,8 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
     private _plannedAmount: ProductionOrderPlannedAmount;
     private _processStartDate: ProductionOrderProcessStartDate | null;
     private _recordsOrderCounter: ProductionOrderRecordsCounter;
+    public newRecordsOrderListFirstQuality: CountingRecordsOrderFirstQualityNotChecked[] = [];
+    public newRecordsOrderListSecondQuality: CountingRecordsOrderSecondQualityNotChecked[] = [];
 
     constructor(
         readonly productionOrderid: ProductionOrderId,
@@ -94,7 +96,21 @@ export class ProductionOrderNotStarted implements ProductionOrderRoot {
         this.incrementExecutedAmount(countingRecordsOrder.recordsAmount);
         this.incrementRecordsCounter();
 
+        if (countingRecordsOrder.toPrimitives().className === 'CountingRecordsOrder.firstQualityNotCheckedDTO'){
+            this.addFirstQualityEntity(countingRecordsOrder as CountingRecordsOrderFirstQualityNotChecked)}
+
+        if (countingRecordsOrder.toPrimitives().className === 'countingRecordsOrder.secondtQualityNotCheckedDTO'){
+            this.addSecontQualityEntity(countingRecordsOrder as CountingRecordsOrderSecondQualityNotChecked)}
+
         this.openOrder();
+    }
+
+    addFirstQualityEntity(countingRecordsOrder: CountingRecordsOrderFirstQualityNotChecked): void {
+        this.newRecordsOrderListFirstQuality.push(countingRecordsOrder);
+    }
+
+    addSecontQualityEntity(countingRecordsOrder: CountingRecordsOrderSecondQualityNotChecked): void {
+        this.newRecordsOrderListSecondQuality.push(countingRecordsOrder)
     }
 
     incrementRecordsCounter(): void {
