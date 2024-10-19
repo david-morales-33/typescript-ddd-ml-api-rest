@@ -5,25 +5,27 @@ import { TokenId } from "../value-objects/TokenId";
 import { TokenState } from "../value-objects/TokenState";
 
 export class AuthenticationToken {
+
     constructor(
         readonly tokenId: TokenId,
         readonly expirationDate: TokenExpirationDate,
         readonly creationDate: TokenCreationDate,
-        readonly state: TokenState
     ) { }
 
     static craete(
         tokenId: TokenId,
         expirationDate: TokenExpirationDate,
         creationDate: TokenCreationDate,
-        state: TokenState
     ): AuthenticationToken {
         return new AuthenticationToken(
             tokenId,
             expirationDate,
             creationDate,
-            state
         );
+    }
+
+    public isValid(): boolean {
+        return new Date() < this.expirationDate.value;
     }
 
     static fromPrimitives(data: AuthenticationTokenDTO): AuthenticationToken {
@@ -31,7 +33,6 @@ export class AuthenticationToken {
             new TokenId(data.tokenId),
             new TokenExpirationDate(data.expirationDate),
             new TokenCreationDate(data.creationDate),
-            new TokenState(data.state)
         )
     }
 
@@ -40,7 +41,6 @@ export class AuthenticationToken {
             this.tokenId.value,
             this.expirationDate.value,
             this.creationDate.value,
-            this.state.value
         )
     }
 

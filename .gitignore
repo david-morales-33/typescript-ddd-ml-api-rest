@@ -1,3 +1,5 @@
 /build
 /node_modules
-/.env
+.env
+private.pem
+public.pem

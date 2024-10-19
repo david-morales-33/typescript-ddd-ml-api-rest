@@ -7,6 +7,12 @@ import { InMemoryProductionOrderQueryRepository } from '../contexts/SewingProduc
 import { ProductionOrderId } from '../contexts/Shared/domain/value-object/ProductionOrderId';
 import { CountingRecordsOrderFirstQualityNotChecked } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked';
 import { CountingRecordsOrderFirstQualityNotCheckedDTO } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/data-transfer-object/CountingRecordsOrderFirstQualityNotCheckedDTO';
+import { JWTAuthenticationTokenService } from '../contexts/SharedAdministrativeManagement/AuthenticationToken/infrastructure/Services/JWT/JWTAuthenticationTokenService';
+import { UserId } from '../contexts/Shared/domain/value-object/UserId';
+import { UserProfileId } from '../contexts/Shared/domain/value-object/UserProfileId';
+import { AuthenticationToken } from '../contexts/SharedAdministrativeManagement/AuthenticationToken/domain/entity/AuthenticationToken';
+import { AuthenticationTokenDTO } from '../contexts/SharedAdministrativeManagement/AuthenticationToken/domain/data-transfer-objects/AuthenticationTokenDTO';
+import { TokenId } from '../contexts/SharedAdministrativeManagement/AuthenticationToken/domain/value-objects/TokenId';
 
 async function query() {
     try {
@@ -56,10 +62,10 @@ async function query() {
         op?.addCountingRecordsOrder(countingRecordsOrder5)
         op?.addCountingRecordsOrder(countingRecordsOrder6)
         // console.log(op?.toPrimitives())
-        await container.get<SQLServerCreateCountingRecordsOrderOneCommandRepository>('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateCountingRecordsOrderOneCommandRepository').save(op!)
+        // await container.get<SQLServerCreateCountingRecordsOrderOneCommandRepository>('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateCountingRecordsOrderOneCommandRepository').save(op!)
+
     } catch (error) { console.log(error) }
 }
-// query();
-console.log(new Date().toLocaleTimeString())
 
+query();
 // console.log(validate('55575788-6c23-4d62-ba353-05226891149'))
