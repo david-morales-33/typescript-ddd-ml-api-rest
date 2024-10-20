@@ -6,11 +6,14 @@ import { TokenState } from "../value-objects/TokenState";
 
 export class AuthenticationToken {
 
+    readonly state: TokenState;
     constructor(
         readonly tokenId: TokenId,
         readonly expirationDate: TokenExpirationDate,
         readonly creationDate: TokenCreationDate,
-    ) { }
+    ) {
+        this.state = new TokenState(this.isValid())
+    }
 
     static craete(
         tokenId: TokenId,
@@ -41,6 +44,7 @@ export class AuthenticationToken {
             this.tokenId.value,
             this.expirationDate.value,
             this.creationDate.value,
+            this.state.value
         )
     }
 

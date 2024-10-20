@@ -1,5 +1,4 @@
-import { ValueObject } from "../../../../Shared/domain/value-object/ValueObject";
-
+import { ValueObject } from "./ValueObject";
 
 export class UserPassword extends ValueObject<string> {
     constructor(value: string){

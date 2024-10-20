@@ -6,7 +6,7 @@ import { UserProfileId } from "../../../../Shared/domain/value-object/UserProfil
 import { UserState } from "../../../../Shared/domain/value-object/UserState";
 import { AuthUser } from "../../../../SharedAdministrativeManagement/User/domain/entities/AuthUser";
 import { UserAuthQueryRepository } from "../../../../SharedAdministrativeManagement/User/domain/repositories/UserAuthQueryRepository";
-import { UserPassword } from "../../../../SharedAdministrativeManagement/User/domain/value-objets/UserPassword";
+import { UserPassword } from "../../../../Shared/domain/value-object/UserPassword";
 
 export class InMemoryUserAuthRepository implements UserAuthQueryRepository {
     private userList: AuthUser[];

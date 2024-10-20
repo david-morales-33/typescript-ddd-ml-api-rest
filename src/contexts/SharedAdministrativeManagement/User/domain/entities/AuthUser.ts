@@ -12,8 +12,7 @@ import { UserState } from "../../../../Shared/domain/value-object/UserState";
 import { AuthUserDTO } from "../data-transfer-objects/AuthUserDTO";
 import { UserRoot } from "../interface/UserRoot";
 import { PasswordService } from "../services/PasswordService";
-import { TokenService } from "../services/TokenService";
-import { UserPassword } from "../value-objets/UserPassword";
+import { UserPassword } from "../../../../Shared/domain/value-object/UserPassword";
 
 export class AuthUser implements UserRoot {
     readonly id: UserId;

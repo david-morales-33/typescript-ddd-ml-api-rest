@@ -3,7 +3,7 @@ import { CreateUserCommand } from "../../../domain/data-transfer-objects/CreateU
 import { CreateUserValidator } from "./CreateUserValidator";
 import { UserCreator } from "./UserCreator";
 import { UserProfileId } from "../../../../../Shared/domain/value-object/UserProfileId";
-import { UserPassword } from "../../../domain/value-objets/UserPassword";
+import { UserPassword } from "../../../../../Shared/domain/value-object/UserPassword";
 import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { UserIdType } from "../../../../../Shared/domain/value-object/UserIdType";
 import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";

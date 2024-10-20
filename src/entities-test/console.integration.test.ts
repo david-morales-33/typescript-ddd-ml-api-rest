@@ -7,12 +7,12 @@ import { InMemoryProductionOrderQueryRepository } from '../contexts/SewingProduc
 import { ProductionOrderId } from '../contexts/Shared/domain/value-object/ProductionOrderId';
 import { CountingRecordsOrderFirstQualityNotChecked } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/entities/CountingRecordOrderFirstQualityNotChecked';
 import { CountingRecordsOrderFirstQualityNotCheckedDTO } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/domain/data-transfer-object/CountingRecordsOrderFirstQualityNotCheckedDTO';
-import { JWTAuthenticationTokenService } from '../contexts/SharedAdministrativeManagement/AuthenticationToken/infrastructure/Services/JWT/JWTAuthenticationTokenService';
+import { JWTAuthenticationTokenService } from '../contexts/Authentication/AuthenticationToken/infrastructure/Services/JWT/JWTAuthenticationTokenService';
 import { UserId } from '../contexts/Shared/domain/value-object/UserId';
 import { UserProfileId } from '../contexts/Shared/domain/value-object/UserProfileId';
-import { AuthenticationToken } from '../contexts/SharedAdministrativeManagement/AuthenticationToken/domain/entity/AuthenticationToken';
-import { AuthenticationTokenDTO } from '../contexts/SharedAdministrativeManagement/AuthenticationToken/domain/data-transfer-objects/AuthenticationTokenDTO';
-import { TokenId } from '../contexts/SharedAdministrativeManagement/AuthenticationToken/domain/value-objects/TokenId';
+import { AuthenticationToken } from '../contexts/Authentication/AuthenticationToken/domain/entity/AuthenticationToken';
+import { AuthenticationTokenDTO } from '../contexts/Authentication/AuthenticationToken/domain/data-transfer-objects/AuthenticationTokenDTO';
+import { TokenId } from '../contexts/Authentication/AuthenticationToken/domain/value-objects/TokenId';
 
 async function query() {
     try {

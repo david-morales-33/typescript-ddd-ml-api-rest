@@ -7,7 +7,7 @@ import { UserName } from "../../../../../Shared/domain/value-object/UserName";
 import { UserProfileId } from "../../../../../Shared/domain/value-object/UserProfileId";
 import { UserState } from "../../../../../Shared/domain/value-object/UserState";
 import { UpdateUserCommand } from "../../../domain/data-transfer-objects/UpdateUserCommand";
-import { UserPassword } from "../../../domain/value-objets/UserPassword";
+import { UserPassword } from "../../../../../Shared/domain/value-object/UserPassword";
 import { UpdateUserValidator } from "./UpdateUserValidator";
 import { UserUpdater } from "./UserUpdater";
 

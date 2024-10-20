@@ -6,7 +6,7 @@ import { UserId } from "../../../../../Shared/domain/value-object/UserId";
 import { UserName } from "../../../../../Shared/domain/value-object/UserName";
 import { UserProfileId } from "../../../../../Shared/domain/value-object/UserProfileId";
 import { UserDescription } from "../../../../../Shared/domain/value-object/UserDescription";
-import { UserPassword } from "../../../domain/value-objets/UserPassword";
+import { UserPassword } from "../../../../../Shared/domain/value-object/UserPassword";
 import { UserState } from "../../../../../Shared/domain/value-object/UserState";
 import { UserAuthQueryRepository } from "../../../domain/repositories/UserAuthQueryRepository";
 import { EventCreateDate } from "../../../../../Shared/domain/value-object/EventCreateDate";

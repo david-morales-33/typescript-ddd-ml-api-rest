@@ -19,6 +19,6 @@ export class SewingProductionAreaManagementRoutes {
         this.router.use('/orden-produccion-detalles/', this.productionOrderDetailRoutes.router);
         this.router.use('/orden-produccion-maestra/', this.productionOrderRoutes.router);
         this.router.use('/modulo-produccion/', this.productionModuleRoutes.router);
-        this.router.use('/registros/', this.countingRecordsOrderRoutes.router);
+        this.router.use('/orden-conteo-registros/', this.countingRecordsOrderRoutes.router);
     }
 }

@@ -2,7 +2,7 @@ import { Uuid } from '../../../../../Shared/domain/value-object/Uuid';
 import { UserCommandRepository } from '../../../domain/repositories/UserCommandRepository';
 import { UserId } from '../../../../../Shared/domain/value-object/UserId';
 import { UserProfileId } from '../../../../../Shared/domain/value-object/UserProfileId';
-import { UserPassword } from '../../../domain/value-objets/UserPassword';
+import { UserPassword } from '../../../../../Shared/domain/value-object/UserPassword';
 import { UserName } from '../../../../../Shared/domain/value-object/UserName';
 import { UserState } from '../../../../../Shared/domain/value-object/UserState';
 import { AuthUser } from '../../../domain/entities/AuthUser';
