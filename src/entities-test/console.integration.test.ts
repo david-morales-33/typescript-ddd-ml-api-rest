@@ -19,6 +19,7 @@ import { User } from '../contexts/Authentication/AuthenticationUser/domain/entit
 import { UserAuthenticatorByToken } from '../contexts/Authentication/AuthenticationUser/application/AccessByToken/UserAuthenticatorByToken';
 import { BcryptPasswordService } from '../contexts/Shared/infrastructure/services/Bcrypt/BcryptPasswordService';
 import { UserPassword } from '../contexts/Shared/domain/value-object/UserPassword';
+import { UserAuthenticatorByCredentials } from '../contexts/Authentication/AuthenticationUser/application/AccessByCredentials/UserAuthenticatorByCredentials';
 
 async function query() {
     try {
@@ -75,15 +76,17 @@ async function query() {
         // console.log(user)
 
         // const service = new JWTAuthenticationTokenService();
-        // const userRepo = container.get<SQLServerUserRepository>('Authentication.infrastructure.User.SqlServerUserRepository');
-        const service = new BcryptPasswordService();
+        const userRepo = container.get<UserAuthenticatorByCredentials>('Authentication.infrastructure.User.UserAuthenticatorByCredentials');
         // const res = await service.compare(
         //     new UserPassword('$2b$10$Agra5VvcTXghW/hm7ZFvLuVtXh6bkW6tR5PnGt5tNl2x/wtWeqDT6'),
         //     new UserPassword('12345')
         // )
+        const user = await userRepo.execute(
+            new UserId('1146441925'), 
+            new UserPassword('1234')
+        )
 
-        const res = await service.encrypt(new UserPassword('14561'))
-        console.log(res)
+        console.log(user)
 
         // const token = await service.generate(new UserId('1146441925'), new UserProfileId(1))
 
