@@ -1,9 +1,9 @@
-import { PasswordService } from "../../../Shared/domain/services/PasswordService";
-import { UserId } from "../../../Shared/domain/value-object/UserId";
-import { UserPassword } from "../../../Shared/domain/value-object/UserPassword";
-import { AuthenticationTokenService } from "../../AuthenticationToken/domain/services/AuthenticationTokenService";
-import { UserRepository } from "../domain/repositories/UserRepository";
-import { AuthenticationResponse } from "./AccessByCredentials/AuthenticationResponse";
+import { PasswordService } from "../../../../Shared/domain/services/PasswordService";
+import { UserId } from "../../../../Shared/domain/value-object/UserId";
+import { UserPassword } from "../../../../Shared/domain/value-object/UserPassword";
+import { AuthenticationTokenService } from "../../../AuthenticationToken/domain/services/AuthenticationTokenService";
+import { UserRepository } from "../../domain/repositories/UserRepository";
+import { AuthenticationResponse } from "../AuthenticationResponse";
 
 export class UserAuthenticatorByCredentials {
     constructor(

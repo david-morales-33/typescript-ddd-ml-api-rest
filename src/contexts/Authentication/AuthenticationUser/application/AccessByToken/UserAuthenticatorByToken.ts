@@ -5,7 +5,7 @@ import { TokenCreationDate } from "../../../AuthenticationToken/domain/value-obj
 import { TokenExpirationDate } from "../../../AuthenticationToken/domain/value-objects/TokenExpirationDate";
 import { TokenId } from "../../../AuthenticationToken/domain/value-objects/TokenId";
 import { UserRepository } from "../../domain/repositories/UserRepository";
-import { AuthenticationResponse } from "../AccessByCredentials/AuthenticationResponse";
+import { AuthenticationResponse } from "../AuthenticationResponse";
 
 export class UserAuthenticatorByToken {
     constructor(

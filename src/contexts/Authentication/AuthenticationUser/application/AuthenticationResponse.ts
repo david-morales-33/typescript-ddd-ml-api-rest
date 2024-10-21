@@ -1,6 +1,6 @@
-import { Response } from "../../../../Shared/domain/CQRS/Response";
-import { AuthenticationToken } from "../../../AuthenticationToken/domain/entity/AuthenticationToken";
-import { User } from "../../domain/entities/User";
+import { Response } from "../../../Shared/domain/CQRS/Response";
+import { AuthenticationToken } from "../../AuthenticationToken/domain/entity/AuthenticationToken";
+import { User } from "../domain/entities/User";
 
 interface AuthenticationResponseData {
     id: string,

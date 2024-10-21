@@ -25,7 +25,7 @@ export class JWTAuthenticationTokenService implements AuthenticationTokenService
         const today = new Date();
         const expirationDate = new Date();
         expirationDate.setDate(today.getDate() + 30);
-        return AuthenticationToken.fromPrimitives(new AuthenticationTokenDTO(token, today, expirationDate, true))
+        return AuthenticationToken.fromPrimitives(new AuthenticationTokenDTO(token, expirationDate, today, true))
     }
 
     async deserialize(token: TokenId): Promise<AuthenticationDataDTO | null> {

@@ -15,6 +15,10 @@ import { AuthenticationToken } from '../contexts/Authentication/AuthenticationTo
 import { AuthenticationTokenDTO } from '../contexts/Authentication/AuthenticationToken/domain/data-transfer-objects/AuthenticationTokenDTO';
 import { TokenId } from '../contexts/Authentication/AuthenticationToken/domain/value-objects/TokenId';
 import { SQLServerUserRepository } from '../contexts/Authentication/AuthenticationUser/infrastructure/Persistence/SQLServer/SQLServerUserRepository';
+import { User } from '../contexts/Authentication/AuthenticationUser/domain/entities/User';
+import { UserAuthenticatorByToken } from '../contexts/Authentication/AuthenticationUser/application/AccessByToken/UserAuthenticatorByToken';
+import { BcryptPasswordService } from '../contexts/Shared/infrastructure/services/Bcrypt/BcryptPasswordService';
+import { UserPassword } from '../contexts/Shared/domain/value-object/UserPassword';
 
 async function query() {
     try {
@@ -66,10 +70,22 @@ async function query() {
         // console.log(op?.toPrimitives())
         // await container.get<SQLServerCreateCountingRecordsOrderOneCommandRepository>('SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateCountingRecordsOrderOneCommandRepository').save(op!)
 
-        const repo = container.get<SQLServerUserRepository>('Authentication.infrastructure.User.SqlServerUserRepository');
 
-        const user = await repo.find(new UserId('1146441925'));
-        console.log(user)
+        // const user = await repo.find(new UserId('1146441925'));
+        // console.log(user)
+
+        // const service = new JWTAuthenticationTokenService();
+        // const userRepo = container.get<SQLServerUserRepository>('Authentication.infrastructure.User.SqlServerUserRepository');
+        const service = new BcryptPasswordService();
+        // const res = await service.compare(
+        //     new UserPassword('$2b$10$Agra5VvcTXghW/hm7ZFvLuVtXh6bkW6tR5PnGt5tNl2x/wtWeqDT6'),
+        //     new UserPassword('12345')
+        // )
+
+        const res = await service.encrypt(new UserPassword('14561'))
+        console.log(res)
+
+        // const token = await service.generate(new UserId('1146441925'), new UserProfileId(1))
 
     } catch (error) { console.log(error) }
 }
