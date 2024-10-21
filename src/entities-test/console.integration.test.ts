@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 // import { container } from '../server/SewingProductionAreaManagement/dependency-inyection/application';
-import { container } from '../server/Authentication/dependency-inyection/application'
+// import { container } from '../server/Authentication/dependency-inyection/application'
+import { container } from '../server/SharedAdministrativeManagement/dependency-inyection/application'
 import { CreateProductionOrderCommandHandler } from '../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateProductionOrder/CreateProductionOrderCommandHandler';
 import { CreateProductionOrderCommand } from '../contexts/SewingProductionAreaManagement/ProductionOrder/domain/data-transfer-objects/CreateProductionOrderCommand';
 import { SQLServerCreateCountingRecordsOrderOneCommandRepository } from '../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerCreateCountingRecordsOrderOneCommandRepository';
@@ -20,6 +21,7 @@ import { UserAuthenticatorByToken } from '../contexts/Authentication/Authenticat
 import { BcryptPasswordService } from '../contexts/Shared/infrastructure/services/Bcrypt/BcryptPasswordService';
 import { UserPassword } from '../contexts/Shared/domain/value-object/UserPassword';
 import { UserAuthenticatorByCredentials } from '../contexts/Authentication/AuthenticationUser/application/AccessByCredentials/UserAuthenticatorByCredentials';
+import { WebServiceUser } from '../contexts/SharedAdministrativeManagement/User/infrastructure/Services/WebService/WebServiceUser';
 
 async function query() {
     try {
@@ -76,18 +78,13 @@ async function query() {
         // console.log(user)
 
         // const service = new JWTAuthenticationTokenService();
-        const userRepo = container.get<UserAuthenticatorByCredentials>('Authentication.infrastructure.User.UserAuthenticatorByCredentials');
+        const userRepo = container.get<WebServiceUser>('SharedAdministrativeManagement.infrastructure.services.WebServiceUser');
         // const res = await service.compare(
         //     new UserPassword('$2b$10$Agra5VvcTXghW/hm7ZFvLuVtXh6bkW6tR5PnGt5tNl2x/wtWeqDT6'),
         //     new UserPassword('12345')
         // )
-        const user = await userRepo.execute(
-            new UserId('1146441925'), 
-            new UserPassword('1234')
-        )
-
+        const user = await userRepo.find(new UserId('1152460381'));
         console.log(user)
-
         // const token = await service.generate(new UserId('1146441925'), new UserProfileId(1))
 
     } catch (error) { console.log(error) }

@@ -4,4 +4,5 @@ import { container } from '../application'
 
 container.register('SewingProductionAreaManagement.infrastructure.Services.WebServiceProductionOrder', WebServiceProductionOrder);
 
-container.register('SewingProductionAreaManagement.infrastructure.Services.WebServiceEAN', WebServiceEAN);
+container.
+    register('SewingProductionAreaManagement.infrastructure.Services.WebServiceEAN', WebServiceEAN);
