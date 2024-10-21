@@ -14,11 +14,13 @@ import { EventId } from '../../../../../Shared/domain/value-object/EventId';
 import { EventCreateDate } from '../../../../../Shared/domain/value-object/EventCreateDate';
 import { EventDescription } from '../../../../../Shared/domain/value-object/EventDescription';
 import { CommonCreationEvent } from '../../../../../Shared/domain/entities/CommonCreationEvent';
+import { PasswordService } from '../../../../../Shared/domain/services/PasswordService';
 
 export class UserCreator {
     constructor(
         private userExternalService: UserExternalService,
-        private userRepository: UserCommandRepository,
+        private passwordService: PasswordService,
+        private userRepository: UserCommandRepository
     ) { }
 
     async execute(params: {
@@ -47,9 +49,12 @@ export class UserCreator {
             eventDescription
         );
 
-        const userName = new UserName(userFinded.userName);
-        const userDescription = new UserDescription(userFinded.userDescription);
+        const userName = new UserName(userFinded[0].userName);
+        const userDescription = new UserDescription(userFinded[0].userDescription);
         const userState = new UserState(true);
+        const hash = await this.passwordService.encrypt(userPassword)
+
+        if (hash! == null) throw new Error('Falló la encriptación de la contraseña');
 
         const newUser = AuthUser.create(
             userId,
@@ -57,7 +62,7 @@ export class UserCreator {
             userIdType,
             userProfileId,
             userDescription,
-            userPassword,
+            hash,
             userState,
             [creationEvent]
         )
