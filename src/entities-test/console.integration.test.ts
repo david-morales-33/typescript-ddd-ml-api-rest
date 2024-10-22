@@ -1,44 +1,24 @@
 import { v4 as uuid } from 'uuid';
 import { container } from '../server/SewingProductionAreaManagement/dependency-inyection/application';
-import { CreateCountingRecordsOrderFirstQualityCommand } from '../contexts/SewingProductionAreaManagement/ProductionOrder/domain/data-transfer-objects/CreateCountingRecordsOrderFirstQualityCommand';
-import { CreateCountingRecordsOrderFirstQualityCommandHandler } from '../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderFirstQuality/CreateCountingRecordsOrderFirstQualityCommandHandler';
+import { SearchCountingRecordsOrderByCriteriaQuery } from '../contexts/SewingProductionAreaManagement/CountingRecordsOrder/aplication/use-cases/SearchByCriteria/SearchCountingRecordsOrderByCriteriaQuery';
+import { SearchProductionOrderByCriteriaQueryHandler } from '../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/SearchByCriteria/SearchProductionOrderByCriteriaQueryHandler';
 
 async function query() {
     try {
+        const handler = container.get<SearchProductionOrderByCriteriaQueryHandler>('SewingProductionAreaManagement.application.ProductionOrder.SearchProductionOrderByCriteriaQueryHandler');
 
-        const handler = container.get<CreateCountingRecordsOrderFirstQualityCommandHandler>('SewingProductionAreaManagement.application.ProductionOrder.CreateCountingRecordsOrderFirstQualityCommandHandler');
-        const command = new CreateCountingRecordsOrderFirstQualityCommand([
-            {
-                id: uuid(),
-                productionOrderId: 'MOP4420',
-                colorId: '1200',
-                garmentSize: 'L',
-                initialTime: '08:05:12',
-                finalTime: '09:01:17',
-                userId: '1146441925',
-                productionModuleId: 3,
-                amount: 50,
-                scheduelId: 4,
-                eventOnProductionModule: null,
-                eventOnCountingRecordsOrder: []
-            },
-            {
-                id: uuid(),
-                productionOrderId: 'MOP4420',
-                colorId: '1200',
-                garmentSize: 'XL',
-                initialTime: '07:05:12',
-                finalTime: '08:01:17',
-                userId: '1146441925',
-                productionModuleId: 3,
-                amount: 40,
-                scheduelId: 3,
-                eventOnProductionModule: null,
-                eventOnCountingRecordsOrder: []
-            },
-        ])
-        const resp = await handler.handle(command);
-        console.log(resp)
+        const query = new SearchCountingRecordsOrderByCriteriaQuery(
+            [
+                new Map([
+                    ['field', 'tipo_op_id'],
+                    ['operator', '='],
+                    ['value', 'MOB']
+                ])
+            ]
+        )
+        const response = await handler.handle(query)
+        console.log(response)
+
     } catch (error) { console.log(error) }
 }
 query();
