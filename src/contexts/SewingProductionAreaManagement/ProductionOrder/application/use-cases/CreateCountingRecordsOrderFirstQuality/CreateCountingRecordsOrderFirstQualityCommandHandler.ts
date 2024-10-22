@@ -22,16 +22,10 @@ import { CreateCountingRecordsOrderFirstQualityValidator } from "./CreateCountin
 
 export class CreateCountingRecordsOrderFirstQualityCommandHandler implements
     CommandHandler<CreateCountingRecordsOrderFirstQualityCommand> {
-
-    constructor(
-        private countingRecordsOrderCreator: CountingRecordsOrderFirstQualityCreator,
-        private validator: CreateCountingRecordsOrderFirstQualityValidator
-    ) { }
-
+    constructor(private countingRecordsOrderCreator: CountingRecordsOrderFirstQualityCreator) { }
     subscribedTo(): Command {
         return CreateCountingRecordsOrderFirstQualityCommand;
     }
-
     async handle(command: CreateCountingRecordsOrderFirstQualityCommand): Promise<void> {
 
         const countingRecordsOrderList = command.countingRecordsOrders.map(entry => {
@@ -60,11 +54,6 @@ export class CreateCountingRecordsOrderFirstQualityCommandHandler implements
                 })
             )
         });
-
-        await this.validator.execute({
-            productionModuleId: new ProductionModuleId(command.countingRecordsOrders[0].productionModuleId),
-            userId: new UserId(command.countingRecordsOrders[0].userId)
-        })
         await this.countingRecordsOrderCreator.execute(countingRecordsOrderList)
     }
 }

@@ -12,7 +12,7 @@ export interface ProductionOrderPersistenceObject {
     tipo_referencia: string;
     tpo_proceso_id: number;
     tipo_proceso: string;
-    tipo_op_id: number;
+    tipo_op_id: string;
     tipo_op: string;
     proceso_id: number;
     proceso: string;
@@ -38,7 +38,7 @@ export class ProductionOrderQueryMapperDTO {
                 new ProductionOrderINotStartedDTO(
                     entity.op,
                     entity.referencia,
-                    '',
+                    entity.tipo_op_id,
                     29,
                     parseInt(entity.cantidad_unidades_planeadas_proceso),
                     parseInt(entity.cantidad_unidades_ejecutadas_proceso),
@@ -54,7 +54,7 @@ export class ProductionOrderQueryMapperDTO {
                 new ProductionOrderInProgressDTO(
                     entity.op,
                     entity.referencia,
-                    '',
+                    entity.tipo_op_id,
                     29,
                     parseInt(entity.cantidad_unidades_planeadas_proceso),
                     parseInt(entity.cantidad_unidades_ejecutadas_proceso),

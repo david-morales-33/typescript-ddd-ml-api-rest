@@ -32,7 +32,7 @@ export class SQLServerCreateCountingRecordsOrderOneCommandRepository extends SQL
 
         const params: dbParameters[] = [
             { name: 'id_op', type: sql.VarChar, value: productionOrder.productionOrderid.value },
-            { name: 'creado_por', type: sql.VarChar, value: productionOrder.openByUser.value },
+            { name: 'creado_por', type: sql.VarChar, value: '1146441925' }, // modificar
             { name: 'id_evt', type: sql.VarChar, value: null }, // revisar
             { name: 'id_ctg', type: sql.Int, value: 1 },
             { name: 'cantidad_unidades_actualizadas_op_maestra', type: sql.Int, value: productionOrder.executedAmount },
@@ -41,7 +41,8 @@ export class SQLServerCreateCountingRecordsOrderOneCommandRepository extends SQL
             { name: 'fecha_apertura_proceso_op_maestra', type: sql.DateTime, value: productionOrder.processStartDate ? productionOrder.processStartDate.value : new Date() },
             { name: 'fecha_cierre_proceso_op_maestra', type: sql.DateTime, value: this.findProductionOrderProcessEndDate(productionOrder) },
         ];
-
+        // console.log(tvp_production_order_details.columns)
+        // console.log(tvp_production_order_details.rows)
         try { await this.execute(params) }
         catch (error) { throw (error) }
         finally { this.disconnection() }

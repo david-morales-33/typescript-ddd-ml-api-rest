@@ -9,10 +9,8 @@ import { ProductionOrderId } from "../../../../../Shared/domain/value-object/Pro
 import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler";
 
 export class CreateProductionOrderCommandHandler implements CommandHandler<CreateProductionOrderCommand> {
-
     constructor(
         private productionOrderCreator: ProductionOrderCreator,
-        private productionOrderValidator: ProductionOrderValidator
     ) { }
 
     subscribedTo(): Command {
@@ -25,8 +23,6 @@ export class CreateProductionOrderCommandHandler implements CommandHandler<Creat
         const userId = new UserId(command.userId);
         const garmentType = new GarmentType(command.garmentType);
         const productionModule = new ProductionModuleId(command.productionModuleAssigned);
-
-        await this.productionOrderValidator.execute(userId)
         await this.productionOrderCreator.execute({ productionOrderId, userId, garmentType, productionModule })
     }
 }

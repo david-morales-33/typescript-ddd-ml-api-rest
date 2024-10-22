@@ -1,10 +1,11 @@
 import sql from 'mssql';
 
 export const TVPSchemeCountingRecordsOrderDetailOcr = [
-    { name: 'clr_id', type: sql.VarChar },
-    { name: 'tll_id', type: sql.VarChar },
-    { name: 'fecha_apertura_proceso_op_detalles', type: sql.DateTime },
-    { name: 'fecha_cierre_proceso_op_detalles', type: sql.DateTime },
-    { name: 'cantidad_registros_actualizados_op_detalles', type: sql.Int },
-    { name: 'cantidad_unidades_actualizadas_op_detalles', type: sql.BigInt }
+    { name: 'id_ocr', type: sql.VarChar },
+    { name: 'id_clr', type: sql.VarChar },
+    { name: 'id_tll', type: sql.VarChar },
+    { name: 'id_hrp', type: sql.Int },
+    { name: 'cantidad_registros', type: sql.Int },
+    { name: 'inicio_operacion', type: sql.VarChar },
+    { name: 'fin_operacion', type: sql.VarChar }
 ]

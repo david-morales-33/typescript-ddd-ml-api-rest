@@ -8,6 +8,6 @@ export class GarmentType extends ValueObject<string> {
 
     private ensureValidValue(value: string) {
         if (value !== 'MOB' && value !== 'MOP' && value !== 'MOF')
-            throw Error(`Value <$${value}> not valid`)
+            throw Error(`Value <${value}> not valid`)
     }
 }

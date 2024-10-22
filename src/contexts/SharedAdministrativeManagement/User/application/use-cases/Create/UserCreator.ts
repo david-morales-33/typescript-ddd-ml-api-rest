@@ -35,8 +35,7 @@ export class UserCreator {
 
         const userFinded = await this.userExternalService.find(userId);
 
-        if (userFinded === null || userFinded === undefined)
-            throw new UserNotFoundException(userId);
+        if (userFinded.length === 0) throw new UserNotFoundException(userId);
 
         const eventId = new EventId(Uuid.random().value);
         const creationDate = new EventCreateDate(new Date());
