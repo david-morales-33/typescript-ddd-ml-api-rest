@@ -45,7 +45,7 @@ export class SQLServerOperationRepository extends SQLServerRepository implements
             },
         ]
         try {
-            const result:OperationPersistenceObject[] = await this.execute(params);
+            const result: OperationPersistenceObject[] = await this.execute(params);
             return result.map(OperationMapperDTO.convertFromPersistenceObject)
         }
         catch (error) { throw (error) }
