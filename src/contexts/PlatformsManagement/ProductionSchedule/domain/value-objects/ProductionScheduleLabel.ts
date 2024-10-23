@@ -8,7 +8,7 @@ export class ProductionScheduleLabel extends ValueObject<string> {
     }
     
     private ensureLengthLessThan20Characteres(value: string) {
-        if (value.length > 20)
+        if (value.length > 40)
             throw new Error(`The Production Schedule Label <${value}> has more than 20 characteres`);
     }
 }
