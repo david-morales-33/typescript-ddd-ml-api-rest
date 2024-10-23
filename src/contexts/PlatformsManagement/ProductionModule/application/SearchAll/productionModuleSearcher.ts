@@ -1,8 +1,7 @@
 import { ProductionModuleRepository } from "../../domain/repositories/ProductionModuleRepository";
 import { ProductionModuleResponse } from "./ProductionModuleResponse";
 
-
-export class productionModuleSearcher{
+export class ProductionModuleSearcher{
     constructor(private productionModuleRepository: ProductionModuleRepository){}
 
     async execute(){
