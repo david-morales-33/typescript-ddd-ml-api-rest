@@ -15,6 +15,7 @@ export class ProductionOrderNotPlannedSewingProcess implements ProductionOrderSe
     private _plannedProductionModuleId: ProductionModuleId | null = null;
     private _plannedStartDate: ProductionOrderProcessStartDatePlanned | null = null;
     private _plannedEndDate: ProductionOrderProcessEndDatePlanned | null = null;
+
     constructor(
         readonly productionOrderId: ProductionOrderId,
         readonly proccessId: ProductionOrderProcessId,
@@ -67,6 +68,7 @@ export class ProductionOrderNotPlannedSewingProcess implements ProductionOrderSe
     updateProductionModulePlanned(value: number): ProductionModuleId {
         return new ProductionModuleId(value)
     }
+
     static fromPrimitives(data: ProductionOrderNotPlannedSewingProcessDTO): ProductionOrderNotPlannedSewingProcess {
         return new ProductionOrderNotPlannedSewingProcess(
             new ProductionOrderId(data.productionOrderId),
@@ -78,6 +80,7 @@ export class ProductionOrderNotPlannedSewingProcess implements ProductionOrderSe
             data.executedEndDate ? new ProductionOrderProcessEndDate(data.executedEndDate) : null
         );
     }
+
     toPrimitives(): ProductionOrderNotPlannedSewingProcessDTO {
         return new ProductionOrderNotPlannedSewingProcessDTO(
             this.productionOrderId.value,
