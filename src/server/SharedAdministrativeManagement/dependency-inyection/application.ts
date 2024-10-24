@@ -2,4 +2,6 @@ import { ContainerBuilder } from 'node-dependency-injection';
 
 export const container = new ContainerBuilder();
 
-require('./service/application');
+require('./Shared/application')
+require('./Service/application');
+require('./User/application')

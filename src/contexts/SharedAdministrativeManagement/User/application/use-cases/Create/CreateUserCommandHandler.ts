@@ -10,10 +10,7 @@ import { CommandHandler } from "../../../../../Shared/domain/CQRS/CommandHandler
 
 export class CreateUserCommandHandler implements CommandHandler<CreateUserCommand> {
 
-    constructor(
-        private userCreator: UserCreator,
-        private createUserValidator: CreateUserValidator
-    ) { }
+    constructor(private userCreator: UserCreator) { }
 
     subscribedTo(): Command {
         return CreateUserCommand;
@@ -26,8 +23,6 @@ export class CreateUserCommandHandler implements CommandHandler<CreateUserComman
         const userIdType = new UserIdType(command.userIdType);
         const createBy = new UserId(command.createBy);
         const userId = new UserId(command.userId);
-
-        await this.createUserValidator.execute({ createBy, userId });
         await this.userCreator.execute({ userId, createBy, userIdType, userPassword, userProfileId })
     }
 }

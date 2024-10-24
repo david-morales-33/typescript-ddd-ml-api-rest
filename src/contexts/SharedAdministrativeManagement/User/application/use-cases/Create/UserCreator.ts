@@ -15,11 +15,13 @@ import { EventCreateDate } from '../../../../../Shared/domain/value-object/Event
 import { EventDescription } from '../../../../../Shared/domain/value-object/EventDescription';
 import { CommonCreationEvent } from '../../../../../Shared/domain/entities/CommonCreationEvent';
 import { PasswordService } from '../../../../../Shared/domain/services/PasswordService';
+import { BcryptPasswordService } from '../../../../../Shared/infrastructure/services/Bcrypt/BcryptPasswordService';
 
 export class UserCreator {
+    private passwordService: PasswordService = new BcryptPasswordService()
+
     constructor(
         private userExternalService: UserExternalService,
-        private passwordService: PasswordService,
         private userRepository: UserCommandRepository
     ) { }
 
