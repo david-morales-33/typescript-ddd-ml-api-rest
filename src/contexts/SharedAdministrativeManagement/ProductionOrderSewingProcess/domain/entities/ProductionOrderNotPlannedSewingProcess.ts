@@ -57,16 +57,15 @@ export class ProductionOrderNotPlannedSewingProcess implements ProductionOrderSe
             executedEndDate
         )
     }
-    updateProcessStartDatePlanned(value: Date): ProductionOrderProcessStartDatePlanned {
-        return new ProductionOrderProcessStartDatePlanned(value)
-    }
 
-    updateProcessEndDatePlanned(value: Date): ProductionOrderProcessStartDatePlanned {
-        return new ProductionOrderProcessStartDatePlanned(value)
-    }
-
-    updateProductionModulePlanned(value: number): ProductionModuleId {
-        return new ProductionModuleId(value)
+    plannedProccess(
+        startDatePlanned: ProductionOrderProcessStartDatePlanned,
+        endDatePlanned: ProductionOrderProcessEndDatePlanned,
+        productionModuleId: ProductionModuleId
+    ) {
+        this._plannedStartDate = startDatePlanned;
+        this._plannedEndDate = endDatePlanned;
+        this._plannedProductionModuleId = productionModuleId;
     }
 
     static fromPrimitives(data: ProductionOrderNotPlannedSewingProcessDTO): ProductionOrderNotPlannedSewingProcess {
