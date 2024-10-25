@@ -21,7 +21,6 @@ export class ProductionOrderNotPlannedSewingProcess implements ProductionOrderSe
         readonly proccessId: ProductionOrderProcessId,
         readonly productionOrderType: ProductionOrderType,
         readonly executedAmount: ProductionOrderExecutedAmount,
-        readonly plannedAmount: ProductionOrderPlannedAmount,
         readonly executedStartDate: ProductionOrderProcessStartDate | null,
         readonly executedEndDate: ProductionOrderProcessEndDate | null
     ) { }
@@ -43,7 +42,6 @@ export class ProductionOrderNotPlannedSewingProcess implements ProductionOrderSe
         proccessId: ProductionOrderProcessId,
         productionOrderType: ProductionOrderType,
         executedAmount: ProductionOrderExecutedAmount,
-        plannedAmount: ProductionOrderPlannedAmount,
         executedStartDate: ProductionOrderProcessStartDate | null,
         executedEndDate: ProductionOrderProcessEndDate | null
     ): ProductionOrderNotPlannedSewingProcess {
@@ -52,7 +50,6 @@ export class ProductionOrderNotPlannedSewingProcess implements ProductionOrderSe
             proccessId,
             productionOrderType,
             executedAmount,
-            plannedAmount,
             executedStartDate,
             executedEndDate
         )
@@ -74,7 +71,6 @@ export class ProductionOrderNotPlannedSewingProcess implements ProductionOrderSe
             new ProductionOrderProcessId(data.proccessId),
             new ProductionOrderType(data.productionOrderType),
             new ProductionOrderExecutedAmount(data.executedAmount),
-            new ProductionOrderPlannedAmount(data.plannedAmount),
             data.executedStartDate ? new ProductionOrderProcessStartDate(data.executedStartDate) : null,
             data.executedEndDate ? new ProductionOrderProcessEndDate(data.executedEndDate) : null
         );
@@ -86,7 +82,6 @@ export class ProductionOrderNotPlannedSewingProcess implements ProductionOrderSe
             this.proccessId.value,
             this.productionOrderType.value,
             this.executedAmount.value,
-            this.plannedAmount.value,
             this._plannedProductionModuleId ? this._plannedProductionModuleId.value : null,
             this.executedStartDate ? this.executedStartDate.value : null,
             this.executedEndDate ? this.executedEndDate.value : null,

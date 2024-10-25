@@ -1,22 +1,30 @@
 import { v4 as uuid } from 'uuid';
-import { container } from '../server/SharedAdministrativeManagement/dependency-inyection/application'
-import { CreateUserCommandHandler } from '../contexts/SharedAdministrativeManagement/User/application/use-cases/Create/CreateUserCommandHandler';
-import { CreateUserCommand } from '../contexts/SharedAdministrativeManagement/User/domain/data-transfer-objects/CreateUserCommand';
+import { ProductionOrder } from '../contexts/SharedAdministrativeManagement/ProductionOrder/domain/entities/ProductionOrder';
+import { ProductionOrderId } from '../contexts/Shared/domain/value-object/ProductionOrderId';
+import { ReferenceId } from '../contexts/Shared/domain/value-object/ReferenceId';
+import { ProductionOrderGarmentType } from '../contexts/SharedAdministrativeManagement/ProductionOrder/domain/value-objects/ProductionOrderGarmentType';
+import { CreationDate } from '../contexts/Shared/domain/value-object/CreationDate';
+import { ProductionOrderProccessState } from '../contexts/SharedAdministrativeManagement/ProductionOrder/domain/value-objects/ProductionOrderProccessState';
+import { ProductionOrderType } from '../contexts/SharedAdministrativeManagement/Shared/domain/value-objects/ProductionOrderType';
+import { ProductionModuleId } from '../contexts/SharedAdministrativeManagement/ProductionOrderSewingProcess/domain/value-objects/ProductionModuleId';
+import { ProductionOrderProcessStartDatePlanned } from '../contexts/Shared/domain/value-object/ProductionOrderProcessStartDatePlanned';
+import { ProductionOrderProcessEndDatePlanned } from '../contexts/Shared/domain/value-object/ProductionOrderProcessEndDatePlanned';
+import { ProductionOrderPlannedAmount } from '../contexts/Shared/domain/value-object/ProductionOrderPlannedAmount';
 
-async function query() {
-    try {
-        const handler = container.get<CreateUserCommandHandler>('SharedAdministrativeManagement.application.User.CreateUserCommandHandler');
+const order = new ProductionOrder(
+    new ProductionOrderId('MOP4245'),
+    new ReferenceId('MAR8582'),
+    new ProductionOrderGarmentType('MOP'),
+    new ProductionOrderPlannedAmount(1500),
+    new CreationDate(new Date()),
+    new ProductionOrderProccessState(4)
+);
 
-        const command = new CreateUserCommand({
-            userId: '1020475912',
-            userPassword:'1234',
-            userProfileId:2,
-            userIdType:1,
-            createBy:'1146441925'
-        });
-        const response = await handler.handle(command)
-        console.log(response)
+order.plannedSewingProccess(
+    new ProductionOrderType('MOP'),
+    new ProductionModuleId(2),
+    new ProductionOrderProcessStartDatePlanned(new Date()),
+    new ProductionOrderProcessEndDatePlanned(new Date())
+)
 
-    } catch (error) { console.log(error) }
-}
-query();
+console.log(order.toPrimitives())

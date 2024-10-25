@@ -5,7 +5,6 @@ export class ProductionOrderPlannedSewingProcessDTO {
         public readonly proccessId: number,
         public readonly productionOrderType: string,
         public readonly executedAmount: number,
-        public readonly plannedAmount: number,
         public readonly plannedProductionModuleId: number,
         public readonly plannedStartDate: Date,
         public readonly plannedEndDate: Date,
