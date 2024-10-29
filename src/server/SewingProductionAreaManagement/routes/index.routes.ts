@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { CountingRecordsOrderRoutes } from '../SewingProductionAreaManagement/routes/CountingRecordsOrder.routes';
-import { ProductionModuleRoutes } from '../SewingProductionAreaManagement/routes/ProductionModule.routes';
-import { ProductionOrderRoutes } from '../SewingProductionAreaManagement/routes/ProductionOrder.routes';
-import { ProductionOrderDetailRoutes } from '../SewingProductionAreaManagement/routes/ProductionOrderDetail.routes';
+import { ProductionOrderDetailRoutes } from './ProductionOrderDetail.routes';
+import { CountingRecordsOrderRoutes } from './CountingRecordsOrder.routes';
+import { ProductionModuleRoutes } from './ProductionModule.routes';
+import { ProductionOrderRoutes } from './ProductionOrder.routes';
 
 export class SewingProductionAreaManagementRoutes {
     public router = Router();
