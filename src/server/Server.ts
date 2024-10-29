@@ -28,6 +28,7 @@ export class Server {
     }
 
     private config(app: express.Express): void {
+        const corsConfig: CorsOptions = { origin: "http://localhost:3000", credentials: true };
 
         app.use(this.sewingProductionAdministrativeBackendApp.router)
         app.use(this.sewingProductionReportsBackendApp.router);
@@ -35,8 +36,6 @@ export class Server {
         app.use(this.sharedAdministrativeBackendApp.router);
         app.use(this.authenticationBackendApp.router);
         app.use(this.platformsBackendApp.router);
-
-        const corsConfig: CorsOptions = { origin: "http://localhost:3000", credentials: true };
 
         app.use(cors(corsConfig));
         app.use(cookieParser());
@@ -57,7 +56,28 @@ export class Server {
                 );
                 console.log('  Press CTRL-C to stop\n');
                 resolve();
-            });
+            })
+                .on("error", (err: any) => {
+                    if (err.code === "EADDRINUSE") {
+                        console.log("Error: The address is in use");
+                    } else {
+                        console.log(err);
+                    }
+                });
+        });
+    }
+
+    async stop(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            if (this.httpServer) {
+                this.httpServer.close(error => {
+                    if (error) {
+                        return reject(error);
+                    }
+                    return resolve();
+                });
+            }
+            return resolve();
         });
     }
 }

@@ -14,12 +14,12 @@ export class InMemoryExternalService implements UserExternalService {
         ]
     }
 
-    async find(userId: UserId): Promise<UserExternalServiceDTO | null> {
+    async find(userId: UserId): Promise<UserExternalServiceDTO[]> {
         const user = this.userList.find(entry => entry.userId === userId.value);
 
         if (user === undefined)
-            return null;
+            return [];
 
-        return user;
+        return [user];
     }
 }

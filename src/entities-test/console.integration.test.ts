@@ -11,20 +11,3 @@ import { ProductionOrderProcessStartDatePlanned } from '../contexts/Shared/domai
 import { ProductionOrderProcessEndDatePlanned } from '../contexts/Shared/domain/value-object/ProductionOrderProcessEndDatePlanned';
 import { ProductionOrderPlannedAmount } from '../contexts/Shared/domain/value-object/ProductionOrderPlannedAmount';
 
-const order = new ProductionOrder(
-    new ProductionOrderId('MOP4245'),
-    new ReferenceId('MAR8582'),
-    new ProductionOrderGarmentType('MOP'),
-    new ProductionOrderPlannedAmount(1500),
-    new CreationDate(new Date()),
-    new ProductionOrderProccessState(4)
-);
-
-order.plannedSewingProccess(
-    new ProductionOrderType('MOP'),
-    new ProductionModuleId(2),
-    new ProductionOrderProcessStartDatePlanned(new Date()),
-    new ProductionOrderProcessEndDatePlanned(new Date())
-)
-
-console.log(order.toPrimitives())

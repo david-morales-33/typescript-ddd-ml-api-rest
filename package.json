@@ -7,6 +7,7 @@
     "console-integration-test": "ts-node src/entities-test/console.integration.test.ts",
     "console-entities-test": "ts-node src/entities-test/console.entities.test.ts",
     "build": "tsc --build",
+    "dev": "concurrently \"tsc -w\" \"nodemon build/server/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "David Morales",
@@ -23,6 +24,7 @@
     "@types/uuid": "^10.0.0",
     "@types/uuid-validate": "^0.0.3",
     "@types/xml2js": "^0.4.14",
+    "concurrently": "^9.0.1",
     "morgan": "^1.10.0",
     "typescript": "^5.5.4"
   },
