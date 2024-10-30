@@ -1,7 +1,7 @@
 {
   "name": "mujer-latina-api-rest",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server/index.js",
   "scripts": {
     "tsc": "tsc",
     "console-integration-test": "ts-node src/entities-test/console.integration.test.ts",
@@ -26,6 +26,7 @@
     "@types/xml2js": "^0.4.14",
     "concurrently": "^9.0.1",
     "morgan": "^1.10.0",
+    "nodemon": "^3.1.7",
     "typescript": "^5.5.4"
   },
   "dependencies": {
@@ -36,6 +37,7 @@
     "dependency-injection": "^2.3.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "mssql": "^11.0.1",
     "node-dependency-injection": "^3.1.2",

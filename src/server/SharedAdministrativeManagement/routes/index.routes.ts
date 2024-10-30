@@ -3,9 +3,9 @@ import { Router } from 'express';
 export class SharedAdministrativeRoutes {
     public router = Router();
     constructor() {
-        this.inizialicer();
+        this.register();
     }
-    private inizialicer() {
+    private register() {
         this.router.use('/orden-produccion-detalles/', () => { });
         this.router.use('/orden-produccion-maestra/', () => { });
         this.router.use('/referencia/', () => { });

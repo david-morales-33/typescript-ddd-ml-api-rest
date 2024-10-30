@@ -4,10 +4,10 @@ export class AuthenticationRoutes {
     public router = Router();
 
     constructor() {
-        this.inizialicer();
+        this.register();
     }
 
-    private inizialicer() {
+    private register() {
         this.router.use('/auth-by-credentials', () => { })
         this.router.use('/auth-by-token', () => { })
     }

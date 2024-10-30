@@ -1,4 +1,5 @@
 import { v4 as uuid } from 'uuid';
+import validate from 'uuid-validate'
 import { ProductionOrder } from '../contexts/SharedAdministrativeManagement/ProductionOrder/domain/entities/ProductionOrder';
 import { ProductionOrderId } from '../contexts/Shared/domain/value-object/ProductionOrderId';
 import { ReferenceId } from '../contexts/Shared/domain/value-object/ReferenceId';
@@ -11,3 +12,6 @@ import { ProductionOrderProcessStartDatePlanned } from '../contexts/Shared/domai
 import { ProductionOrderProcessEndDatePlanned } from '../contexts/Shared/domain/value-object/ProductionOrderProcessEndDatePlanned';
 import { ProductionOrderPlannedAmount } from '../contexts/Shared/domain/value-object/ProductionOrderPlannedAmount';
 
+
+
+console.log(validate('881c7db2-46c8-4d1a-bb58-529aa6fe7ffa'))

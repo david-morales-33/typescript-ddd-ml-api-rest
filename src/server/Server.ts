@@ -51,10 +51,10 @@ export class Server {
     async listen(): Promise<void> {
         return new Promise(resolve => {
             this.httpServer = this.app.listen(this.port, () => {
-                console.log(
-                    ` Backend App is running at http://localhost:${this.port} in ${this.app.get('env')} mode`
-                );
-                console.log('  Press CTRL-C to stop\n');
+                console.log('\n')
+                console.log('===========================================================================================')
+                console.log(`--Backend App is running at http://localhost:${this.port} in ${this.app.get('env')} mode...`);
+                console.log('--Press CTRL-C to stop\n');
                 resolve();
             })
                 .on("error", (err: any) => {

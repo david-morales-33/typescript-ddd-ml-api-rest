@@ -3,9 +3,9 @@ import { Router } from 'express';
 export class SewingProductionReportsRoutes {
     public router = Router();
     constructor() {
-        this.inizialicer();
+        this.register();
     }
-    private inizialicer() {
+    private register() {
         this.router.use('/modulo-produccion/', () => { });
         this.router.use('/orden-conteo-registro/', () => { });
         this.router.use('/orden-produccion/', () => { });
