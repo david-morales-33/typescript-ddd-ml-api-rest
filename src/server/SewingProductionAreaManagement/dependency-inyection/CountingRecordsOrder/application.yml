@@ -1,0 +1,24 @@
+services:
+  SewingProductionAreaManagement.infrastructure.CountingRecordsOrder.SqlServerCountingOrderRecordsRepository:
+    class: ../../../../contexts/SewingProductionAreaManagement/CountingRecordsOrder/infrastructure/persistence/SQLServer/SQLServerCountingOrderRecordsRepository
+    arguments: ['@SewingProductionAreaManagement.infrastructure.shared.ConnectionManager']
+  
+  SewingProductionAreaManagement.application.CountingRecordsOrder.CountingRecordsOrderFinder:
+    class: ../../../../contexts/SewingProductionAreaManagement/CountingRecordsOrder/aplication/use-cases/Find/CountingRecordsOrderFinder
+    arguments: ['@SewingProductionAreaManagement.infrastructure.CountingRecordsOrder.SqlServerCountingOrderRecordsRepository']
+
+  SewingProductionAreaManagement.application.CountingRecordsOrder.CountingRecordsOrderQueryHandler:
+    class: ../../../../contexts/SewingProductionAreaManagement/CountingRecordsOrder/aplication/use-cases/Find/CountingRecordsOrderQueryHandler
+    arguments: ['@SewingProductionAreaManagement.application.CountingRecordsOrder.CountingRecordsOrderFinder']
+    tags:
+      - { name: 'queryHandler' }
+
+  SewingProductionAreaManagement.application.CountingRecordsOrder.CountingRecordsOrderByCriteriaSearcher:
+    class: ../../../../contexts/SewingProductionAreaManagement/CountingRecordsOrder/aplication/use-cases/SearchByCriteria/CountingRecordsOrderByCriteriaSearcher
+    arguments: ['@SewingProductionAreaManagement.infrastructure.CountingRecordsOrder.SqlServerCountingOrderRecordsRepository']
+
+  SewingProductionAreaManagement.application.CountingRecordsOrder.SearchCountingRecordsOrderByCriteriaQueryHandler:
+    class: ../../../../contexts/SewingProductionAreaManagement/CountingRecordsOrder/aplication/use-cases/SearchByCriteria/SearchCountingRecordsOrderByCriteriaQueryHandler
+    arguments: ['@SewingProductionAreaManagement.application.CountingRecordsOrder.CountingRecordsOrderByCriteriaSearcher']
+    tags:
+      - { name: 'queryHandler' }

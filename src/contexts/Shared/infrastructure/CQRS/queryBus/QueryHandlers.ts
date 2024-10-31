@@ -1,4 +1,3 @@
-
 import { Query } from "../../../domain/CQRS/Query";
 import { QueryHandler } from "../../../domain/CQRS/QueryHandler";
 import { QueryNotRegisteredError } from "../../../domain/exceptions/QueryNotRegisteredError";

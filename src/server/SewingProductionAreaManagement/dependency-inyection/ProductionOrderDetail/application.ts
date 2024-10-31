@@ -1,7 +1,7 @@
 import { ProductionOrderDetailFinder } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrderDetail/application/use-cases/Find/ProductionOrderDetailFinder';
 import { ProductionOrderDetailQueryHandler } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrderDetail/application/use-cases/Find/ProductionOrderDetailQueryHandler';
 import { SQLServerProductionOrderDetail } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrderDetail/infrastructure/Persistence/SQLServer/SQLServerProductionOrderDetail';
-import { container } from '../application';
+import { container } from '..';
 
 container.
     register('SewingProductionAreaManagement.infrastructure.ProductionOrderDetail.SqlServerProductionOrderDetail', SQLServerProductionOrderDetail).

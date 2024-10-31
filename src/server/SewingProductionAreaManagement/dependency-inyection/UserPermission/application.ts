@@ -1,7 +1,7 @@
 import { UserPermissionValidator } from '../../../../contexts/Shared/application/Validate/UserPermissionValidator';
 import { InMemoryUserPermissionRepository } from '../../../../contexts/Shared/infrastructure/inMemory/InMemoryUserPermissionRepository';
 import { SQLServerUserPermission } from '../../../../contexts/Shared/infrastructure/persistence/SQLServere/SQLServerUserPermission';
-import { container } from '../application';
+import { container } from '..';
 
 container.
     register('SewingProductionAreaManagement.infrastructure.UserPermission.InMemoryUserPermissionRepository', InMemoryUserPermissionRepository);

@@ -1,0 +1,33 @@
+services:
+  SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderResponseRepository:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderResponseRepository
+    arguments: ['@SewingProductionAreaManagement.infrastructure.shared.ConnectionManager']
+
+  SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderQueryRepository: 
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerProductionOrderQueryRepository
+    arguments: ['@SewingProductionAreaManagement.infrastructure.shared.ConnectionManager']
+
+  SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateProductionOrderCommandRepository:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerCreateProductionOrderCommandRepository
+    arguments: ['@SewingProductionAreaManagement.infrastructure.shared.ConnectionManager'] 
+
+  SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreatorProductionOrder:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateProductionOrder/ProductionOrderCreator
+    arguments: [
+      '@SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateProductionOrderCommandRepository',
+      '@SewingProductionAreaManagement.infrastructure.Services.WebServiceProductionOrder',
+      '@SewingProductionAreaManagement.infrastructure.Services.WebServiceEAN'
+    ]
+  SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreateProductionOrderCommandHandler:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateProductionOrder/CreateProductionOrderCommandHandler
+    arguments: ['@SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreatorProductionOrder']
+    tags:
+      - { name: 'commandHandler' }
+
+  SewingProductionAreaManagement.application.ProductionOrder.ProductionOrderByCriteriaSearcher:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/SearchByCriteria/ProductionOrderByCriteriaSearcher
+    arguments: ['@SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderResponseRepository']
+
+  SewingProductionAreaManagement.application.ProductionOrder.SearchProductionOrderByCriteriaQueryHandler:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/SearchByCriteria/SearchProductionOrderByCriteriaQueryHandler
+    arguments: ['@SewingProductionAreaManagement.application.ProductionOrder.ProductionOrderByCriteriaSearcher']

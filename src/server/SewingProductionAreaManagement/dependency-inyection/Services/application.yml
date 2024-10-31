@@ -1,0 +1,6 @@
+services:
+  SewingProductionAreaManagement.infrastructure.Services.WebServiceProductionOrder:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Services/WebService/WebServiceProductionOrder
+
+  SewingProductionAreaManagement.infrastructure.Services.WebServiceEAN:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Services/WebService/WebServiceEAN

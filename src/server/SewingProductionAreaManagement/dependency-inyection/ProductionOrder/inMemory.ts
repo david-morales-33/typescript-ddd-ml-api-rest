@@ -1,4 +1,4 @@
-import { container } from '../application';
+import { container } from '..';
 import { InMemoryProductionOrderEANExternalService } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/InMemory/InMemoryProductionOrderEANExternalService';
 import { InMemoryExternalServiceRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/InMemory/InMemoryProductionOrderExternalService'
 import { InMemoryCreateProductionOrderCommandRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/InMemory/InMemoryCreateProductionOrderCommandRepository'

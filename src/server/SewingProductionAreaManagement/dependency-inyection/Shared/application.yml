@@ -1,0 +1,19 @@
+services:
+  SewingProductionAreaManagement.infrastructure.shared.SQLServerConfigFactory:
+    factory:
+      class: ../../../../contexts/SewingProductionAreaManagement/Shared/infrastructure/persistence/SQLServer/SQLServerConfigFactory
+      method: 'createConfig'
+  
+  SewingProductionAreaManagement.infrastructure.shared.ConnectionManager:
+    factory:
+      class: ../../../../contexts/Shared/infrastructure/persistence/SQLServere/SQLServerPoolFactory
+      method: 'createPool'
+    arguments: ['SewingProductionAreaManagement', '@SewingProductionAreaManagement.infrastructure.shared.SQLServerConfigFactory']
+
+  SewingProductionAreaManagement.infrastructure.shared.QueryHandlers:
+    class: ../../../../contexts/Shared/infrastructure/CQRS/queryBus/QueryHandlers
+    arguments: ['!tagged queryHandler']
+
+  SewingProductionAreaManagement.infrastructure.shared.InMemoryQueryBus:
+    class: ../../../../contexts/Shared/infrastructure/CQRS/queryBus/InMemoryQueryBus
+    arguments: ['@SewingProductionAreaManagement.infrastructure.shared.QueryHandlers']

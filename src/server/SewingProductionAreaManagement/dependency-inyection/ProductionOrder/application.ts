@@ -1,4 +1,4 @@
-import { container } from '../application';
+import { container } from '..';
 import { ProductionOrderValidator } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateProductionOrder/ProductionOrderValidator';
 import { ProductionOrderCreator } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateProductionOrder/ProductionOrderCreator';
 import { CreateProductionOrderCommandHandler } from '../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateProductionOrder/CreateProductionOrderCommandHandler';

@@ -1,4 +1,4 @@
-import { container } from '../application';
+import { container } from '..';
 import { InMemeryProductionModuelResponseRepository } from '../../../../contexts/SewingProductionAreaManagement/ProductionModule/infrastructure/InMemory/InMemoryProductionModuelResponseRepository';
 import { ProductionModuleFinder } from '../../../../contexts/SewingProductionAreaManagement/ProductionModule/application/use-cases/Find/ProductionModuleFinder';
 import { ProductionModuleFinder as ProductionModuleSearcher } from '../../../../contexts/SewingProductionAreaManagement/ProductionModule/application/use-cases/SearchAll/ProductionModuleFinder';
