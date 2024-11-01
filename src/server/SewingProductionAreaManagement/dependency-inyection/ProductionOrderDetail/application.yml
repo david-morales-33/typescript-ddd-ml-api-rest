@@ -1,0 +1,12 @@
+services:
+  SewingProductionAreaManagement.infrastructure.ProductionOrderDetail.SqlServerProductionOrderDetail:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrderDetail/infrastructure/Persistence/SQLServer/SQLServerProductionOrderDetail
+    arguments: ['@SewingProductionAreaManagement.infrastructure.shared.ConnectionManager']
+
+  SewingProductionAreaManagement.application.ProductionOrderDetail.ProductionOrderDetailFinder:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrderDetail/application/use-cases/Find/ProductionOrderDetailFinder
+    arguments: ['@SewingProductionAreaManagement.infrastructure.ProductionOrderDetail.SqlServerProductionOrderDetail']
+
+  SewingProductionAreaManagement.application.ProductionOrderDetail.ProductionOrderDetailQueryHandler:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrderDetail/application/use-cases/Find/ProductionOrderDetailQueryHandler
+    arguments: ['@SewingProductionAreaManagement.application.ProductionOrderDetail.ProductionOrderDetailFinder']

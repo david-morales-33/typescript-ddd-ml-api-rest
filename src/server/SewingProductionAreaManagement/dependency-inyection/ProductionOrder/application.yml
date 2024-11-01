@@ -18,6 +18,7 @@ services:
       '@SewingProductionAreaManagement.infrastructure.Services.WebServiceProductionOrder',
       '@SewingProductionAreaManagement.infrastructure.Services.WebServiceEAN'
     ]
+
   SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreateProductionOrderCommandHandler:
     class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateProductionOrder/CreateProductionOrderCommandHandler
     arguments: ['@SewingProductionAreaManagement.application.ProductionOrder.SqlServerCreatorProductionOrder']
@@ -31,3 +32,20 @@ services:
   SewingProductionAreaManagement.application.ProductionOrder.SearchProductionOrderByCriteriaQueryHandler:
     class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/SearchByCriteria/SearchProductionOrderByCriteriaQueryHandler
     arguments: ['@SewingProductionAreaManagement.application.ProductionOrder.ProductionOrderByCriteriaSearcher']
+
+  SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateCountingRecordsOrderOneCommandRepository:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/infrastructure/Persistence/SQLServer/SQLServerCreateCountingRecordsOrderOneCommandRepository
+    arguments: ['@SewingProductionAreaManagement.infrastructure.shared.ConnectionManager']
+    tags:
+      - { name: 'commandHandler' }
+
+  SewingProductionAreaManagement.application.ProductionOrder.CountingRecordsOrderFirstQualityCreator:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderFirstQuality/CountingRecordsOrderFirstQualityCreator
+    arguments: [
+      '@SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerProductionOrderQueryRepository',
+      '@SewingProductionAreaManagement.infrastructure.ProductionOrder.SQLServerCreateCountingRecordsOrderOneCommandRepository'
+    ]
+    
+  SewingProductionAreaManagement.application.ProductionOrder.CreateCountingRecordsOrderFirstQualityCommandHandler:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionOrder/application/use-cases/CreateCountingRecordsOrderFirstQuality/CreateCountingRecordsOrderFirstQualityCommandHandler
+    arguments: ['@SewingProductionAreaManagement.application.ProductionOrder.CountingRecordsOrderFirstQualityCreator']

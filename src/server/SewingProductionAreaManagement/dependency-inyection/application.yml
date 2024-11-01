@@ -2,8 +2,7 @@ imports:
   - { resource: ./CountingRecordsOrder/application.yml }
   # - { resource: ./ProductionModule/application.yml }
   - { resource: ./ProductionOrder/application.yml }
-  # - { resource: ./ProductionOrderDetail/application.yml }
+  - { resource: ./ProductionOrderDetail/application.yml }
   - { resource: ./Services/application.yml }
   - { resource: ./Shared/application.yml }
-  # - { resource: ./UserPermission/application.yml }
   # - { resource: ./UserPermission/application.yml }

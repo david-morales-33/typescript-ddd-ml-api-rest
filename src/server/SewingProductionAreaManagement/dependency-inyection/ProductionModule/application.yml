@@ -1,0 +1,13 @@
+services:
+  SewingProductionAreaManagement.infrastructure.ProductionModule.InMemeryProductionModuelResponseRepository:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionModule/infrastructure/InMemory/InMemoryProductionModuelResponseRepository
+  
+  SewingProductionAreaManagement.application.ProductionModule.ProductionModuleFinder:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionModule/application/use-cases/Find/ProductionModuleFinder
+    arguments: [ '@SewingProductionAreaManagement.infrastructure.ProductionModule.InMemeryProductionModuelResponseRepository']
+
+  SewingProductionAreaManagement.application.ProductionModule.ProductionModuleQueryHandler:
+    class: ../../../../contexts/SewingProductionAreaManagement/ProductionModule/application/use-cases/Find/ProductionModuleQueryHandler
+    arguments: ['@SewingProductionAreaManagement.application.ProductionModule.ProductionModuleFinder']
+
+  
