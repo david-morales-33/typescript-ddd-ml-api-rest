@@ -1,0 +1,22 @@
+services:
+  Authentication.infrastructure.shared.SQLServerConfigFactory:
+    factory:
+      class: ../../../../contexts/Authentication/Shared/infrastructure/persistence/SQLServer/SQLServerConfigFactory
+      method: 'createConfig'
+  
+  Authentication.infrastructure.shared.ConnectionManager:
+    factory:
+      class: ../../../../contexts/Shared/infrastructure/persistence/SQLServere/SQLServerPoolFactory
+      method: 'createPool'
+    arguments: ['Authentication', '@Authentication.infrastructure.shared.SQLServerConfigFactory']
+
+  Authentication.infrastructure.shared.QueryHandlers:
+    class: ../../../../contexts/Shared/infrastructure/CQRS/queryBus/QueryHandlers
+    arguments: ['!tagged queryHandler']
+
+  Authentication.infrastructure.shared.InMemoryQueryBus:
+    class: ../../../../contexts/Shared/infrastructure/CQRS/queryBus/InMemoryQueryBus
+    arguments: ['@Authentication.infrastructure.shared.QueryHandlers']
+
+  Authentication.infrastructure.shared.BcryptPasswordService:
+    class: ../../../../contexts/Shared/infrastructure/services/Bcrypt/BcryptPasswordService

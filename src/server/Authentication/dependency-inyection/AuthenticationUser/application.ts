@@ -3,7 +3,7 @@ import { UserAuthenticatorByCredentialsQueryHandler } from "../../../../contexts
 import { UserAuthenticatorByToken } from "../../../../contexts/Authentication/AuthenticationUser/application/AccessByToken/UserAuthenticatorByToken";
 import { UserAuthenticatorByTokenQueryHandler } from "../../../../contexts/Authentication/AuthenticationUser/application/AccessByToken/UserAuthenticatorByTokenQueryHandler";
 import { SQLServerUserRepository } from "../../../../contexts/Authentication/AuthenticationUser/infrastructure/Persistence/SQLServer/SQLServerUserRepository";
-import { container } from "../application";
+import { container } from "..";
 
 container.
     register('Authentication.infrastructure.User.SqlServerUserRepository', SQLServerUserRepository).

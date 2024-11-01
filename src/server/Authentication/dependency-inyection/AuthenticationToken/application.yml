@@ -1,0 +1,3 @@
+services:
+  Authentication.infrastructure.Token.JWTAuthenticationTokenService:
+    class: ../../../../contexts/Authentication/AuthenticationToken/infrastructure/Services/JWT/JWTAuthenticationTokenService
